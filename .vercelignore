@@ -1,0 +1,6 @@
+public/resources/*
+!public/resources/README.md
+public/slides/*
+!public/slides/README.md
+scripts/
+tests/

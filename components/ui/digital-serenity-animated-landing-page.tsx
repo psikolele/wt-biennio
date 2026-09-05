@@ -1,331 +1,398 @@
-'use client';
+"use client";
 
-import React, { useState, useEffect, useRef } from 'react';
+import React, { useEffect, useRef } from "react";
+import { motion, type Variants } from "framer-motion";
+import {
+  Code2, 
+  Layers, 
+  Sparkles, 
+  CheckCircle2, 
+  BookOpen, 
+  XCircle, 
+  ChevronRight,
+  ExternalLink,
+  Laptop
+} from "lucide-react";
 
-interface MouseGradientStyle {
-  left: string;
-  top: string;
-  opacity: number;
+// --- Types ---
+interface Milestone {
+  id: string;
+  title: string;
+  description: string;
+  items: string[];
+  icon: React.ElementType;
 }
 
-interface Ripple {
-  id: number;
-  x: number;
-  y: number;
+interface Resource {
+  title: string;
+  links: { name: string; url: string }[];
 }
 
-const DigitalSerenity: React.FC = () => {
-  const [mouseGradientStyle, setMouseGradientStyle] = useState<MouseGradientStyle>({
-    left: '0px',
-    top: '0px',
-    opacity: 0,
-  });
-  const [ripples, setRipples] = useState<Ripple[]>([]);
-  const [scrolled, setScrolled] = useState<boolean>(false);
-  const floatingElementsRef = useRef<HTMLElement[]>([]);
+interface Point {
+  text: string;
+  points: number;
+}
 
-  // Word appear animation on mount
-  useEffect(() => {
-    const timeoutId = setTimeout(() => {
-      const wordElements = document.querySelectorAll<HTMLElement>('.word-animate');
-      wordElements.forEach((word) => {
-        const delay = parseInt(word.getAttribute('data-delay') ?? '0', 10);
-        setTimeout(() => {
-          if (word) word.style.animation = 'word-appear 0.8s ease-out forwards';
-        }, delay);
-      });
-    }, 500);
-    return () => clearTimeout(timeoutId);
-  }, []);
+// --- Content Data ---
+const MILESTONES: Milestone[] = [
+  {
+    id: "setup",
+    title: "Setup & Struttura",
+    description: "La base di tutto. Configura il progetto e scrivi un HTML solido.",
+    icon: Code2,
+    items: [
+      "Cartella del progetto e file base (index.html, style.css, assets/)",
+      "Uso esclusivo di HTML5 semantico (<header>, <main>, <article>)",
+      "Nessun <div> se esiste un tag semantico migliore"
+    ]
+  },
+  {
+    id: "style",
+    title: "Stile & Layout",
+    description: "Dai vita alla pagina. Formattazione, colori e posizionamento.",
+    icon: Layers,
+    items: [
+      "Variabili CSS (:root) per palette colori e font",
+      "Flexbox o CSS Grid per la struttura principale",
+      "Design responsivo con Media Queries per mobile"
+    ]
+  },
+  {
+    id: "extra",
+    title: "Ottimizzazione",
+    description: "I dettagli che rendono un sito veramente professionale.",
+    icon: Sparkles,
+    items: [
+      "Immagini ottimizzate e accessibili (alt text)",
+      "Effetti hover interattivi e transizioni CSS",
+      "Check validazione W3C"
+    ]
+  }
+];
 
-  // Mouse gradient tracking
-  useEffect(() => {
-    const handleMouseMove = (e: MouseEvent) => {
-      setMouseGradientStyle({ left: `${e.clientX}px`, top: `${e.clientY}px`, opacity: 1 });
-    };
-    const handleMouseLeave = () => {
-      setMouseGradientStyle((prev) => ({ ...prev, opacity: 0 }));
-    };
-    document.addEventListener('mousemove', handleMouseMove);
-    document.addEventListener('mouseleave', handleMouseLeave);
-    return () => {
-      document.removeEventListener('mousemove', handleMouseMove);
-      document.removeEventListener('mouseleave', handleMouseLeave);
-    };
-  }, []);
+const CHECKLIST: Point[] = [
+  { text: "CSS separato collegato tramite <link> — zero stile inline nel body", points: 10 },
+  { text: "Variabili CSS (:root { --variabile }) per colori e font", points: 5 },
+  { text: "Layout con Flexbox o CSS Grid in almeno una sezione", points: 10 },
+  { text: "Almeno 2 immagini con attributo alt compilato", points: 5 },
+  { text: "Form contatti con HTML (anche non funzionale)", points: 5 },
+  { text: "Media query per mobile (@media max-width: 768px)", points: 10 },
+  { text: "Codice validato su validator.w3.org (0 errori critici)", points: 10 },
+  { text: "Shortcut VS Code ★ dimostrate durante la presentazione", points: 15 },
+  { text: "Presentazione orale (2 min): scelte progettuali e tecniche", points: 15 }
+];
 
-  // Click ripple effect
-  useEffect(() => {
-    const handleClick = (e: MouseEvent) => {
-      const newRipple: Ripple = { id: Date.now(), x: e.clientX, y: e.clientY };
-      setRipples((prev) => [...prev, newRipple]);
-      setTimeout(() => setRipples((prev) => prev.filter((r) => r.id !== newRipple.id)), 1000);
-    };
-    document.addEventListener('click', handleClick);
-    return () => document.removeEventListener('click', handleClick);
-  }, []);
+const RESOURCES: Resource[] = [
+  {
+    title: "Documentazione & Strumenti",
+    links: [
+      { name: "MDN Web Docs — HTML & CSS", url: "https://developer.mozilla.org/it/docs/Web" },
+      { name: "W3C Validator", url: "https://validator.w3.org" },
+      { name: "VS Code Shortcuts", url: "https://code.visualstudio.com/docs/configure/keybindings" },
+      { name: "Flexbox Froggy & Grid Garden", url: "https://flexboxfroggy.com/#it" }
+    ]
+  },
+  {
+    title: "Design & Assets",
+    links: [
+      { name: "Coolors — Palette generator", url: "https://coolors.co" },
+      { name: "Google Fonts", url: "https://fonts.google.com" },
+      { name: "Unsplash — Immagini HD libere", url: "https://unsplash.com" },
+      { name: "Lucide Icons", url: "https://lucide.dev" }
+    ]
+  }
+];
 
-  // Word hover glow effect
-  useEffect(() => {
-    const wordElements = document.querySelectorAll<HTMLElement>('.word-animate');
-    const handleEnter = (e: Event) => {
-      const target = e.target as HTMLElement;
-      if (target) target.style.textShadow = '0 0 20px rgba(203, 213, 225, 0.5)';
-    };
-    const handleLeave = (e: Event) => {
-      const target = e.target as HTMLElement;
-      if (target) target.style.textShadow = 'none';
-    };
-    wordElements.forEach((word) => {
-      word.addEventListener('mouseenter', handleEnter);
-      word.addEventListener('mouseleave', handleLeave);
-    });
-    return () => {
-      wordElements.forEach((word) => {
-        word.removeEventListener('mouseenter', handleEnter);
-        word.removeEventListener('mouseleave', handleLeave);
-      });
-    };
-  }, []);
-
-  // Floating elements on scroll
-  useEffect(() => {
-    const elements = document.querySelectorAll<HTMLElement>('.floating-element-animate');
-    floatingElementsRef.current = Array.from(elements);
-    const handleScroll = () => {
-      if (!scrolled) {
-        setScrolled(true);
-        floatingElementsRef.current.forEach((el, index) => {
-          const delay = parseFloat(el.style.animationDelay ?? '0') * 1000;
-          setTimeout(() => {
-            if (el) {
-              el.style.animationPlayState = 'running';
-              el.style.opacity = '';
-            }
-          }, delay + index * 100);
-        });
-      }
-    };
-    window.addEventListener('scroll', handleScroll);
-    return () => window.removeEventListener('scroll', handleScroll);
-  }, [scrolled]);
-
-  const pageStyles = `
-    #mouse-gradient-react {
-      position: fixed;
-      pointer-events: none;
-      border-radius: 9999px;
-      background-image: radial-gradient(circle, rgba(156, 163, 175, 0.05), rgba(107, 114, 128, 0.05), transparent 70%);
-      transform: translate(-50%, -50%);
-      will-change: left, top, opacity;
-      transition: left 70ms linear, top 70ms linear, opacity 300ms ease-out;
-    }
-    @keyframes word-appear {
-      0%   { opacity: 0; transform: translateY(30px) scale(0.8); filter: blur(10px); }
-      50%  { opacity: 0.8; transform: translateY(10px) scale(0.95); filter: blur(2px); }
-      100% { opacity: 1; transform: translateY(0) scale(1); filter: blur(0); }
-    }
-    @keyframes grid-draw {
-      0%   { stroke-dashoffset: 1000; opacity: 0; }
-      50%  { opacity: 0.3; }
-      100% { stroke-dashoffset: 0; opacity: 0.15; }
-    }
-    @keyframes pulse-glow {
-      0%, 100% { opacity: 0.1; transform: scale(1); }
-      50%       { opacity: 0.3; transform: scale(1.1); }
-    }
-    @keyframes underline-grow { to { width: 100%; } }
-    @keyframes float {
-      0%, 100% { transform: translateY(0) translateX(0); opacity: 0.2; }
-      25%  { transform: translateY(-10px) translateX(5px); opacity: 0.6; }
-      50%  { transform: translateY(-5px) translateX(-3px); opacity: 0.4; }
-      75%  { transform: translateY(-15px) translateX(7px); opacity: 0.8; }
-    }
-    .word-animate {
-      display: inline-block;
-      opacity: 0;
-      margin: 0 0.1em;
-      transition: color 0.3s ease, transform 0.3s ease;
-    }
-    .word-animate:hover { color: #cbd5e1; transform: translateY(-2px); }
-    .grid-line {
-      stroke: #94a3b8;
-      stroke-width: 0.5;
-      opacity: 0;
-      stroke-dasharray: 5 5;
-      stroke-dashoffset: 1000;
-      animation: grid-draw 2s ease-out forwards;
-    }
-    .detail-dot { fill: #cbd5e1; opacity: 0; animation: pulse-glow 3s ease-in-out infinite; }
-    .corner-element-animate {
-      position: absolute; width: 40px; height: 40px;
-      border: 1px solid rgba(203, 213, 225, 0.2);
-      opacity: 0;
-      animation: word-appear 1s ease-out forwards;
-    }
-    .text-decoration-animate { position: relative; }
-    .text-decoration-animate::after {
-      content: '';
-      position: absolute; bottom: -4px; left: 0;
-      width: 0; height: 1px;
-      background: linear-gradient(90deg, transparent, #cbd5e1, transparent);
-      animation: underline-grow 2s ease-out forwards;
-      animation-delay: 2s;
-    }
-    .floating-element-animate {
-      position: absolute; width: 2px; height: 2px;
-      background: #cbd5e1; border-radius: 50%;
-      opacity: 0;
-      animation: float 4s ease-in-out infinite;
-      animation-play-state: paused;
-    }
-    .ripple-effect {
-      position: fixed; width: 4px; height: 4px;
-      background: rgba(203, 213, 225, 0.6);
-      border-radius: 50%;
-      transform: translate(-50%, -50%);
-      pointer-events: none;
-      animation: pulse-glow 1s ease-out forwards;
-      z-index: 9999;
-    }
-  `;
-
-  return (
-    <>
-      <style>{pageStyles}</style>
-      <div className="min-h-screen bg-gradient-to-br from-slate-900 via-black to-slate-800 text-slate-100 overflow-hidden relative">
-
-        {/* SVG background grid */}
-        <svg
-          className="absolute inset-0 w-full h-full pointer-events-none"
-          xmlns="http://www.w3.org/2000/svg"
-          aria-hidden="true"
-        >
-          <defs>
-            <pattern id="gridReact" width="60" height="60" patternUnits="userSpaceOnUse">
-              <path d="M 60 0 L 0 0 0 60" fill="none" stroke="rgba(100, 116, 139, 0.1)" strokeWidth="0.5" />
-            </pattern>
-          </defs>
-          <rect width="100%" height="100%" fill="url(#gridReact)" />
-          <line x1="0" y1="20%" x2="100%" y2="20%" className="grid-line" style={{ animationDelay: '0.5s' }} />
-          <line x1="0" y1="80%" x2="100%" y2="80%" className="grid-line" style={{ animationDelay: '1s' }} />
-          <line x1="20%" y1="0" x2="20%" y2="100%" className="grid-line" style={{ animationDelay: '1.5s' }} />
-          <line x1="80%" y1="0" x2="80%" y2="100%" className="grid-line" style={{ animationDelay: '2s' }} />
-          <line x1="50%" y1="0" x2="50%" y2="100%" className="grid-line" style={{ animationDelay: '2.5s', opacity: '0.05' }} />
-          <line x1="0" y1="50%" x2="100%" y2="50%" className="grid-line" style={{ animationDelay: '3s', opacity: '0.05' }} />
-          <circle cx="20%" cy="20%" r="2" className="detail-dot" style={{ animationDelay: '3s' }} />
-          <circle cx="80%" cy="20%" r="2" className="detail-dot" style={{ animationDelay: '3.2s' }} />
-          <circle cx="20%" cy="80%" r="2" className="detail-dot" style={{ animationDelay: '3.4s' }} />
-          <circle cx="80%" cy="80%" r="2" className="detail-dot" style={{ animationDelay: '3.6s' }} />
-          <circle cx="50%" cy="50%" r="1.5" className="detail-dot" style={{ animationDelay: '4s' }} />
-        </svg>
-
-        {/* Corner decorations */}
-        {[
-          { pos: 'top-4 left-4 sm:top-6 sm:left-6 md:top-8 md:left-8', delay: '4s', dot: 'top-0 left-0' },
-          { pos: 'top-4 right-4 sm:top-6 sm:right-6 md:top-8 md:right-8', delay: '4.2s', dot: 'top-0 right-0' },
-          { pos: 'bottom-4 left-4 sm:bottom-6 sm:left-6 md:bottom-8 md:left-8', delay: '4.4s', dot: 'bottom-0 left-0' },
-          { pos: 'bottom-4 right-4 sm:bottom-6 sm:right-6 md:bottom-8 md:right-8', delay: '4.6s', dot: 'bottom-0 right-0' },
-        ].map(({ pos, delay, dot }, i) => (
-          <div key={i} className={`corner-element-animate ${pos}`} style={{ animationDelay: delay }}>
-            <div className={`absolute ${dot} w-2 h-2 bg-slate-300 opacity-30 rounded-full`} />
-          </div>
-        ))}
-
-        {/* Floating particles */}
-        {[
-          { top: '25%', left: '15%', delay: '0.5s' },
-          { top: '60%', left: '85%', delay: '1s' },
-          { top: '40%', left: '10%', delay: '1.5s' },
-          { top: '75%', left: '90%', delay: '2s' },
-        ].map(({ top, left, delay }, i) => (
-          <div
-            key={i}
-            className="floating-element-animate"
-            style={{ top, left, animationDelay: delay }}
-          />
-        ))}
-
-        {/* Main content */}
-        <div className="relative z-10 min-h-screen flex flex-col justify-between items-center px-6 py-10 sm:px-8 sm:py-12 md:px-16 md:py-20">
-          {/* Top tagline */}
-          <div className="text-center">
-            <h2 className="text-xs sm:text-sm font-mono font-light text-slate-300 uppercase tracking-[0.2em] opacity-80">
-              <span className="word-animate" data-delay="0">Stillness</span>
-              <span className="word-animate" data-delay="300">speaks.</span>
-            </h2>
-            <div className="mt-4 w-12 sm:w-16 h-px bg-gradient-to-r from-transparent via-slate-300 to-transparent opacity-30 mx-auto" />
-          </div>
-
-          {/* Hero heading */}
-          <div className="text-center max-w-5xl mx-auto relative">
-            <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-extralight leading-tight tracking-tight text-slate-50 text-decoration-animate">
-              <div className="mb-4 md:mb-6">
-                <span className="word-animate" data-delay="700">Find</span>
-                <span className="word-animate" data-delay="850">your</span>
-                <span className="word-animate" data-delay="1000">center,</span>
-              </div>
-              <div className="text-xl sm:text-2xl md:text-3xl lg:text-4xl font-thin text-slate-300 leading-relaxed tracking-wide">
-                <span className="word-animate" data-delay="1400">where</span>
-                <span className="word-animate" data-delay="1550">peace</span>
-                <span className="word-animate" data-delay="1700">resides</span>
-                <span className="word-animate" data-delay="1850">and</span>
-                <span className="word-animate" data-delay="2000">clarity</span>
-                <span className="word-animate" data-delay="2150">awakens</span>
-                <span className="word-animate" data-delay="2300">within</span>
-                <span className="word-animate" data-delay="2450">the</span>
-                <span className="word-animate" data-delay="2600">soul.</span>
-              </div>
-            </h1>
-            {/* Side accent lines */}
-            <div
-              className="absolute -left-6 sm:-left-8 top-1/2 -translate-y-1/2 w-3 sm:w-4 h-px bg-slate-300 opacity-0"
-              style={{ animation: 'word-appear 1s ease-out forwards', animationDelay: '3.2s' }}
-            />
-            <div
-              className="absolute -right-6 sm:-right-8 top-1/2 -translate-y-1/2 w-3 sm:w-4 h-px bg-slate-300 opacity-0"
-              style={{ animation: 'word-appear 1s ease-out forwards', animationDelay: '3.4s' }}
-            />
-          </div>
-
-          {/* Bottom tagline */}
-          <div className="text-center">
-            <div className="mb-4 w-12 sm:w-16 h-px bg-gradient-to-r from-transparent via-slate-300 to-transparent opacity-30 mx-auto" />
-            <h2 className="text-xs sm:text-sm font-mono font-light text-slate-300 uppercase tracking-[0.2em] opacity-80">
-              <span className="word-animate" data-delay="3000">Observe,</span>
-              <span className="word-animate" data-delay="3200">accept,</span>
-              <span className="word-animate" data-delay="3400">let</span>
-              <span className="word-animate" data-delay="3550">go.</span>
-            </h2>
-            <div
-              className="mt-6 flex justify-center space-x-4 opacity-0"
-              style={{ animation: 'word-appear 1s ease-out forwards', animationDelay: '4.2s' }}
-            >
-              <div className="w-1 h-1 bg-slate-300 rounded-full opacity-40" />
-              <div className="w-1 h-1 bg-slate-300 rounded-full opacity-60" />
-              <div className="w-1 h-1 bg-slate-300 rounded-full opacity-40" />
-            </div>
-          </div>
-        </div>
-
-        {/* Mouse gradient */}
-        <div
-          id="mouse-gradient-react"
-          className="w-60 h-60 blur-xl sm:w-80 sm:h-80 sm:blur-2xl md:w-96 md:h-96 md:blur-3xl"
-          style={{ left: mouseGradientStyle.left, top: mouseGradientStyle.top, opacity: mouseGradientStyle.opacity }}
-        />
-
-        {/* Click ripples */}
-        {ripples.map((ripple) => (
-          <div
-            key={ripple.id}
-            className="ripple-effect"
-            style={{ left: `${ripple.x}px`, top: `${ripple.y}px` }}
-          />
-        ))}
-      </div>
-    </>
-  );
+// --- Animations ---
+const fadeUpVar: Variants = {
+  hidden: { opacity: 0, y: 30 },
+  visible: { opacity: 1, y: 0, transition: { duration: 0.7 } }
 };
 
-export default DigitalSerenity;
+const staggerContainer: Variants = {
+  hidden: { opacity: 0 },
+  visible: {
+    opacity: 1,
+    transition: {
+      staggerChildren: 0.15
+    }
+  }
+};
+
+export default function DigitalSerenityActivity() {
+  const containerRef = useRef<HTMLDivElement>(null);
+
+  // Mouse tracking for dynamic glow effect
+  useEffect(() => {
+    const handleMouseMove = (e: MouseEvent) => {
+      if (!containerRef.current) return;
+      const { clientX, clientY } = e;
+      const x = (clientX / window.innerWidth) * 100;
+      const y = (clientY / window.innerHeight) * 100;
+      containerRef.current.style.setProperty('--mouse-x', `${x}%`);
+      containerRef.current.style.setProperty('--mouse-y', `${y}%`);
+    };
+    
+    window.addEventListener('mousemove', handleMouseMove);
+    return () => window.removeEventListener('mousemove', handleMouseMove);
+  }, []);
+
+  return (
+    <div 
+      ref={containerRef}
+      className="min-h-screen bg-[#050505] text-zinc-300 font-sans selection:bg-indigo-500/30 overflow-hidden relative"
+    >
+      {/* Dynamic Background Glow */}
+      <div 
+        className="absolute inset-0 z-0 opacity-40 pointer-events-none transition-opacity duration-1000"
+        style={{
+          background: `radial-gradient(800px circle at var(--mouse-x, 50%) var(--mouse-y, 50%), rgba(79, 70, 229, 0.15), transparent 40%)`
+        }}
+      />
+      
+      {/* Grid Pattern */}
+      <div 
+        className="absolute inset-0 z-0 opacity-[0.03] pointer-events-none" 
+        style={{
+          backgroundImage: `linear-gradient(to right, #ffffff 1px, transparent 1px), linear-gradient(to bottom, #ffffff 1px, transparent 1px)`,
+          backgroundSize: '4rem 4rem',
+          maskImage: 'radial-gradient(ellipse 80% 80% at 50% 50%, black 20%, transparent 80%)',
+          WebkitMaskImage: 'radial-gradient(ellipse 80% 80% at 50% 50%, black 20%, transparent 80%)'
+        }}
+      />
+
+      <div className="relative z-10 max-w-6xl mx-auto px-6 py-24 md:py-32">
+        
+        {/* --- Hero Section --- */}
+        <motion.header 
+          className="mb-32 text-center flex flex-col items-center"
+          initial="hidden"
+          animate="visible"
+          variants={staggerContainer}
+        >
+          <motion.div variants={fadeUpVar} className="inline-flex items-center gap-2 px-4 py-2 mb-8 rounded-full bg-zinc-900/50 border border-zinc-800 backdrop-blur-md shadow-2xl">
+            <span className="relative flex h-2 w-2">
+              <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-indigo-400 opacity-75"></span>
+              <span className="relative inline-flex rounded-full h-2 w-2 bg-indigo-500"></span>
+            </span>
+            <span className="text-sm font-medium text-zinc-300 tracking-wide uppercase text-xs">
+              Progetto Pratico — Informatica 4ª
+            </span>
+          </motion.div>
+          
+          <motion.h1 variants={fadeUpVar} className="text-5xl md:text-7xl lg:text-8xl font-black tracking-tighter text-white mb-8 leading-[1.1]">
+            Costruisci il tuo <br className="hidden md:block"/>
+            <span className="text-transparent bg-clip-text bg-gradient-to-br from-indigo-400 via-purple-400 to-cyan-400">
+              Primo Sito Web
+            </span>
+          </motion.h1>
+          
+          <motion.p variants={fadeUpVar} className="text-xl md:text-2xl text-zinc-400 max-w-2xl mx-auto leading-relaxed font-light">
+             Converti un&apos;idea in una realtà digitale. Niente framework, zero scorciatoie. Solo la pura potenza di HTML e CSS.
+          </motion.p>
+        </motion.header>
+
+        {/* --- The Objective --- */}
+        <motion.section 
+          initial="hidden"
+          whileInView="visible"
+          viewport={{ once: true, margin: "-100px" }}
+          variants={fadeUpVar}
+          className="mb-32"
+        >
+          <div className="relative p-px rounded-3xl overflow-hidden bg-gradient-to-b from-zinc-800 to-zinc-900/10">
+            <div className="absolute inset-0 bg-zinc-950/80 backdrop-blur-xl"></div>
+            <div className="relative bg-zinc-900/40 rounded-[23px] p-8 md:p-12 border border-zinc-800/50">
+              <div className="flex items-center gap-4 mb-8">
+                <div className="w-12 h-12 rounded-2xl bg-indigo-500/10 border border-indigo-500/20 flex items-center justify-center">
+                  <Laptop className="w-6 h-6 text-indigo-400" />
+                </div>
+                <h2 className="text-3xl font-bold text-white tracking-tight">L&apos;Obiettivo</h2>
+              </div>
+              
+              <p className="text-lg text-zinc-300 leading-relaxed mb-10 max-w-3xl">
+                 Creare un sito statico partendo da zero. Scegli un tema a piacere: un portfolio personale, un negozio per un prodotto fittizio, una landing page per un&apos;app, o una rivista digitale. 
+              </p>
+              
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                <div className="p-6 rounded-2xl bg-zinc-950/50 border border-emerald-900/30 relative overflow-hidden group">
+                  <div className="absolute top-0 right-0 p-4 opacity-10 group-hover:opacity-20 transition-opacity">
+                    <CheckCircle2 className="w-24 h-24 text-emerald-500" />
+                  </div>
+                  <h3 className="text-emerald-400 font-semibold text-lg mb-4 flex items-center gap-2 relative z-10">
+                    <CheckCircle2 className="w-5 h-5" /> Regole d&apos;Oro
+                  </h3>
+                  <ul className="space-y-3 relative z-10">
+                    {["Scrivere HTML semantico e pulito", "Disegnare unicamente con CSS puro", "Sfruttare le scorciatoie di VS Code"].map((txt, i) => (
+                      <li key={i} className="flex items-start gap-3 text-zinc-300">
+                        <span className="w-1.5 h-1.5 rounded-full bg-emerald-500/50 mt-2 flex-shrink-0"></span>
+                        {txt}
+                      </li>
+                    ))}
+                  </ul>
+                </div>
+                
+                <div className="p-6 rounded-2xl bg-zinc-950/50 border border-rose-900/30 relative overflow-hidden group">
+                  <div className="absolute top-0 right-0 p-4 opacity-10 group-hover:opacity-20 transition-opacity">
+                    <XCircle className="w-24 h-24 text-rose-500" />
+                  </div>
+                  <h3 className="text-rose-400 font-semibold text-lg mb-4 flex items-center gap-2 relative z-10">
+                    <XCircle className="w-5 h-5" /> Da Evitare
+                  </h3>
+                  <ul className="space-y-3 relative z-10">
+                    {["Framework CSS (Bootstrap, Tailwind)", "Stile inline nei tag HTML", "Codice copiato senza reale comprensione"].map((txt, i) => (
+                      <li key={i} className="flex items-start gap-3 text-zinc-300">
+                        <span className="w-1.5 h-1.5 rounded-full bg-rose-500/50 mt-2 flex-shrink-0"></span>
+                        {txt}
+                      </li>
+                    ))}
+                  </ul>
+                </div>
+              </div>
+            </div>
+          </div>
+        </motion.section>
+
+        {/* --- Milestones --- */}
+        <motion.section 
+          initial="hidden"
+          whileInView="visible"
+          viewport={{ once: true, margin: "-100px" }}
+          variants={staggerContainer}
+          className="mb-32"
+        >
+          <motion.div variants={fadeUpVar} className="text-center mb-16">
+            <h2 className="text-4xl md:text-5xl font-bold text-white mb-6 tracking-tight">Le Fasi del Progetto</h2>
+            <p className="text-zinc-400 max-w-2xl mx-auto text-lg">Un approccio strutturato per passare da una cartella vuota a una pagina web funzionante e accattivante.</p>
+          </motion.div>
+          
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-6 lg:gap-8">
+            {MILESTONES.map((ms) => {
+              const Icon = ms.icon;
+              return (
+                <motion.div 
+                  key={ms.id}
+                  variants={fadeUpVar}
+                  className="group relative p-8 rounded-3xl bg-zinc-900/30 border border-zinc-800/50 hover:bg-zinc-800/40 transition-all duration-500"
+                >
+                  <div className="absolute inset-0 bg-gradient-to-br from-indigo-500/5 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500 rounded-3xl pointer-events-none"></div>
+                  
+                  <div className="w-14 h-14 rounded-2xl bg-zinc-950 border border-zinc-800 flex items-center justify-center text-indigo-400 mb-8 group-hover:scale-110 group-hover:border-indigo-500/30 group-hover:shadow-[0_0_20px_rgba(99,102,241,0.2)] transition-all duration-500">
+                    <Icon className="w-6 h-6" />
+                  </div>
+                  
+                  <h3 className="text-2xl font-bold text-white mb-4 tracking-tight">{ms.title}</h3>
+                  <p className="text-zinc-400 mb-8 leading-relaxed">{ms.description}</p>
+                  
+                  <ul className="space-y-4">
+                    {ms.items.map((item, i) => (
+                      <li key={i} className="text-sm text-zinc-300 flex items-start gap-3">
+                        <ChevronRight className="w-4 h-4 text-indigo-500 mt-0.5 flex-shrink-0" />
+                        <span className="leading-snug">{item}</span>
+                      </li>
+                    ))}
+                  </ul>
+                </motion.div>
+              );
+            })}
+          </div>
+        </motion.section>
+
+        {/* --- Grading & Resources --- */}
+        <motion.section 
+          initial="hidden"
+          whileInView="visible"
+          viewport={{ once: true, margin: "-100px" }}
+          variants={staggerContainer}
+          className="grid grid-cols-1 lg:grid-cols-12 gap-8 mb-24"
+        >
+          {/* Checklist */}
+          <motion.div variants={fadeUpVar} className="lg:col-span-7 flex flex-col">
+            <div className="flex-1 p-8 md:p-10 rounded-3xl bg-zinc-900/40 border border-zinc-800/60 flex flex-col relative overflow-hidden">
+              <div className="absolute top-0 right-0 w-64 h-64 bg-indigo-500/5 rounded-full blur-3xl -translate-y-1/2 translate-x-1/3"></div>
+              
+              <h2 className="text-3xl font-bold text-white mb-8 tracking-tight relative z-10">Valutazione Finale</h2>
+              
+              <div className="space-y-3 mb-8 relative z-10 flex-1">
+                {CHECKLIST.map((item, i) => (
+                  <div key={i} className="group flex items-center justify-between p-4 rounded-2xl bg-zinc-950/50 hover:bg-zinc-800/80 transition-all duration-300 border border-zinc-800/50 hover:border-indigo-500/20">
+                    <div className="flex items-start md:items-center gap-4 pr-4">
+                      <div className="w-5 h-5 rounded flex items-center justify-center border border-zinc-700 bg-zinc-900 mt-0.5 md:mt-0 group-hover:border-indigo-500/50 transition-colors shrink-0"></div>
+                      <span className="text-zinc-300 text-sm md:text-base">{item.text}</span>
+                    </div>
+                    <div className="shrink-0 flex items-center justify-center px-3 py-1.5 rounded-lg bg-indigo-500/10 border border-indigo-500/20 text-indigo-300 font-mono text-sm font-bold shadow-[0_0_10px_rgba(99,102,241,0.05)]">
+                      {item.points}pt
+                    </div>
+                  </div>
+                ))}
+              </div>
+              
+              <div className="p-5 rounded-2xl bg-rose-500/5 border border-rose-500/10 text-sm text-rose-200/80 relative z-10 flex items-start gap-3">
+                <XCircle className="w-5 h-5 text-rose-500/70 shrink-0 mt-0.5" />
+                <p>
+                   <strong className="text-rose-400 font-semibold">Attenzione:</strong> L&apos;uso di codice generato da AI o template copiati senza saperne spiegare il funzionamento annullerà il punteggio per il criterio relativo.
+                </p>
+              </div>
+            </div>
+          </motion.div>
+
+          {/* Resources */}
+          <motion.div variants={fadeUpVar} className="lg:col-span-5 flex flex-col">
+            <div className="flex-1 p-8 md:p-10 rounded-3xl bg-gradient-to-br from-indigo-950/20 to-zinc-900/40 border border-indigo-500/10 relative overflow-hidden">
+              <h2 className="text-3xl font-bold text-white mb-10 tracking-tight flex items-center gap-3">
+                <BookOpen className="w-7 h-7 text-indigo-400" />
+                Toolkit
+              </h2>
+              
+              <div className="space-y-12 relative z-10">
+                {RESOURCES.map((section, idx) => (
+                  <div key={idx}>
+                    <h3 className="text-xs font-bold text-indigo-300/70 uppercase tracking-widest mb-5">{section.title}</h3>
+                    <ul className="space-y-4">
+                      {section.links.map((link, i) => (
+                        <li key={i}>
+                          <a 
+                            href={link.url} 
+                            target="_blank" 
+                            rel="noopener noreferrer"
+                            className="group flex items-center justify-between p-4 rounded-2xl bg-zinc-950/40 border border-zinc-800/40 hover:bg-zinc-900 hover:border-indigo-500/30 transition-all duration-300"
+                          >
+                            <span className="text-zinc-300 group-hover:text-white transition-colors font-medium text-sm">
+                              {link.name}
+                            </span>
+                            <div className="w-8 h-8 rounded-full bg-zinc-800/50 flex items-center justify-center group-hover:bg-indigo-500/20 transition-colors">
+                              <ExternalLink className="w-4 h-4 text-zinc-500 group-hover:text-indigo-400 transition-colors" />
+                            </div>
+                          </a>
+                        </li>
+                      ))}
+                    </ul>
+                  </div>
+                ))}
+              </div>
+            </div>
+          </motion.div>
+        </motion.section>
+
+        {/* --- Footer --- */}
+        <motion.footer 
+          initial={{ opacity: 0 }}
+          whileInView={{ opacity: 1 }}
+          viewport={{ once: true }}
+          className="text-center pb-12 pt-16 border-t border-zinc-800/50"
+        >
+          <div className="flex flex-col items-center justify-center gap-2">
+            <div className="w-12 h-1 bg-gradient-to-r from-transparent via-indigo-500/50 to-transparent mb-6 rounded-full"></div>
+            <p className="text-zinc-500 font-medium tracking-wide">
+              IPTSSCTS G. Pessina — Informatica 4ª Commerciale
+            </p>
+            <p className="text-zinc-600 text-sm">
+              Prof. Serra Emanuele — A.S. 2025/2026
+            </p>
+          </div>
+        </motion.footer>
+        
+      </div>
+    </div>
+  );
+}

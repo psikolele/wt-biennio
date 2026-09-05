@@ -39,3 +39,18 @@ yarn-error.log*
 # typescript
 *.tsbuildinfo
 next-env.d.ts
+
+.vercel
+# Local isolated development worktrees
+.worktrees/
+.swarm/
+.claude-flow/
+.claude/
+.impeccable/
+
+# Large educational assets (hosted on GitHub Releases / Cloud storage)
+public/resources/*
+!public/resources/README.md
+public/slides/*
+!public/slides/README.md
+

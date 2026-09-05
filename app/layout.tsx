@@ -2,8 +2,8 @@ import type { Metadata } from 'next';
 import './globals.css';
 
 export const metadata: Metadata = {
-  title: 'Digital Serenity — Attività HTML+CSS | Prof. Serra',
-  description: 'Progetto web di riferimento per l\'attività HTML+CSS. Classe 4ª Commerciale, IPTSSCTS G. Pessina — A.S. 2025/2026.',
+  title: 'Laboratorio digitale — Portale del biennio',
+  description: 'Percorso settimanale di informatica per il biennio: attività, giochi, ripasso e materiali accessibili.',
 };
 
 export default function RootLayout({
