@@ -10,3 +10,12 @@ test("le schede offrono materiali e controlli di leggibilità", async () => {
   assert.match(sources[1], /Versione facilitata/);
   assert.match(sources[2], /SlideViewer/);
 });
+
+test("il layout globale garantisce touch target adeguati e contenimento overflow responsive", async () => {
+  const css = await readFile(new URL("../app/globals.css", import.meta.url), "utf8");
+  assert.match(css, /overflow-x:\s*hidden/);
+  assert.match(css, /min-height:\s*44px/);
+  assert.match(css, /@media\s*\(max-width:\s*560px\)/);
+  assert.match(css, /@media\s*\(min-width:\s*768px\)/);
+});
+

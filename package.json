@@ -8,8 +8,10 @@
     "start": "next start",
     "lint": "eslint",
     "test": "node --test tests/*.test.mjs",
-    "verify:downloads": "node scripts/verify-all-downloads.mjs"
+    "verify:downloads": "node scripts/verify-all-downloads.mjs",
+    "test:responsive": "python scripts/audit_responsive.py"
   },
+
 
   "dependencies": {
     "clsx": "^2.1.1",
