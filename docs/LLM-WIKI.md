@@ -46,8 +46,10 @@ Ogni lezione deve avere titolo, obiettivi, attività, esercizio, competenza, evi
 Le lezioni di laboratorio e progetto partono dall’azione e non devono avere spiegazioni teoriche artificiali. Alternare concetto, laboratorio, pratica e ripasso; evitare testo generico o placeholder. I contenuti devono essere originali: usare il libro solo per struttura, temi e riferimenti bibliografici, senza copiare pagine o esercizi protetti.
 
 ## Direzione visuale
-
-Mantenere il linguaggio già adottato: fondo quasi nero, superfici scure, indigo come azione primaria, verde per stato positivo, tipografia compatta, bordi sottili, contrasto alto e motion discreta. Evitare gradienti testuali, UI generiche, card ripetute senza gerarchia e link verso pagine non implementate. Ogni nuova interfaccia deve restare accessibile da tastiera, leggibile su mobile e coerente con `DESIGN.md`.
+ 
+Mantenere il linguaggio già adottato: fondo quasi nero, superfici scure a gradiente con bordi sottili e shadow soffusa, indigo come azione primaria, verde per stato positivo e laboratori, ambra per progetti, tipografia compatta, contrasto alto e motion discreta. Evitare gradienti testuali, UI generiche, card ripetute senza gerarchia e link verso pagine non implementate.
+ 
+**Regola d'oro per le Card (UX/UI Pro):** Tutte le card devono avere gerarchia scansionabile (F-pattern), badge semantici per il tipo di attività (laboratorio, pratica, progetto, ripasso, teoria), anteprime informative reali (mai frasi placeholder identiche), footer allineato con tag di supporto e affordance interattivo (freccia con micro-animazione hover). Ogni interfaccia deve restare accessibile da tastiera, leggibile su mobile e coerente con `DESIGN.md`.
 
 ## TODO prioritario
 

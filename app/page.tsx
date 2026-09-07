@@ -138,13 +138,20 @@ export default function Home() {
 function ClassCardContent({ item }: { item: (typeof classes)[number] }) {
   return (
     <>
-      <div className="class-card-head">
-        <span className="class-number">0{item.number}</span>
-        <span className={`class-status ${item.href ? "class-status--live" : ""}`}>{item.status}</span>
+      <div>
+        <div className="class-card-head">
+          <span className="class-number font-mono">0{item.number}</span>
+          <span className={`class-status rounded-full px-2 py-0.5 border text-[10px] ${item.href ? "class-status--live border-emerald-500/30 bg-emerald-500/10 text-emerald-300" : "border-[var(--line)] bg-[var(--surface-soft)] text-[var(--muted)]"}`}>
+            {item.status}
+          </span>
+        </div>
+        <h3 className="line-clamp-1">{item.label}</h3>
+        <p className="line-clamp-2">{item.description}</p>
       </div>
-      <h3>{item.label}</h3>
-      <p>{item.description}</p>
-      <span className="class-card-arrow" aria-hidden="true">{item.href ? "↗" : "＋"}</span>
+      <div className="mt-4 flex items-center justify-between pt-2.5 border-t border-[var(--line)] text-xs text-[var(--muted)]">
+        <span className="font-mono text-[11px]">33 sett. · 66h</span>
+        <span className="class-card-arrow" aria-hidden="true">{item.href ? "↗" : "＋"}</span>
+      </div>
     </>
   );
 }

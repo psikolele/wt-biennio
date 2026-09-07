@@ -63,8 +63,9 @@ test("il posizionamento delle risorse rispetta la progressione didattica delle 3
     { week: 20, keyword: "FILIGRANA" },
     { week: 21, keyword: "Modelli_stile_lettere.zip" },
     { week: 22, keyword: "Foglio_elettronico.zip" },
-    { week: 23, keyword: "RIFERIMENTO MISTO" },
+    { week: 23, keyword: "RIFERIMENTO_MISTO" },
     { week: 24, keyword: "ARROTONDA" },
+
     { week: 25, keyword: "MESSAGGI_ERRORE" },
     { week: 26, keyword: "Presentazioni.zip" },
     { week: 28, keyword: "SMARTART" },

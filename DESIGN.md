@@ -143,12 +143,28 @@ Il sistema usa profondità minima e strutturale. Le superfici scure hanno bordi 
 - **Hover / Focus:** indaco più chiaro e focus ring evidente; nessun cambio di dimensione.
 - **Secondary:** superficie scura, bordo linea forte e testo chiaro.
 
-### Cards / Containers
-- **Corner Style:** curva contenuta (16px), mai effetto bolla.
-- **Background:** superficie scura su spazio quasi nero.
-- **Shadow Strategy:** ombra ampia e discreta, senza glow decorativo.
-- **Border:** linea chiara da 1px.
-- **Internal Padding:** 16–24px secondo la densità.
+### Cards / Containers (UX/UI Pro Card Guidelines)
+- **Corner Style:** curva contenuta (16px / `rounded-2xl`), mai effetto bolla.
+- **Background & Dark Mode Elevation:** gradiente verticale di superficie scura (`rgba(25, 23, 42, 0.85)` a `rgba(18, 17, 29, 0.95)`), evitando neri assoluti e piatti (#000000) per garantire profondità e ridurre l'affaticamento visivo.
+- **Border & Contrast:** bordo sottile da 1px (`rgba(47, 43, 75, 0.85)`), che si illumina su hover a `var(--line-strong)` o `var(--blue)`.
+- **Shadow Strategy:** ombra di profondità morbida (`0 10px 30px -5px rgba(0,0,0,.35)`), che si espande su hover con traslazione fluida (`-translate-y-1`).
+- **Internal Padding:** 20–24px (`p-5` su mobile, `p-6` su desktop).
+- **Scannability & F-Pattern:**
+  - Nessun testo boilerplate o placeholder ripetitivo (evitare frasi statiche ripetute su ogni card).
+  - Mostrare anteprime concrete dell'attività (`lesson.activity`) con `line-clamp-2`.
+  - Distinguere immediatamente la tipologia di contenuto tramite pill semantiche:
+    - *Laboratorio*: badge verde smeraldo (`border-emerald-500/30 bg-emerald-500/10 text-emerald-300`)
+    - *Pratica*: badge azzurro/ciano (`border-sky-500/30 bg-sky-500/10 text-sky-300`)
+    - *Teoria/Concetto*: badge indaco (`border-[#aaa2ff]/30 bg-[#aaa2ff]/10 text-[#aaa2ff]`)
+    - *Progetto*: badge ambra (`border-amber-500/30 bg-amber-500/10 text-amber-300`)
+    - *Ripasso*: badge rosa (`border-pink-500/30 bg-pink-500/10 text-pink-300`)
+- **Visual Hierarchy:**
+  1. *Eyebrow & Meta*: Numero settimana / classe a sinistra + Pill tipologia + Durata ore (`2h`) a destra.
+  2. *Title*: Titolo prominente ad alto contrasto (`text-[var(--ink)]`), hover color transition a indaco.
+  3. *Body*: Descrizione sintetica dell'attività reale (max 2 righe, colore `var(--muted)`).
+  4. *Footer*: Tag di supporto (formato del libro / piattaforma) + Affordance interattivo con freccia animata (`→` con `group-hover:translate-x-1`).
+- **Equal Heights:** layout flex a colonna (`flex flex-col justify-between h-full`) per allineare l'altezza delle card e i footer nella stessa riga della griglia.
+- **Accessibility & Focus:** focus ring ben visibile (`focus-visible:ring-2 focus-visible:ring-[#aaa2ff]`) e contrasto WCAG AA conforme.
 
 ### Inputs / Fields
 - **Style:** fondo quasi nero, bordo linea forte, curva 12px, altezza minima 44px.
