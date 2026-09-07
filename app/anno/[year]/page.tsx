@@ -54,31 +54,41 @@ export default async function YearPage({ params }: { params: Promise<{ year: str
 
   return (
     <main className="portal-shell">
-      <div className="portal-container py-8">
+      <div className="portal-container py-10 sm:py-14">
         <Link href="/" className="portal-button-secondary">← Portale del laboratorio</Link>
-        <header className="mt-10 max-w-3xl">
+        <header className="mt-12 mb-16 max-w-3xl">
           <p className="portal-eyebrow">Percorso {year}° anno · 2 ore a settimana</p>
-          <h1 className="mt-4 text-4xl font-black tracking-tight sm:text-6xl">Il viaggio digitale</h1>
-          <p className="portal-muted mt-5 text-lg leading-8">Una mappa di 33 settimane: ogni tappa alterna spiegazione, laboratorio, gioco e una piccola prova concreta.</p>
+          <h1 className="mt-4 text-4xl font-black tracking-tight sm:text-5xl lg:text-6xl text-[var(--ink)] leading-[1.08]">
+            Il viaggio digitale
+          </h1>
+          <p className="portal-muted mt-5 text-lg leading-relaxed max-w-2xl">
+            Una mappa di 33 settimane: ogni tappa alterna spiegazione, laboratorio, gioco e una piccola prova concreta.
+          </p>
         </header>
-        <section className="mt-12 space-y-14" aria-label={`Settimane del ${year}° anno`}>
+
+        <section className="space-y-16" aria-label={`Settimane del ${year}° anno`}>
           {modules.map((module) => {
             const moduleWeeks = weeks.filter((week) => week.number >= module.range[0] && week.number <= module.range[1]);
             const totalHours = moduleWeeks.length * 2;
             return (
-              <div key={module.title}>
-                <div className="mb-6 border-b border-[var(--line)] pb-4">
-                  <div className="flex flex-wrap items-end justify-between gap-3">
-                    <h2 className="text-2xl font-black tracking-tight">{module.title}</h2>
-                    <span className="inline-flex items-center gap-1.5 rounded-full border border-[var(--line)] bg-[var(--surface-soft)] px-3 py-1 font-mono text-xs font-semibold text-[var(--muted)]">
+              <div key={module.title} className="pt-2">
+                <div className="mb-8 border-b border-[var(--line)] pb-5">
+                  <div className="flex flex-wrap items-end justify-between gap-4">
+                    <h2 className="text-2xl font-black tracking-tight text-[var(--ink)] sm:text-3xl">
+                      {module.title}
+                    </h2>
+                    <span className="inline-flex items-center gap-2 rounded-full border border-[var(--line)] bg-[var(--surface-soft)] px-3.5 py-1.5 font-mono text-xs font-semibold text-[var(--muted)]">
                       <span>Settimane {module.range[0]}–{module.range[1]}</span>
                       <span className="text-[var(--line-strong)]">·</span>
-                      <span className="text-[var(--blue)]">{moduleWeeks.length} tappe ({totalHours}h)</span>
+                      <span className="text-[var(--blue)] font-bold">{moduleWeeks.length} tappe ({totalHours}h)</span>
                     </span>
                   </div>
-                  <p className="portal-muted mt-2 max-w-3xl text-sm leading-6">{module.description}</p>
+                  <p className="portal-muted mt-3 max-w-3xl text-sm sm:text-base leading-relaxed">
+                    {module.description}
+                  </p>
                 </div>
-                <div className="grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
+
+                <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
                   {moduleWeeks.map((week) => {
                     const lesson = week.lessons[0];
                     const kind = lesson?.kind ?? "concept";
@@ -86,53 +96,53 @@ export default async function YearPage({ params }: { params: Promise<{ year: str
                       <Link
                         key={week.number}
                         href={`/anno/${year}/settimana/${week.number}`}
-                        className="portal-card group relative flex flex-col justify-between overflow-hidden p-5 sm:p-6 transition-all duration-200 hover:-translate-y-1 focus:outline-none focus-visible:ring-2 focus-visible:ring-[var(--blue)]"
+                        className="portal-card group"
                       >
                         <div>
-                          {/* Card Top Metadata: Settimana + Kind Tag + Ore */}
-                          <div className="flex items-center justify-between gap-2">
+                          {/* Eyebrow / Meta row */}
+                          <div className="card-header-row">
                             <div className="flex items-center gap-2">
-                              <span className="font-mono text-xs font-bold tracking-wider text-[var(--blue)]">
-                                Settimana {String(week.number).padStart(2, "0")}
+                              <span className="font-mono text-xs font-bold tracking-wider text-[var(--blue)] uppercase">
+                                Sett. {String(week.number).padStart(2, "0")}
                               </span>
-                              <span className={`inline-flex items-center rounded-full border px-2 py-0.5 text-[11px] font-semibold tracking-wide ${kindStyles[kind] || kindStyles.concept}`}>
+                              <span className={`inline-flex items-center rounded-full border px-2.5 py-0.5 text-xs font-semibold tracking-wide ${kindStyles[kind] || kindStyles.concept}`}>
                                 {kindLabels[kind] || "Lezione"}
                               </span>
                             </div>
-                            <span className="font-mono text-xs font-medium text-[var(--muted)]">
+                            <span className="font-mono text-xs font-semibold text-[var(--muted)] bg-[var(--surface-soft)] px-2 py-0.5 rounded border border-[var(--line)]">
                               {lesson?.hours ?? 2}h
                             </span>
                           </div>
 
-                          {/* Main Title */}
-                          <h3 className="mt-4 text-lg font-bold leading-snug tracking-tight text-[var(--ink)] transition-colors duration-150 group-hover:text-[var(--blue)] sm:text-xl line-clamp-2">
+                          {/* Title with balanced measure and line-height */}
+                          <h3 className="card-title line-clamp-2">
                             {week.theme}
                           </h3>
 
-                          {/* Dynamic Lesson Description / Real Activity */}
-                          <p className="mt-2.5 text-sm leading-relaxed text-[var(--muted)] line-clamp-2">
-                            {lesson?.activity || "Apri la scheda e svolgi la missione laboratoriale."}
+                          {/* Description with comfortable leading */}
+                          <p className="card-description line-clamp-2">
+                            {lesson?.activity || "Attività laboratoriale e missione pratica."}
                           </p>
                         </div>
 
-                        {/* Card Footer: Platform / Book Activity Tag & Action Affordance */}
-                        <div className="mt-5 flex items-center justify-between border-t border-[var(--line)] pt-3.5 text-xs">
+                        {/* Footer row with chips and animated action cue */}
+                        <div className="card-footer-row">
                           <div className="flex flex-wrap items-center gap-1.5 overflow-hidden">
                             {lesson?.bookActivity ? (
-                              <span className="truncate rounded-md border border-[var(--line)] bg-[var(--surface-soft)] px-2 py-0.5 text-[11px] font-medium text-[var(--muted)] max-w-[180px]" title={lesson.bookActivity}>
+                              <span className="truncate rounded-md border border-[var(--line)] bg-[var(--surface-soft)] px-2.5 py-1 text-xs font-medium text-[var(--muted)] max-w-[190px]" title={lesson.bookActivity}>
                                 {lesson.bookActivity}
                               </span>
                             ) : lesson?.platforms?.[0] ? (
-                              <span className="truncate rounded-md border border-[var(--line)] bg-[var(--surface-soft)] px-2 py-0.5 text-[11px] font-medium text-[var(--muted)] max-w-[180px]">
+                              <span className="truncate rounded-md border border-[var(--line)] bg-[var(--surface-soft)] px-2.5 py-1 text-xs font-medium text-[var(--muted)] max-w-[190px]">
                                 {lesson.platforms[0]}
                               </span>
                             ) : (
-                              <span className="text-[11px] text-[var(--muted)]">Guida 120 min</span>
+                              <span className="text-xs text-[var(--muted)] font-medium">Guida 120 min</span>
                             )}
                           </div>
-                          <span className="inline-flex items-center gap-1 font-bold text-[var(--blue)] transition-transform duration-200 group-hover:translate-x-1">
+                          <span className="inline-flex items-center gap-1.5 font-bold text-xs text-[var(--blue)] transition-transform duration-200 group-hover:translate-x-1 shrink-0">
                             <span>Esplora</span>
-                            <span aria-hidden="true">→</span>
+                            <span aria-hidden="true" className="text-sm">→</span>
                           </span>
                         </div>
                       </Link>

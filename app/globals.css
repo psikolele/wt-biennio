@@ -37,17 +37,62 @@ button, a { cursor: pointer; }
 .portal-input { border: 1px solid var(--line-strong); background: #0c0d14; color: var(--ink); }
 .portal-input:focus { border-color: var(--blue); box-shadow: 0 0 0 3px rgba(170, 162, 255, .16); }
 .portal-card {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  min-height: 220px;
+  padding: 24px;
   border: 1px solid rgba(47, 43, 75, 0.85);
-  background: linear-gradient(180deg, rgba(25, 23, 42, 0.85) 0%, rgba(18, 17, 29, 0.95) 100%);
-  border-radius: 16px;
+  background: linear-gradient(180deg, rgba(25, 23, 42, 0.9) 0%, rgba(17, 16, 28, 0.98) 100%);
+  border-radius: 18px;
   box-shadow: 0 10px 30px -5px rgba(0,0,0,.35), 0 0 0 1px rgba(109, 101, 163, 0.08);
-  transition: transform .2s cubic-bezier(0.16, 1, 0.3, 1), border-color .2s ease, box-shadow .2s ease;
+  text-decoration: none;
+  transition: transform .22s cubic-bezier(0.16, 1, 0.3, 1), border-color .22s ease, box-shadow .22s ease, background .22s ease;
 }
 .portal-card:hover {
+  transform: translateY(-4px);
   border-color: var(--line-strong);
-  box-shadow: 0 20px 40px -10px rgba(0,0,0,.45), 0 0 0 1px rgba(170, 162, 255, 0.22);
+  box-shadow: 0 20px 40px -10px rgba(0,0,0,.5), 0 0 0 1px rgba(170, 162, 255, 0.25);
+  background: linear-gradient(180deg, rgba(32, 29, 54, 0.95) 0%, rgba(20, 19, 34, 0.98) 100%);
 }
-.week-header { margin-top: 48px; max-width: 760px; }
+.portal-card:focus-visible {
+  outline: none;
+  box-shadow: 0 0 0 3px rgba(170, 162, 255, 0.35), 0 20px 40px rgba(0,0,0,0.5);
+  border-color: var(--blue);
+}
+.card-header-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 10px;
+  margin-bottom: 14px;
+}
+.card-title {
+  color: var(--ink);
+  font-size: 1.15rem;
+  font-weight: 750;
+  line-height: 1.35;
+  letter-spacing: -0.02em;
+  transition: color 0.15s ease;
+}
+.portal-card:hover .card-title {
+  color: var(--blue);
+}
+.card-description {
+  margin-top: 10px;
+  color: var(--muted);
+  font-size: 0.9rem;
+  line-height: 1.62;
+}
+.card-footer-row {
+  margin-top: auto;
+  padding-top: 16px;
+  border-top: 1px solid rgba(47, 43, 75, 0.75);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+}
 .week-header h1, .lesson-header h2, .lesson-objectives h3, .support-title, .mission-panel h3 { text-wrap: balance; }
 .lesson-card {
   margin-top: 36px;
