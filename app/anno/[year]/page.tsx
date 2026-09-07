@@ -66,13 +66,13 @@ export default async function YearPage({ params }: { params: Promise<{ year: str
           </p>
         </header>
 
-        <section className="space-y-16" aria-label={`Settimane del ${year}° anno`}>
+        <section className="space-y-20 sm:space-y-24" aria-label={`Settimane del ${year}° anno`}>
           {modules.map((module) => {
             const moduleWeeks = weeks.filter((week) => week.number >= module.range[0] && week.number <= module.range[1]);
             const totalHours = moduleWeeks.length * 2;
             return (
               <div key={module.title} className="pt-2">
-                <div className="mb-8 border-b border-[var(--line)] pb-5">
+                <div className="border-b border-[var(--line)] pb-6 mb-8 sm:mb-10">
                   <div className="flex flex-wrap items-end justify-between gap-4">
                     <h2 className="text-2xl font-black tracking-tight text-[var(--ink)] sm:text-3xl">
                       {module.title}
@@ -92,6 +92,8 @@ export default async function YearPage({ params }: { params: Promise<{ year: str
                   {moduleWeeks.map((week) => {
                     const lesson = week.lessons[0];
                     const kind = lesson?.kind ?? "concept";
+                    const primaryChip = lesson?.platforms?.[0] || (lesson?.materials?.[1] && lesson.materials[1] !== "Scheda operativa" ? lesson.materials[1] : lesson?.materials?.[0]) || "Guida 120 min";
+
                     return (
                       <Link
                         key={week.number}
@@ -128,17 +130,9 @@ export default async function YearPage({ params }: { params: Promise<{ year: str
                         {/* Footer row with chips and animated action cue */}
                         <div className="card-footer-row">
                           <div className="flex flex-wrap items-center gap-1.5 overflow-hidden">
-                            {lesson?.bookActivity ? (
-                              <span className="truncate rounded-md border border-[var(--line)] bg-[var(--surface-soft)] px-2.5 py-1 text-xs font-medium text-[var(--muted)] max-w-[190px]" title={lesson.bookActivity}>
-                                {lesson.bookActivity}
-                              </span>
-                            ) : lesson?.platforms?.[0] ? (
-                              <span className="truncate rounded-md border border-[var(--line)] bg-[var(--surface-soft)] px-2.5 py-1 text-xs font-medium text-[var(--muted)] max-w-[190px]">
-                                {lesson.platforms[0]}
-                              </span>
-                            ) : (
-                              <span className="text-xs text-[var(--muted)] font-medium">Guida 120 min</span>
-                            )}
+                            <span className="truncate rounded-md border border-[rgba(170,162,255,0.2)] bg-[rgba(170,162,255,0.06)] px-2.5 py-1 text-xs font-medium text-[var(--ink)] max-w-[200px]" title={primaryChip}>
+                              {primaryChip}
+                            </span>
                           </div>
                           <span className="inline-flex items-center gap-1.5 font-bold text-xs text-[var(--blue)] transition-transform duration-200 group-hover:translate-x-1 shrink-0">
                             <span>Esplora</span>

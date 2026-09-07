@@ -261,39 +261,58 @@ function detailFor(theme, year, index) {
 }
 
 const bsmartMaterials = {
-  "1-02": { cta: [{ label: "Scheda Hardware (PDF)", href: "/resources/anno1/settimana-02/A1_U2_2_ELEMENTI_TASTIERA.pdf" }], materials: ["Computer", "Scheda componenti hardware", "Elementi della tastiera"] },
+  // Anno 1
+  "1-01": { cta: [{ label: "Scheda Logica NOT (PDF)", href: "/resources/anno1/settimana-01/A1_U1_1_NEGAZIONE_LOGICA_NOT.pdf" }], materials: ["Computer", "Scheda logica NOT", "Laboratorio informatica"] },
+  "1-02": { cta: [{ label: "Scheda Hardware & Tastiera (PDF)", href: "/resources/anno1/settimana-02/A1_U2_2_ELEMENTI_TASTIERA.pdf" }], materials: ["Computer", "Scheda componenti hardware", "Elementi della tastiera"] },
   "1-03": { cta: [{ label: "Scheda Logica (PDF)", href: "/resources/anno1/settimana-03/A1_U1_1_NEGAZIONE_LOGICA_NOT.pdf" }], materials: ["Computer", "Scheda logica NOT", "Laboratorio informatica"] },
   "1-04": { cta: [{ label: "Scheda Pseudolinguaggi (PDF)", href: "/resources/anno1/settimana-04/A1_U1_2_UTILIZZO_PSEUDOLINGUAGGI.pdf" }], materials: ["Computer", "Guida agli pseudolinguaggi", "Quaderno di lavoro"] },
   "1-05": { cta: [{ label: "Scheda Mobile & Archiviazione", href: "/resources/anno1/settimana-05/A1_U2_3_SISTEMI_OPERATIVI_DISPOSITIVI_MOBILI.pdf" }], materials: ["Computer", "Dispositivi mobili e memorie di massa"] },
   "1-06": { cta: [{ label: "Guida Software Libero (PDF)", href: "/resources/anno1/settimana-06/A1_U2_4_SOFTWARE_LIBERO_SOFTWARE_PROPRIETARIO.pdf" }], materials: ["Computer", "Tabelle comparative licenze software"] },
   "1-07": { cta: [{ label: "Guida Accesso Rapido (PDF)", href: "/resources/anno1/settimana-07/A1_U3_3_UTILIZZARE_ACCESSO_RAPIDO.pdf" }], materials: ["Computer", "Esplora File di Windows 11", "Cartella esercizi"] },
   "1-08": { cta: [{ label: "Scheda Tipi di Backup (PDF)", href: "/resources/anno1/settimana-08/A1_U3_6_ALTRI_TIPI_BACKUP.pdf" }], materials: ["Computer", "Unità esterna / Cloud", "Checklist di backup"] },
+  "1-09": { cta: [{ label: "Scheda Connessioni & Reti (PDF)", href: "/resources/anno1/settimana-09/A2_U1_1_STUDIARE_LAVORARE_VIA_INTERNET.pdf" }], materials: ["Computer", "Browser web", "Scheda apparati di rete LAN/WAN"] },
   "1-10": { cta: [{ label: "Scheda Web & Domini (PDF)", href: "/resources/anno1/settimana-10/A2_U1_3_DOMINI_PRIMO_LIVELLO.pdf" }], materials: ["Computer", "Browser web", "Scheda architettura Internet"] },
+  "1-11": { cta: [{ label: "Scheda Ricerca & Browser (PDF)", href: "/resources/anno1/settimana-11/B1_U1_1_INFOCARD_ALTRI_BROWSER_EDGE.pdf" }], materials: ["Computer", "Browser Edge / Chrome", "Scheda valutazione fonti web"] },
+  "1-12": { cta: [{ label: "Guida Rischi Online & Fonti (PDF)", href: "/resources/anno1/settimana-12/A2_U2_1_RISCHI_USO_STRUMENTI_ONLINE.pdf" }], materials: ["Computer", "Scheda licenze Creative Commons e copyright"] },
   "1-13": { cta: [{ label: "Guida E-mail Riservate (PDF)", href: "/resources/anno1/settimana-13/B1_U2_1_INVIARE_MAIL_RISERVATE.pdf" }], materials: ["Computer", "Client di posta / Webmail", "Modello formale di comunicazione"] },
-  "1-14": { cta: [{ label: "Scheda Rischi Online (PDF)", href: "/resources/anno1/settimana-14/A2_U2_1_RISCHI_USO_STRUMENTI_ONLINE.pdf" }], materials: ["Computer", "Casi di studio e netiquette"] },
+  "1-14": { cta: [{ label: "Scheda Rischi & Netiquette (PDF)", href: "/resources/anno1/settimana-14/A2_U2_1_RISCHI_USO_STRUMENTI_ONLINE.pdf" }], materials: ["Computer", "Casi di studio e netiquette"] },
   "1-15": { cta: [{ label: "Guida Dropbox & Cloud (PDF)", href: "/resources/anno1/settimana-15/B2_U1_1_INFOCARD_ARCHIVIARE_CONDIVIDERE_DROPBOX.pdf" }], materials: ["Computer", "Google Drive / OneDrive / Dropbox", "Account studente"] },
-  "1-16": { cta: [{ label: "Scheda Web Apps (PDF)", href: "/resources/anno1/settimana-16/A2_U2_1_STRUTTURA_APPLICAZIONI_WEB.pdf" }], materials: ["Computer", "Ambienti web collaborativi"] },
+  "1-16": { cta: [{ label: "Scheda Web Apps & Mappe (PDF)", href: "/resources/anno1/settimana-16/A2_U2_1_STRUTTURA_APPLICAZIONI_WEB.pdf" }], materials: ["Computer", "Ambienti web collaborativi", "MindMup / Canva"] },
   "1-17": { cta: [{ label: "Scarica Pacchetto Word (.zip)", href: "/resources/anno1/settimana-17/1-Word_processor.zip" }], materials: ["Computer", "Microsoft Word / Google Documenti", "Pacchetto file di lavoro Word (.zip)"] },
-  "1-18": { cta: [{ label: "Scheda Paragrafi (PDF)", href: "/resources/anno1/settimana-18/B3_U1_4_MODALITA_CORRETTE_SPAZIARE_PARAGRAFI.pdf" }], materials: ["Computer", "Documento non formattato di prova"] },
-  "1-19": { cta: [{ label: "Guida Immagini & Tabelle (PDF)", href: "/resources/anno1/settimana-19/B3_U2_1_CREARE_IMMAGINI_EFFETTO.pdf" }], materials: ["Computer", "Tabelle e immagini didattiche"] },
-  "1-20": { cta: [{ label: "Scheda Filigrana e Stili (PDF)", href: "/resources/anno1/settimana-20/B3_U2_5_AGGIUNGERE_FILIGRANA_GOOGLE.pdf" }], materials: ["Computer", "Modelli di stile e impaginazione"] },
+  "1-18": { cta: [{ label: "Scheda Paragrafi & Allineamento (PDF)", href: "/resources/anno1/settimana-18/B3_U1_4_MODALITA_CORRETTE_SPAZIARE_PARAGRAFI.pdf" }], materials: ["Computer", "Documento non formattato di prova", "Guida alla spaziatura"] },
+  "1-19": { cta: [{ label: "Guida Immagini & Organigrammi (PDF)", href: "/resources/anno1/settimana-19/B3_U2_1_CREARE_IMMAGINI_EFFETTO.pdf" }], materials: ["Computer", "Tabelle e immagini didattiche", "Organigrammi"] },
+  "1-20": { cta: [{ label: "Scheda Filigrana e Stili (PDF)", href: "/resources/anno1/settimana-20/B3_U2_5_AGGIUNGERE_FILIGRANA_GOOGLE.pdf" }], materials: ["Computer", "Modelli di stile e impaginazione", "Google Documenti / Word"] },
   "1-21": { cta: [{ label: "Modelli Stile Lettere (.zip)", href: "/resources/anno1/settimana-21/Modelli_stile_lettere.zip" }], materials: ["Computer", "Archivio modelli lettere professionali (.zip)"] },
   "1-22": { cta: [{ label: "Scarica Pacchetto Excel (.zip)", href: "/resources/anno1/settimana-22/2-Foglio_elettronico.zip" }], materials: ["Computer", "Microsoft Excel / Google Fogli", "Dataset e cartelle di lavoro Excel (.zip)"] },
   "1-23": { cta: [{ label: "Scheda Riferimento Misto (PDF)", href: "/resources/anno1/settimana-23/B4_U2_1_RIFERIMENTO_MISTO.pdf" }], materials: ["Computer", "Foglio di calcolo con formule e riferimenti"] },
-
-  "1-24": { cta: [{ label: "Guida Grafici Excel (PDF)", href: "/resources/anno1/settimana-24/B4_U3_2_APPLICAZIONI_FUNZIONE_ARROTONDA.pdf" }], materials: ["Computer", "Tabella dati per diagrammi"] },
+  "1-24": { cta: [{ label: "Guida Grafici Excel (PDF)", href: "/resources/anno1/settimana-24/B4_U3_2_APPLICAZIONI_FUNZIONE_ARROTONDA.pdf" }], materials: ["Computer", "Tabella dati per diagrammi", "Funzione ARROTONDA"] },
   "1-25": { cta: [{ label: "Scheda Messaggi Errore (PDF)", href: "/resources/anno1/settimana-25/B4_U3_1_RICONOSCERE_MESSAGGI_ERRORE.pdf" }], materials: ["Computer", "Foglio di calcolo per collaudo e correzione errori"] },
   "1-26": { cta: [{ label: "Scarica Pacchetto Slide (.zip)", href: "/resources/anno1/settimana-26/B5_Presentazioni.zip" }], materials: ["Computer", "Microsoft PowerPoint / Google Presentazioni", "Pacchetto template slide (.zip)"] },
+  "1-27": { cta: [{ label: "Scheda Organigrammi Slide (PDF)", href: "/resources/anno1/settimana-27/B5_U1_2_INSERIRE_ORGANIGRAMMI_POWERPOINT.pdf" }], materials: ["Computer", "PowerPoint / Google Presentazioni", "Scheda layout inclusivo"] },
   "1-28": { cta: [{ label: "Guida SmartArt (PDF)", href: "/resources/anno1/settimana-28/B3_U2_4_INSERIRE_ELABORARE_SMARTART.pdf" }], materials: ["Computer", "Software presentazioni", "Scheda organigrammi e SmartArt"], slideHref: "/slides/anno1/B5_U1_4_INSERIRE_ORGANIGRAMMI_PRESENTAZIONI.pdf" },
   "1-29": { cta: [{ label: "Slide Grafici (PDF)", href: "/slides/anno1/B5_U1_3_INSERIRE_GRAFICI_PRESENTAZIONI.pdf" }], materials: ["Computer", "Software presentazioni", "Slide grafici e tabelle"], slideHref: "/slides/anno1/B5_U1_3_INSERIRE_GRAFICI_PRESENTAZIONI.pdf" },
+  "1-30": { cta: [{ label: "Scarica Modelli Fatture (.zip)", href: "/resources/anno1/settimana-30/Modelli_fatture.zip" }], materials: ["Computer", "Modelli fatture e relazioni aziendali (.zip)"] },
+
+  // Anno 2
+  "2-01": { cta: [{ label: "Scheda Pharming & Sicurezza (PDF)", href: "/resources/anno2/settimana-01/A1_U1_1_PHARMING.pdf" }], materials: ["Computer", "Scheda minacce online e pharming"] },
   "2-02": { cta: [{ label: "Scheda Sicurezza e Reti Sociali", href: "/resources/anno2/settimana-02/A1_U1_2_PERICOLI_SITI_RETI_SOCIALI.pdf" }], materials: ["Computer", "Casi di studio su phishing e sicurezza"] },
   "2-03": { cta: [{ label: "Guida Password Manager (PDF)", href: "/resources/anno2/settimana-03/A2_U2_1_SOFTWARE_GESTIONE_PASSWORD.pdf" }], materials: ["Computer", "Software gestione password e autenticazione"] },
   "2-04": { cta: [{ label: "Scheda Protezione Dati (PDF)", href: "/resources/anno2/settimana-04/A2_U1_2_INFOCARD_DISTRUZIONE_SICURA_DATI_INFOMAZIONI.pdf" }], materials: ["Computer", "Linee guida privacy e distruzione sicura dati"] },
+  "2-05": { cta: [{ label: "Guida Video Tutorial ScreenPal (PDF)", href: "/resources/anno2/settimana-05/FLASHCARD_Creare videotutorial con ScreenPal.pdf" }], materials: ["Computer", "ScreenPal / OBS Studio", "Scheda identità digitale"] },
   "2-06": { cta: [{ label: "Scheda Crittografia & Firma (PDF)", href: "/resources/anno2/settimana-06/A2_U2_2_CRITTOGRAFIA.pdf" }], materials: ["Computer", "Esempi di cifratura e verifica firma digitale"] },
+  "2-07": { cta: [{ label: "Scheda Tabelle & Sinonimi Word (PDF)", href: "/resources/anno2/settimana-07/B1_U1_1_CONVERTIRE_TESTO_TABELLA_WORD.pdf" }], materials: ["Computer", "Microsoft Word", "Scheda conversione testo-tabella e sinonimi"] },
   "2-08": { cta: [{ label: "Scarica Pacchetto Word Avanzato (.zip)", href: "/resources/anno2/settimana-08/B1_Word_processor.zip" }], materials: ["Computer", "Microsoft Word", "Dataset stampa unione ed etichette"], slideHref: "/slides/anno2/B1_U3_4_UTILIZZARE_CREAZIONE_GUIDATA_STAMPA_UNIONE.pdf" },
+  "2-09": { cta: [{ label: "Pacchetto Fogli Avanzati (.zip)", href: "/resources/anno2/settimana-09/B2_Foglio_elettronico.zip" }], materials: ["Computer", "Microsoft Excel", "Dataset funzioni logiche SE, E, O"] },
   "2-10": { cta: [{ label: "Pacchetto Fogli Avanzati (.zip)", href: "/resources/anno2/settimana-10/B2_Foglio_elettronico.zip" }], materials: ["Computer", "Microsoft Excel", "Dataset per funzioni logiche e statistiche"] },
   "2-11": { cta: [{ label: "Scarica Archivio Database (.zip)", href: "/resources/anno2/settimana-11/B3_Database.zip" }], materials: ["Computer", "Microsoft Access / LibreOffice Base", "Database starter (.zip)"] },
-  "2-17": { cta: [{ label: "Scarica Progetti Scratch 3.0 (.zip)", href: "/resources/anno2/settimana-17/A.1_Scratch_3.0.zip" }], materials: ["Computer", "Scratch 3.0", "Pacchetto progetti starter Scratch (.zip)"] }
+  "2-13": { cta: [{ label: "Compito di Realtà Peer Tutoring (PDF)", href: "/resources/anno2/settimana-13/C2_9_COMPITI_REALTA_PEER_TUTORING.pdf" }], materials: ["Computer", "Scheda progettazione archivio e peer tutoring"] },
+  "2-14": { cta: [{ label: "Compito Fruit Day & Borghi (PDF)", href: "/resources/anno2/settimana-14/C2_10_COMPITI_REALTA_FRUIT_DAY.pdf" }], materials: ["Computer", "Fogli di calcolo e presentazioni per compiti di realtà"] },
+  "2-15": { cta: [{ label: "Guida eBook ePubEditor (PDF)", href: "/resources/anno2/settimana-15/C1_6_REALIZZARE EBOOK_EPUBEDITOR.pdf" }], materials: ["Computer", "ePubEditor / Canva", "Scheda benessere e tempo digitale"] },
+  "2-16": { cta: [{ label: "Compito di Realtà NEET (PDF)", href: "/resources/anno2/settimana-16/C2_13_COMPITI_REALTA_I_GIOVANI_NEET.pdf" }], materials: ["Computer", "Scheda indagine statistica e verifica intermedia"] },
+  "2-17": { cta: [{ label: "Scarica Progetti Scratch 3.0 (.zip)", href: "/resources/anno2/settimana-17/A.1_Scratch_3.0.zip" }], materials: ["Computer", "Scratch 3.0", "Pacchetto progetti starter Scratch (.zip)"] },
+  "2-18": { cta: [{ label: "Scarica Progetti Animazioni (.zip)", href: "/resources/anno2/settimana-18/A.2_Scratch_3.0.zip" }], materials: ["Computer", "Scratch 3.0", "Pacchetto animazioni e costumi (.zip)"] },
+  "2-19": { cta: [{ label: "Scarica Progetti Cicli (.zip)", href: "/resources/anno2/settimana-19/A.3_Scratch_3.0.zip" }], materials: ["Computer", "Scratch 3.0", "Pacchetto cicli e iterazioni (.zip)"] },
+  "2-20": { cta: [{ label: "Scarica Progetti Condizioni (.zip)", href: "/resources/anno2/settimana-20/A.4_Scratch_3.0.zip" }], materials: ["Computer", "Scratch 3.0", "Pacchetto condizioni e decisioni (.zip)"] }
 };
 
 function buildWeeks(year, themes) {
