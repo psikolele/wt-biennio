@@ -2,6 +2,15 @@ export const teacherNotes = {
   assessment: "Usare osservazioni, prodotti e brevi verifiche; il test iniziale è diagnostico e non va trasformato in voto.",
   rubric: ["Comprensione", "Autonomia", "Procedura", "Comunicazione", "Collaborazione"],
   solutions: "Le soluzioni dettagliate delle attività vanno predisposte nella scheda docente della singola settimana.",
+  earlyWeeksGuidance: {
+    settimana1_regole: "Nelle prime settimane senza accesso individuale al laboratorio, svolgere le attività in aula o con postazione dimostrativa / LIM. Gli studenti lavorano a piccoli gruppi (3-4 persone) per redigere il 'Patto di laboratorio', simulando le situazioni di cura della macchina, ordine dei cavi e rispetto dello spazio condiviso.",
+    settimana2_ergonomia: "Utilizzare la postazione cattedra/LIM per mostrare la postura corretta. A coppie gli studenti compilano la checklist ergonomica (altezza occhi-schermo, distanza 50-70 cm, schiena appoggiata, regola 20-20-20) controllando reciprocamente la postura.",
+    settimana3_password: "Laboratorio interattivo su credenziali e identità: ogni gruppo inventa e verifica una passphrase sicura (metodo delle 4 parole) senza inserire dati personali reali. Dimostrare alla LIM il valore del logout sistematico."
+  },
+  logicExcelBridge: {
+    anno1_propedeutica: "Settimana 24: introdurre le condizioni in modo visivo e fisico con interruttori ON/OFF (VERO/FALSO) ed esempi di vita quotidiana prima di passare alle celle e formule aritmetiche.",
+    anno2_porte_logiche: "Settimana 9: formalizzare le porte AND, OR, NOT e le tabelle di verità prima delle funzioni =SE(), =E(), =O() in Excel per dare senso logico e computazionale alle decisioni automatiche nei fogli."
+  },
   dsaStrategies: {
     dislessia: "Consegnare anticipatamente parole chiave e mappe; usare istruzioni brevi, font leggibile e lettura vocale quando prevista dal PDP.",
     disortografia: "Valutare separatamente contenuto e correttezza formale; consentire correttore e checklist di revisione.",
@@ -22,4 +31,5 @@ export const teacherNotes = {
   ],
   note: "Queste sono indicazioni generali da adattare sempre al PDP, al consiglio di classe e al profilo reale dello studente."
 };
+
 

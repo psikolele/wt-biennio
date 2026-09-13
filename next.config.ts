@@ -1,6 +1,6 @@
 import type { NextConfig } from "next";
 
-const cdnBase = process.env.NEXT_PUBLIC_RESOURCES_BASE_URL;
+const cdnBase = process.env.NEXT_PUBLIC_RESOURCES_BASE_URL || "https://github.com/psikolele/wt-biennio/releases/download/v1.0.0-assets";
 
 const nextConfig: NextConfig = {
   async redirects() {

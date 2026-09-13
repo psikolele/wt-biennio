@@ -45,29 +45,32 @@ test("il posizionamento delle risorse rispetta la progressione didattica delle 3
   const { curriculum } = await import(curriculumPath.href);
 
   const expectedYear1 = [
+    { week: 1, keyword: "CREARE_GESTIRE_ACCOUNT" },
     { week: 2, keyword: "TASTIERA" },
-    { week: 3, keyword: "NEGAZIONE_LOGICA_NOT" },
-    { week: 4, keyword: "PSEUDOLINGUAGGI" },
+    { week: 3, keyword: "PRESTAZIONI_COMPUTER" },
+    { week: 4, keyword: "MEMORIE_MASSA_ONLINE" },
     { week: 5, keyword: "DISPOSITIVI_MOBILI" },
     { week: 6, keyword: "SOFTWARE_LIBERO" },
     { week: 7, keyword: "ACCESSO_RAPIDO" },
-    { week: 8, keyword: "BACKUP" },
-    { week: 10, keyword: "DOMINI_PRIMO_LIVELLO" },
-    { week: 13, keyword: "MAIL_RISERVATE" },
-    { week: 14, keyword: "RISCHI_USO_STRUMENTI_ONLINE" },
-    { week: 15, keyword: "DROPBOX" },
-    { week: 16, keyword: "APPLICAZIONI_WEB" },
-    { week: 17, keyword: "Word_processor.zip" },
+    { week: 8, keyword: "RICERCARE_ELEMENTI" },
+    { week: 9, keyword: "BACKUP" },
+    { week: 10, keyword: "STUDIARE_LAVORARE_VIA_INTERNET" },
+    { week: 11, keyword: "DOMINI_PRIMO_LIVELLO" },
+    { week: 12, keyword: "BROWSER_EDGE" },
+    { week: 13, keyword: "RISCHI_USO_STRUMENTI_ONLINE" },
+    { week: 14, keyword: "MAIL_RISERVATE" },
+    { week: 16, keyword: "DROPBOX" },
+    { week: 17, keyword: "APPLICAZIONI_WEB" },
+    { week: 18, keyword: "Word_processor.zip" },
     { week: 18, keyword: "PARAGRAFI" },
     { week: 19, keyword: "IMMAGINI_EFFETTO" },
     { week: 20, keyword: "FILIGRANA" },
     { week: 21, keyword: "Modelli_stile_lettere.zip" },
-    { week: 22, keyword: "Foglio_elettronico.zip" },
-    { week: 23, keyword: "RIFERIMENTO_MISTO" },
+    { week: 23, keyword: "Foglio_elettronico.zip" },
     { week: 24, keyword: "ARROTONDA" },
-
-    { week: 25, keyword: "MESSAGGI_ERRORE" },
-    { week: 26, keyword: "Presentazioni.zip" },
+    { week: 25, keyword: "RIFERIMENTO_MISTO" },
+    { week: 27, keyword: "GRAFICI_EXCEL" },
+    { week: 28, keyword: "Presentazioni.zip" },
     { week: 28, keyword: "SMARTART" },
     { week: 29, keyword: "GRAFICI_PRESENTAZIONI" }
   ];
@@ -86,14 +89,25 @@ test("il posizionamento delle risorse rispetta la progressione didattica delle 3
   }
 
   const expectedYear2 = [
+    { week: 1, keyword: "PHARMING" },
     { week: 2, keyword: "PERICOLI_SITI_RETI_SOCIALI" },
     { week: 3, keyword: "SOFTWARE_GESTIONE_PASSWORD" },
     { week: 4, keyword: "DISTRUZIONE_SICURA_DATI" },
-    { week: 6, keyword: "CRITTOGRAFIA" },
+    { week: 5, keyword: "ScreenPal" },
+    { week: 6, keyword: "CONVERTIRE_TESTO_TABELLA_WORD" },
+    { week: 7, keyword: "RICERCARE_SINONIMI_WORD" },
     { week: 8, keyword: "Word_processor.zip" },
+    { week: 9, keyword: "NEGAZIONE_LOGICA_NOT" },
     { week: 10, keyword: "Foglio_elettronico.zip" },
-    { week: 11, keyword: "Database.zip" },
-    { week: 17, keyword: "Scratch_3.0.zip" }
+    { week: 11, keyword: "Foglio_elettronico.zip" },
+    { week: 12, keyword: "Database.zip" },
+    { week: 13, keyword: "Database.zip" },
+    { week: 14, keyword: "PEER_TUTORING" },
+    { week: 15, keyword: "FRUIT_DAY" },
+    { week: 16, keyword: "REALIZZARE_EBOOK" },
+    { week: 17, keyword: "I_GIOVANI_NEET" },
+    { week: 21, keyword: "UTILIZZO_PSEUDOLINGUAGGI" },
+    { week: 22, keyword: "Scratch_3.0.zip" }
   ];
 
   for (const { week, keyword } of expectedYear2) {

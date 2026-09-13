@@ -55,7 +55,7 @@ export function LessonCard({ lesson }: { lesson: Lesson }) {
           </section>
           <div className="lesson-support-grid">
             <SlideViewer href={lesson.slideHref} />
-            <GamificationPanel game={lesson.game} />
+            <GamificationPanel game={lesson.game} lessonId={lesson.id} />
           </div>
         </div>
       </AccessibleContent>

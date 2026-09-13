@@ -1,5 +1,7 @@
-public/resources/*
-!public/resources/README.md
+public/resources/anno1/settimana-0[2-9]*
+public/resources/anno1/settimana-[1-9][0-9]*
+public/resources/anno2/
+public/resources/docenti/
 public/slides/*
 !public/slides/README.md
 scripts/

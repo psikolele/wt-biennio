@@ -1,98 +1,98 @@
 const firstYearThemes = [
-  ["Accoglienza e test iniziale", "Clippy Cloud Plus vol. 1, apertura e competenze di base"],
-  ["PC smontati: riconoscere l'hardware", "Clippy Cloud Plus vol. 1, cap. Hardware"],
-  ["Sicurezza nel laboratorio", "Clippy Cloud Plus vol. 1, cap. Sistema e sicurezza"],
-  ["Dentro il computer: CPU e memoria", "Clippy Cloud Plus vol. 1, cap. Hardware"],
-  ["Archiviazione e periferiche", "Clippy Cloud Plus vol. 1, cap. Hardware"],
-  ["Software e sistema operativo", "Clippy Cloud Plus vol. 1, cap. Software"],
-  ["File, cartelle e percorsi", "Clippy Cloud Plus vol. 1, cap. Sistema operativo"],
-  ["Gestire file e backup", "Clippy Cloud Plus vol. 1, cap. Sistema operativo"],
-  ["Reti: LAN, WAN e dispositivi", "Clippy Cloud Plus vol. 1, cap. Reti"],
-  ["Internet e indirizzi web", "Clippy Cloud Plus vol. 1, cap. Internet"],
-  ["Ricercare informazioni affidabili", "Clippy Cloud Plus vol. 1, cap. Internet"],
-  ["Copyright e fonti", "Clippy Cloud Plus vol. 1, cap. Internet e cittadinanza"],
-  ["E-mail: messaggi efficaci", "Clippy Cloud Plus vol. 1, cap. E-mail"],
-  ["Allegati, destinatari e netiquette", "Clippy Cloud Plus vol. 1, cap. E-mail"],
-  ["Cloud e condivisione", "Clippy Cloud Plus vol. 1, cap. Cloud"],
-  ["Collaborare su un documento", "Clippy Cloud Plus vol. 1, cap. Cloud e collaborazione"],
-  ["Videoscrittura: struttura del testo", "Clippy Cloud Plus vol. 1, cap. Word"],
-  ["Formattazione accessibile", "Clippy Cloud Plus vol. 1, cap. Word"],
-  ["Immagini, tabelle e didascalie", "Clippy Cloud Plus vol. 1, cap. Word"],
-  ["Stili e documento coerente", "Clippy Cloud Plus vol. 1, cap. Word"],
-  ["Relazione digitale", "Clippy Cloud Plus vol. 1, compito di realtà"],
-  ["Fogli di calcolo: celle e dati", "Clippy Cloud Plus vol. 1, cap. Fogli di calcolo"],
-  ["Formule e riferimenti", "Clippy Cloud Plus vol. 1, cap. Fogli di calcolo"],
-  ["Funzioni e grafici", "Clippy Cloud Plus vol. 1, cap. Fogli di calcolo"],
-  ["Dati ordinati e formattazione", "Clippy Cloud Plus vol. 1, cap. Fogli di calcolo"],
-  ["Presentazioni: messaggio e scaletta", "Clippy Cloud Plus vol. 1, cap. Presentazioni"],
-  ["Slide leggibili e inclusive", "Clippy Cloud Plus vol. 1, cap. Presentazioni"],
-  ["Immagini, grafici e fonti", "Clippy Cloud Plus vol. 1, cap. Presentazioni"],
-  ["Presentare in pubblico", "Clippy Cloud Plus vol. 1, compito di realtà"],
-  ["Project work: prodotto digitale", "Clippy Cloud Plus vol. 1, compito di realtà"],
-  ["Ripasso a squadre", "Clippy Cloud Plus vol. 1, sintesi dei capitoli"],
-  ["Portfolio delle competenze", "Clippy Cloud Plus vol. 1, compito di realtà"],
-  ["Verifica e restituzione", "Clippy Cloud Plus vol. 1, verifica finale"]
+  ["Accoglienza, sicurezza e regole di convivenza nel laboratorio", "Clippy Cloud Plus vol. 1, apertura e sicurezza"],
+  ["Basi dell'ergonomia: postura corretta e benessere al PC", "Clippy Cloud Plus vol. 1, sicurezza e postura"],
+  ["Account scolastici, password sicure e gestione credenziali", "Clippy Cloud Plus vol. 1, sicurezza e account"],
+  ["PC ed esplorazione tangibile: periferiche e connessioni", "Clippy Cloud Plus vol. 1, cap. Hardware"],
+  ["Dentro il computer: CPU, RAM e scheda madre essenziale", "Clippy Cloud Plus vol. 1, cap. Hardware"],
+  ["Memorie di massa (SSD, HDD, USB) e supporti di memoria", "Clippy Cloud Plus vol. 1, cap. Hardware"],
+  ["Il Software: Sistema Operativo e programmi applicativi", "Clippy Cloud Plus vol. 1, cap. Software"],
+  ["Il File System: dischi, percorsi chiari e cartelle", "Clippy Cloud Plus vol. 1, cap. Sistema operativo"],
+  ["Gestione file: estensioni, nomi ordinati e file compressi .zip", "Clippy Cloud Plus vol. 1, cap. Sistema operativo"],
+  ["Strategie di backup semplice e manutenzione base", "Clippy Cloud Plus vol. 1, cap. Sistema operativo"],
+  ["Reti locali e Internet: come comunicano i dispositivi", "Clippy Cloud Plus vol. 1, cap. Reti"],
+  ["Navigazione web sicura: browser, indirizzi URL e motori di ricerca", "Clippy Cloud Plus vol. 1, cap. Internet"],
+  ["Ricerca attiva, fonti affidabili e riconoscimento fake news", "Clippy Cloud Plus vol. 1, cap. Internet"],
+  ["Copyright, immagini libere e uso etico dei contenuti", "Clippy Cloud Plus vol. 1, cap. Internet e cittadinanza"],
+  ["Posta elettronica a scuola: scrivere una mail formale", "Clippy Cloud Plus vol. 1, cap. E-mail"],
+  ["Gestione e-mail: allegati, netiquette e riconoscimento spam", "Clippy Cloud Plus vol. 1, cap. E-mail"],
+  ["Cloud di base: salvare e organizzare file su Google Drive", "Clippy Cloud Plus vol. 1, cap. Cloud"],
+  ["Lavoro cooperativo su documenti condivisi in tempo reale", "Clippy Cloud Plus vol. 1, cap. Cloud e collaborazione"],
+  ["Videoscrittura: primi passi con paragrafi e allineamenti", "Clippy Cloud Plus vol. 1, cap. Word"],
+  ["Formattazione chiara: elenchi puntati, grassetto e leggibilità", "Clippy Cloud Plus vol. 1, cap. Word"],
+  ["Elementi visivi nel testo: tabelle semplici e immagini", "Clippy Cloud Plus vol. 1, cap. Word"],
+  ["Stili di testo, sommario automatico e ordine del documento", "Clippy Cloud Plus vol. 1, cap. Word"],
+  ["Compito di realtà: impaginare una mini-guida scolastica", "Clippy Cloud Plus vol. 1, compito di realtà"],
+  ["Propedeutica logica: interruttori ON/OFF, VERO/FALSO e condizioni", "Clippy Cloud Plus vol. 1, logica e condizioni"],
+  ["Foglio di calcolo: l'interfaccia, le celle e i tipi di dato", "Clippy Cloud Plus vol. 1, cap. Fogli di calcolo"],
+  ["Formule aritmetiche fondamentali (+, -, *, /)", "Clippy Cloud Plus vol. 1, cap. Fogli di calcolo"],
+  ["Riferimenti di cella: capire il copia-incolla e il simbolo $", "Clippy Cloud Plus vol. 1, cap. Fogli di calcolo"],
+  ["Funzioni base: SOMMA, MEDIA, CONTA.VALORI, MIN e MAX", "Clippy Cloud Plus vol. 1, cap. Fogli di calcolo"],
+  ["Rappresentazione visiva: grafici a barre e a torta", "Clippy Cloud Plus vol. 1, cap. Fogli di calcolo"],
+  ["Presentazioni: idee visive, poco testo e contrasto efficace", "Clippy Cloud Plus vol. 1, cap. Presentazioni"],
+  ["Slide multimediali: immagini coerenti e tabelle di sintesi", "Clippy Cloud Plus vol. 1, cap. Presentazioni"],
+  ["Public speaking: esporre le slide in 3 minuti con chiarezza", "Clippy Cloud Plus vol. 1, compito di realtà"],
+  ["Project work finale: portfolio digitale e autovalutazione", "Clippy Cloud Plus vol. 1, verifica finale"]
 ];
 
 const secondYearThemes = [
-  ["Ripartenza e sicurezza digitale", "Clippy Cloud Plus vol. 2, cap. Sicurezza"],
-  ["Minacce, malware e phishing", "Clippy Cloud Plus vol. 2, cap. Sicurezza"],
-  ["Password e autenticazione", "Clippy Cloud Plus vol. 2, cap. Sicurezza"],
-  ["Privacy e protezione dei dati", "Clippy Cloud Plus vol. 2, cap. Dati"],
-  ["Identità digitale e reputazione", "Clippy Cloud Plus vol. 2, cap. Cittadinanza digitale"],
-  ["Documenti avanzati", "Clippy Cloud Plus vol. 2, cap. Documenti"],
-  ["Modelli, stili e sommario", "Clippy Cloud Plus vol. 2, cap. Documenti"],
-  ["Fogli: funzioni logiche", "Clippy Cloud Plus vol. 2, cap. Fogli"],
-  ["Fogli: dati e grafici", "Clippy Cloud Plus vol. 2, cap. Fogli"],
-  ["Fogli: analizzare un problema", "Clippy Cloud Plus vol. 2, cap. Fogli"],
-  ["Database: concetti e tabelle", "Clippy Cloud Plus vol. 2, cap. Database"],
-  ["Database: record e query", "Clippy Cloud Plus vol. 2, cap. Database"],
-  ["Database: progettare un archivio", "Clippy Cloud Plus vol. 2, cap. Database"],
-  ["Cittadinanza digitale", "Clippy Cloud Plus vol. 2, cap. Cittadinanza digitale"],
-  ["Benessere, tempo e impronta digitale", "Clippy Cloud Plus vol. 2, cap. Cittadinanza digitale"],
-  ["Verifica intermedia", "Clippy Cloud Plus vol. 2, verifica dei moduli"],
-  ["Algoritmi e istruzioni", "Clippy Cloud Plus, Programmazione a blocchi, cap. Scratch"],
-  ["Scratch: ambiente ed eventi", "Programmazione a blocchi, cap. Scratch"],
-  ["Sequenze e animazioni", "Programmazione a blocchi, cap. Scratch"],
-  ["Cicli e ripetizioni", "Programmazione a blocchi, cap. Scratch"],
-  ["Condizioni e decisioni", "Programmazione a blocchi, cap. Scratch"],
-  ["Variabili e punteggio", "Programmazione a blocchi, cap. Scratch"],
-  ["Input, messaggi e interazione", "Programmazione a blocchi, cap. Scratch"],
-  ["Casualità e gioco", "Programmazione a blocchi, cap. Scratch"],
-  ["Debugging e collaudo", "Programmazione a blocchi, cap. Scratch"],
-  ["Micro:bit o Flowgorithm: ponte opzionale", "Programmazione a blocchi, cap. Micro:bit/Flowgorithm"],
-  ["Progetto: ideazione", "Programmazione a blocchi, progetto finale"],
-  ["Progetto: prototipo", "Programmazione a blocchi, progetto finale"],
-  ["Progetto: test tra pari", "Programmazione a blocchi, progetto finale"],
-  ["Progetto: miglioramento", "Programmazione a blocchi, progetto finale"],
-  ["Demo day e documentazione", "Programmazione a blocchi, progetto finale"],
-  ["Ripasso a squadre", "Vol. 2 e Programmazione a blocchi, sintesi"],
-  ["Verifica e restituzione", "Vol. 2 e Programmazione a blocchi, verifica finale"]
+  ["Ripartenza e sicurezza: riconoscere malware e pericoli online", "Clippy Cloud Plus vol. 2, cap. Sicurezza"],
+  ["Social engineering: difendersi da phishing e messaggi truffa", "Clippy Cloud Plus vol. 2, cap. Sicurezza"],
+  ["Autenticazione a due fattori (2FA) e app authenticator", "Clippy Cloud Plus vol. 2, cap. Sicurezza"],
+  ["Protezione della privacy (GDPR semplice) e tutela dei dati", "Clippy Cloud Plus vol. 2, cap. Dati e privacy"],
+  ["Identità digitale, reputazione online e impronta ecologica", "Clippy Cloud Plus vol. 2, cap. Cittadinanza digitale"],
+  ["Documenti strutturati: tabelle avanzate e modelli riutilizzabili", "Clippy Cloud Plus vol. 2, cap. Documenti"],
+  ["Stili avanzati, intestazioni e controllo ortografico professionale", "Clippy Cloud Plus vol. 2, cap. Documenti"],
+  ["Stampa unione: generare attestati ed etichette personalizzate", "Clippy Cloud Plus vol. 2, cap. Documenti"],
+  ["Logica booleana: porte logiche (AND, OR, NOT) e tabelle di verità", "Clippy Cloud Plus vol. 2, logica e condizioni"],
+  ["Fogli di calcolo: prendere decisioni con la funzione =SE()", "Clippy Cloud Plus vol. 2, cap. Fogli"],
+  ["Fogli di calcolo: controlli multipli con =E(), =O() e allarmi condizionali", "Clippy Cloud Plus vol. 2, cap. Fogli"],
+  ["Database relazionali: concetti base, tabelle, campi e record", "Clippy Cloud Plus vol. 2, cap. Database"],
+  ["Database: tipi di dato, chiave primaria e collegamenti semplici", "Clippy Cloud Plus vol. 2, cap. Database"],
+  ["Database: interrogare i dati con filtri e query di selezione", "Clippy Cloud Plus vol. 2, cap. Database"],
+  ["Database: maschere per inserire dati e report riassuntivi", "Clippy Cloud Plus vol. 2, cap. Database"],
+  ["Compito di realtà: archivio digitale per un'attività scolastica", "Clippy Cloud Plus vol. 2, compiti di realtà"],
+  ["Verifica intermedia pratica su Fogli e Database", "Clippy Cloud Plus vol. 2, verifica dei moduli"],
+  ["Cittadinanza digitale attiva: navigare con senso critico", "Clippy Cloud Plus vol. 2, cap. Cittadinanza digitale"],
+  ["Benessere digitale: gestire le notifiche e il tempo schermo", "Clippy Cloud Plus vol. 2, cap. Cittadinanza digitale"],
+  ["Progettazione cooperativa: integrare testi, tabelle e grafici", "Clippy Cloud Plus vol. 2, compiti di realtà"],
+  ["Dal problema all'algoritmo: passi logici e diagrammi di flusso", "Programmazione a blocchi, cap. Scratch"],
+  ["Scratch 3.0: l'ambiente di lavoro, sprite, sfondi ed eventi di avvio", "Programmazione a blocchi, cap. Scratch"],
+  ["Scratch: muovere gli sprite, coordinate X/Y e cambi di costume", "Programmazione a blocchi, cap. Scratch"],
+  ["Scratch: ripetizioni e cicli (ripeti 10 volte, per sempre)", "Programmazione a blocchi, cap. Scratch"],
+  ["Scratch: decisioni logiche con blocchi SE... ALLORA e sensori", "Programmazione a blocchi, cap. Scratch"],
+  ["Scratch: variabili per contare punti, vite e tempo di gioco", "Programmazione a blocchi, cap. Scratch"],
+  ["Scratch: inviare messaggi (broadcast) per far comunicare gli sprite", "Programmazione a blocchi, cap. Scratch"],
+  ["Scratch: caccia al bug (debugging guidato a squadre)", "Programmazione a blocchi, cap. Scratch"],
+  ["Scratch Project Work: ideazione e storyboard del videogioco", "Programmazione a blocchi, progetto finale"],
+  ["Scratch Project Work: programmazione del livello di gioco", "Programmazione a blocchi, progetto finale"],
+  ["Scratch Project Work: aggiunta suoni, effetti e rifiniture", "Programmazione a blocchi, progetto finale"],
+  ["Scratch Project Work: test incrociato tra compagni e miglioramenti", "Programmazione a blocchi, progetto finale"],
+  ["Demo Day Scratch: presentazione finale e traguardi raggiunti", "Programmazione a blocchi, verifica finale"]
 ];
 
 const lessonModes = ["concept", "laboratory", "practice", "concept", "laboratory", "review"];
 
 function referenceFor(theme, year, index) {
   const t = theme.toLowerCase();
-  if (year === 2 && /algoritmi|scratch|sequenze|cicli|condizioni|variabili|input|casualità|debugging|micro:bit|flowgorithm|progetto/.test(t)) {
+  if (year === 2 && /algoritmi|scratch|sequenze|cicli|condizioni|variabili|input|casualità|debugging|micro:bit|flowgorithm|progetto|storyboard|stage|demo day/.test(t)) {
     return "Programmazione a blocchi · Scratch 3.0, micro:bit e Flowgorithm";
   }
-  if (/cloud|condivisione|collaborare|compito|portfolio|project|demo/.test(t)) {
+  if (/cloud|condivisione|collaborare|compito|portfolio|project/.test(t)) {
     return `Clippy Cloud Plus vol. ${year} · Macroarea C — Cloud e compiti di realtà`;
   }
-  if (year === 2 && /sicurezza|malware|phishing|password|autenticazione|privacy|identità|reputazione|benessere|impronta/.test(t)) {
+  if (year === 2 && /sicurezza|malware|phishing|password|2fa|authenticator|privacy|identità|reputazione|benessere|impronta/.test(t)) {
     return "Clippy Cloud Plus vol. 2 · Macroarea A — Operare in sicurezza";
   }
-  if (year === 2 && /database|document|modelli|stili|sommario|fogli|formule|funzioni|grafici/.test(t)) {
+  if (year === 2 && /database|document|modelli|stili|sommario|fogli|formule|funzioni|grafici|stampa unione|porte logiche|tabelle di verità|logica booleana/.test(t)) {
     return "Clippy Cloud Plus vol. 2 · Macroarea B — Progettare e organizzare";
   }
-  if (year === 2 && /cittadinanza|ripasso|verifica|restituzione/.test(t)) {
+  if (year === 2 && /cittadinanza|ripasso|verifica|restituzione|traguardi/.test(t)) {
     return "Clippy Cloud Plus vol. 2 · Macroarea C — Creare e sviluppare competenze";
   }
-  if (/document|videoscrittura|formattazione|immagini|tabelle|didascalie|relazione|fogli|formule|funzioni|grafici|presentazioni|slide|presentare/.test(t)) {
+  if (/document|videoscrittura|formattazione|immagini|tabelle|didascalie|relazione|fogli|formule|funzioni|grafici|presentazioni|slide|presentare|logica|interruttori/.test(t)) {
     return `Clippy Cloud Plus vol. ${year} · Macroarea B — Progettare e comunicare`;
   }
-  if (/e-mail|email|ricercare|copyright|fonti|internet|indirizzi|cittadinanza|privacy|identità|reputazione|benessere|impronta/.test(t)) {
+  if (/e-mail|email|ricercare|copyright|fonti|internet|indirizzi|cittadinanza|privacy|identità|reputazione|benessere|impronta|ergonomia|regole/.test(t)) {
     return `Clippy Cloud Plus vol. ${year} · Macroarea B/C — Comunicare, collaborare e cittadinanza digitale`;
   }
   return `Clippy Cloud Plus vol. ${year} · Macroarea A — Conoscere e operare`;
@@ -101,84 +101,207 @@ function referenceFor(theme, year, index) {
 function topicText(theme, mode) {
   const t = theme.toLowerCase();
   const lab = mode === "laboratory" || mode === "practice" || mode === "project";
-  if (/hardware|cpu|memoria|archiviazione|periferiche/.test(t)) return {
-    explanation: lab ? undefined : "Il computer è un sistema formato da componenti che collaborano: il processore esegue istruzioni, la memoria conserva temporaneamente i dati e l’archiviazione li mantiene anche a dispositivo spento.",
-    example: "Esempio: quando apri una foto, il file viene letto dall’SSD, caricato in memoria e mostrato dalla scheda grafica sul monitor.",
-    exercise: lab ? "Laboratorio: osserva un PC o una scheda illustrata, assegna ogni componente alla sua funzione e completa una tabella input–elaborazione–output." : "Esercizio: collega cinque componenti alla loro funzione e spiega perché RAM e SSD non sono intercambiabili.",
-    deepDive: "Approfondimento: confronta un computer da ufficio e uno per il montaggio video. Quali componenti cambieresti e per quale motivo?"
+
+  // 1. Accoglienza, Regole Lab & Convivenza (Anno 1 Settimana 1)
+  if (/accoglienza|regole.*laboratorio|convivenza.*laboratorio/.test(t)) return {
+    explanation: lab ? undefined : "Il laboratorio di informatica è uno spazio condiviso: avere cura delle postazioni, non mangiare o bere vicino ai PC e rispettare i compagni garantisce il buon lavoro di tutti.",
+    example: "Esempio quotidiano: prima di uscire dalla classe si chiudono le applicazioni, si posizionano mouse e tastiera in ordine e si riaccosta la sedia.",
+    exercise: lab ? "Laboratorio a piccoli gruppi (3-4 studenti): 1) Leggete il regolamento del laboratorio; 2) Individuate insieme 3 buone abitudini e 3 comportamenti da evitare; 3) Create alla LIM il 'Patto di laboratorio'." : "Esercizio guidato: compila la scheda di autodiagnosi indicando 3 regole fondamentali di sicurezza e condividile con il gruppo.",
+    deepDive: "Approfondimento: perché è importante segnalare subito al docente un cavo allentato o un componente malfunzionante anziché provare a ripararlo da soli?"
   };
-  if (/sicurezza|malware|phishing|password|autenticazione/.test(t)) return {
-    explanation: lab ? undefined : "La sicurezza digitale nasce da più livelli: riconoscere i rischi, usare credenziali robuste, aggiornare i dispositivi e avere un piano per recuperare i dati.",
-    example: "Esempio: un messaggio urgente che chiede di cliccare un link e confermare la password va verificato dal sito ufficiale, non dal collegamento ricevuto.",
-    exercise: lab ? "Laboratorio: classifica dieci messaggi simulati come affidabili, sospetti o fraudolenti e annota gli indizi usati per decidere." : "Esercizio: crea una passphrase unica, indica dove la conserveresti in sicurezza e scrivi tre segnali tipici di phishing.",
-    deepDive: "Approfondimento: spiega perché una password lunga e unica protegge più di una password breve riutilizzata, anche se entrambe sembrano difficili."
+
+  // 2. Ergonomia e Postura (Anno 1 Settimana 2)
+  if (/ergonomia|postura|benessere al pc/.test(t)) return {
+    explanation: lab ? undefined : "L'ergonomia ci insegna a disporre sedia, monitor e tastiera per evitare affaticamento visivo e dolori alla schiena. Seguire la regola del '20-20-20' protegge i nostri occhi.",
+    example: "Esempio quotidiano: posiziona lo schermo a circa 50-70 cm (la lunghezza del braccio) e fai in modo che la prima riga di testo sia all'altezza degli occhi.",
+    exercise: lab ? "Laboratorio a piccoli gruppi: 1) A turno, simulate la corretta postura sulla postazione; 2) Regolate l'altezza della sedia e l'inclinazione del monitor del compagno; 3) Compilate la checklist ergonomica in 5 punti." : "Esercizio guidato: osserva 4 immagini di posture diverse, individua gli errori posturali e scrivi come correggerli passo dopo passo.",
+    deepDive: "Approfondimento: la regola 20-20-20 suggerisce che ogni 20 minuti di schermo si osservi un oggetto a 20 piedi (6 metri) per 20 secondi. Perché rilassa i muscoli oculari?"
   };
-  if (/file|cartell|backup|archivio|documenti avanzati|modelli|stili|sommario/.test(t)) return {
-    explanation: lab ? undefined : "Organizzare i file significa progettare nomi, cartelle e versioni in modo che un’altra persona possa trovare e capire il lavoro senza chiedere spiegazioni.",
-    example: "Esempio: `2026-10-15_relazione-reti_v02.docx` comunica data, contenuto e versione meglio di `lavoro-finale-nuovo.docx`.",
-    exercise: lab ? "Laboratorio: crea una struttura di cartelle per una ricerca di classe, rinomina cinque file e prepara una copia di backup in una posizione diversa." : "Esercizio: progetta una convenzione di nomi per un progetto di gruppo e applicala a una cartella con almeno otto file.",
-    deepDive: "Approfondimento: prova a recuperare una versione precedente di un documento e descrivi quale informazione ti ha permesso di trovarla."
+
+  // 3. Password sicure e Account (Anno 1 Settimana 3)
+  if (/account scolastici|password sicure|gestione credenziali/.test(t)) return {
+    explanation: lab ? undefined : "Una password sicura protegge la nostra identità digitale e i nostri compiti scolastici. È preferibile usare una 'passphrase' (frase di 4 o più parole casuali) anziché date di nascita o nomi propri.",
+    example: "Esempio quotidiano: la passphrase `Gatto!Salterino#Verde2026` è facile da ricordare per te, ma impossibile da indovinare per un malintenzionato.",
+    exercise: lab ? "Laboratorio a piccoli gruppi: 1) Generate una passphrase sicura usando la tecnica delle 4 parole; 2) Verificate la robustezza su un calcolatore dimostrativo alla LIM; 3) Eseguite la procedura di primo accesso e logout sicuro." : "Esercizio guidato: analizza 5 password comuni (es. '123456', 'Password2024') e riscrivile trasformandole in credenziali robuste.",
+    deepDive: "Approfondimento: perché non si deve mai condividere la propria password scolastica nemmeno con il miglior amico e cosa fare se si sospetta sia stata scoperta?"
   };
-  if (/software|sistema operativo/.test(t)) return {
-    explanation: lab ? undefined : "Il sistema operativo coordina hardware, applicazioni, utenti e file. Capire questa mediazione aiuta a scegliere impostazioni corrette e a risolvere problemi senza procedere per tentativi casuali.",
-    example: "Esempio: per installare un programma controlla sistema compatibile, origine del file, permessi richiesti e possibilità di disinstallarlo.",
-    exercise: lab ? "Laboratorio: esplora le impostazioni di un computer, individua gestione file, utenti, aggiornamenti e dispositivi, poi documenta il percorso per raggiungerle." : "Esercizio: distingui sistema operativo, applicazione e driver usando tre esempi e descrivi quale componente interviene quando una periferica non funziona.",
-    deepDive: "Approfondimento: confronta due sistemi operativi su una stessa attività e annota quali passaggi cambiano e quali restano uguali."
+
+  // 4. Hardware essenziale & Connessioni
+  if (/hardware|pc ed esplorazione|periferiche e connessioni|scheda madre essenziale|dentro il computer/.test(t)) return {
+    explanation: lab ? undefined : "Il computer è composto da parti visibili (periferiche come monitor, tastiera e mouse) e componenti interni (CPU che elabora, RAM che memorizza al momento, scheda madre che collega tutto).",
+    example: "Esempio quotidiano: quando muovi il mouse (input), la CPU calcola il movimento e il monitor (output) sposta il puntatore sullo schermo in tempo reale.",
+    exercise: lab ? "Laboratorio a coppie: 1) Esplorate il PC spento o aperto; 2) Collegate correttamente cavi HDMI, alimentazione e USB; 3) Classificate 6 componenti in una tabella 'Input / Output / Elaborazione'." : "Esercizio guidato: associa 5 componenti hardware alla loro funzione principale con un breve schema riassuntivo a blocchi.",
+    deepDive: "Approfondimento: qual è la differenza pratica tra la memoria di lavoro RAM (che si svuota quando spegni il PC) e l'SSD dove restano salvati i tuoi giochi e compiti?"
   };
-  if (/rete|internet|indirizzi|ricercare informazioni|copyright|fonti/.test(t)) return {
-    explanation: lab ? undefined : "La rete collega dispositivi attraverso regole comuni. Internet permette di raggiungere servizi e informazioni, ma trovare una pagina non significa automaticamente trovare una fonte affidabile.",
-    example: "Esempio: per verificare una notizia confronta autore, data, fonte primaria e almeno un’altra pubblicazione indipendente.",
-    exercise: lab ? "Laboratorio: disegna la rete del laboratorio indicando dispositivi, punto di accesso e percorso verso Internet; poi verifica due fonti su uno stesso tema." : "Esercizio: costruisci una scheda di valutazione per una pagina web con autore, data, scopo, prove e possibili conflitti di interesse.",
-    deepDive: "Approfondimento: distingui URL, dominio e pagina specifica usando tre indirizzi reali e spiega quale parte identifica il sito."
+
+  // 5. Memorie di massa (SSD, HDD, USB)
+  if (/memorie di massa|supporti di memoria|ssd.*hdd/.test(t)) return {
+    explanation: lab ? undefined : "Le memorie di massa conservano i nostri file in modo permanente anche a computer spento. Le unità a stato solido (SSD) sono molto più veloci e resistenti dei vecchi hard disk meccanici (HDD).",
+    example: "Esempio quotidiano: salvare un compito su una chiavetta USB o sull'SSD interno garantisce di ritrovarlo intatto alla prossima accensione.",
+    exercise: lab ? "Laboratorio a coppie: 1) Verificate lo spazio disponibile sull'unità del PC; 2) Collegate una chiavetta USB ed esploratene la cartella; 3) Confrontate la velocità di apertura di un file da SSD vs USB." : "Esercizio guidato: calcola quanti brani musicali o foto possono entrare in una chiavetta USB da 32 GB e compila la tabella delle unità di misura (KB, MB, GB).",
+    deepDive: "Approfondimento: perché è importante fare 'Rimozione sicura' prima di scollegare una chiavetta USB dal computer?"
   };
-  if (/e-mail|email|cloud|condivisione|collaborare/.test(t)) return {
-    explanation: lab ? undefined : "Comunicare e collaborare online richiede destinatari corretti, messaggi leggibili, permessi adeguati e una traccia delle modifiche.",
-    example: "Esempio: usa Cc per chi deve essere informato, Ccn quando gli indirizzi non devono essere visibili e un oggetto che anticipi l’azione richiesta.",
-    exercise: lab ? "Laboratorio: scrivi una e-mail con allegato, condividi un documento con permesso di sola lettura e poi modifica il permesso motivando la scelta." : "Esercizio: riscrivi un messaggio confuso trasformandolo in una e-mail con oggetto, saluto, richiesta precisa e chiusura.",
-    deepDive: "Approfondimento: confronta modifica, commento e visualizzazione in un documento condiviso e scegli il permesso minimo necessario per tre casi."
+
+  // 6. Software & Sistema Operativo
+  if (/sistema operativo e programmi|software applicativo|il software/.test(t)) return {
+    explanation: lab ? undefined : "Il Sistema Operativo (come Windows 11, macOS o Android) è il programma principale che gestisce il computer e permette alle app (Word, browser, giochi) di funzionare.",
+    example: "Esempio quotidiano: quando accendi lo smartphone o il PC, il sistema operativo carica la schermata home e ti permette di toccare o cliccare sulle icone.",
+    exercise: lab ? "Laboratorio: 1) Aprite le 'Impostazioni' del sistema; 2) Individuate la versione del sistema operativo e la quantità di RAM; 3) Avviate due app contemporaneamente e alternatele con Alt+Tab." : "Esercizio guidato: crea una mappa concettuale che distingue 'Software di Base' (Sistema Operativo) e 'Software Applicativo' (App).",
+    deepDive: "Approfondimento: che differenza c'è tra un software a pagamento con licenza e un'applicazione libera/Open Source utilizzabile a scuola?"
   };
-  if (/privacy|identità digitale|reputazione|cittadinanza|benessere|impronta/.test(t)) return {
-    explanation: lab ? undefined : "Essere cittadini digitali significa scegliere come comunicare, quali dati condividere e come verificare le conseguenze delle proprie azioni nel tempo.",
-    example: "Esempio: prima di pubblicare una foto chiediti chi potrà vederla, se contiene dati di altre persone e se saresti ancora d’accordo tra un anno.",
-    exercise: lab ? "Laboratorio: analizza tre situazioni online, individua dati personali e possibili conseguenze, quindi riscrivi ogni comportamento in una forma più prudente e rispettosa." : "Esercizio: costruisci una checklist prima della condivisione: destinatari, dati visibili, permessi, durata, fonte e possibilità di rimuovere il contenuto.",
-    deepDive: "Approfondimento: discuti la differenza tra ciò che è tecnicamente possibile pubblicare e ciò che è opportuno pubblicare, motivando con un caso concreto."
+
+  // 7. File System, Cartelle & Nomi chiari
+  if (/file system|dischi.*percorsi|gestione file|estensioni.*ordinati|file compressi/.test(t)) return {
+    explanation: lab ? undefined : "Il File System è l'armadio digitale del computer: organizza i documenti in cartelle e sottocartelle con percorsi precisi. Assegnare nomi chiari evita di perdere i propri file.",
+    example: "Esempio quotidiano: il file `Informatica_Relazione_Rossi_v1.docx` fa capire subito materia, argomento, autore e versione senza doverlo aprire.",
+    exercise: lab ? "Laboratorio a coppie: 1) Create in 'Documenti' una cartella `Informatica_2026`; 2) Create 3 sottocartelle (`Lezioni`, `Esercizi`, `Verifiche`); 3) Create un file di testo, salvatelo nella cartella giusta e comprimetelo in un archivio `.zip`." : "Esercizio guidato: correggi 4 nomi di file disordinati (es. `documento_finale_veramente_ultimo.txt`) trasformandoli secondo la corretta convenzione.",
+    deepDive: "Approfondimento: cosa indica l'estensione di un file (es. `.docx`, `.pdf`, `.png`) e cosa succede se la si cancella per sbaglio?"
   };
-  if (/videoscrittura|formattazione|immagini|tabelle|didascalie|relazione digitale/.test(t)) return {
-    explanation: lab ? undefined : "Un documento efficace separa contenuto e forma: titoli, paragrafi, stili, immagini e tabelle devono aiutare il lettore a orientarsi.",
-    example: "Esempio: applicare lo stile Titolo 1 rende coerenti aspetto e struttura e permette di generare un sommario senza riscriverlo a mano.",
-    exercise: lab ? "Laboratorio: impagina una relazione di una pagina con titolo, due sezioni, immagine con didascalia, elenco e fonte; controlla l’ordine di lettura." : "Esercizio: trasforma una pagina di testo senza formattazione in un documento leggibile usando stili, spazio bianco e una gerarchia chiara.",
-    deepDive: "Approfondimento: verifica il documento con la modalità di navigazione o struttura e correggi almeno due elementi che ostacolano la lettura."
+
+  // 8. Backup semplice & Manutenzione
+  if (/backup semplice|manutenzione base/.test(t)) return {
+    explanation: lab ? undefined : "Fare una copia di backup significa salvare una copia identica dei file importanti su un secondo supporto (chiavetta o Cloud) per non perderli in caso di guasto o cancellazione accidentale.",
+    example: "Esempio quotidiano: se hai la relazione sul PC di scuola e una copia su Google Drive, puoi recuperarla all'istante anche se il PC non si accende.",
+    exercise: lab ? "Laboratorio: 1) Selezionate la cartella degli esercizi svolti; 2) Copiatela sulla vostra chiavetta personale o su Drive; 3) Verificate che i file siano integri e leggibili sulla seconda posizione." : "Esercizio guidato: disegna lo schema della regola del backup (PC principale + Copia esterna) e scrivi una checklist di 3 azioni prima della fine dell'ora.",
+    deepDive: "Approfondimento: perché il 'Cestino' del computer non è un luogo sicuro dove conservare i file temporanei?"
   };
-  if (/fogli|formule|funzioni|grafici|dati/.test(t)) return {
-    explanation: lab ? undefined : "Un foglio di calcolo organizza dati e regole di calcolo. Una formula deve essere leggibile, verificabile e separata dai dati che utilizza.",
-    example: "Esempio: per il totale di una colonna usa una funzione di somma invece di aggiungere manualmente ogni valore; se i dati cambiano, il risultato si aggiorna.",
-    exercise: lab ? "Laboratorio: registra dieci valori, calcola totale e media, ordina i dati e crea un grafico scegliendo il tipo più adatto alla domanda." : "Esercizio: costruisci un foglio per il budget di una classe con intestazioni, formule, controllo di un risultato e una breve interpretazione del grafico.",
-    deepDive: "Approfondimento: modifica una cella e osserva quali risultati cambiano. Spiega la differenza tra riferimento relativo e assoluto."
+
+  // 9. Reti, Internet & Web sicuro
+  if (/reti locali|internet: come comunicano|navigazione web sicura|browser.*indirizzi/.test(t)) return {
+    explanation: lab ? undefined : "Una rete collega computer e smartphone per scambiare informazioni. Internet è la rete mondiale, mentre il Web è l'insieme dei siti che visitiamo attraverso un'app chiamata browser.",
+    example: "Esempio quotidiano: quando ti connetti al Wi-Fi di scuola, il tuo PC entra nella rete locale (LAN) e naviga su Internet usando il browser Edge o Chrome.",
+    exercise: lab ? "Laboratorio: 1) Aprite il browser e analizzate la barra degli indirizzi; 2) Riconoscete le parti di un indirizzo URL (`https://`, dominio, pagina); 3) Verificate la presenza del lucchetto di connessione protetta." : "Esercizio guidato: confronta i concetti di 'Browser' (lo strumento per navigare), 'Motore di ricerca' (il sito per cercare) e 'Sito web' (la destinazione).",
+    deepDive: "Approfondimento: qual è la differenza tra collegare il computer con il cavo Ethernet e collegarlo via Wi-Fi in termini di stabilità e velocità?"
   };
-  if (/presentazioni|slide|presentare/.test(t)) return {
-    explanation: lab ? undefined : "Una presentazione non è un documento da leggere: è una sequenza visiva che sostiene una spiegazione orale e porta il pubblico verso un’idea alla volta.",
-    example: "Esempio: una slide con una frase chiave, un’immagine pertinente e una fonte è più efficace di una pagina piena di testo letto dal relatore.",
-    exercise: lab ? "Laboratorio: crea tre slide sul tema assegnato, prova a presentarle in due minuti e raccogli un feedback su leggibilità, ritmo e fonti." : "Esercizio: riduci un paragrafo a una scaletta di tre slide, indicando per ciascuna messaggio principale e supporto visivo.",
-    deepDive: "Approfondimento: prova la stessa presentazione con pubblico diverso e annota quale esempio o spiegazione devi adattare."
+
+  // 10. Fake news, Fonti & Copyright
+  if (/ricerca attiva|fake news|fonti affidabili|copyright|immagini libere/.test(t)) return {
+    explanation: lab ? undefined : "Non tutto ciò che si trova online è vero o liberamente utilizzabile. Imparare a verificare chi ha scritto la notizia e usare immagini con licenza aperta (Creative Commons) è un segno di cittadinanza digitale.",
+    example: "Esempio quotidiano: prima di inserire una foto nella tesina, si cerca su siti di immagini gratuite (es. Unsplash, Wikimedia Commons) e si cita l'autore.",
+    exercise: lab ? "Laboratorio: 1) Cercate informazioni su un argomento scientifico assegnato; 2) Confrontate 2 siti diversi verificando data e autore; 3) Trovate un'immagine Creative Commons e salvatela citando la fonte." : "Esercizio guidato: analizza un testo con indizi di 'fake news' (titolo sensazionalistico, assenza di fonti, data mancante) e compila la griglia di verifica.",
+    deepDive: "Approfondimento: cosa significa il simbolo CC-BY su un'immagine o una musica scaricata dal Web?"
   };
-  if (/database/.test(t)) return {
-    explanation: lab ? undefined : "Un database organizza informazioni secondo una struttura: tabelle, campi e record permettono di evitare ripetizioni e recuperare solo i dati necessari.",
-    example: "Esempio: in un archivio della biblioteca il codice del libro identifica un record, mentre autore, titolo e disponibilità sono campi distinti.",
-    exercise: lab ? "Laboratorio: progetta una tabella per una biblioteca scolastica, inserisci record di prova e formula tre domande a cui rispondere con una query." : "Esercizio: distingui tabella, campo, record e chiave in un piccolo archivio di libri e indica un errore di progettazione da evitare.",
-    deepDive: "Approfondimento: individua un’informazione ripetuta in due tabelle e spiega come ridurresti la duplicazione."
+
+  // 11. Email formale & Netiquette
+  if (/posta elettronica|mail formale|netiquette|riconoscimento spam|gestione e-mail/.test(t)) return {
+    explanation: lab ? undefined : "L'e-mail a scuola o sul lavoro segue regole precise: oggetto chiaro, saluto formale, testo educato, firma con nome e classe, e allegati di dimensioni adeguate.",
+    example: "Esempio quotidiano: scrivere a un docente con oggetto 'Domanda sul compito di Informatica' è corretto; inviare una mail senza testo o senza firma è da evitare.",
+    exercise: lab ? "Laboratorio: 1) Aprite la webmail scolastica; 2) Scrivete una bozza di mail formale al docente richiedendo un chiarimento; 3) Allegata un file `.pdf` leggero e verificate i campi A e Oggetto prima dell'invio simulato." : "Esercizio guidato: correggi un'e-mail informale scritta in stile chat trasformandola in una comunicazione scolastica formale ed impeccabile.",
+    deepDive: "Approfondimento: qual è la differenza tra i destinatari in 'A', in copia visibile ('Cc') e in copia nascosta ('Ccn')?"
   };
-  if (/algoritmi|scratch|micro:bit|flowgorithm|sequenze|cicli|condizioni|variabili|input|casualità|debugging/.test(t)) return {
-    explanation: lab ? undefined : "Un algoritmo è una sequenza di istruzioni verificabili. Nei programmi, eventi, condizioni, cicli, variabili e messaggi permettono di trasformare un’idea in un comportamento osservabile.",
-    example: "Esempio: per un gioco descrivi prima regole, input, obiettivo e condizioni di vittoria; solo dopo scegli i blocchi o il linguaggio.",
-    exercise: lab ? "Laboratorio: realizza un piccolo programma, prova almeno tre casi, annota un errore trovato e correggilo senza cambiare l’obiettivo." : "Esercizio: scrivi l’algoritmo in passi, trasformalo in pseudocodice e indica quali dati devono diventare variabili.",
-    deepDive: "Approfondimento: chiedi a un compagno di usare il programma senza spiegazioni e registra dove l’interfaccia o le istruzioni non sono abbastanza chiare."
+
+  // 12. Cloud Drive & Lavoro Cooperativo
+  if (/cloud di base|google drive|lavoro cooperativo|documenti condivisi/.test(t)) return {
+    explanation: lab ? undefined : "Il Cloud permette di conservare file sui server online per aprirli da qualunque dispositivo. Lavorare insieme sullo stesso documento in tempo reale velocizza i compiti di gruppo.",
+    example: "Esempio quotidiano: due compagni scrivono a quattro mani una ricerca su Google Documenti vedendo in diretta i cursori colorati dell'altro.",
+    exercise: lab ? "Laboratorio a coppie: 1) Aprite Google Drive; 2) Create un documento condiviso con permessi di 'Modifica'; 3) Scrivete a turno un paragrafo inserendo un commento di revisione per il compagno." : "Esercizio guidato: spiega la differenza tra condividere un file in sola 'Visualizzazione', come 'Commentatore' e come 'Editor'.",
+    deepDive: "Approfondimento: cosa succede se un compagno cancella per sbaglio una frase nel documento condiviso? Come si usa la 'Cronologia delle versioni'?"
   };
-  if (/accoglienza|progetto|project|demo day|portfolio|verifica|ripasso|restituzione/.test(t)) return {
-    explanation: lab ? undefined : "Rivedere e documentare il lavoro permette di trasformare una serie di attività in competenze dimostrabili: obiettivo, procedura, risultato e riflessione devono stare insieme.",
-    example: "Esempio: una buona restituzione mostra una prova del prodotto, racconta una scelta e indica cosa miglioreresti in una seconda versione.",
-    exercise: lab ? "Laboratorio: completa la consegna, usa una checklist, raccogli il feedback di un pari e prepara una versione migliorata con breve diario delle modifiche." : "Esercizio: costruisci una mappa dei concetti del modulo e risolvi un caso pratico spiegando ogni scelta.",
-    deepDive: "Approfondimento: confronta il risultato con i criteri iniziali e formula un obiettivo misurabile per il prossimo lavoro."
+
+  // 13. Videoscrittura: Word, Paragrafi & Formattazione
+  if (/videoscrittura|paragrafi|allineamenti|formattazione chiara|elenchi puntati|elementi visivi|stili di testo|sommario automatico|mini-guida/.test(t)) return {
+    explanation: lab ? undefined : "La videoscrittura serve a produrre documenti chiari, leggibili e ben impaginati. Usare gli 'Stili' (Titolo 1, Titolo 2) permette di creare sommari automatici con un solo clic.",
+    example: "Esempio quotidiano: invece di ingrandire il testo a mano, si applica lo stile 'Titolo 1'; il documento risulterà ordinato e conforme agli standard professionali.",
+    exercise: lab ? "Laboratorio a coppie: 1) Aprite il file di testo grezzo fornito; 2) Applicate i margini normali, font leggibile (Calibri/Arial 11pt) e interlinea 1.15; 3) Inserite una tabella di 3 colonne con i dati dell'esercitazione e salvate in PDF." : "Esercizio guidato: formatta una pagina con titolo principale in stile Heading 1, due sottotitoli in Heading 2, un elenco numerato e una tabella a righe alternate.",
+    deepDive: "Approfondimento: perché esportare una relazione in formato PDF prima di inviarla via mail è più sicuro rispetto a spedire il file modificabile .docx?"
   };
+
+  // 14. Propedeutica Logica (Ponte Anno 1 Settimana 24)
+  if (/propedeutica logica|interruttori on\/off|condizioni/.test(t)) return {
+    explanation: lab ? undefined : "Nel mondo digitale ogni decisione si basa sulla logica: un'affermazione può essere solo VERA (1) o FALSA (0). Comprendere le condizioni (SE accade qualcosa, ALLORA fai un'azione) è il segreto per usare fogli di calcolo e programmazione.",
+    example: "Esempio quotidiano: 'SE la sveglia suona (VERO), ALLORA mi alzo dal letto; ALTRIMENTI continuo a dormire'.",
+    exercise: lab ? "Laboratorio a piccoli gruppi con simulatore interruttori / LIM: 1) Sperimentate con interruttori ON/OFF (VERO/FALSO); 2) Collegate due interruttori in serie (entrambi accesi = luce accesa) e in parallelo (basta uno acceso); 3) Scrivete 3 condizioni della vita scolastica." : "Esercizio guidato: valuta se le seguenti 4 frasi sono VERE o FALSE in base ai dati della tabella e scrivi la conseguenza logica.",
+    deepDive: "Approfondimento: come fa un cancello automatico o il sensore di una porta a decidere se aprirsi usando una condizione logica?"
+  };
+
+  // 15. Foglio di Calcolo Base (Anno 1 Settimane 25-29)
+  if (/foglio di calcolo|formule aritmetiche|riferimenti di cella|funzioni base|somma.*media|grafici a barre/.test(t)) return {
+    explanation: lab ? undefined : "Il foglio di calcolo (come Excel o Google Fogli) è una griglia di celle identificate da lettere (colonne) e numeri (righe). Inserendo una formula con il segno `=`, il computer calcola i totali in automatico.",
+    example: "Esempio quotidiano: scrivendo `=SOMMA(B2:B10)` ottieni all'istante il totale delle spese del mese; se cambi un prezzo, il totale si aggiorna da solo.",
+    exercise: lab ? "Laboratorio a coppie: 1) Create la tabella delle paghette/spese settimanali; 2) Usate le formule `=A2*B2`, `=SOMMA()` e `=MEDIA()`; 3) Create un grafico a barre colorato per mostrare i risultati alla classe." : "Esercizio guidato: correggi 3 formule con errori comuni (es. aver dimenticato il segno `=`, aver digitato `SOMMA(A1+A2)` o aver selezionato la cella sbagliata).",
+    deepDive: "Approfondimento: a cosa serve il simbolo del dollaro `$A$1` (riferimento assoluto) quando trascini una formula verso il basso?"
+  };
+
+  // 16. Presentazioni & Public Speaking (Anno 1 Settimane 30-32)
+  if (/presentazioni|slide multimediali|public speaking|esporre le slide/.test(t)) return {
+    explanation: lab ? undefined : "Una presentazione efficace serve a supportare chi parla, non a sostituirlo: poche parole per slide, immagini chiare, alto contrasto tra testo e sfondo e niente muri di testo.",
+    example: "Esempio quotidiano: invece di incollare 10 righe di testo su una slide, inserisci 3 parole chiave e una bella foto esplicativa.",
+    exercise: lab ? "Laboratorio a coppie: 1) Create una presentazione di 4 slide sul vostro hobby o su un tema di informatica; 2) Applicate font grande e contrasto leggibile; 3) Esponete a turno la presentazione in 2 minuti al compagno cronometrando il tempo." : "Esercizio guidato: progetta lo storyboard su carta di 3 slide indicando il messaggio chiave, l'immagine scelta e le parole da dire a voce.",
+    deepDive: "Approfondimento: perché leggere le slide parola per parola durante una presentazione annoia chi ascolta e riduce l'attenzione?"
+  };
+
+  // 17. Cybersecurity Pratica 2° Anno: Malware, Phishing & Truffe (Anno 2 Settimane 1-2)
+  if (/malware|pericoli online|social engineering|phishing|messaggi truffa/.test(t)) return {
+    explanation: lab ? undefined : "I criminali informatici usano l'inganno (phishing) e programmi dannosi (malware) per rubare dati e account. Riconoscere mittenti falsi, messaggi urgenti e allegati sospetti è la nostra difesa principale.",
+    example: "Esempio quotidiano: un messaggio SMS che dice 'Pacco bloccato, clicca qui subito' è un tentativo di truffa: non si clicca mai sul link e si cancella il messaggio.",
+    exercise: lab ? "Laboratorio a coppie: 1) Analizzate 4 esempi reali di messaggi sospetti (SMS, e-mail, messaggi social); 2) Individuate gli indizi di truffa (errori ortografici, link strano, urgenza ingiustificata); 3) Compilate il vademecum anti-phishing." : "Esercizio guidato: elenca 4 tipi di malware (virus, ransomware, spyware, trojan) spiegando in una frase cosa fa ciascuno in modo semplice.",
+    deepDive: "Approfondimento: perché un antivirus aggiornato e la prudenza dell'utente devono lavorare sempre insieme per essere protetti?"
+  };
+
+  // 18. 2FA & Privacy GDPR Semplice (Anno 2 Settimane 3-5)
+  if (/autenticazione a due fattori|2fa|authenticator|protezione della privacy|gdpr semplice|identità digitale/.test(t)) return {
+    explanation: lab ? undefined : "L'autenticazione a due fattori (2FA) protegge l'accesso aggiungendo un secondo controllo (come una notifica sullo smartphone) oltre alla password. Il GDPR tutela i nostri dati personali online.",
+    example: "Esempio quotidiano: quando accedi al profilo da un nuovo dispositivo, inserisci la password e confermi con il codice inviato sull'app: se un ladro ha la password non può comunque entrare.",
+    exercise: lab ? "Laboratorio: 1) Esplorate le impostazioni di sicurezza e privacy del vostro account Google/Microsoft; 2) Verificate i dispositivi connessi; 3) Controllate i permessi concessi alle app di terze parti e revocate quelli inutili." : "Esercizio guidato: definisci cosa si intende per 'Dato personale' (nome, foto, posizione GPS, cronologia) e scrivi 3 consigli per proteggere la propria privacy sui social.",
+    deepDive: "Approfondimento: cosa significa che le tue foto o i tuoi post lasciano una 'impronta digitale' permanente sul Web?"
+  };
+
+  // 19. Documenti Avanzati & Stampa Unione (Anno 2 Settimane 6-8)
+  if (/documenti strutturati|modelli riutilizzabili|stili avanzati|stampa unione|generare attestati/.test(t)) return {
+    explanation: lab ? undefined : "La Stampa Unione permette di unire un testo modello con una lista di nominativi in tabella per generare centinaia di lettere o attestati personalizzati in pochi secondi.",
+    example: "Esempio quotidiano: la segreteria scolastica crea un solo modello di diploma e la stampa unione genera automaticamente il diploma per tutti i 200 studenti con il loro nome corretto.",
+    exercise: lab ? "Laboratorio a coppie: 1) Create in Excel una lista con 5 compagni e voti; 2) In Word create il modello dell'attestato di partecipazione; 3) Collegate il foglio con la Stampa Unione e generate i 5 attestati personalizzati." : "Esercizio guidato: descrivi i 3 passaggi chiave della Stampa Unione (Documento principale, Origine dati tabella, Inserimento campi unione).",
+    deepDive: "Approfondimento: quali vantaggi ha l'uso di un modello (.dotx / template) aziendale rispetto a fare copia-incolla di vecchi file?"
+  };
+
+  // 20. Ponte Logico Formale 2° Anno: Logica Booleana, AND, OR, NOT (Anno 2 Settimana 9)
+  if (/logica booleana|porte logiche|tabelle di verità/.test(t)) return {
+    explanation: lab ? undefined : "La logica booleana combina condizioni con tre operatori fondamentali: AND (VERO solo se TUTTE le condizioni sono vere), OR (VERO se ALMENO UNA condizione è vera) e NOT (inverte il risultato: da VERO a FALSO).",
+    example: "Esempio quotidiano: per essere ammesso al laboratorio devi avere la tessera AND indossare il camice; per entrare al cinema ridotto serve avere meno di 14 anni OR la tessera studente.",
+    exercise: lab ? "Laboratorio a coppie / simulatore: 1) Compilate la tabella di verità per le porte AND, OR e NOT; 2) Verificate con interruttori virtuali le combinazioni (0-0, 0-1, 1-0, 1-1); 3) Scrivete la regola logica per decidere se uno studente ha superato il debito." : "Esercizio guidato: determina il risultato finale (VERO o FALSO) di 4 espressioni logiche composte basandoti sulla tabella di verità.",
+    deepDive: "Approfondimento: perché tutti i computer del mondo, dal cellulare al supercomputer, funzionano internamente combinando queste semplici porte logiche?"
+  };
+
+  // 21. Fogli Avanzati: Funzioni Logiche =SE(), =E(), =O() (Anno 2 Settimane 10-11)
+  if (/fogli di calcolo: prendere decisioni|funzione =se|controlli multipli|=e\(\)|=o\(\)|allarmi condizionali/.test(t)) return {
+    explanation: lab ? undefined : "Nei fogli di calcolo la funzione `=SE(condizione; se_vero; se_falso)` fa prendere decisioni automatiche al programma, ad esempio scrivendo 'PROMOSSO' se il voto è maggiore o uguale a 6.",
+    example: "Esempio quotidiano: la formula `=SE(E(Media>=6; Assenze<50); \"Ammesso\"; \"Non ammesso\")` controlla due condizioni contemporaneamente prima di dare l'esito.",
+    exercise: lab ? "Laboratorio a coppie: 1) Aprite la tabella dei voti di classe; 2) Inserite la funzione `=SE(C2>=6; \"Sufficiente\"; \"Insufficiente\")`; 3) Aggiungete la formattazione condizionale che colora in verde i promossi e in rosso i debiti." : "Esercizio guidato: scrivi la formula corretta con `=SE()` nidificato per calcolare uno sconto del 10% sopra i 100€ e del 20% sopra i 200€.",
+    deepDive: "Approfondimento: come si combinano la funzione `=SE()` e la funzione `=O()` per segnalare un allarme se la temperatura supera 40°C oppure la pressione supera 5 bar?"
+  };
+
+  // 22. Database Relazionali Semplici (Anno 2 Settimane 12-16)
+  if (/database relazionali|chiave primaria|query di selezione|maschere.*report|archivio digitale/.test(t)) return {
+    explanation: lab ? undefined : "Un database è un archivio organizzato in tabelle collegate. Ogni riga è un 'Record' (es. un cliente), ogni colonna è un 'Campo' (es. Cognome, Telefono), e la 'Chiave Primaria' è il codice univoco che non si ripete mai.",
+    example: "Esempio quotidiano: il registro elettronico usa un database per collegare la tabella degli studenti con la tabella delle materie e dei voti senza duplicare i nomi.",
+    exercise: lab ? "Laboratorio a coppie: 1) Create in Access/Base la tabella `Libri` con codice ID, Titolo, Autore e Anno; 2) Impostate la chiave primaria su `ID_Libro`; 3) Eseguite una Query per visualizzare solo i libri pubblicati dopo il 2020." : "Esercizio guidato: osserva una tabella clienti non ordinata, individua quale campo può fare da chiave primaria (es. Codice Fiscale vs Nome) e spiega il motivo.",
+    deepDive: "Approfondimento: perché le grandi aziende e i negozi online usano un database anziché un semplice foglio Excel per gestire milioni di ordini?"
+  };
+
+  // 23. Benessere Digitale & Cittadinanza (Anno 2 Settimane 18-20)
+  if (/senso critico|benessere digitale|gestire le notifiche|progettazione cooperativa/.test(t)) return {
+    explanation: lab ? undefined : "Vivere bene nel mondo digitale significa saper staccare: disattivare le notifiche non necessarie, evitare il multitasking continuo e rispettare il tempo altrui aumenta la concentrazione e riduce lo stress.",
+    example: "Esempio quotidiano: impostare la modalità 'Non disturbare' o 'Riposo' durante le ore di studio o prima di dormire migliora la qualità del sonno e dell'attenzione.",
+    exercise: lab ? "Laboratorio a coppie: 1) Analizzate il report del tempo di utilizzo delle app sullo smartphone; 2) Individuate le 2 app che consumano più attenzione; 3) Redigete una lista di 4 impegni per un uso equilibrato del tempo digitale." : "Esercizio guidato: scrivi un breve saggio riflessivo su come gli algoritmi dei social catturano l'attenzione e quali strategie concrete adottare per difendere il proprio tempo.",
+    deepDive: "Approfondimento: cosa si intende per 'FOMO' (paura di essere tagliati fuori) e come influisce sul bisogno di controllare continuamente lo smartphone?"
+  };
+
+  // 24. Pensiero Computazionale & Scratch 3.0 (Anno 2 Settimane 21-33)
+  if (/algoritmo|diagrammi di flusso|scratch.*ambiente|sprite|coordinate|ripetizioni|cicli|sensori|variabili.*punti|broadcast|caccia al bug|storyboard|videogioco|demo day/.test(t)) return {
+    explanation: lab ? undefined : "Un algoritmo è una serie ordinata e precisa di istruzioni per risolvere un problema. In Scratch 3.0 usiamo blocchi colorati a incastro per dare vita a personaggi, giochi e animazioni interattive.",
+    example: "Esempio quotidiano: la ricetta di una torta o le istruzioni per montare un mobile sono algoritmi della vita reale: i passi vanno eseguiti nel giusto ordine.",
+    exercise: lab ? "Laboratorio a coppie su Scratch 3.0: 1) Scegliete uno sprite e uno sfondo; 2) Programmate il movimento con i tasti freccia e le coordinate X/Y; 3) Aggiungete una variabile `Punteggio` che aumenta quando lo sprite tocca un oggetto." : "Esercizio guidato: disegna il diagramma di flusso per attraversare la strada sulle strisce (guarda a sinistra, guarda a destra, se libero attraversa) e traducilo in blocchi Scratch.",
+    deepDive: "Approfondimento: come si esegue il 'debugging' sistematico quando uno sprite non si muove come previsto? Quali verifiche fare nel codice blocco per blocco?"
+  };
+
+  // 25. Portfolio, Verifiche & Autovalutazione Finale
+  if (/project work|portfolio|verifica|autovalutazione|traguardi/.test(t)) return {
+    explanation: lab ? undefined : "Raccogliere i propri lavori migliori in un portfolio digitale e riflettere su cosa si è imparato permette di consolidare le proprie competenze e vedere con orgoglio i progressi fatti.",
+    example: "Esempio quotidiano: presentare al docente la cartella dei lavori svolti durante l'anno accompagnata da una breve scheda descrittiva per ciascun progetto.",
+    exercise: lab ? "Laboratorio: 1) Riorganizzate la cartella dei lavori del biennio; 2) Selezionate i vostri 3 deliverable più riusciti; 3) Compilate la scheda di autovalutazione finale indicando punti di forza e competenze acquisite." : "Esercizio guidato: compila la rubrica di autovalutazione del percorso dando un punteggio da 1 a 4 per le aree: Autonomia, Precisione, Collaborazione e Problem Solving.",
+    deepDive: "Approfondimento: quale competenza informatica appresa quest'anno ti è risultata più utile nella vita di tutti i giorni o nelle altre materie?"
+  };
+
   return null;
 }
 
@@ -186,42 +309,47 @@ function detailFor(theme, year, index) {
   const lower = theme.toLowerCase();
   const mode = /project|progetto|demo day/i.test(theme)
     ? "project"
-    : /verifica|ripasso|restituzione/i.test(theme)
+    : /verifica|ripasso|restituzione|traguardi/i.test(theme)
       ? "review"
       : lessonModes[index % lessonModes.length];
   const isLab = mode === "laboratory" || mode === "practice" || mode === "project";
   const focus = theme.replace(/:.*$/, "").toLowerCase();
   const explanation = isLab
     ? undefined
-    : `In questa tappa costruiamo una base comune su ${focus}. Partiamo da un caso vicino alla vita scolastica, osserviamo come funziona e poi lo trasformiamo in una procedura che puoi ripetere in autonomia.`;
-  const example = `Esempio: prima di iniziare, descrivi il problema in una frase, scegli lo strumento adatto e controlla il risultato. Per ${focus}, annota che cosa cambia quando modifichi un solo elemento alla volta.`;
+    : `In questa sessione consolidiamo le basi operative su ${focus}. Partiamo da un esempio semplice tratto dalla vita quotidiana, osserviamo i passaggi chiave e lavoriamo in laboratorio.`;
+  const example = `Esempio pratico: osserva la situazione iniziale, scegli lo strumento digitale adatto e verifica il risultato passo dopo passo per ${focus}.`;
   const exercise = isLab
-    ? `Laboratorio: lavora in coppia su ${focus}. Completa una prova, salva il risultato con un nome ordinato, scambia il lavoro con un compagno e usa una checklist per trovare un miglioramento.`
-    : `Esercitazione: crea una piccola scheda su ${focus} con tre parole chiave, un esempio concreto e una procedura in almeno quattro passaggi. Concludi indicando un errore da evitare.`;
+    ? `Laboratorio pratico a coppie/piccoli gruppi: 1) Aprite la scheda operativa su ${focus}; 2) Eseguite i passaggi guidati; 3) Verificate con la checklist e salvate il lavoro.`
+    : `Esercitazione guidata su ${focus}: segui i 3 passaggi della procedura, controlla i risultati con il compagno di banco e rispondi alla domanda finale.`;
   const deepDive = index % 3 === 2
-    ? `Approfondimento: confronta due strategie per ${focus}. Quale richiede meno passaggi? Quale è più facile da spiegare a un compagno? Motiva la scelta con una prova.`
+    ? `Approfondimento: come possiamo applicare ${focus} in una situazione scolastica o domestica per lavorare più velocemente e senza errori?`
     : undefined;
-  const phases = mode === "laboratory" || mode === "project"
-    ? [{ label: "Brief e ruoli", minutes: 10 }, { label: mode === "project" ? "Sviluppo del prodotto" : "Laboratorio operativo", minutes: 70 }, { label: "Controllo del prodotto", minutes: 20 }, { label: "Restituzione", minutes: 20 }]
-    : mode === "practice"
-      ? [{ label: "Richiamo dell’obiettivo", minutes: 15 }, { label: "Esercitazione guidata", minutes: 55 }, { label: "Sfida autonoma", minutes: 35 }, { label: "Condivisione", minutes: 15 }]
-      : mode === "review"
-        ? [{ label: "Mappa dei concetti", minutes: 20 }, { label: "Sfida di ripasso", minutes: 45 }, { label: "Caso pratico", minutes: 35 }, { label: "Restituzione", minutes: 20 }]
-        : [{ label: "Attivazione", minutes: 10 }, { label: "Spiegazione e esempio", minutes: 30 }, { label: "Prova guidata", minutes: 45 }, { label: "Esercizio e restituzione", minutes: 35 }];
+
+  // Learning Loop neurodidattico a 5 fasi temporizzate (120 min totali)
+  const phases = [
+    { label: "1. Hook & Retrieval Practice (Quiz / Flashcard)", minutes: 15 },
+    { label: "2. Mini-lezione visiva & Schema Dual Coding", minutes: 20 },
+    { label: isLab ? "3. Laboratorio cooperativo a coppie (Base / Pro)" : "3. Esercitazione guidata a livelli (Base / Pro)", minutes: 50 },
+    { label: "4. Debriefing & Peer-Checking tra compagni", minutes: 20 },
+    { label: "5. Exit Ticket formativo & Autovalutazione", minutes: 15 }
+  ];
+
   const bookActivity = mode === "project"
-    ? "Compito di realtà"
+    ? "Compito di realtà aziendale"
     : mode === "laboratory"
-      ? "Palestra delle competenze"
+      ? "Palestra delle competenze di laboratorio"
       : mode === "review"
-        ? "Test in velocità + Flash Card"
+        ? "Test in velocità + Flash Card di ripasso"
         : mode === "practice"
-          ? "Esercizio flash + Palestra delle competenze"
-          : "Scheda tecnica + esercizio guidato";
+          ? "Esercizio flash + Palestra operativa"
+          : "Scheda tecnica + Esercitazione guidata";
+
   const platforms = /fogli|document|presentazioni|slide|cloud|e-mail|email|condivisione|collaborare/.test(lower)
     ? ["Windows 11 / Microsoft 365", "Google Workspace"]
     : /scratch|micro:bit|flowgorithm|algoritmi/.test(lower)
-      ? ["Scratch 3.0", "micro:bit", "Flowgorithm"]
-      : ["Windows 11", "Computer del laboratorio"];
+      ? ["Scratch 3.0", "Flowgorithm"]
+      : ["Windows 11", "Hardware di Laboratorio"];
+
   const detail = {
     kind: mode,
     explanation,
@@ -229,27 +357,27 @@ function detailFor(theme, year, index) {
     exercise,
     deepDive,
     competence: isLab
-      ? "Realizzare un prodotto digitale seguendo una procedura, collaborando e documentando le scelte."
-      : "Comprendere, spiegare e applicare il concetto in una situazione concreta, controllando il risultato.",
+      ? "Realizzare un deliverable digitale applicando le procedure operative corrette, collaborando e documentando le scelte."
+      : "Comprendere, descrivere e applicare i principi tecnici in contesti simulati, verificando la correttezza dei risultati.",
     evidence: isLab
-      ? "Prodotto salvato, checklist completata e breve restituzione orale o scritta."
-      : "Scheda di sintesi, procedura svolta e risposta motivata a un caso pratico.",
-    materials: ["Computer", "Scheda operativa", "Quaderno o documento condiviso"],
+      ? "File di laboratorio salvato e strutturato, checklist di conformità compilata e ticket di uscita completato."
+      : "Scheda di sintesi, risposte alle domande di controllo e procedura applicata correttamente.",
+    materials: ["Computer di laboratorio", "Scheda operativa", "Cartella personale / Drive"],
     phases,
-    quickCheck: `Controllo rapido: in una frase, qual è la scelta più importante quando lavori su ${focus}? Motiva la risposta con un indizio osservabile.`,
-    flashCard: `${theme}: fronte — definisci il concetto o la procedura; retro — descrivi un esempio, un errore frequente e il controllo da fare.`,
+    quickCheck: `Controllo rapido: in una frase, qual è la regola fondamentale da ricordare quando si lavora su ${focus}?`,
+    flashCard: `${theme}: fronte — definizione del concetti chiave; retro — procedura corretta, errore tipico da evitare e controllo da fare.`,
     bookActivity,
     platforms,
-    facilitatedTask: `Versione facilitata: affronta ${focus} in tre passi — osserva un esempio, esegui una sola operazione alla volta e usa la checklist prima di consegnare.`,
+    facilitatedTask: `Versione inclusiva DSA/BES: affronta ${focus} tramite scheda con passaggi numerati ad alta leggibilità, file starter pre-impostato e sintesi vocale.`,
     ...topicText(theme, mode),
     objectives: [
-      `Riconoscere gli elementi essenziali di ${focus}`,
-      isLab ? `Eseguire una procedura guidata e documentare il risultato` : `Spiegare con parole proprie quando e perché usare ${focus}`,
-      index % 2 === 0 ? "Controllare il lavoro e correggere almeno un errore" : "Collaborare rispettando ruoli, tempi e materiali"
+      `Riconoscere ed esporre i concetti cardine di ${focus}`,
+      isLab ? `Eseguire la procedura pratica di laboratorio verificando la correttezza` : `Applicare i concetti a un caso operativo d'ufficio`,
+      index % 2 === 0 ? "Individuare e correggere autonomamente eventuali errori procedurali" : "Collaborare attivamente con il compagno di banco rispettando tempi e ruoli"
     ],
     activity: isLab
-      ? `Laboratorio operativo su ${focus}: prova, osserva, salva e racconta il procedimento.`
-      : `Spiegazione breve, esempio guidato e prova autonoma su ${focus}.`
+      ? `Attività laboratoriale su ${focus}: esplorazione, applicazione guidata e salvataggio del prodotto.`
+      : `Dimostrazione breve del docente, analisi del modello ed esercitazione applicativa su ${focus}.`
   };
 
   const fileKey = `${year}-${String(index + 1).padStart(2, "0")}`;
@@ -262,57 +390,74 @@ function detailFor(theme, year, index) {
 
 const bsmartMaterials = {
   // Anno 1
-  "1-01": { cta: [{ label: "Scheda Logica NOT (PDF)", href: "/resources/anno1/settimana-01/A1_U1_1_NEGAZIONE_LOGICA_NOT.pdf" }], materials: ["Computer", "Scheda logica NOT", "Laboratorio informatica"] },
-  "1-02": { cta: [{ label: "Scheda Hardware & Tastiera (PDF)", href: "/resources/anno1/settimana-02/A1_U2_2_ELEMENTI_TASTIERA.pdf" }], materials: ["Computer", "Scheda componenti hardware", "Elementi della tastiera"] },
-  "1-03": { cta: [{ label: "Scheda Logica (PDF)", href: "/resources/anno1/settimana-03/A1_U1_1_NEGAZIONE_LOGICA_NOT.pdf" }], materials: ["Computer", "Scheda logica NOT", "Laboratorio informatica"] },
-  "1-04": { cta: [{ label: "Scheda Pseudolinguaggi (PDF)", href: "/resources/anno1/settimana-04/A1_U1_2_UTILIZZO_PSEUDOLINGUAGGI.pdf" }], materials: ["Computer", "Guida agli pseudolinguaggi", "Quaderno di lavoro"] },
-  "1-05": { cta: [{ label: "Scheda Mobile & Archiviazione", href: "/resources/anno1/settimana-05/A1_U2_3_SISTEMI_OPERATIVI_DISPOSITIVI_MOBILI.pdf" }], materials: ["Computer", "Dispositivi mobili e memorie di massa"] },
-  "1-06": { cta: [{ label: "Guida Software Libero (PDF)", href: "/resources/anno1/settimana-06/A1_U2_4_SOFTWARE_LIBERO_SOFTWARE_PROPRIETARIO.pdf" }], materials: ["Computer", "Tabelle comparative licenze software"] },
-  "1-07": { cta: [{ label: "Guida Accesso Rapido (PDF)", href: "/resources/anno1/settimana-07/A1_U3_3_UTILIZZARE_ACCESSO_RAPIDO.pdf" }], materials: ["Computer", "Esplora File di Windows 11", "Cartella esercizi"] },
-  "1-08": { cta: [{ label: "Scheda Tipi di Backup (PDF)", href: "/resources/anno1/settimana-08/A1_U3_6_ALTRI_TIPI_BACKUP.pdf" }], materials: ["Computer", "Unità esterna / Cloud", "Checklist di backup"] },
-  "1-09": { cta: [{ label: "Scheda Connessioni & Reti (PDF)", href: "/resources/anno1/settimana-09/A2_U1_1_STUDIARE_LAVORARE_VIA_INTERNET.pdf" }], materials: ["Computer", "Browser web", "Scheda apparati di rete LAN/WAN"] },
-  "1-10": { cta: [{ label: "Scheda Web & Domini (PDF)", href: "/resources/anno1/settimana-10/A2_U1_3_DOMINI_PRIMO_LIVELLO.pdf" }], materials: ["Computer", "Browser web", "Scheda architettura Internet"] },
-  "1-11": { cta: [{ label: "Scheda Ricerca & Browser (PDF)", href: "/resources/anno1/settimana-11/B1_U1_1_INFOCARD_ALTRI_BROWSER_EDGE.pdf" }], materials: ["Computer", "Browser Edge / Chrome", "Scheda valutazione fonti web"] },
-  "1-12": { cta: [{ label: "Guida Rischi Online & Fonti (PDF)", href: "/resources/anno1/settimana-12/A2_U2_1_RISCHI_USO_STRUMENTI_ONLINE.pdf" }], materials: ["Computer", "Scheda licenze Creative Commons e copyright"] },
-  "1-13": { cta: [{ label: "Guida E-mail Riservate (PDF)", href: "/resources/anno1/settimana-13/B1_U2_1_INVIARE_MAIL_RISERVATE.pdf" }], materials: ["Computer", "Client di posta / Webmail", "Modello formale di comunicazione"] },
-  "1-14": { cta: [{ label: "Scheda Rischi & Netiquette (PDF)", href: "/resources/anno1/settimana-14/A2_U2_1_RISCHI_USO_STRUMENTI_ONLINE.pdf" }], materials: ["Computer", "Casi di studio e netiquette"] },
-  "1-15": { cta: [{ label: "Guida Dropbox & Cloud (PDF)", href: "/resources/anno1/settimana-15/B2_U1_1_INFOCARD_ARCHIVIARE_CONDIVIDERE_DROPBOX.pdf" }], materials: ["Computer", "Google Drive / OneDrive / Dropbox", "Account studente"] },
-  "1-16": { cta: [{ label: "Scheda Web Apps & Mappe (PDF)", href: "/resources/anno1/settimana-16/A2_U2_1_STRUTTURA_APPLICAZIONI_WEB.pdf" }], materials: ["Computer", "Ambienti web collaborativi", "MindMup / Canva"] },
-  "1-17": { cta: [{ label: "Scarica Pacchetto Word (.zip)", href: "/resources/anno1/settimana-17/1-Word_processor.zip" }], materials: ["Computer", "Microsoft Word / Google Documenti", "Pacchetto file di lavoro Word (.zip)"] },
-  "1-18": { cta: [{ label: "Scheda Paragrafi & Allineamento (PDF)", href: "/resources/anno1/settimana-18/B3_U1_4_MODALITA_CORRETTE_SPAZIARE_PARAGRAFI.pdf" }], materials: ["Computer", "Documento non formattato di prova", "Guida alla spaziatura"] },
-  "1-19": { cta: [{ label: "Guida Immagini & Organigrammi (PDF)", href: "/resources/anno1/settimana-19/B3_U2_1_CREARE_IMMAGINI_EFFETTO.pdf" }], materials: ["Computer", "Tabelle e immagini didattiche", "Organigrammi"] },
-  "1-20": { cta: [{ label: "Scheda Filigrana e Stili (PDF)", href: "/resources/anno1/settimana-20/B3_U2_5_AGGIUNGERE_FILIGRANA_GOOGLE.pdf" }], materials: ["Computer", "Modelli di stile e impaginazione", "Google Documenti / Word"] },
-  "1-21": { cta: [{ label: "Modelli Stile Lettere (.zip)", href: "/resources/anno1/settimana-21/Modelli_stile_lettere.zip" }], materials: ["Computer", "Archivio modelli lettere professionali (.zip)"] },
-  "1-22": { cta: [{ label: "Scarica Pacchetto Excel (.zip)", href: "/resources/anno1/settimana-22/2-Foglio_elettronico.zip" }], materials: ["Computer", "Microsoft Excel / Google Fogli", "Dataset e cartelle di lavoro Excel (.zip)"] },
-  "1-23": { cta: [{ label: "Scheda Riferimento Misto (PDF)", href: "/resources/anno1/settimana-23/B4_U2_1_RIFERIMENTO_MISTO.pdf" }], materials: ["Computer", "Foglio di calcolo con formule e riferimenti"] },
-  "1-24": { cta: [{ label: "Guida Grafici Excel (PDF)", href: "/resources/anno1/settimana-24/B4_U3_2_APPLICAZIONI_FUNZIONE_ARROTONDA.pdf" }], materials: ["Computer", "Tabella dati per diagrammi", "Funzione ARROTONDA"] },
-  "1-25": { cta: [{ label: "Scheda Messaggi Errore (PDF)", href: "/resources/anno1/settimana-25/B4_U3_1_RICONOSCERE_MESSAGGI_ERRORE.pdf" }], materials: ["Computer", "Foglio di calcolo per collaudo e correzione errori"] },
-  "1-26": { cta: [{ label: "Scarica Pacchetto Slide (.zip)", href: "/resources/anno1/settimana-26/B5_Presentazioni.zip" }], materials: ["Computer", "Microsoft PowerPoint / Google Presentazioni", "Pacchetto template slide (.zip)"] },
-  "1-27": { cta: [{ label: "Scheda Organigrammi Slide (PDF)", href: "/resources/anno1/settimana-27/B5_U1_2_INSERIRE_ORGANIGRAMMI_POWERPOINT.pdf" }], materials: ["Computer", "PowerPoint / Google Presentazioni", "Scheda layout inclusivo"] },
-  "1-28": { cta: [{ label: "Guida SmartArt (PDF)", href: "/resources/anno1/settimana-28/B3_U2_4_INSERIRE_ELABORARE_SMARTART.pdf" }], materials: ["Computer", "Software presentazioni", "Scheda organigrammi e SmartArt"], slideHref: "/slides/anno1/B5_U1_4_INSERIRE_ORGANIGRAMMI_PRESENTAZIONI.pdf" },
-  "1-29": { cta: [{ label: "Slide Grafici (PDF)", href: "/slides/anno1/B5_U1_3_INSERIRE_GRAFICI_PRESENTAZIONI.pdf" }], materials: ["Computer", "Software presentazioni", "Slide grafici e tabelle"], slideHref: "/slides/anno1/B5_U1_3_INSERIRE_GRAFICI_PRESENTAZIONI.pdf" },
-  "1-30": { cta: [{ label: "Scarica Modelli Fatture (.zip)", href: "/resources/anno1/settimana-30/Modelli_fatture.zip" }], materials: ["Computer", "Modelli fatture e relazioni aziendali (.zip)"] },
+  "1-01": { cta: [{ label: "Guida Account & Accesso Laboratorio (PDF)", href: "/resources/anno1/settimana-01/A1_U3_1_CREARE_GESTIRE_ACCOUNT.pdf" }], materials: ["LIM / Schermo d'aula", "Regolamento del laboratorio scolastico", "Patto d'aula condiviso"] },
+  "1-02": { cta: [{ label: "Scheda Hardware & Tastiera (PDF)", href: "/resources/anno1/settimana-02/A1_U2_2_ELEMENTI_TASTIERA.pdf" }], materials: ["Postazione dimostrativa", "Scheda postura ed ergonomia", "Checklist 20-20-20"] },
+  "1-03": { cta: [{ label: "Infocard Prestazioni & CPU (PDF)", href: "/resources/anno1/settimana-03/A1_U2_1_INFOCARD_PRESTAZIONI_COMPUTER.pdf" }], materials: ["PC dimostrativo / LIM", "Scheda credenziali e passphrase", "Guida al logout sicuro"] },
+  "1-04": { cta: [{ label: "Scheda Memorie di Massa & Supporti (PDF)", href: "/resources/anno1/settimana-04/B2_U1_3_MEMORIE_MASSA_ONLINE_VANTAGGI_LIMITI.pdf" }], materials: ["Computer", "Cavi USB, HDMI, alimentazione", "Periferiche Input/Output"] },
+  "1-05": { cta: [{ label: "Scheda Sistemi Operativi & Dispositivi (PDF)", href: "/resources/anno1/settimana-05/A1_U2_3_SISTEMI_OPERATIVI_DISPOSITIVI_MOBILI.pdf" }], materials: ["Computer", "Scheda CPU e RAM", "Schema Dual Coding I/O"] },
+  "1-06": { cta: [{ label: "Guida Software Libero & Licenze (PDF)", href: "/resources/anno1/settimana-06/A1_U2_4_SOFTWARE_LIBERO_SOFTWARE_PROPRIETARIO.pdf" }], materials: ["Computer", "Unità SSD/HDD e chiavette USB", "Schema memorie di massa"] },
+  "1-07": { cta: [{ label: "Guida Esplora File & Accesso Rapido (PDF)", href: "/resources/anno1/settimana-07/A1_U3_3_UTILIZZARE_ACCESSO_RAPIDO.pdf" }], materials: ["Computer", "Sistemi operativi Windows/Linux/Mobile", "Tabelle comparative SO"] },
+  "1-08": { cta: [{ label: "Guida Ricerca & Gestione File (PDF)", href: "/resources/anno1/settimana-08/A1_U3_1_RICERCARE_ELEMENTI_UNITA_CARTELLE.pdf" }], materials: ["Computer", "Esplora File di Windows 11", "Struttura cartelle di laboratorio"] },
+  "1-09": { cta: [{ label: "Scheda Tipi di Backup & Manutenzione (PDF)", href: "/resources/anno1/settimana-09/A1_U3_6_ALTRI_TIPI_BACKUP.pdf" }], materials: ["Computer", "Cartella esercizi", "Utility compressione .zip"] },
+  "1-10": { cta: [{ label: "Scheda Connessioni & Reti LAN/WLAN (PDF)", href: "/resources/anno1/settimana-10/A2_U1_1_STUDIARE_LAVORARE_VIA_INTERNET.pdf" }], materials: ["Computer", "Unità esterna / Cloud", "Checklist di backup semplice"] },
+  "1-11": { cta: [{ label: "Scheda DNS & Domini Web (PDF)", href: "/resources/anno1/settimana-11/A2_U1_3_DOMINI_PRIMO_LIVELLO.pdf" }], materials: ["Computer", "Apparati di rete", "Scheda connessioni LAN/Wi-Fi"] },
+  "1-12": { cta: [{ label: "Scheda Browser & Ricerca Web (PDF)", href: "/resources/anno1/settimana-12/B1_U1_1_INFOCARD_ALTRI_BROWSER_EDGE.pdf" }], materials: ["Computer", "Browser web Edge/Chrome", "Scheda URL e navigazione"] },
+  "1-13": { cta: [{ label: "Guida Copyright & Uso Etico del Web (PDF)", href: "/resources/anno1/settimana-13/A2_U2_1_RISCHI_USO_STRUMENTI_ONLINE.pdf" }], materials: ["Computer", "Browser Edge / Chrome", "Scheda valutazione fake news"] },
+  "1-14": { cta: [{ label: "Guida E-mail Formale & Riservata (PDF)", href: "/resources/anno1/settimana-14/B1_U2_1_INVIARE_MAIL_RISERVATE.pdf" }], materials: ["Computer", "Scheda licenze Creative Commons", "Banche immagini libere"] },
+  "1-15": { cta: [{ label: "Scheda Netiquette & Posta Sicura (PDF)", href: "/resources/anno1/settimana-15/A2_U2_1_RISCHI_USO_STRUMENTI_ONLINE.pdf" }], materials: ["Computer", "Client di posta / Webmail", "Modello e-mail formale"] },
+  "1-16": { cta: [{ label: "Guida Cloud Storage & Condivisione (PDF)", href: "/resources/anno1/settimana-16/B2_U1_1_INFOCARD_ARCHIVIARE_CONDIVIDERE_DROPBOX.pdf" }], materials: ["Computer", "Webmail scolastica", "Checklist netiquette e spam"] },
+  "1-17": { cta: [{ label: "Scheda Strumenti Web Collaborativi (PDF)", href: "/resources/anno1/settimana-17/A2_U2_1_STRUTTURA_APPLICAZIONI_WEB.pdf" }], materials: ["Computer", "Google Drive / OneDrive", "Account studente"] },
+  "1-18": { cta: [{ label: "Scarica Pacchetto Word (.zip)", href: "/resources/anno1/settimana-18/1-Word_processor.zip" }, { label: "Scheda Paragrafi (PDF)", href: "/resources/anno1/settimana-18/B3_U1_4_MODALITA_CORRETTE_SPAZIARE_PARAGRAFI.pdf" }], materials: ["Computer", "Google Documenti / Microsoft 365", "Documento condiviso a coppie"] },
+  "1-19": { cta: [{ label: "Guida Immagini & Tipografia (PDF)", href: "/resources/anno1/settimana-19/B3_U2_1_CREARE_IMMAGINI_EFFETTO.pdf" }], materials: ["Computer", "Microsoft Word / Google Documenti", "Testo grezzo da formattare"] },
+  "1-20": { cta: [{ label: "Scheda Tabelle, Immagini e Filigrana (PDF)", href: "/resources/anno1/settimana-20/B3_U2_5_AGGIUNGERE_FILIGRANA_GOOGLE.pdf" }], materials: ["Computer", "Word processor", "Guida alla formattazione ed elenchi"] },
+  "1-21": { cta: [{ label: "Modelli Stile Lettere (.zip)", href: "/resources/anno1/settimana-21/Modelli_stile_lettere.zip" }], materials: ["Computer", "Word / Documenti", "Tabelle e immagini per l'impaginazione"] },
+  "1-22": { cta: [{ label: "Modelli Relazione Tecnica (.zip)", href: "/resources/anno1/settimana-22/Modelli_stile_lettere.zip" }], materials: ["Computer", "Word", "Stili di paragrafo e sommario automatico"] },
+  "1-23": { cta: [{ label: "Scarica Pacchetto Excel (.zip)", href: "/resources/anno1/settimana-23/2-Foglio_elettronico.zip" }, { label: "Guida Formati Cella (PDF)", href: "/resources/anno1/settimana-23/B4_U2_2_FORMATI_CONTABILITA_NUMERO_VALUTA_EXCEL.pdf" }], materials: ["Computer", "Microsoft Word / Documenti", "Modello mini-guida scolastica"] },
+  "1-24": { cta: [{ label: "Guida Formule & Funzione ARROTONDA (PDF)", href: "/resources/anno1/settimana-24/B4_U3_2_APPLICAZIONI_FUNZIONE_ARROTONDA.pdf" }], materials: ["Computer / LIM", "Simulatore logico interruttori", "Scheda condizioni VERO/FALSO"] },
+  "1-25": { cta: [{ label: "Scheda Riferimenti Assoluti e Misti (PDF)", href: "/resources/anno1/settimana-25/B4_U2_1_RIFERIMENTO_MISTO.pdf" }, { label: "Scheda Errori Excel (PDF)", href: "/resources/anno1/settimana-25/B4_U3_1_RICONOSCERE_MESSAGGI_ERRORE.pdf" }], materials: ["Computer", "Microsoft Excel / Google Fogli", "Foglio base celle e dati"] },
+  "1-26": { cta: [{ label: "Pacchetto Funzioni Statistiche (.zip)", href: "/resources/anno1/settimana-26/2-Foglio_elettronico.zip" }], materials: ["Computer", "Foglio di calcolo", "Esercizi formule aritmetiche (+, -, *, /)"] },
+  "1-27": { cta: [{ label: "Guida Creazione Grafici Excel (PDF)", href: "/resources/anno1/settimana-27/B4_U3_3_MIGLIORAMENTI_GRAFICI_EXCEL.pdf" }], materials: ["Computer", "Foglio con formule e riferimenti ($)", "Esercizio copia-incolla celle"] },
+  "1-28": { cta: [{ label: "Scarica Pacchetto Slide (.zip)", href: "/resources/anno1/settimana-28/B5_Presentazioni.zip" }, { label: "Guida SmartArt (PDF)", href: "/resources/anno1/settimana-28/B3_U2_4_INSERIRE_ELABORARE_SMARTART.pdf" }], materials: ["Computer", "Excel / Fogli", "Tabella dati con funzioni SOMMA e MEDIA"] },
+  "1-29": { cta: [{ label: "Slide Grafici & Layout Inclusivo (PDF)", href: "/slides/anno1/B5_U1_3_INSERIRE_GRAFICI_PRESENTAZIONI.pdf" }], materials: ["Computer", "Excel", "Dati per grafici a barre e a torta"], slideHref: "/slides/anno1/B5_U1_3_INSERIRE_GRAFICI_PRESENTAZIONI.pdf" },
+  "1-30": { cta: [{ label: "Scarica Modelli Fatture (.zip)", href: "/resources/anno1/settimana-30/Modelli_fatture.zip" }], materials: ["Computer", "PowerPoint / Google Presentazioni", "Modello slide visive"], slideHref: "/slides/anno1/B5_U1_4_INSERIRE_ORGANIGRAMMI_PRESENTAZIONI.pdf" },
+  "1-31": { cta: [{ label: "Modelli Presentazione Progetto (.zip)", href: "/resources/anno1/settimana-31/Modelli_fatture.zip" }], materials: ["Computer", "Software presentazioni", "Slide multimediali con immagini"] },
+  "1-32": { cta: [{ label: "Griglia Esposizione Orale (.pdf)", href: "/resources/anno1/settimana-31/Modelli_fatture.zip" }], materials: ["Computer / LIM", "Cronometro", "Griglia di osservazione per public speaking"] },
+  "1-33": { cta: [{ label: "Scheda Portfolio Digitale (.zip)", href: "/resources/anno1/settimana-30/Modelli_fatture.zip" }], materials: ["Computer", "Cartella portfolio personale", "Rubrica di autovalutazione"] },
 
   // Anno 2
-  "2-01": { cta: [{ label: "Scheda Pharming & Sicurezza (PDF)", href: "/resources/anno2/settimana-01/A1_U1_1_PHARMING.pdf" }], materials: ["Computer", "Scheda minacce online e pharming"] },
-  "2-02": { cta: [{ label: "Scheda Sicurezza e Reti Sociali", href: "/resources/anno2/settimana-02/A1_U1_2_PERICOLI_SITI_RETI_SOCIALI.pdf" }], materials: ["Computer", "Casi di studio su phishing e sicurezza"] },
-  "2-03": { cta: [{ label: "Guida Password Manager (PDF)", href: "/resources/anno2/settimana-03/A2_U2_1_SOFTWARE_GESTIONE_PASSWORD.pdf" }], materials: ["Computer", "Software gestione password e autenticazione"] },
-  "2-04": { cta: [{ label: "Scheda Protezione Dati (PDF)", href: "/resources/anno2/settimana-04/A2_U1_2_INFOCARD_DISTRUZIONE_SICURA_DATI_INFOMAZIONI.pdf" }], materials: ["Computer", "Linee guida privacy e distruzione sicura dati"] },
-  "2-05": { cta: [{ label: "Guida Video Tutorial ScreenPal (PDF)", href: "/resources/anno2/settimana-05/FLASHCARD_Creare videotutorial con ScreenPal.pdf" }], materials: ["Computer", "ScreenPal / OBS Studio", "Scheda identità digitale"] },
-  "2-06": { cta: [{ label: "Scheda Crittografia & Firma (PDF)", href: "/resources/anno2/settimana-06/A2_U2_2_CRITTOGRAFIA.pdf" }], materials: ["Computer", "Esempi di cifratura e verifica firma digitale"] },
-  "2-07": { cta: [{ label: "Scheda Tabelle & Sinonimi Word (PDF)", href: "/resources/anno2/settimana-07/B1_U1_1_CONVERTIRE_TESTO_TABELLA_WORD.pdf" }], materials: ["Computer", "Microsoft Word", "Scheda conversione testo-tabella e sinonimi"] },
-  "2-08": { cta: [{ label: "Scarica Pacchetto Word Avanzato (.zip)", href: "/resources/anno2/settimana-08/B1_Word_processor.zip" }], materials: ["Computer", "Microsoft Word", "Dataset stampa unione ed etichette"], slideHref: "/slides/anno2/B1_U3_4_UTILIZZARE_CREAZIONE_GUIDATA_STAMPA_UNIONE.pdf" },
-  "2-09": { cta: [{ label: "Pacchetto Fogli Avanzati (.zip)", href: "/resources/anno2/settimana-09/B2_Foglio_elettronico.zip" }], materials: ["Computer", "Microsoft Excel", "Dataset funzioni logiche SE, E, O"] },
-  "2-10": { cta: [{ label: "Pacchetto Fogli Avanzati (.zip)", href: "/resources/anno2/settimana-10/B2_Foglio_elettronico.zip" }], materials: ["Computer", "Microsoft Excel", "Dataset per funzioni logiche e statistiche"] },
-  "2-11": { cta: [{ label: "Scarica Archivio Database (.zip)", href: "/resources/anno2/settimana-11/B3_Database.zip" }], materials: ["Computer", "Microsoft Access / LibreOffice Base", "Database starter (.zip)"] },
-  "2-13": { cta: [{ label: "Compito di Realtà Peer Tutoring (PDF)", href: "/resources/anno2/settimana-13/C2_9_COMPITI_REALTA_PEER_TUTORING.pdf" }], materials: ["Computer", "Scheda progettazione archivio e peer tutoring"] },
-  "2-14": { cta: [{ label: "Compito Fruit Day & Borghi (PDF)", href: "/resources/anno2/settimana-14/C2_10_COMPITI_REALTA_FRUIT_DAY.pdf" }], materials: ["Computer", "Fogli di calcolo e presentazioni per compiti di realtà"] },
-  "2-15": { cta: [{ label: "Guida eBook ePubEditor (PDF)", href: "/resources/anno2/settimana-15/C1_6_REALIZZARE EBOOK_EPUBEDITOR.pdf" }], materials: ["Computer", "ePubEditor / Canva", "Scheda benessere e tempo digitale"] },
-  "2-16": { cta: [{ label: "Compito di Realtà NEET (PDF)", href: "/resources/anno2/settimana-16/C2_13_COMPITI_REALTA_I_GIOVANI_NEET.pdf" }], materials: ["Computer", "Scheda indagine statistica e verifica intermedia"] },
-  "2-17": { cta: [{ label: "Scarica Progetti Scratch 3.0 (.zip)", href: "/resources/anno2/settimana-17/A.1_Scratch_3.0.zip" }], materials: ["Computer", "Scratch 3.0", "Pacchetto progetti starter Scratch (.zip)"] },
-  "2-18": { cta: [{ label: "Scarica Progetti Animazioni (.zip)", href: "/resources/anno2/settimana-18/A.2_Scratch_3.0.zip" }], materials: ["Computer", "Scratch 3.0", "Pacchetto animazioni e costumi (.zip)"] },
-  "2-19": { cta: [{ label: "Scarica Progetti Cicli (.zip)", href: "/resources/anno2/settimana-19/A.3_Scratch_3.0.zip" }], materials: ["Computer", "Scratch 3.0", "Pacchetto cicli e iterazioni (.zip)"] },
-  "2-20": { cta: [{ label: "Scarica Progetti Condizioni (.zip)", href: "/resources/anno2/settimana-20/A.4_Scratch_3.0.zip" }], materials: ["Computer", "Scratch 3.0", "Pacchetto condizioni e decisioni (.zip)"] }
+  "2-01": { cta: [{ label: "Scheda Pharming & Malware (PDF)", href: "/resources/anno2/settimana-01/A1_U1_1_PHARMING.pdf" }], materials: ["Computer", "Scheda minacce online e malware comuni"] },
+  "2-02": { cta: [{ label: "Scheda Sicurezza e Reti Sociali (PDF)", href: "/resources/anno2/settimana-02/A1_U1_2_PERICOLI_SITI_RETI_SOCIALI.pdf" }], materials: ["Computer", "Casi di studio su phishing e truffe via SMS"] },
+  "2-03": { cta: [{ label: "Guida Password Manager & 2FA (PDF)", href: "/resources/anno2/settimana-03/A2_U2_1_SOFTWARE_GESTIONE_PASSWORD.pdf" }], materials: ["Computer", "App Authenticator dimostrativa e guida 2FA"] },
+  "2-04": { cta: [{ label: "Scheda Protezione Dati & GDPR (PDF)", href: "/resources/anno2/settimana-04/A2_U1_2_INFOCARD_DISTRUZIONE_SICURA_DATI_INFOMAZIONI.pdf" }], materials: ["Computer", "Linee guida GDPR spiegate semplici e tutela dati"] },
+  "2-05": { cta: [{ label: "Guida Tutorial & Comunicazione Digitale (PDF)", href: "/resources/anno2/settimana-05/FLASHCARD_Creare_videotutorial_con_ScreenPal.pdf" }], materials: ["Computer", "Scheda identità digitale e reputazione online"] },
+  "2-06": { cta: [{ label: "Scheda Tabelle Avanzate & Modelli (PDF)", href: "/resources/anno2/settimana-07/B1_U1_1_CONVERTIRE_TESTO_TABELLA_WORD.pdf" }], materials: ["Computer", "Microsoft Word", "Scheda tabelle complesse e modelli aziendali"] },
+  "2-07": { cta: [{ label: "Guida Sinonimi & Stili (PDF)", href: "/resources/anno2/settimana-07/B1_U2_1_RICERCARE_SINONIMI_WORD.pdf" }], materials: ["Computer", "Microsoft Word", "Stili avanzati e correttore professionale"] },
+  "2-08": { cta: [{ label: "Scarica Pacchetto Stampa Unione (.zip)", href: "/resources/anno2/settimana-08/B1_Word_processor.zip" }, { label: "Guida Etichette e Buste (PDF)", href: "/resources/anno2/settimana-08/B1_U3_2_CREARE_ETICHETTE_BUSTE_STAMPA_UNIONE.pdf" }], materials: ["Computer", "Microsoft Word", "Dataset stampa unione ed etichette"], slideHref: "/slides/anno2/B1_U3_4_UTILIZZARE_CREAZIONE_GUIDATA_STAMPA_UNIONE.pdf" },
+  "2-09": { cta: [{ label: "Scheda Logica Proposizionale & Tabelle di Verità (PDF)", href: "/resources/anno2/settimana-21/A1_U1_1_NEGAZIONE_LOGICA_NOT.pdf" }], materials: ["Computer", "Simulatore logico / LIM", "Tabelle di verità AND, OR, NOT"] },
+  "2-10": { cta: [{ label: "Pacchetto Fogli Funzione SE (.zip)", href: "/resources/anno2/settimana-09/B2_Foglio_elettronico.zip" }], materials: ["Computer", "Microsoft Excel / Google Fogli", "Dataset con funzione =SE()"] },
+  "2-11": { cta: [{ label: "Dataset Fogli Logica E / O (.zip)", href: "/resources/anno2/settimana-10/B2_Foglio_elettronico.zip" }], materials: ["Computer", "Microsoft Excel", "Dataset formule =E(), =O() e formattazione condizionale"] },
+  "2-12": { cta: [{ label: "Scarica Archivio Database Starter (.zip)", href: "/resources/anno2/settimana-11/B3_Database.zip" }, { label: "Scheda Tipi di Dati e Proprietà (PDF)", href: "/resources/anno2/settimana-11/B3_U1_1_TIPI_DATI_PROPRIETA.pdf" }], materials: ["Computer", "Microsoft Access / LibreOffice Base", "Database starter (.zip)"] },
+  "2-13": { cta: [{ label: "Modello Tabelle & Relazioni Database (.zip)", href: "/resources/anno2/settimana-12/B3_Database.zip" }], materials: ["Computer", "Microsoft Access", "Database clienti e prodotti con chiave primaria"] },
+  "2-14": { cta: [{ label: "Scheda Query di Selezione e Filtri (PDF)", href: "/resources/anno2/settimana-13/C2_9_COMPITI_REALTA_PEER_TUTORING.pdf" }], materials: ["Computer", "Database relazionale", "Scheda query di selezione con filtri"] },
+  "2-15": { cta: [{ label: "Scheda Maschere & Report di Stampa (PDF)", href: "/resources/anno2/settimana-14/C2_10_COMPITI_REALTA_FRUIT_DAY.pdf" }], materials: ["Computer", "Microsoft Access", "Maschere di inserimento dati e report"] },
+  "2-16": { cta: [{ label: "Compito di Realtà Gestionale (PDF)", href: "/resources/anno2/settimana-15/C1_6_REALIZZARE_EBOOK_EPUBEDITOR.pdf" }], materials: ["Computer", "Archivio database completo per attività scolastica"] },
+  "2-17": { cta: [{ label: "Scheda Verifica Intermedia Pratica (PDF)", href: "/resources/anno2/settimana-16/C2_13_COMPITI_REALTA_I_GIOVANI_NEET.pdf" }], materials: ["Computer", "Prova pratica intermedia su fogli di calcolo e database"] },
+  "2-18": { cta: [{ label: "Compito Cittadinanza Digitale & Impresa (PDF)", href: "/resources/anno2/settimana-17/C2_11_COMPITI_REALTA_VISIATIMO_I_BORGHI.pdf" }], materials: ["Computer", "Scheda senso critico e navigazione consapevole"] },
+  "2-19": { cta: [{ label: "Guida Pubblicazione & Benessere Digitale (PDF)", href: "/resources/anno2/settimana-18/C1_6_REALIZZARE_EBOOK_EPUBEDITOR.pdf" }], materials: ["Computer", "Scheda benessere digitale e gestione notifiche"] },
+  "2-20": { cta: [{ label: "Pacchetto Soluzioni Integrate Office (.zip)", href: "/resources/anno2/settimana-20/B1_Word_processor.zip" }], materials: ["Computer", "Documento di sintesi cooperativa integrato"] },
+  "2-21": { cta: [{ label: "Guida Pseudolinguaggi & Diagrammi di Flusso (PDF)", href: "/resources/anno2/settimana-22/A1_U1_2_UTILIZZO_PSEUDOLINGUAGGI.pdf" }], materials: ["Computer", "Flowgorithm / Diagrammi di flusso", "Scheda problemi logici"] },
+  "2-22": { cta: [{ label: "Scarica Starter Kit Scratch 3.0 (.zip)", href: "/resources/anno2/settimana-23/A.1_Scratch_3.0.zip" }], materials: ["Computer", "Scratch 3.0", "Pacchetto progetti starter Scratch (.zip)"] },
+  "2-23": { cta: [{ label: "Pacchetto Costumi & Animazioni Scratch (.zip)", href: "/resources/anno2/settimana-24/A.2_Scratch_3.0.zip" }], materials: ["Computer", "Scratch 3.0", "Sprite, costumi e piano cartesiano X/Y"] },
+  "2-24": { cta: [{ label: "Pacchetto Cicli & Iterazioni Scratch (.zip)", href: "/resources/anno2/settimana-25/A.3_Scratch_3.0.zip" }], materials: ["Computer", "Scratch 3.0", "Blocchi di iterazione (ripeti e per sempre)"] },
+  "2-25": { cta: [{ label: "Pacchetto Condizioni & Sensori Scratch (.zip)", href: "/resources/anno2/settimana-26/A.4_Scratch_3.0.zip" }], materials: ["Computer", "Scratch 3.0", "Blocchi SE... ALLORA e sensori di contatto"] },
+  "2-26": { cta: [{ label: "Pacchetto Variabili & Timer Scratch (.zip)", href: "/resources/anno2/settimana-27/A.1_Scratch_3.0.zip" }], materials: ["Computer", "Scratch 3.0", "Variabili Punti, Vite e Timer di gioco"] },
+  "2-27": { cta: [{ label: "Pacchetto Messaggi Broadcast Scratch (.zip)", href: "/resources/anno2/settimana-28/A.2_Scratch_3.0.zip" }], materials: ["Computer", "Scratch 3.0", "Blocchi invia e ricevi messaggio"] },
+  "2-28": { cta: [{ label: "Pacchetto Caccia al Bug Scratch (.zip)", href: "/resources/anno2/settimana-29/A.3_Scratch_3.0.zip" }], materials: ["Computer", "Scratch 3.0", "3 progetti Scratch con bug guidati da risolvere"] },
+  "2-29": { cta: [{ label: "Template Storyboard & Progetto Scratch (.zip)", href: "/resources/anno2/settimana-30/A.4_Scratch_3.0.zip" }], materials: ["Computer", "Scheda storyboard e bozza del videogioco a coppie"] },
+  "2-30": { cta: [{ label: "Kit Sviluppo Videogioco Scratch (.zip)", href: "/resources/anno2/settimana-31/A.1_Scratch_3.0.zip" }], materials: ["Computer", "Scratch 3.0", "Asset e codice per livello di gioco"] },
+  "2-31": { cta: [{ label: "Asset Grafici & Sonori Scratch (.zip)", href: "/resources/anno2/settimana-31/A.1_Scratch_3.0.zip" }], materials: ["Computer", "Scratch 3.0", "Effetti sonori e rifiniture grafiche"] },
+  "2-32": { cta: [{ label: "Griglia di Collaudo Peer Review (.zip)", href: "/resources/anno2/settimana-32/A.2_Scratch_3.0.zip" }], materials: ["Computer", "Scheda di test tra compagni (peer review)"] },
+  "2-33": { cta: [{ label: "Demo Day & Valutazione Scratch (.zip)", href: "/resources/anno2/settimana-32/A.2_Scratch_3.0.zip" }], materials: ["Computer / LIM", "Progetti Scratch finali", "Rubrica di valutazione biennio"] }
 };
 
 function buildWeeks(year, themes) {
@@ -340,7 +485,6 @@ function buildWeeks(year, themes) {
   });
 }
 
-
 import { triennioCurriculum } from "./curriculum-triennio.mjs";
 
 export const curriculum = {
@@ -350,3 +494,4 @@ export const curriculum = {
   4: triennioCurriculum[4],
   5: triennioCurriculum[5]
 };
+

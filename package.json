@@ -7,6 +7,7 @@
     "build": "next build",
     "start": "next start",
     "lint": "eslint",
+    "generate:quizzes": "node scripts/generate-quizzes.mjs",
     "test": "node --test tests/*.test.mjs",
     "verify:downloads": "node scripts/verify-all-downloads.mjs",
     "test:responsive": "python scripts/audit_responsive.py"

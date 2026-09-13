@@ -26,6 +26,28 @@ export default async function WeekPage({ params }: { params: Promise<{ year: str
           <h1 className="mt-4 text-4xl font-black tracking-tight sm:text-5xl">{week.theme}</h1>
           <p className="portal-muted mt-4 max-w-2xl text-lg leading-8">Questa scheda accompagna due ore di lavoro: attiva le conoscenze, prova, gioca e chiudi con una traccia da conservare.</p>
         </header>
+
+        {year === 1 && weekNumber === 1 && (
+          <aside className="mission-panel mt-10 mb-6" aria-label="Attività preliminare: Lezione 0">
+            <p className="portal-eyebrow">Fase preliminare · Lezione 0</p>
+            <h3 className="text-xl font-bold text-[var(--ink)] mt-1">
+              Carta d&apos;Identità Digitale & Mappa della Classe
+            </h3>
+            <p className="portal-muted mt-2 text-sm leading-relaxed max-w-[60ch]">
+              Attività di 60 minuti a monitor spenti per rompere il ghiaccio a coppie di banco e rilevare le abitudini informatiche.
+            </p>
+            <div className="support-actions mt-4 flex flex-wrap items-center gap-3">
+              <Link href="/anno/1/lezione-0" className="portal-button text-xs">
+                <span>Apri Scheda di Laboratorio</span>
+                <span aria-hidden="true">→</span>
+              </Link>
+              <a href="/downloads/scheda_identita_1N.pdf" download className="portal-button-secondary text-xs">
+                <span>Scarica PDF (A5)</span>
+              </a>
+            </div>
+          </aside>
+        )}
+
         <section className="mt-10" aria-label="Lezioni della settimana">
           {week.lessons.map((lesson) => <LessonCard key={lesson.id} lesson={lesson} />)}
         </section>
