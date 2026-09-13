@@ -43,7 +43,6 @@ export default function Home() {
               <div>
                 <div className="flex flex-wrap items-center gap-2.5 mb-5">
                   <span className="portal-eyebrow">Percorso Quinquennale · Classi 1–5</span>
-                  <span className="text-[var(--line-strong)]">·</span>
                   <span className="inline-flex items-center gap-1.5 rounded-full border border-emerald-500/30 bg-emerald-500/10 px-2.5 py-0.5 text-xs font-semibold text-emerald-300">
                     <span className="w-1.5 h-1.5 rounded-full bg-emerald-400" />
                     100% Attivo

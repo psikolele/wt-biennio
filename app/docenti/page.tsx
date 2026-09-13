@@ -176,16 +176,16 @@ export default async function TeacherPage() {
                   </Link>
                   <div className="flex items-center justify-between gap-1.5 pt-1 text-[11px] text-[var(--muted)]">
                     <span>Export:</span>
-                    <div className="flex items-center gap-1.5">
-                      <a href={`/api/quizzes/kahoot/${q.id}.csv`} download={`${q.id}-kahoot.csv`} className="hover:text-[var(--blue)] underline">
+                    <div className="flex items-center">
+                      <a href={`/api/quizzes/kahoot/${q.id}.csv`} download={`${q.id}-kahoot.csv`} className="hover:text-[var(--blue)] underline px-1.5 py-2 -my-2 rounded">
                         Kahoot
                       </a>
-                      <span>·</span>
-                      <a href={`/api/quizzes/panquiz/${q.id}.csv`} download={`${q.id}-panquiz.csv`} className="hover:text-[var(--coral)] underline">
+                      <span aria-hidden="true">·</span>
+                      <a href={`/api/quizzes/panquiz/${q.id}.csv`} download={`${q.id}-panquiz.csv`} className="hover:text-[var(--coral)] underline px-1.5 py-2 -my-2 rounded">
                         PanQuiz
                       </a>
-                      <span>·</span>
-                      <a href={`/api/quizzes/panquiz/${q.id}.txt`} download={`${q.id}-aiken.txt`} className="hover:text-[var(--ink)] underline">
+                      <span aria-hidden="true">·</span>
+                      <a href={`/api/quizzes/panquiz/${q.id}.txt`} download={`${q.id}-aiken.txt`} className="hover:text-[var(--ink)] underline px-1.5 py-2 -my-2 rounded">
                         Aiken .txt
                       </a>
                     </div>
@@ -225,16 +225,16 @@ export default async function TeacherPage() {
                   </Link>
                   <div className="flex items-center justify-between gap-1.5 pt-1 text-[11px] text-[var(--muted)]">
                     <span>Export:</span>
-                    <div className="flex items-center gap-1.5">
-                      <a href={`/api/quizzes/kahoot/${q.id}.csv`} download={`${q.id}-kahoot.csv`} className="hover:text-[var(--blue)] underline">
+                    <div className="flex items-center">
+                      <a href={`/api/quizzes/kahoot/${q.id}.csv`} download={`${q.id}-kahoot.csv`} className="hover:text-[var(--blue)] underline px-1.5 py-2 -my-2 rounded">
                         Kahoot
                       </a>
-                      <span>·</span>
-                      <a href={`/api/quizzes/panquiz/${q.id}.csv`} download={`${q.id}-panquiz.csv`} className="hover:text-[var(--coral)] underline">
+                      <span aria-hidden="true">·</span>
+                      <a href={`/api/quizzes/panquiz/${q.id}.csv`} download={`${q.id}-panquiz.csv`} className="hover:text-[var(--coral)] underline px-1.5 py-2 -my-2 rounded">
                         PanQuiz
                       </a>
-                      <span>·</span>
-                      <a href={`/api/quizzes/panquiz/${q.id}.txt`} download={`${q.id}-aiken.txt`} className="hover:text-[var(--ink)] underline">
+                      <span aria-hidden="true">·</span>
+                      <a href={`/api/quizzes/panquiz/${q.id}.txt`} download={`${q.id}-aiken.txt`} className="hover:text-[var(--ink)] underline px-1.5 py-2 -my-2 rounded">
                         Aiken .txt
                       </a>
                     </div>
