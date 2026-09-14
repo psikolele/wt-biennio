@@ -286,7 +286,7 @@ export default function LezioneZeroPage() {
                     <button
                       type="button"
                       onClick={clearCanvas}
-                      className="portal-button-secondary text-[11px] py-1 px-2.5 min-h-0"
+                      className="portal-button-secondary text-[11px] px-3 min-h-11"
                     >
                       Pulisci
                     </button>
