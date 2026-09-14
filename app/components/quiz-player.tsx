@@ -194,7 +194,7 @@ export function QuizPlayer({ quiz }: QuizPlayerProps) {
             {quiz.description}
           </p>
 
-          <div className="mt-8 grid grid-cols-2 sm:grid-cols-4 gap-3.5">
+          <div className="mt-8 grid grid-cols-2 sm:grid-cols-4 gap-4">
             <div className="rounded-xl border border-[var(--line)] bg-[rgba(27,25,42,0.45)] p-4">
               <span className="text-xs font-semibold text-[var(--muted)]">Quesiti</span>
               <p className="mt-1 text-xl font-bold text-[var(--ink)]">{totalQuestions}</p>
@@ -287,7 +287,7 @@ export function QuizPlayer({ quiz }: QuizPlayerProps) {
           </div>
 
           {/* Options Grid */}
-          <div className="mt-6 grid grid-cols-1 sm:grid-cols-2 gap-3.5">
+          <div className="mt-6 grid grid-cols-1 sm:grid-cols-2 gap-4">
             {currentQuestion.options.map((option, idx) => {
               const opt = optionClasses[idx];
               return (
@@ -346,7 +346,7 @@ export function QuizPlayer({ quiz }: QuizPlayerProps) {
 
             {/* Answer recap */}
             <div className="mt-4 pt-4 border-t border-[rgba(47,43,75,0.75)] grid sm:grid-cols-2 gap-3">
-              <div className="rounded-xl border border-[rgba(114,227,163,0.25)] bg-[rgba(21,47,40,0.28)] p-3.5">
+              <div className="rounded-xl border border-[rgba(114,227,163,0.25)] bg-[rgba(21,47,40,0.28)] p-4">
                 <span className="text-xs font-bold uppercase tracking-wider text-[var(--coral)]">✓ Risposta Corretta:</span>
                 <p className="mt-1 text-sm font-semibold text-[var(--ink)]">
                   {currentQuestion.options[currentQuestion.correctOptionIndex]}
@@ -354,7 +354,7 @@ export function QuizPlayer({ quiz }: QuizPlayerProps) {
               </div>
 
               {selectedOption !== null && selectedOption !== currentQuestion.correctOptionIndex && (
-                <div className="rounded-xl border border-[rgba(239,68,68,0.25)] bg-[rgba(47,21,21,0.28)] p-3.5">
+                <div className="rounded-xl border border-[rgba(239,68,68,0.25)] bg-[rgba(47,21,21,0.28)] p-4">
                   <span className="text-xs font-bold uppercase tracking-wider text-red-400">✗ Risposta Selezionata:</span>
                   <p className="mt-1 text-sm font-semibold text-[var(--ink)]">
                     {currentQuestion.options[selectedOption]}

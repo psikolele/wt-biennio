@@ -132,19 +132,19 @@ export default function Home() {
                 Conoscere → Provare → Lasciare una traccia
               </h3>
               <div className="grid grid-cols-1 sm:grid-cols-3 gap-3">
-                <div className="rounded-xl border border-[var(--line)] bg-[var(--surface-soft)] p-3">
+                <div className="rounded-xl border border-[var(--line)] bg-[var(--surface-soft)] p-4">
                   <span className="font-mono text-xs text-[var(--blue)] font-bold">01 · Sfida reale</span>
                   <p className="mt-1 text-xs text-[var(--muted)] leading-relaxed">
                     Azione a PC prima delle definizioni teoriche.
                   </p>
                 </div>
-                <div className="rounded-xl border border-[var(--line)] bg-[var(--surface-soft)] p-3">
+                <div className="rounded-xl border border-[var(--line)] bg-[var(--surface-soft)] p-4">
                   <span className="font-mono text-xs text-[var(--coral)] font-bold">02 · Laboratorio</span>
                   <p className="mt-1 text-xs text-[var(--muted)] leading-relaxed">
                     Fasi temporizzate ed esercizi guidati passo-passo.
                   </p>
                 </div>
-                <div className="rounded-xl border border-[var(--line)] bg-[var(--surface-soft)] p-3">
+                <div className="rounded-xl border border-[var(--line)] bg-[var(--surface-soft)] p-4">
                   <span className="font-mono text-xs text-[#F3B76E] font-bold">03 · Portfolio</span>
                   <p className="mt-1 text-xs text-[var(--muted)] leading-relaxed">
                     Un file o codice verificato da conservare.

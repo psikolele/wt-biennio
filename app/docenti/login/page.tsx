@@ -78,7 +78,7 @@ export default function TeacherLoginPage() {
             </button>
 
             {error ? (
-              <p id="login-error" role="alert" className="text-xs font-bold text-[#FF9B9B] bg-[#2A1818] border border-[#FF9B9B]/30 rounded-xl p-3">
+              <p id="login-error" role="alert" className="text-xs font-bold text-[#FF9B9B] bg-[#2A1818] border border-[#FF9B9B]/30 rounded-xl p-4">
                 {error}
               </p>
             ) : null}
