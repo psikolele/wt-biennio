@@ -88,60 +88,72 @@ export function ClassGate({ year, children }: ClassGateProps) {
 
   if (status === "loading") {
     return (
-      <div className="portal-shell min-h-[60vh] flex items-center justify-center">
+      <main className="portal-shell px-5 py-12 sm:py-20 flex items-center justify-center">
         <div className="flex flex-col items-center gap-3">
           <div className="w-8 h-8 rounded-full border-2 border-[var(--blue)] border-t-transparent animate-spin" />
           <p className="portal-muted text-xs font-mono">Verifica credenziali di classe...</p>
         </div>
-      </div>
+      </main>
     );
   }
 
   if (status === "locked") {
     return (
-      <main className="portal-shell px-4 py-12 sm:py-20 flex items-center justify-center min-h-[85vh]">
-        <div className="w-full max-w-md">
-          <div className="mb-6 flex items-center justify-between">
-            <Link href="/" className="portal-button-secondary text-xs">
-              <span aria-hidden="true">←</span> Torna alla Home
+      <main className="portal-shell px-5 py-12 sm:py-20">
+        <div className="portal-container max-w-md mx-auto">
+          {/* TOP BAR / NAVIGAZIONE CON SPAZIATURA PULITA */}
+          <div className="flex items-center justify-between gap-4 mb-8">
+            <Link
+              href="/"
+              className="portal-button-secondary text-xs py-2 px-4 min-h-[38px]"
+            >
+              <span aria-hidden="true">←</span> Torna al portale
             </Link>
-            <Link href="/docenti" className="text-xs font-mono text-[var(--muted)] hover:text-[var(--ink)] transition-colors">
+            <Link
+              href="/docenti"
+              className="text-xs font-mono text-[var(--muted)] hover:text-[var(--ink)] transition-colors py-2 px-2"
+            >
               Area Docenti →
             </Link>
           </div>
 
-          <div className="bento-tile bento-tile--glow p-7 sm:p-9 border-2 border-[var(--line-strong)] rounded-2xl shadow-2xl">
-            <div className="flex items-center gap-3 mb-4">
-              <span className="text-3xl" aria-hidden="true">{meta.icon}</span>
+          {/* CARD DI ACCESSO DEDICATA (ROBUSTA, PADDING GENEROSO, NESSUNA COLLISIONE) */}
+          <div className="rounded-2xl border border-[var(--line-strong)] bg-[linear-gradient(180deg,rgba(25,23,42,0.96)_0%,rgba(16,14,28,0.99)_100%)] p-7 sm:p-9 shadow-[0_24px_60px_-12px_rgba(0,0,0,0.6)]">
+            <div className="flex items-center gap-3.5 mb-5">
+              <span className="text-3xl p-2.5 rounded-xl bg-[var(--surface-soft)] border border-[var(--line)]" aria-hidden="true">
+                {meta.icon}
+              </span>
               <div>
-                <span className="portal-eyebrow">{meta.label}</span>
-                <h1 className="text-2xl font-black text-[var(--ink)] tracking-tight">
+                <span className="portal-eyebrow block mb-1">{meta.label}</span>
+                <h1 className="text-2xl sm:text-3xl font-black text-[var(--ink)] tracking-tight">
                   Sezione Riservata
                 </h1>
               </div>
             </div>
 
-            <p className="portal-muted text-xs sm:text-sm leading-relaxed mb-6">
-              Questa sezione è riservata agli studenti della <strong>{meta.label}</strong> ({meta.theme}). Inserisci la password fornita dal docente per accedere alle lezioni e ai materiali.
+            <p className="portal-muted text-sm leading-relaxed mb-6">
+              Questa sezione è riservata agli studenti della <strong>{meta.label}</strong> ({meta.theme}). Inserisci la password fornita dal docente per accedere alle 33 settimane di laboratorio e alle schede didattiche.
             </p>
 
-            <form onSubmit={handleUnlock} className="space-y-4">
+            <form onSubmit={handleUnlock} className="space-y-5">
               <div>
                 <label
                   htmlFor="class-password"
-                  className="block text-xs font-mono font-bold uppercase tracking-wider text-[var(--muted)] mb-1.5"
+                  className="block text-xs font-mono font-bold uppercase tracking-wider text-[var(--muted)] mb-2"
                 >
                   Password di Classe:
                 </label>
                 <input
                   id="class-password"
+                  name="class-password"
                   type="password"
                   autoFocus
                   required
+                  autoComplete="current-password"
                   value={password}
                   onChange={(e) => setPassword(e.target.value)}
                   placeholder="Inserisci la password..."
-                  className="portal-input w-full px-4 py-3 rounded-xl font-mono text-sm font-bold tracking-wider"
+                  className="portal-input w-full min-h-12 rounded-xl px-4 py-3 text-sm font-mono tracking-wider outline-none focus:border-[var(--blue)] transition-colors"
                 />
               </div>
 
@@ -157,15 +169,17 @@ export function ClassGate({ year, children }: ClassGateProps) {
               <button
                 type="submit"
                 disabled={isSubmitting}
-                className="portal-button w-full justify-center py-3 text-sm font-bold shadow-md disabled:opacity-50"
+                className="portal-button w-full justify-center py-3.5 min-h-12 text-sm font-bold shadow-md disabled:opacity-50"
               >
                 {isSubmitting ? "Verifica in corso..." : "Entra in Classe →"}
               </button>
             </form>
 
-            <div className="mt-6 pt-5 border-t border-[rgba(109,101,163,0.2)] text-[11px] text-[var(--muted)] leading-relaxed">
+            <div className="mt-8 pt-5 border-t border-[rgba(109,101,163,0.25)] flex items-start gap-2.5 text-xs text-[var(--muted)] leading-relaxed">
+              <span className="text-base leading-none" aria-hidden="true">🔒</span>
               <p>
-                🔒 <strong>Nota per i docenti:</strong> la password dell&apos;Area Docenti sblocca direttamente l&apos;accesso a qualsiasi classe.
+                <strong className="text-[var(--ink)]">Nota per i docenti:</strong>{" "}
+                la password dell&apos;Area Docenti sblocca direttamente l&apos;accesso a qualsiasi classe.
               </p>
             </div>
           </div>
@@ -176,16 +190,16 @@ export function ClassGate({ year, children }: ClassGateProps) {
 
   return (
     <>
-      <div className="bg-[rgba(25,23,42,0.9)] border-b border-[var(--line)] px-4 py-1.5 flex items-center justify-between text-[11px] font-mono text-[var(--muted)]">
+      <div className="bg-[rgba(25,23,42,0.95)] border-b border-[var(--line)] px-4 sm:px-8 py-2.5 flex items-center justify-between text-xs font-mono text-[var(--muted)] shadow-sm">
         <div className="flex items-center gap-2">
-          <span className="w-2 h-2 rounded-full bg-emerald-400" />
+          <span className="w-2 h-2 rounded-full bg-emerald-400 animate-pulse" />
           <span className="text-[var(--ink)] font-bold">{meta.label} sbloccata</span>
           <span className="hidden sm:inline opacity-75">· {meta.theme}</span>
         </div>
         <button
           type="button"
           onClick={handleLock}
-          className="hover:text-[var(--coral)] transition-colors underline underline-offset-2"
+          className="hover:text-[var(--coral)] transition-colors underline underline-offset-4 py-1 px-2 text-xs"
         >
           Blocca sezione (Esci)
         </button>
