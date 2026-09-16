@@ -471,7 +471,11 @@ const bsmartMaterials = {
   "1-33": { cta: [{ label: "Scheda Portfolio Digitale (.zip)", href: "/resources/anno1/settimana-30/Modelli_fatture.zip" }], materials: ["Computer", "Cartella portfolio personale", "Rubrica di autovalutazione"] },
 
   // Anno 2
-  "2-01": { cta: [{ label: "Scheda Pharming & Malware (PDF)", href: "/resources/anno2/settimana-01/A1_U1_1_PHARMING.pdf" }], materials: ["Computer", "Scheda minacce online e malware comuni"] },
+  "2-01": { 
+    canvaUrl: "https://canva.link/bu6xf78ueig64dt",
+    cta: [{ label: "Scheda Pharming & Malware (PDF)", href: "/resources/anno2/settimana-01/A1_U1_1_PHARMING.pdf" }], 
+    materials: ["Computer", "Scheda minacce online e malware comuni"] 
+  },
   "2-02": { cta: [{ label: "Scheda Sicurezza e Reti Sociali (PDF)", href: "/resources/anno2/settimana-02/A1_U1_2_PERICOLI_SITI_RETI_SOCIALI.pdf" }], materials: ["Computer", "Casi di studio su phishing e truffe via SMS"] },
   "2-03": { cta: [{ label: "Guida Password Manager & 2FA (PDF)", href: "/resources/anno2/settimana-03/A2_U2_1_SOFTWARE_GESTIONE_PASSWORD.pdf" }], materials: ["Computer", "App Authenticator dimostrativa e guida 2FA"] },
   "2-04": { cta: [{ label: "Scheda Protezione Dati & GDPR (PDF)", href: "/resources/anno2/settimana-04/A2_U1_2_INFOCARD_DISTRUZIONE_SICURA_DATI_INFOMAZIONI.pdf" }], materials: ["Computer", "Linee guida GDPR spiegate semplici e tutela dati"] },
