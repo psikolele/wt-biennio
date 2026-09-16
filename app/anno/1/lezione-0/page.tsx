@@ -2,6 +2,7 @@
 
 import { useState, useRef, useEffect } from "react";
 import Link from "next/link";
+import { ClassGate } from "@/app/components/class-gate";
 
 interface PartnerData {
   name: string;
@@ -89,7 +90,8 @@ export default function LezioneZeroPage() {
   }, [activeTab]);
 
   return (
-    <main className="portal-shell print:bg-white print:text-black print:p-0">
+    <ClassGate year={1}>
+      <main className="portal-shell print:bg-white print:text-black print:p-0">
       {/* SCREEN INTERFACE */}
       <div className="portal-container max-w-4xl py-10 sm:py-14 print:hidden">
         {/* TOP BAR / NAVIGATION */}
@@ -949,6 +951,7 @@ export default function LezioneZeroPage() {
           </div>
         </div>
       </div>
-    </main>
+      </main>
+    </ClassGate>
   );
 }

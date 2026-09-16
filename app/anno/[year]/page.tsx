@@ -30,10 +30,12 @@ export default async function YearPage({ params }: { params: Promise<{ year: str
     { title: "UDA 4 · Microsoft Access, Linguaggio SQL & AI Reviewer", description: "Tabelle relazionali, vincoli referenziali, query di selezione, aggregazione, Text-to-SQL, maschere e report.", range: [11, 24] },
     { title: "UDA 7 · Web design, HTML5 Semantico & Pair Programming", description: "Struttura del documento web, tag semantici, multimedia accessibile (WCAG), form interattivi e AI assisted coding.", range: [25, 33] }
   ] : [
-    { title: "UDA 6 · Reti di calcolatori, Modello ISO/OSI & Sicurezza", description: "Architetture LAN/WAN, apparati, TCP/IP, subnetting, DHCP/DNS, crittografia simmetrica/asimmetrica, firma digitale e VPN.", range: [1, 17] },
-    { title: "AI Livello 3 · Workflow Automation, RAG & AI Safety", description: "Automazione processi (n8n/Make), chatbot intelligenti, Retrieval-Augmented Generation, prompt injection e European AI Act.", range: [18, 26] },
-    { title: "UDA 7 · Web marketing, Metriche e Campagne", description: "Strategia digitale, SEO/SEM, funnel di conversione e metriche analitiche per l'impresa.", range: [27, 28] },
-    { title: "Capstone Project & Preparazione Esame di Stato", description: "Sviluppo progetto interdisciplinare d'esame (dati, reti, AI e conformità normativa) e simulazione colloquio orale.", range: [29, 33] }
+    { title: "UDA 6 · Crittografia, Blockchain & Sicurezza Aziendale", description: "Crittografia classica, simmetrica (AES), asimmetrica (RSA/PKI), hash SHA-256, blockchain, firme digitali, canali sicuri (TLS/VPN) e Disaster Recovery (3-2-1).", range: [1, 7] },
+    { title: "Laboratorio Basi di Dati & SQL · UdA Magazzino & Vendite", description: "DDL, vincoli d'integrità, manipolazione DML, interrogazioni con SELECT/WHERE, relazioni INNER JOIN, aggregazioni GROUP BY/HAVING, subquery e viste logiche con Beekeeper Studio, Access e Local.", range: [8, 11] },
+    { title: "Data Analytics, Machine Learning & Reti Neurali", description: "Laboratorio ETL aziendale con Microsoft Power Query e visual machine learning con Orange Data Mining (reti neurali MLP e matrici di confusione).", range: [12, 14] },
+    { title: "UDA 6 · Reti di calcolatori & Modulo Specialistico Subnetting", description: "Architetture LAN/WAN, mezzi fisici Cat 6, ISO/OSI vs TCP/IP, apparati L2/L3, indirizzamento IPv4, calcolo subnetting CIDR, VLSM, DHCP, DNS e troubleshooting da console.", range: [15, 23] },
+    { title: "AI Livello 3 · Workflow Automation, RAG & European AI Act", description: "Automazione con n8n, chatbot con system prompt e guardrails, architetture RAG aziendali, prompt injection e conformità normativa (EU AI Act).", range: [24, 27] },
+    { title: "UDA 7 & Capstone Project · Esame di Stato", description: "Web marketing, SEO/SEM e sviluppo del Capstone Project interdisciplinare con simulazione del colloquio d'esame e orientamento post-diploma.", range: [28, 33] }
   ];
 
   const kindLabels: Record<string, string> = {

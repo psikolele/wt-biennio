@@ -16,8 +16,62 @@ export function LessonCard({ lesson }: { lesson: Lesson }) {
         </div>
         <div className="lesson-learning-flow">
           {lesson.explanation ? <section><h3>Idea chiave</h3><p>{lesson.explanation}</p></section> : null}
+          {lesson.theoryNotes && lesson.theoryNotes.length > 0 ? (
+            <section className="lesson-theory-notes bg-[var(--surface-soft)] border border-[var(--line)] rounded-xl p-4 sm:p-5 my-3">
+              <h3 className="text-base font-bold text-[var(--ink)] flex items-center gap-2 mb-3">
+                <span className="text-[var(--coral)]" aria-hidden="true">📖</span> Appunti Teorici &amp; Sintesi del Testo
+              </h3>
+              <ul className="list-disc list-inside space-y-2 text-sm text-[var(--ink)] leading-relaxed">
+                {lesson.theoryNotes.map((note, idx) => (
+                  <li key={idx} className="marker:text-[var(--coral)]">
+                    <span>{note}</span>
+                  </li>
+                ))}
+              </ul>
+            </section>
+          ) : null}
           {lesson.example ? <section><h3>Esempio</h3><p>{lesson.example}</p></section> : null}
           <section><h3>{lesson.kind === "laboratory" ? "Consegna di laboratorio" : "Prova"}</h3><p>{lesson.exercise}</p></section>
+          {lesson.labExercise ? (
+            <section className="lesson-lab-exercise bg-[var(--surface-soft)] border-2 border-[var(--line-strong)] rounded-xl p-4 sm:p-5 my-4">
+              <div className="flex flex-wrap items-center justify-between gap-2 mb-3">
+                <h3 className="text-base font-bold text-[var(--ink)] flex items-center gap-2">
+                  <span className="text-[var(--coral)]" aria-hidden="true">🧪</span> Laboratorio Operativo &amp; Esercizi Guidati
+                </h3>
+                {lesson.labExercise.toolUrl ? (
+                  <a
+                    href={lesson.labExercise.toolUrl}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="portal-button text-xs min-h-[44px] py-2 px-4 inline-flex items-center gap-1.5 font-bold shadow-sm"
+                  >
+                    <span>Apri {lesson.labExercise.tool}</span>
+                    <span aria-hidden="true">↗</span>
+                  </a>
+                ) : (
+                  <span className="inline-flex min-h-[36px] items-center rounded-lg border border-[var(--line-strong)] bg-[var(--surface)] px-3 py-1.5 text-xs font-mono font-semibold text-[var(--coral)]">
+                    {lesson.labExercise.tool}
+                  </span>
+                )}
+              </div>
+              <p className="text-sm font-semibold text-[var(--ink)] mb-2">
+                <strong className="text-[var(--coral)]">Obiettivo a PC:</strong> {lesson.labExercise.objective}
+              </p>
+              <div className="mt-3 mb-4">
+                <p className="text-xs font-bold uppercase tracking-wider text-[var(--muted)] mb-2">Passaggi Operativi:</p>
+                <ol className="list-decimal list-inside space-y-2 text-sm text-[var(--ink)] leading-relaxed">
+                  {lesson.labExercise.steps.map((step, idx) => (
+                    <li key={idx} className="marker:text-[var(--coral)] marker:font-bold">
+                      <span className="text-[var(--ink)]">{step}</span>
+                    </li>
+                  ))}
+                </ol>
+              </div>
+              <div className="rounded-lg bg-[rgba(114,227,163,0.08)] border border-[rgba(114,227,163,0.25)] p-3 text-xs text-[var(--ink)]">
+                <strong className="text-[var(--coral)] font-bold">✓ Criterio di Verifica:</strong> {lesson.labExercise.verification}
+              </div>
+            </section>
+          ) : null}
           {lesson.deepDive ? <section><h3>Vai oltre</h3><p>{lesson.deepDive}</p></section> : null}
           <section className="lesson-assessment">
             <h3>Competenza ed evidenza</h3>

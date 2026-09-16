@@ -1,6 +1,15 @@
 import { curriculum } from "./curriculum-data.mjs";
 
 export type Year = 1 | 2 | 3 | 4 | 5;
+
+export type LabExercise = {
+  tool: string;
+  toolUrl?: string;
+  objective: string;
+  steps: string[];
+  verification: string;
+};
+
 export type Lesson = {
   id: string;
   title: string;
@@ -24,6 +33,8 @@ export type Lesson = {
   facilitatedTask: string;
   game?: string;
   slideHref?: string;
+  theoryNotes?: string[];
+  labExercise?: LabExercise;
   studentCta: { label: string; href: string }[];
 };
 export type Week = { number: number; theme: string; lessons: Lesson[] };

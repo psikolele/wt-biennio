@@ -28,7 +28,7 @@ test("gli indici annuali espongono i moduli del libro", async () => {
 test("la landing mostra le cinque classi e il wiki guida la continuità", async () => {
   const home = await readFile(new URL("../app/page.tsx", import.meta.url), "utf8");
   for (const number of [1, 2, 3, 4, 5]) assert.match(home, new RegExp(`number: ${number}`));
-  assert.match(home, /In progettazione/);
+  assert.match(home, /Disponibile/);
 
   const wiki = await readFile(new URL("../docs/LLM-WIKI.md", import.meta.url), "utf8");
   assert.match(wiki, /Autonomia degli agenti/);

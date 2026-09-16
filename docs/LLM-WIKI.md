@@ -4,7 +4,7 @@ Questo file è il passaggio di consegne operativo per agenti che devono continua
 
 ## Stato attuale
 
-- App Next.js nel percorso `wt-biennio`.
+- App Next.js nel percorso `dashboard-lezioni`.
 - Landing `/` con roadmap completa dalla 1ª alla 5ª classe.
 - 1ª e 2ª classe disponibili su `/anno/1` e `/anno/2`.
 - 3ª, 4ª e 5ª mostrate come **In progettazione**: non creare link fittizi finché il relativo curriculum non è completo.

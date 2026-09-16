@@ -189,6 +189,7 @@ export default function Home() {
           </div>
         </section>
 
+
         {/* ROADMAP CLASSI BENTO GRID */}
         <section id="classi" className="border-t border-[var(--line)] pt-12 sm:pt-16 pb-16" aria-labelledby="classes-title">
           <div className="flex flex-wrap items-end justify-between gap-4 mb-8">
