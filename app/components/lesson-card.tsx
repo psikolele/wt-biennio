@@ -108,7 +108,7 @@ export function LessonCard({ lesson }: { lesson: Lesson }) {
             </div>
           </section>
           <div className="lesson-support-grid">
-            <SlideViewer href={lesson.slideHref} />
+            <SlideViewer href={lesson.slideHref} canvaUrl={lesson.canvaUrl} />
             <GamificationPanel game={lesson.game} lessonId={lesson.id} />
           </div>
         </div>

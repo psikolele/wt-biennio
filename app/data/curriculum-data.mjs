@@ -5,14 +5,14 @@ const firstYearThemes = [
   ["PC ed esplorazione tangibile: periferiche e connessioni", "Clippy Cloud Plus vol. 1, cap. Hardware"],
   ["Dentro il computer: CPU, RAM e scheda madre essenziale", "Clippy Cloud Plus vol. 1, cap. Hardware"],
   ["Memorie di massa (SSD, HDD, USB) e supporti di memoria", "Clippy Cloud Plus vol. 1, cap. Hardware"],
-  ["Il Software: Sistema Operativo e programmi applicativi", "Clippy Cloud Plus vol. 1, cap. Software"],
-  ["Il File System: dischi, percorsi chiari e cartelle", "Clippy Cloud Plus vol. 1, cap. Sistema operativo"],
-  ["Gestione file: estensioni, nomi ordinati e file compressi .zip", "Clippy Cloud Plus vol. 1, cap. Sistema operativo"],
-  ["Strategie di backup semplice e manutenzione base", "Clippy Cloud Plus vol. 1, cap. Sistema operativo"],
+  ["Uso pratico del computer: desktop, cartella personale e salvataggio", "Clippy Cloud Plus vol. 1, uso operativo"],
   ["Reti locali e Internet: come comunicano i dispositivi", "Clippy Cloud Plus vol. 1, cap. Reti"],
   ["Navigazione web sicura: browser, indirizzi URL e motori di ricerca", "Clippy Cloud Plus vol. 1, cap. Internet"],
   ["Ricerca attiva, fonti affidabili e riconoscimento fake news", "Clippy Cloud Plus vol. 1, cap. Internet"],
   ["Copyright, immagini libere e uso etico dei contenuti", "Clippy Cloud Plus vol. 1, cap. Internet e cittadinanza"],
+  ["Cineforum The Social Dilemma (Parte 1): algoritmi e attenzione", "Educazione civica e cittadinanza digitale"],
+  ["Cineforum The Social Dilemma (Parte 2): debriefing e screen time", "Educazione civica e cittadinanza digitale"],
+  ["Compito di realtà: indagine di classe su notifiche e smartphone", "Compiti di realtà e cittadinanza digitale"],
   ["Posta elettronica a scuola: scrivere una mail formale", "Clippy Cloud Plus vol. 1, cap. E-mail"],
   ["Gestione e-mail: allegati, netiquette e riconoscimento spam", "Clippy Cloud Plus vol. 1, cap. E-mail"],
   ["Cloud di base: salvare e organizzare file su Google Drive", "Clippy Cloud Plus vol. 1, cap. Cloud"],
@@ -27,7 +27,7 @@ const firstYearThemes = [
   ["Formule aritmetiche fondamentali (+, -, *, /)", "Clippy Cloud Plus vol. 1, cap. Fogli di calcolo"],
   ["Riferimenti di cella: capire il copia-incolla e il simbolo $", "Clippy Cloud Plus vol. 1, cap. Fogli di calcolo"],
   ["Funzioni base: SOMMA, MEDIA, CONTA.VALORI, MIN e MAX", "Clippy Cloud Plus vol. 1, cap. Fogli di calcolo"],
-  ["Rappresentazione visiva: grafici a barre e a torta", "Clippy Cloud Plus vol. 1, cap. Fogli di calcolo"],
+  ["Rappresentazione visiva: grafici a barre e a torta dei dati screen time", "Clippy Cloud Plus vol. 1, cap. Fogli di calcolo"],
   ["Presentazioni: idee visive, poco testo e contrasto efficace", "Clippy Cloud Plus vol. 1, cap. Presentazioni"],
   ["Slide multimediali: immagini coerenti e tabelle di sintesi", "Clippy Cloud Plus vol. 1, cap. Presentazioni"],
   ["Public speaking: esporre le slide in 3 minuti con chiarezza", "Clippy Cloud Plus vol. 1, compito di realtà"],
@@ -35,27 +35,26 @@ const firstYearThemes = [
 ];
 
 const secondYearThemes = [
-  ["Ripartenza e sicurezza: riconoscere malware e pericoli online", "Clippy Cloud Plus vol. 2, cap. Sicurezza"],
-  ["Social engineering: difendersi da phishing e messaggi truffa", "Clippy Cloud Plus vol. 2, cap. Sicurezza"],
+  ["Ripasso Videoscrittura: formattazione avanzata, stili e layout", "Clippy Cloud Plus vol. 2, ripasso operativo"],
+  ["Ripasso Fogli di Calcolo: formule aritmetiche, riferimenti $ e percentuali", "Clippy Cloud Plus vol. 2, ripasso operativo"],
+  ["Architettura del Sistema Operativo: kernel, processi e risorse", "Clippy Cloud Plus vol. 2, cap. Sistema operativo"],
+  ["Interfaccia Utente del SO: grafica GUI vs riga di comando CLI", "Clippy Cloud Plus vol. 2, cap. Sistema operativo"],
+  ["Il File System approfondito: dischi, percorsi, permessi e backup", "Clippy Cloud Plus vol. 2, cap. Sistema operativo"],
+  ["Sicurezza e minacce: riconoscere malware, phishing e ingegneria sociale", "Clippy Cloud Plus vol. 2, cap. Sicurezza"],
+  ["Cineforum The Great Hack (Parte 1): Cambridge Analytica e profilazione", "Educazione civica e privacy"],
+  ["Cineforum The Great Hack (Parte 2): valore dei dati personali e GDPR", "Educazione civica e privacy"],
   ["Autenticazione a due fattori (2FA) e app authenticator", "Clippy Cloud Plus vol. 2, cap. Sicurezza"],
-  ["Protezione della privacy (GDPR semplice) e tutela dei dati", "Clippy Cloud Plus vol. 2, cap. Dati e privacy"],
-  ["Identità digitale, reputazione online e impronta ecologica", "Clippy Cloud Plus vol. 2, cap. Cittadinanza digitale"],
-  ["Documenti strutturati: tabelle avanzate e modelli riutilizzabili", "Clippy Cloud Plus vol. 2, cap. Documenti"],
-  ["Stili avanzati, intestazioni e controllo ortografico professionale", "Clippy Cloud Plus vol. 2, cap. Documenti"],
   ["Stampa unione: generare attestati ed etichette personalizzate", "Clippy Cloud Plus vol. 2, cap. Documenti"],
   ["Logica booleana: porte logiche (AND, OR, NOT) e tabelle di verità", "Clippy Cloud Plus vol. 2, logica e condizioni"],
   ["Fogli di calcolo: prendere decisioni con la funzione =SE()", "Clippy Cloud Plus vol. 2, cap. Fogli"],
   ["Fogli di calcolo: controlli multipli con =E(), =O() e allarmi condizionali", "Clippy Cloud Plus vol. 2, cap. Fogli"],
+  ["Compito di realtà aziendale: gestione contabile e cruscotto integrato", "Clippy Cloud Plus vol. 2, compiti di realtà"],
+  ["Verifica intermedia pratica su SO, Fogli con SE e Sicurezza", "Clippy Cloud Plus vol. 2, verifica dei moduli"],
   ["Database relazionali: concetti base, tabelle, campi e record", "Clippy Cloud Plus vol. 2, cap. Database"],
-  ["Database: tipi di dato, chiave primaria e collegamenti semplici", "Clippy Cloud Plus vol. 2, cap. Database"],
-  ["Database: interrogare i dati con filtri e query di selezione", "Clippy Cloud Plus vol. 2, cap. Database"],
-  ["Database: maschere per inserire dati e report riassuntivi", "Clippy Cloud Plus vol. 2, cap. Database"],
-  ["Compito di realtà: archivio digitale per un'attività scolastica", "Clippy Cloud Plus vol. 2, compiti di realtà"],
-  ["Verifica intermedia pratica su Fogli e Database", "Clippy Cloud Plus vol. 2, verifica dei moduli"],
-  ["Cittadinanza digitale attiva: navigare con senso critico", "Clippy Cloud Plus vol. 2, cap. Cittadinanza digitale"],
-  ["Benessere digitale: gestire le notifiche e il tempo schermo", "Clippy Cloud Plus vol. 2, cap. Cittadinanza digitale"],
-  ["Progettazione cooperativa: integrare testi, tabelle e grafici", "Clippy Cloud Plus vol. 2, compiti di realtà"],
+  ["Database: tipi di dato, chiave primaria e query di selezione semplici", "Clippy Cloud Plus vol. 2, cap. Database"],
+  ["Benessere digitale: gestire le notifiche, tempo schermo e impronta ecologica", "Clippy Cloud Plus vol. 2, cap. Cittadinanza digitale"],
   ["Dal problema all'algoritmo: passi logici e diagrammi di flusso", "Programmazione a blocchi, cap. Scratch"],
+  ["Strutture di controllo algoritmiche: sequenza, selezione e cicli", "Programmazione a blocchi, cap. Scratch"],
   ["Scratch 3.0: l'ambiente di lavoro, sprite, sfondi ed eventi di avvio", "Programmazione a blocchi, cap. Scratch"],
   ["Scratch: muovere gli sprite, coordinate X/Y e cambi di costume", "Programmazione a blocchi, cap. Scratch"],
   ["Scratch: ripetizioni e cicli (ripeti 10 volte, per sempre)", "Programmazione a blocchi, cap. Scratch"],
@@ -67,6 +66,7 @@ const secondYearThemes = [
   ["Scratch Project Work: programmazione del livello di gioco", "Programmazione a blocchi, progetto finale"],
   ["Scratch Project Work: aggiunta suoni, effetti e rifiniture", "Programmazione a blocchi, progetto finale"],
   ["Scratch Project Work: test incrociato tra compagni e miglioramenti", "Programmazione a blocchi, progetto finale"],
+  ["Consolidamento finale competenze e completamento portfolio", "Clippy Cloud Plus vol. 2, compiti di realtà"],
   ["Demo Day Scratch: presentazione finale e traguardi raggiunti", "Programmazione a blocchi, verifica finale"]
 ];
 
@@ -74,6 +74,9 @@ const lessonModes = ["concept", "laboratory", "practice", "concept", "laboratory
 
 function referenceFor(theme, year, index) {
   const t = theme.toLowerCase();
+  if (/social dilemma|great hack|cittadinanza digitale|educazione civica|screen time/.test(t)) {
+    return `Educazione Civica & DigComp 2.2 · Cittadinanza Digitale e Consapevolezza dei Dati`;
+  }
   if (year === 2 && /algoritmi|scratch|sequenze|cicli|condizioni|variabili|input|casualità|debugging|micro:bit|flowgorithm|progetto|storyboard|stage|demo day/.test(t)) {
     return "Programmazione a blocchi · Scratch 3.0, micro:bit e Flowgorithm";
   }
@@ -83,7 +86,10 @@ function referenceFor(theme, year, index) {
   if (year === 2 && /sicurezza|malware|phishing|password|2fa|authenticator|privacy|identità|reputazione|benessere|impronta/.test(t)) {
     return "Clippy Cloud Plus vol. 2 · Macroarea A — Operare in sicurezza";
   }
-  if (year === 2 && /database|document|modelli|stili|sommario|fogli|formule|funzioni|grafici|stampa unione|porte logiche|tabelle di verità|logica booleana/.test(t)) {
+  if (year === 2 && /sistema operativo|kernel|processi|file system|interfaccia utente|riga di comando|powershell|gui vs cli/.test(t)) {
+    return "Clippy Cloud Plus vol. 2 · Macroarea A — Architettura del Sistema Operativo";
+  }
+  if (year === 2 && /ripasso videoscrittura|ripasso fogli|database|document|modelli|stili|sommario|fogli|formule|funzioni|grafici|stampa unione|porte logiche|tabelle di verità|logica booleana/.test(t)) {
     return "Clippy Cloud Plus vol. 2 · Macroarea B — Progettare e organizzare";
   }
   if (year === 2 && /cittadinanza|ripasso|verifica|restituzione|traguardi/.test(t)) {
@@ -101,6 +107,46 @@ function referenceFor(theme, year, index) {
 function topicText(theme, mode) {
   const t = theme.toLowerCase();
   const lab = mode === "laboratory" || mode === "practice" || mode === "project";
+
+  // Cineforum The Social Dilemma (Anno 1 Settimane 12-14)
+  if (/social dilemma|notifiche e smartphone/.test(t)) return {
+    explanation: lab ? undefined : "Il documentario 'The Social Dilemma' svela come le piattaforme social siano progettate da ingegneri e psicologi per massimizzare il tempo speso sullo schermo attraverso notifiche persuasive e profilazione degli utenti.",
+    example: "Esempio quotidiano: la notifica con punto rosso o il refresh a scorrimento (pull-to-refresh) sfruttano lo stesso principio delle slot machine per creare attesa e dipendenza.",
+    exercise: lab ? "Laboratorio di classe: 1) Analizzate la schermata 'Tempo di utilizzo' o 'Benessere digitale' del vostro smartphone; 2) Annotate ore giornaliere, numero di sblocchi e notifiche ricevute; 3) Raccogliete i dati anonimi in una tabella per l'indagine di classe." : "Esercizio guidato: individua 3 tecniche con cui le app catturano la tua attenzione e scrivi 3 strategie pratiche per ridurre le distrazioni (es. togliere le notifiche non essenziali).",
+    deepDive: "Approfondimento: la frase celebre del film recita 'Se non stai pagando per il prodotto, allora il prodotto sei tu'. Cosa significa concretamente per chi usa Instagram o TikTok?"
+  };
+
+  // Cineforum The Great Hack (Anno 2 Settimane 7-8)
+  if (/great hack|cambridge analytica|valore dei dati/.test(t)) return {
+    explanation: lab ? undefined : "'The Great Hack' racconta lo scandalo di Cambridge Analytica, dove i dati di decine di milioni di utenti Facebook sono stati raccolti senza consenso per creare profili psicografici e influenzare decisioni politiche e commerciali.",
+    example: "Esempio quotidiano: un banale quiz sulla personalità ('Che animale sei?') può servire in realtà a estrarre la lista dei tuoi 'Mi piace' e profilare le tue vulnerabilità emotive.",
+    exercise: lab ? "Laboratorio a coppie: 1) Accedete alla sezione privacy del vostro account principale (Google o social); 2) Verificate la cronologia delle posizioni e le categorie pubblicitarie associate al vostro profilo; 3) Disattivate la profilazione personalizzata e controllate i permessi concessi alle app terze." : "Esercizio guidato: analizza la differenza tra un dato personale comune (es. nome o email) e un dato sensibile (es. opinioni politiche o salute) secondo il GDPR.",
+    deepDive: "Approfondimento: perché i dati personali sono definiti 'il petrolio del XXI secolo'? In che modo i dati aggregati possono alterare il dibattito democratico?"
+  };
+
+  // Architettura del Sistema Operativo & CLI (Anno 2 Settimane 3-5)
+  if (/architettura del sistema operativo|interfaccia utente del so|il file system approfondito|kernel.*processi|grafica gui vs riga di comando/.test(t)) return {
+    explanation: lab ? undefined : "Il Sistema Operativo è il software fondamentale che gestisce le risorse fisiche (CPU, RAM, dischi, periferiche) tramite il Kernel e offre all'utente due modalità di dialogo: l'interfaccia grafica (GUI) e la riga di comando (CLI / PowerShell).",
+    example: "Esempio quotidiano: quando apri 'Gestione Attività' (Task Manager) con Ctrl+Shift+Esc puoi vedere esattamente quanti processi sono attivi e quanta RAM occupa ciascuna app.",
+    exercise: lab ? "Laboratorio da terminale: 1) Aprite PowerShell o il Prompt dei comandi; 2) Eseguite i comandi base di navigazione: `cd`, `dir` (o `ls`), `mkdir Prova` e `tree`; 3) Esplorate la struttura ad albero delle directory e create un file con percorsi relativi e assoluti." : "Esercizio guidato: confronta i vantaggi della GUI (intuitiva, visiva) con quelli della CLI (veloce, automatizzabile con script) e mappa la gerarchia dell'albero cartelle di sistema.",
+    deepDive: "Approfondimento: qual è la differenza tra un processo (programma in esecuzione) e un thread? Perché un blocco di un'app non deve far crashare l'intero sistema operativo?"
+  };
+
+  // Ripasso Videoscrittura & Fogli 2° Anno (Settimane 1-2)
+  if (/ripasso videoscrittura|ripasso fogli/.test(t)) return {
+    explanation: lab ? undefined : "Ripartire con il piede giusto in 2ª richiede di consolidare gli standard professionali di videoscrittura (stili gerarchici, tabelle pulite, impaginazione conforme) e del calcolo tabellare (formule con percentuali e riferimenti assoluti con $).",
+    example: "Esempio quotidiano: una fattura o preventivo commerciale deve calcolare imponibile, IVA al 22% e totale in automatico bloccando la cella dell'aliquota con `$B$1`.",
+    exercise: lab ? "Laboratorio ripasso: 1) Aprite il documento o foglio fornito dal docente; 2) Applicate le correzioni di layout professionale; 3) Completate il calcolo automatico con formule e salvate il deliverable in PDF/A." : "Esercizio guidato: individua e correggi gli errori di impaginazione e formula nella scheda di ripasso (riferimento assoluto mancante, interlinea disomogenea, font non standard).",
+    deepDive: "Approfondimento: perché nelle aziende si usano modelli pre-impostati (.xltx / .dotx) invece di duplicare vecchi file con il rischio di sovrascrivere dati riservati?"
+  };
+
+  // Uso pratico del computer 1° anno (Settimana 7)
+  if (/uso pratico del computer|desktop.*cartella personale/.test(t)) return {
+    explanation: lab ? undefined : "Saper usare il PC a scuola significa sapere dove si trovano i propri file: creare la cartella personale di laboratorio, salvare con nomi ordinati e non lasciare file sparsi sul desktop è la base dell'ordine informatico.",
+    example: "Esempio quotidiano: salvare in `D:\\Studenti\\1N\\Rossi_Mario` garantisce di ritrovare i compiti a ogni lezione, mentre salvarli sul desktop pubblico rischia la cancellazione alla disconnessione.",
+    exercise: lab ? "Laboratorio pratico: 1) Accendete il PC ed esplorate il desktop; 2) Create la cartella personale con la convenzione `Cognome_Nome_1N`; 3) Create un file di testo di benvenuto, salvatelo nella cartella e verificate il percorso completo." : "Esercizio guidato: scrivi la procedura passo-passo per creare una nuova cartella, rinominarla correttamente e verificare le proprietà del file salvato.",
+    deepDive: "Approfondimento: qual è la differenza tra salvare un file sul disco rigido locale del PC scolastico e salvarlo nel proprio spazio cloud Google Drive?"
+  };
 
   // 1. Accoglienza, Regole Lab & Convivenza (Anno 1 Settimana 1)
   if (/accoglienza|regole.*laboratorio|convivenza.*laboratorio/.test(t)) return {
@@ -479,7 +525,8 @@ function buildWeeks(year, themes) {
         ...detailFor(theme, year, index),
         game: index === 0 ? "Test diagnostico non valutativo" : "Missione a squadre con quiz rapido",
         studentCta,
-        slideHref: custom?.slideHref
+        slideHref: custom?.slideHref,
+        canvaUrl: custom?.canvaUrl
       }]
     };
   });

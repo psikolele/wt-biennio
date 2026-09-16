@@ -33,6 +33,7 @@ export type Lesson = {
   facilitatedTask: string;
   game?: string;
   slideHref?: string;
+  canvaUrl?: string;
   theoryNotes?: string[];
   labExercise?: LabExercise;
   studentCta: { label: string; href: string }[];
