@@ -7016,66 +7016,66 @@ export const triennioCurriculum = {
   },
   {
     "number": 33,
-    "theme": "Debriefing Finale, Bilancio delle Competenze e Orientamento",
+    "theme": "Le Variabili: Tipizzazione e Tipi di Dato nei Linguaggi di Programmazione",
     "lessons": [
       {
         "id": "5-33",
-        "title": "Debriefing Finale del Quinquennio, Validazione e-Portfolio e Orientamento",
+        "title": "Le Variabili: Tipizzazione, Tipi di Dato e Operazioni nei Linguaggi di Programmazione",
         "hours": 2,
-        "book": "Connessi in azienda · Competenze di uscita del quinquennio e Orientamento",
-        "kind": "review",
-        "explanation": "Chiusura del percorso scolastico quinquennale: bilancio delle competenze digitali e di intelligenza artificiale maturate, perfezionamento dell'e-Portfolio personale dello studente e orientamento verso il mondo del lavoro e gli studi superiori.",
-        "theoryNotes": [
-          "Il bilancio del percorso quinquennale: evoluzione delle competenze dal computer tangibile e videoscrittura della classe prima, ai fogli avanzati di terza, ai database relazionali SQL di quarta e quinta, fino all'architettura di rete, crittografia, machine learning e governance AI.",
-          "Il Portfolio Digitale dello studente (e-Portfolio): archivio ragionato e tracciabile dei migliori prodotti realizzati (schemi di rete, script SQL, database, report d'analisi e relazioni interdisciplinari).",
-          "Mappatura dei percorsi post-diploma: 1. ITS Academy (Istituti Tecnici Superiori - percorsi biennali professionalizzanti post-diploma ad altissima occupabilità in Cloud Computing, Cybersecurity, Data Analytics e Software Development); 2. Corsi di Laurea Universitari (Informatica, Ingegneria Informatica, Economia e Big Data, Management Digitale); 3. Inserimento diretto nel mercato del lavoro (ICT Specialist, Sistemista di rete junior, Database Administrator junior, Consulente ERP).",
-          "Professioni emergenti che uniscono economia e informatica: Data Analyst aziendale, IT Auditor e Risk Officer, Specialista di conformità AI (AI Compliance Officer), Consulente ERP/CRM e Cybersecurity Junior Analyst.",
-          "La cultura dell'apprendimento permanente (Lifelong Learning): consapevolezza che l'evoluzione continua delle tecnologie digitali richiede curiosità, spirito critico e aggiornamento continuo."
-        ],
-        "example": "Esempio applicativo: Redazione del Curriculum Vitae in formato Europass o profilo LinkedIn valorizzando le competenze pratiche certificate (es. SQL con Beekeeper/Access, reti Cisco, calcolo subnetting, Power Query, Orange Machine Learning e conformità AI Act).",
-        "exercise": "Attività operativa: Finalizzazione e validazione dell'e-Portfolio digitale dello studente, stesura della lettera di presentazione professionale e compilazione del questionario di orientamento e autovalutazione.",
-        "deepDive": "Approfondimento AI & Azienda: Interrogare un assistente AI sulle competenze digitali e di AI literacy più ricercate dalle aziende del territorio regionale per i prossimi tre anni.",
-        "competence": "Riconoscere e valorizzare le proprie competenze digitali, tecnologiche e trasversali in vista dell'inserimento lavorativo o degli studi universitari/ITS.",
-        "evidence": "Portfolio digitale quinquennale validato, CV professionale aggiornato e scheda di autovalutazione finale archiviata.",
+        "book": "Materiale integrativo (Curipod)",
+        "kind": "concept",
+        "explanation": "Una variabile è un contenitore che può contenere un valore specifico. Nei linguaggi fortemente tipizzati (Java, C, C++) il tipo di dato va definito in fase di compilazione; nei linguaggi debolmente tipizzati il tipo viene scelto autonomamente in fase di runtime. I tipi di dato si dividono in primitivi (Booleano, Intero, Float, Char, String) e derivati (Array, Record, Puntatori).",
+        "example": "Esempio in Java: 'int numero = 56456;' dichiara una variabile intera, richiedendo di specificare il tipo esatto prima di poterla usare (tipizzazione forte).",
+        "exercise": "Data la variabile 'valore = 56,456', individua il tipo di dato corretto da usare (Intero, Virgola Mobile, Booleana o Array) e motiva la scelta.",
+        "competence": "Comprendere il concetto di variabile, distinguere tipizzazione forte e debole e classificare correttamente i tipi di dato primitivi e derivati.",
+        "evidence": "Scheda di sintesi sui tipi di dato compilata e quiz di verifica su tipizzazione e operazioni sulle variabili.",
         "materials": [
-          "Computer del laboratorio",
-          "Modello CV Europass / Profilo LinkedIn",
-          "Piattaforma del portfolio digitale"
+          "Computer",
+          "Curipod: Le variabili",
+          "Scheda tipi di dato primitivi/derivati"
         ],
         "phases": [
           {
-            "label": "Bilancio delle competenze maturate nel quinquennio",
-            "minutes": 25
+            "label": "Attivazione: cos'è una variabile",
+            "minutes": 15
           },
           {
-            "label": "Mappatura delle professioni del digitale e ITS Academy",
+            "label": "Tipizzazione forte vs debole (Java, C, C++)",
             "minutes": 30
           },
           {
-            "label": "Laboratorio finalizzazione e-Portfolio e CV",
-            "minutes": 40
+            "label": "Tipi primitivi e derivati",
+            "minutes": 30
           },
           {
-            "label": "Saluto finale, rilascio attestazioni e debriefing",
-            "minutes": 25
+            "label": "Esercitazione: scegliere il tipo corretto",
+            "minutes": 30
+          },
+          {
+            "label": "Quick check e sintesi",
+            "minutes": 15
           }
         ],
-        "quickCheck": "Controllo rapido: quale caratteristica distintiva differenzia i percorsi biennali post-diploma delle ITS Academy rispetto ai tradizionali corsi di laurea universitari?",
-        "flashCard": "Bilancio Competenze e Orientamento: fronte — competenze in uscita e percorsi post-diploma; retro — dal PC fisico all'architettura di rete, database SQL, crittografia, dati e AI etica. Opportunità: ITS Academy biennali ad alta occupabilità, Università (Informatica, Economia e Dati) o inserimento diretto in azienda.",
-        "bookActivity": "Completamento dell'e-Portfolio e bilancio delle competenze",
+        "quickCheck": "Controllo rapido: che differenza c'è tra un linguaggio fortemente tipizzato e uno debolmente tipizzato?",
+        "flashCard": "Variabili: fronte — definizione di variabile e tipizzazione forte/debole; retro — tipi primitivi (Booleano, Intero, Float, Char, String) vs derivati (Array, Record, Puntatori).",
+        "bookActivity": "Scheda tecnica + Esercitazione guidata",
         "platforms": [
-          "Piattaforma Portfolio Digitale",
-          "LinkedIn / Curriculum Europass"
+          "Curipod",
+          "Editor di codice / IDE dimostrativo"
         ],
-        "facilitatedTask": "Versione facilitata: compila la scheda di orientamento indicando tre cose che hai imparato a fare meglio a computer nel quinquennio e il percorso post-diploma che desideri approfondire.",
+        "facilitatedTask": "Versione facilitata: scheda con esempi già risolti di tipizzazione e tabella di riferimento dei tipi di dato primitivi.",
         "objectives": [
-          "Tracciare il bilancio delle competenze informatiche e trasversali acquisite nel quinquennio.",
-          "Conoscere le opportunità formative post-diploma (ITS Academy, Università) e i profili professionali emergenti.",
-          "Completare e validare l'e-Portfolio personale dello studente."
+          "Definire il concetto di variabile e il ruolo della tipizzazione",
+          "Distinguere linguaggi fortemente e debolmente tipizzati con esempi (Java, C, C++)",
+          "Classificare i tipi di dato in primitivi e derivati"
         ],
-        "activity": "Sessione conclusiva di debriefing, bilancio delle competenze quinquennali e orientamento formativo e professionale.",
-        "game": "Digital Career Match: collegare le competenze maturate nel corso con le offerte di lavoro del settore economico-digitale",
+        "activity": "Lezione interattiva Curipod su definizione di variabile, tipizzazione forte/debole e tipi di dato, con quiz di verifica.",
+        "game": "Quiz a squadre: classifica il tipo di dato corretto per ogni valore proposto",
         "studentCta": [
+          {
+            "label": "Curipod: Le variabili",
+            "href": "https://curipod.com/2acf01fa-c11e-4a16-99fb-e689046c799d/lessons/848b0597-197a-4ceb-82f6-768a5a707239/edit"
+          },
           {
             "label": "Apri le risorse",
             "href": "#risorse"
