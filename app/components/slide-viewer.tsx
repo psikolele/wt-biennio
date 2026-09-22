@@ -1,9 +1,15 @@
-type SlideViewerProps = { href?: string; canvaUrl?: string };
+type SlideViewerProps = { href?: string; canvaUrl?: string; label?: string };
 
-export function SlideViewer({ href, canvaUrl }: SlideViewerProps) {
+export function SlideViewer({ href, canvaUrl, label }: SlideViewerProps) {
   const isPptx = href?.endsWith(".pptx");
   const isPdf = href?.endsWith(".pdf");
-  const downloadLabel = isPptx ? "Scarica Slide (.pptx)" : isPdf ? "Scarica PDF" : "Scarica Materiale";
+  const cleanFilename = href
+    ? decodeURIComponent(href.split("/").pop() || "")
+        .replace(/\.(pptx|pdf|zip)$/i, "")
+        .replace(/[-_]+/g, " ")
+        .trim()
+    : "";
+  const downloadLabel = label || cleanFilename || (isPptx ? "Slide (.pptx)" : isPdf ? "Scarica PDF" : "Scarica Materiale");
 
   return (
     <div id="risorse" className="support-panel">

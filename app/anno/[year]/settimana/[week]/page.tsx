@@ -64,7 +64,7 @@ export default async function WeekPage({ params }: { params: Promise<{ year: str
           </div>
         )}
 
-        {year === 5 && weekNumber === 3 && (
+        {year === 5 && weekNumber === 2 && (
           <div id="palestra-crittografia" className="my-10 scroll-mt-20">
             <InteractiveCryptoLab
               initialTab="xor"

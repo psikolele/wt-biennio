@@ -28,3 +28,14 @@
   3. Endpoint API [`/api/class-auth`](app/api/class-auth/route.ts) per login, verifica della sessione (cookie con validità 30 giorni) e logout (`Blocca sezione`).
   4. Passepartout Docente: chi è autenticato con `TEACHER_PASSWORD` o inserisce la password docenti ha accesso automatico a qualsiasi sezione.
   5. Test automatizzati aggiunti in [`tests/auth.test.mjs`](tests/auth.test.mjs) per verificare l'isolamento cross-class e il bypass del docente.
+
+### 2026-09-22 — Inversione Didattica Settimane 2 & 3 e Integrazione Slide Doppia Cifratura
+- **Problema**: L'ordinamento didattico della Classe 5 prevedeva prima il laboratorio pratico e poi la teoria asimmetrica/blockchain. Inoltre, le slide di cattedra sul sistema a doppia cifratura con chiave asimmetrica non erano collegate direttamente nella card della lezione. I pulsanti per le slide usavano un'etichetta generica ("Scarica Slide (.pptx)") invece del nome esplicito del tema senza caratteri speciali.
+- **Decisione Concettuale**:
+  1. **Settimana 02 (Concetto, 2h)**: Spostata *Crittografia Asimmetrica, Funzioni Hash e Blockchain* (id: `5-02`) come seconda settimana, includendo la Palestra Operativa interattiva (XOR, Polialfabetica & Asimmetrica PKI) e il collegamento alle slide:
+     - `Sistema-a-Doppia-Cifratura-Usando-la-Chiave-Asimmetrica.pptx` (etichetta: *Sistema Doppia Cifratura Asimmetrica*)
+     - `CRITTOGRAFIA n2.pptx` (etichetta: *Crittografia Asimmetrica e XOR*)
+  2. **Settimana 03 (Laboratorio, 2h)**: Collocato *Hands-on Lab: Cifratura Web & File (CyberChef e AES-256)* (id: `5-03`) come terza settimana di consolidamento pratico.
+  3. **Pulsanti e SlideViewer**: Eliminato il testo generico "Scarica Slide" in favore del nome parlante e pulito delle slide (senza simboli come `_`, `-`, `.`).
+  4. Nessuna regressione sui test unitari (`npm test` con 23/23 pass).
+

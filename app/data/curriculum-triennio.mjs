@@ -4505,7 +4505,7 @@ export const triennioCurriculum = {
       "slideHref": "/downloads/classe5/CRITTOGRAFIA1.pptx",
       "studentCta": [
         {
-          "label": "Scarica Slide (.pptx)",
+          "label": "Crittografia Classica e Modulo 21",
           "href": "/downloads/classe5/CRITTOGRAFIA1.pptx"
         },
         {
@@ -4522,10 +4522,97 @@ export const triennioCurriculum = {
   },
   {
     "number": 2,
-    "theme": "Hands-on Lab: Cifratura Web & File (CyberChef e AES-256)",
+    "theme": "Crittografia Asimmetrica, Funzioni Hash e Blockchain",
     "lessons": [
       {
         "id": "5-02",
+        "title": "Crittografia XOR, Cifrari Polialfabetici, Asimmetrica (PKI) e Blockchain",
+        "hours": 2,
+        "book": "Connessi in azienda · UDA 6, TEMA 3, Paragrafi 3.1–3.2, Pagine 265–267 (Slide Ufficiali: Sistema a Doppia Cifratura Usando la Chiave Asimmetrica & CRITTOGRAFIA n2)",
+        "kind": "concept",
+        "explanation": "Dall'operazione logica XOR bit a bit (fondamento di One-Time Pad e Vernam) ai cifrari polialfabetici dinamici, fino alla rivoluzione della crittografia asimmetrica a coppia di chiavi correlate e all'integrità distribuita della Blockchain.",
+        "theoryNotes": [
+          "Metodo XOR Bit a Bit (Disgiunzione Esclusiva): operazione binaria fondamentale: 0⊕0=0, 0⊕1=1, 1⊕0=1, 1⊕1=0. Proprietà aurea di involuzione: applicando XOR due volte con la stessa chiave K si riottene matematicamente il messaggio originario: (M ⊕ K) ⊕ K = M.",
+          "Esempio slide XOR: Messaggio M = 1011101, Chiave K = 0101011 -> Cifratura M⊕K = 1110110. Decifratura inversa: Testo cifrato 1110110 ⊕ K (0101011) = 1011101 (Messaggio ripristinato esattamente).",
+          "Crittografia Polialfabetica Evolutiva (Slide 3-7): la chiave iniziale K=20 trasforma la prima lettera ((0+20) mod 21 = 20 -> 'Z'); le lettere successive sommano la posizione della lettera corrente con la posizione della lettera precedente. Esempio 'ALLA' (K=20) -> 'ZLUL'. Esercizi 'MIA' (K=3) -> 'PUI' e 'SCUOLA' (K=4) -> 'ZUZLAL'.",
+          "Crittografia Asimmetrica a Coppia di Chiavi: ogni entità genera una coppia matematicamente correlata: Chiave Pubblica (condivisibile liberamente in rete) e Chiave Privata (segreta e protetta). Risolve definitivamente il problema dello scambio delle chiavi.",
+          "Principio della Doppia Cifratura: 1) Riservatezza: cifrare con la chiave pubblica del destinatario (solo il destinatario con la sua chiave privata può decifrare). 2) Autenticità e Firma Digitale: cifrare con la propria chiave privata (chiunque con la chiave pubblica del mittente può verificare l'autenticità e integrità senza poter ripudiare il messaggio).",
+          "Funzioni di Hash (SHA-256) e Architettura Blockchain: digest a 256 bit irreversibile ed effetto valanga. Nella Blockchain ogni blocco contiene transazioni, timestamp, prev_hash (hash del blocco precedente) e nonce. Il Proof-of-Work (mining) garantisce l'immutabilità distribuita."
+        ],
+        "example": "Esempio applicativo dalle slide: Risoluzione della cifratura polialfabetica di 'MIA' con K=3 -> M(10+3=13->P), I(8+10=18->U), A(0+8=8->I) = 'PUI'. Decifratura inversa: P(13-3=10->M), U(18-10=8->I), I(8-8=0->A) = 'MIA'.",
+        "exercise": "Attività operativa: Esercitazione sulla palestra integrata in questa pagina: testare la cifratura XOR bit a bit con M=1011101 e K=0101011, simulare la cifratura/decifratura dinamica di 'ALLA', 'MIA' e 'SCUOLA' con sottochiavi evolutive e lo scambio asimmetrico di chiavi pubbliche e private.",
+        "deepDive": "Approfondimento AI & Azienda: Applicazioni aziendali della blockchain oltre le criptovalute: tracciabilità di filiera agroalimentare Made in Italy, smart contracts e notarizzazione brevetti.",
+        "competence": "Comprendere e applicare l'algebra booleana XOR nella crittografia, i cifrari polialfabetici, il paradigma a chiave pubblica/privata e l'architettura dei registri blockchain.",
+        "evidence": "Scheda tecnica con tabella XOR compilata, passaggi di cifratura/decifratura di 'MIA' e 'SCUOLA' e schema logico della coppia di chiavi asimmetriche.",
+        "materials": [
+          "Computer del laboratorio",
+          "Slide della lezione: Sistema a Doppia Cifratura Usando la Chiave Asimmetrica",
+          "Slide della lezione: CRITTOGRAFIA n2",
+          "Palestra Crittografia XOR, Polialfabetica & Asimmetrica (in pagina)",
+          "Simulatore Anders Brownworth Blockchain"
+        ],
+        "phases": [
+          {
+            "label": "Operazione XOR e cifratura a flusso (Vernam)",
+            "minutes": 25
+          },
+          {
+            "label": "Cifrari polialfabetici dinamici (MIA e SCUOLA)",
+            "minutes": 35
+          },
+          {
+            "label": "Coppie di chiavi asimmetriche e firma digitale",
+            "minutes": 35
+          },
+          {
+            "label": "Hashing SHA-256, Blockchain e debriefing",
+            "minutes": 25
+          }
+        ],
+        "quickCheck": "Controllo rapido: per quale motivo l'operazione logica XOR è definita 'autoinversa' e cosa accade se applichi XOR due volte con la stessa chiave?",
+        "flashCard": "XOR e Crittografia Asimmetrica: fronte — proprietà XOR e coppia di chiavi asimmetriche; retro — XOR è autoinverso: (M ⊕ K) ⊕ K = M. Nella crittografia asimmetrica, ciò che è cifrato con la chiave pubblica si decifra solo con la privata (riservatezza), e ciò che è firmato con la privata si verifica con la pubblica (autenticità).",
+        "bookActivity": "Analisi delle proprietà XOR e della struttura a blocchi della blockchain",
+        "platforms": [
+          "Palestra Crittografia Avanzata Integrata",
+          "CyberChef Web",
+          "Brownworth Blockchain Demo"
+        ],
+        "facilitatedTask": "Versione facilitata: esegui l'operazione XOR su una sequenza di soli 4 bit utilizzando la tabella di verità guidata (0⊕0=0, 0⊕1=1, 1⊕0=1, 1⊕1=0).",
+        "objectives": [
+          "Applicare l'operatore logico XOR alla cifratura e decifratura binaria.",
+          "Comprendere il funzionamento dei cifrari polialfabetici a chiave dinamica.",
+          "Illustrare il paradigma a chiave pubblica/privata e l'architettura dei blocchi blockchain."
+        ],
+        "activity": "Lezione teorico-modellistica ed esercitazione applicata su XOR, polialfabetica, asimmetrica e registri distribuiti.",
+        "game": "Blockchain Relay: ricostruire l'ordine cronologico di 5 blocchi usando solo i valori hash di collegamento",
+        "slideHref": "/downloads/classe5/Sistema-a-Doppia-Cifratura-Usando-la-Chiave-Asimmetrica.pptx",
+        "studentCta": [
+          {
+            "label": "Sistema Doppia Cifratura Asimmetrica",
+            "href": "/downloads/classe5/Sistema-a-Doppia-Cifratura-Usando-la-Chiave-Asimmetrica.pptx"
+          },
+          {
+            "label": "Crittografia Asimmetrica e XOR",
+            "href": "/downloads/classe5/CRITTOGRAFIA n2.pptx"
+          },
+          {
+            "label": "Apri Palestra Crittografia Avanzata",
+            "href": "#palestra-crittografia"
+          },
+          {
+            "label": "Ripassa",
+            "href": "#ripasso"
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "number": 3,
+    "theme": "Hands-on Lab: Cifratura Web & File (CyberChef e AES-256)",
+    "lessons": [
+      {
+        "id": "5-03",
         "title": "Laboratorio Operativo: Cifratura Pratica con CyberChef e 7-Zip AES-256",
         "hours": 2,
         "book": "Connessi in azienda · UDA 6, TEMA 3, Paragrafo 3.1, Pagine 264–266",
@@ -4602,88 +4689,6 @@ export const triennioCurriculum = {
             "href": "#ripasso"
           }
         ]
-      }
-    ]
-  },
-  {
-    "number": 3,
-    "theme": "Crittografia Asimmetrica, Funzioni Hash e Blockchain",
-    "lessons": [
-      {
-        "id": "5-03",
-      "title": "Crittografia XOR, Cifrari Polialfabetici, Asimmetrica (PKI) e Blockchain",
-      "hours": 2,
-      "book": "Connessi in azienda · UDA 6, TEMA 3, Paragrafi 3.1–3.2, Pagine 265–267 (Slide Ufficiali: CRITTOGRAFIA n2.pptx)",
-      "kind": "concept",
-      "explanation": "Dall'operazione logica XOR bit a bit (fondamento di One-Time Pad e Vernam) ai cifrari polialfabetici dinamici, fino alla rivoluzione della crittografia asimmetrica a coppia di chiavi correlate e all'integrità distribuita della Blockchain.",
-      "theoryNotes": [
-        "Metodo XOR Bit a Bit (Disgiunzione Esclusiva): operazione binaria fondamentale: 0⊕0=0, 0⊕1=1, 1⊕0=1, 1⊕1=0. Proprietà aurea di involuzione: applicando XOR due volte con la stessa chiave K si riottene matematicamente il messaggio originario: (M ⊕ K) ⊕ K = M.",
-        "Esempio slide XOR: Messaggio M = 1011101, Chiave K = 0101011 -> Cifratura M⊕K = 1110110. Decifratura inversa: Testo cifrato 1110110 ⊕ K (0101011) = 1011101 (Messaggio ripristinato esattamente).",
-        "Crittografia Polialfabetica Evolutiva (Slide 3-7): la chiave iniziale K=20 trasforma la prima lettera ((0+20) mod 21 = 20 -> 'Z'); le lettere successive sommano la posizione della lettera corrente con la posizione della lettera precedente. Esempio 'ALLA' (K=20) -> 'ZLUL'. Esercizi 'MIA' (K=3) -> 'PUI' e 'SCUOLA' (K=4) -> 'ZUZLAL'.",
-        "Crittografia Asimmetrica a Coppia di Chiavi: ogni entità genera una coppia matematicamente correlata: Chiave Pubblica (condivisibile liberamente in rete) e Chiave Privata (segreta e protetta). Risolve definitivamente il problema dello scambio delle chiavi.",
-        "Principio della Doppia Cifratura: 1) Riservatezza: cifrare con la chiave pubblica del destinatario (solo il destinatario con la sua chiave privata può decifrare). 2) Autenticità e Firma Digitale: cifrare con la propria chiave privata (chiunque con la chiave pubblica del mittente può verificare l'autenticità e integrità senza poter ripudiare il messaggio).",
-        "Funzioni di Hash (SHA-256) e Architettura Blockchain: digest a 256 bit irreversibile ed effetto valanga. Nella Blockchain ogni blocco contiene transazioni, timestamp, prev_hash (hash del blocco precedente) e nonce. Il Proof-of-Work (mining) garantisce l'immutabilità distribuita."
-      ],
-      "example": "Esempio applicativo dalle slide: Risoluzione della cifratura polialfabetica di 'MIA' con K=3 -> M(10+3=13->P), I(8+10=18->U), A(0+8=8->I) = 'PUI'. Decifratura inversa: P(13-3=10->M), U(18-10=8->I), I(8-8=0->A) = 'MIA'.",
-      "exercise": "Attività operativa: Esercitazione sulla palestra integrata in questa pagina: testare la cifratura XOR bit a bit con M=1011101 e K=0101011, simulare la cifratura/decifratura dinamica di 'ALLA', 'MIA' e 'SCUOLA' con sottochiavi evolutive e lo scambio asimmetrico di chiavi pubbliche e private.",
-      "deepDive": "Approfondimento AI & Azienda: Applicazioni aziendali della blockchain oltre le criptovalute: tracciabilità di filiera agroalimentare Made in Italy, smart contracts e notarizzazione brevetti.",
-      "competence": "Comprendere e applicare l'algebra booleana XOR nella crittografia, i cifrari polialfabetici, il paradigma a chiave pubblica/privata e l'architettura dei registri blockchain.",
-      "evidence": "Scheda tecnica con tabella XOR compilata, passaggi di cifratura/decifratura di 'MIA' e 'SCUOLA' e schema logico della coppia di chiavi asimmetriche.",
-      "materials": [
-        "Computer del laboratorio",
-        "Slide della lezione: CRITTOGRAFIA n2.pptx",
-        "Palestra Crittografia XOR, Polialfabetica & Asimmetrica (in pagina)",
-        "Simulatore Anders Brownworth Blockchain"
-      ],
-      "phases": [
-        {
-          "label": "Operazione XOR e cifratura a flusso (Vernam)",
-          "minutes": 25
-        },
-        {
-          "label": "Cifrari polialfabetici dinamici (MIA e SCUOLA)",
-          "minutes": 35
-        },
-        {
-          "label": "Coppie di chiavi asimmetriche e firma digitale",
-          "minutes": 35
-        },
-        {
-          "label": "Hashing SHA-256, Blockchain e debriefing",
-          "minutes": 25
-        }
-      ],
-      "quickCheck": "Controllo rapido: per quale motivo l'operazione logica XOR è definita 'autoinversa' e cosa accade se applichi XOR due volte con la stessa chiave?",
-      "flashCard": "XOR e Crittografia Asimmetrica: fronte — proprietà XOR e coppia di chiavi asimmetriche; retro — XOR è autoinverso: (M ⊕ K) ⊕ K = M. Nella crittografia asimmetrica, ciò che è cifrato con la chiave pubblica si decifra solo con la privata (riservatezza), e ciò che è firmato con la privata si verifica con la pubblica (autenticità).",
-      "bookActivity": "Analisi delle proprietà XOR e della struttura a blocchi della blockchain",
-      "platforms": [
-        "Palestra Crittografia Avanzata Integrata",
-        "CyberChef Web",
-        "Brownworth Blockchain Demo"
-      ],
-      "facilitatedTask": "Versione facilitata: esegui l'operazione XOR su una sequenza di soli 4 bit utilizzando la tabella di verità guidata (0⊕0=0, 0⊕1=1, 1⊕0=1, 1⊕1=0).",
-      "objectives": [
-        "Applicare l'operatore logico XOR alla cifratura e decifratura binaria.",
-        "Comprendere il funzionamento dei cifrari polialfabetici a chiave dinamica.",
-        "Illustrare il paradigma a chiave pubblica/privata e l'architettura dei blocchi blockchain."
-      ],
-      "activity": "Lezione teorico-modellistica ed esercitazione applicata su XOR, polialfabetica, asimmetrica e registri distribuiti.",
-      "game": "Blockchain Relay: ricostruire l'ordine cronologico di 5 blocchi usando solo i valori hash di collegamento",
-      "slideHref": "/downloads/classe5/CRITTOGRAFIA n2.pptx",
-      "studentCta": [
-        {
-          "label": "Scarica Slide (.pptx)",
-          "href": "/downloads/classe5/CRITTOGRAFIA n2.pptx"
-        },
-        {
-          "label": "Apri Palestra Crittografia Avanzata",
-          "href": "#palestra-crittografia"
-        },
-        {
-          "label": "Ripassa",
-          "href": "#ripasso"
-        }
-      ]
       }
     ]
   },
