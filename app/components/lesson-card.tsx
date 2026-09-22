@@ -104,7 +104,17 @@ export function LessonCard({ lesson }: { lesson: Lesson }) {
             <h3 id={`${lesson.id}-objectives`}>Obiettivi della tappa</h3>
             <ul>{lesson.objectives.map((objective) => <li key={objective}>{objective}</li>)}</ul>
             <div className="lesson-actions">
-              {lesson.studentCta.map((cta) => <Link key={cta.label} href={cta.href} className="portal-button">{cta.label}</Link>)}
+              {lesson.studentCta.map((cta) => (
+                <Link
+                  key={cta.label}
+                  href={cta.href}
+                  target={cta.href.startsWith("http") ? "_blank" : undefined}
+                  rel={cta.href.startsWith("http") ? "noopener noreferrer" : undefined}
+                  className="portal-button"
+                >
+                  {cta.label}
+                </Link>
+              ))}
             </div>
           </section>
           <div className="lesson-support-grid">

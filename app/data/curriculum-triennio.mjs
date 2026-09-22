@@ -4548,6 +4548,7 @@ export const triennioCurriculum = {
           "Computer del laboratorio",
           "Slide della lezione: Sistema a Doppia Cifratura Usando la Chiave Asimmetrica",
           "Slide della lezione: CRITTOGRAFIA n2",
+          "Calcolatore Online Hash SHA-256 (emn178.github.io)",
           "Palestra Crittografia XOR, Polialfabetica & Asimmetrica (in pagina)",
           "Simulatore Anders Brownworth Blockchain"
         ],
@@ -4574,6 +4575,7 @@ export const triennioCurriculum = {
         "bookActivity": "Analisi delle proprietà XOR e della struttura a blocchi della blockchain",
         "platforms": [
           "Palestra Crittografia Avanzata Integrata",
+          "Calcolatore SHA-256 Online",
           "CyberChef Web",
           "Brownworth Blockchain Demo"
         ],
@@ -4594,6 +4596,10 @@ export const triennioCurriculum = {
           {
             "label": "Crittografia Asimmetrica e XOR",
             "href": "/downloads/classe5/CRITTOGRAFIA n2.pptx"
+          },
+          {
+            "label": "Calcolatore Hash SHA-256 Online",
+            "href": "https://emn178.github.io/online-tools/sha256.html"
           },
           {
             "label": "Apri Palestra Crittografia Avanzata",
