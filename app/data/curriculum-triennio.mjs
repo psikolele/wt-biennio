@@ -2221,57 +2221,58 @@ export const triennioCurriculum = {
   "4": [
     {
       "number": 1,
-      "theme": "Dagli Archivi tradizionali alle Basi di Dati",
+      "theme": "Ripasso HTML5 & CSS: pagina web «Gestione Clienti»",
       "lessons": [
         {
           "id": "4-01",
-          "title": "Dagli Archivi tradizionali alle Basi di Dati",
+          "title": "Ripasso HTML5 & CSS: pagina web «Gestione Clienti»",
           "hours": 2,
-          "book": "Connessi in azienda · UDA 3, TEMA 1, Paragrafi 1.1–1.3, Pagine 98–103, 111",
-          "kind": "concept",
-          "example": "Esempio applicativo: Analisi di un file Excel \"appiattito\" con ripetizioni di clienti e prodotti; evidenziazione delle anomalie di inserimento e cancellazione. Nel contesto operativo aziendale, confronta le scelte metodologiche controllando sempre l’integrità e la coerenza del risultato.",
-          "exercise": "Attività operativa: Analisi di un file Excel \"appiattito\" con ripetizioni di clienti e prodotti; evidenziazione delle anomalie di inserimento e cancellazione. Consegna finale: Scheda d'analisi critica con identificazione di 5 difetti dell'archivio piatto.",
-          "deepDive": "Approfondimento AI & Azienda: Spiegazione con metafora: chiedere all'AI di spiegare perché un'azienda con 10.000 ordini/giorno non può lavorare solo con fogli di calcolo.",
-          "competence": "Applicare strumenti ICT e tecnologie AI nei processi aziendali, operando con metodo, accuratezza e conformità normativa.",
-          "evidence": "Prodotto archiviato (Scheda d'analisi critica con identificazione di 5 difetti dell'archivio piatto.) e documentazione delle scelte/prompt log.",
+          "book": "Scheda pratica docente «HTML Esercizio» (adattata dal 3° anno alla 4a come ripasso)",
+          "kind": "review",
+          "example": "Esempio applicativo: una pagina HTML5 intitolata \"Gestione Clienti\", contestualizzata a un istituto professionale per i servizi commerciali, con tag semantici, div organizzati in sezioni, una tabella clienti e un foglio di stile CSS esterno collegato con <link>.",
+          "exercise": "Attività operativa: costruire in autonomia la pagina \"Gestione Clienti\" rispettando le specifiche: (1) tabella con almeno 3 righe e 3 colonne con dati clienti a scelta; (2) contenuti organizzati in div logici, incluso un div con un paragrafo che spiega lo scopo della pagina, centrato; (3) foglio di stile CSS esterno linkato con almeno 3 regole — almeno un contenitore deve avere colore di sfondo, dimensione del font diversa e un bordo. Extra point: favicon nel <head> con il logo dell'istituto (tutorial: w3schools.com/html/html_favicon.asp). Consegna: cartella zippata con html, css, immagini e favicon.",
+          "deepDive": "Approfondimento: perché separare struttura (HTML) e presentazione (CSS) — stesso principio della separazione dati/logica che affronteremo nelle basi di dati: un contenuto ben strutturato è più facile da mantenere, riusare e collegare ad altri sistemi (proprio come una tabella dati clienti in HTML anticipa una tabella clienti in un database).",
+          "competence": "Applicare i linguaggi di marcatura e di stile per strutturare e presentare contenuti web coerenti con un contesto aziendale, operando con metodo e attenzione ai dettagli tecnici.",
+          "evidence": "Cartella zippata consegnata contenente la pagina \"Gestione Clienti\" (HTML + CSS + favicon + immagini) e autovalutazione del rispetto delle specifiche.",
           "materials": [
             "Computer del laboratorio",
-            "Quaderno di bordo / Cloud Drive",
-            "Dataset e schede didattiche"
+            "VS Code",
+            "Browser per l'anteprima",
+            "Scheda pratica «HTML Esercizio»"
           ],
           "phases": [
             {
-              "label": "Attivazione e scenario aziendale",
+              "label": "Ripasso guidato: tag principali, div, tabelle, link a CSS esterno",
+              "minutes": 20
+            },
+            {
+              "label": "Consegna della scheda pratica e analisi delle specifiche",
               "minutes": 10
             },
             {
-              "label": "Spiegazione e dimostrazione a video",
-              "minutes": 30
-            },
-            {
-              "label": "Prova guidata e applicazione",
+              "label": "Sviluppo autonomo della pagina Gestione Clienti in VS Code",
               "minutes": 45
             },
             {
-              "label": "Esercizio di consolidamento e sintesi",
-              "minutes": 35
+              "label": "Rifinitura CSS, favicon extra point e verifica requisiti",
+              "minutes": 45
             }
           ],
-          "quickCheck": "Controllo rapido: qual è l’elemento chiave o il controllo di sicurezza fondamentale applicato in dagli archivi tradizionali alle basi di dati?",
-          "flashCard": "Dagli Archivi tradizionali alle Basi di Dati: fronte — illustra il principio chiave e i vincoli; retro — descrivi un errore tipico e la procedura di controllo/verifica.",
-          "bookActivity": "Scheda tecnica + esercizio guidato",
+          "quickCheck": "Controllo rapido: come si collega un foglio di stile CSS esterno a una pagina HTML, e quale tag va usato nel <head> per la favicon?",
+          "flashCard": "HTML5 & CSS — fronte: elenca i tag/attributi richiesti (div, table, link, head); retro: descrivi un errore tipico (dimenticare il link al CSS, tabella senza intestazioni) e come verificarlo.",
+          "bookActivity": "Scheda pratica guidata + realizzazione autonoma",
           "platforms": [
-            "Computer del laboratorio",
-            "Google Workspace"
+            "VS Code",
+            "Browser"
           ],
-          "facilitatedTask": "Versione facilitata: affronta dagli archivi tradizionali alle basi di dati seguendo la guida per punti passo-passo, usando il dataset precompilato e concentrandoti sul controllo finale.",
+          "facilitatedTask": "Versione facilitata: parti da uno scheletro HTML già predisposto (struttura div e tabella vuota) e completa solo contenuti e regole CSS richieste, seguendo la checklist passo-passo.",
           "objectives": [
-            "Limiti dell'organizzazione su file tradizionali (ridondanza, inconsistenza, dipendenza dati-programmi); definizione di Database.",
-            "Realizzare e verificare il prodotto laboratoriale: Scheda d'analisi critica con identificazione di 5 difetti dell'archivio piatto.",
-            "Analizzare l’integrazione con l’Intelligenza Artificiale: Spiegazione con metafora: chiedere all'AI di spiegare perché un'azienda con 10.0..."
+            "Ripassare la struttura di una pagina HTML5 (tag principali, div, tabelle) e il collegamento a un foglio di stile CSS esterno.",
+            "Realizzare e verificare il prodotto laboratoriale: la pagina \"Gestione Clienti\" con tabella dati, div organizzati e almeno 3 regole di stile CSS.",
+            "Approfondire la relazione tra strutturazione dei contenuti web (HTML/CSS) e organizzazione dei dati, come ponte verso i temi di database della 4a."
           ],
-          "activity": "Spiegazione, analisi dello scenario e laboratorio guidato su dagli archivi tradizionali alle basi di dati.",
-          "game": "Test diagnostico e patto d’aula",
+          "activity": "Ripasso guidato e laboratorio pratico: realizzazione della pagina web \"Gestione Clienti\" in HTML5 e CSS.",
+          "game": "Checklist a squadre: verifica incrociata dei requisiti (tabella, div, CSS, favicon) sulla pagina di un compagno",
           "studentCta": [
             {
               "label": "Apri le risorse",
@@ -2282,23 +2283,23 @@ export const triennioCurriculum = {
               "href": "#ripasso"
             }
           ],
-          "explanation": "In questa tappa approfondiamo Dagli Archivi tradizionali alle Basi di Dati. Nel contesto del sistema informativo aziendale e dell’innovazione digitale, analizziamo i principi teorici, i vincoli normativi e l’integrazione con strumenti di produttività e intelligenza artificiale."
+          "explanation": "In questa tappa ripassiamo HTML5 e CSS prima di affrontare le basi di dati: costruiamo una pagina \"Gestione Clienti\" contestualizzata ai servizi commerciali, applicando struttura semantica, div organizzativi, tabelle dati e un foglio di stile esterno — competenze che ritroveremo, in forma di dati strutturati, nelle prossime lezioni sui database."
         }
       ]
     },
     {
       "number": 2,
-      "theme": "I DBMS e le Fasi di Progettazione di una Base di Dati",
+      "theme": "Dagli Archivi tradizionali ai DBMS: limiti, Database e Fasi di Progettazione",
       "lessons": [
         {
           "id": "4-02",
-          "title": "I DBMS e le Fasi di Progettazione di una Base di Dati",
+          "title": "Dagli Archivi tradizionali ai DBMS: limiti, Database e Fasi di Progettazione",
           "hours": 2,
-          "book": "Connessi in azienda · UDA 3, TEMA 1, Paragrafi 1.4–1.6, Pagine 104–107, 143",
+          "book": "Connessi in azienda · UDA 3, TEMA 1, Paragrafi 1.1–1.3, Pagine 98–103, 111; Connessi in azienda · UDA 3, TEMA 1, Paragrafi 1.4–1.6, Pagine 104–107, 143",
           "kind": "laboratory",
-          "example": "Esempio applicativo: Studio del ciclo di vita di un database: dall'intervista all'utente alla manutenzione; figure professionali (DBA, progettista). Nel contesto operativo aziendale, confronta le scelte metodologiche controllando sempre l’integrità e la coerenza del risultato.",
-          "exercise": "Attività operativa: Studio del ciclo di vita di un database: dall'intervista all'utente alla manutenzione; figure professionali (DBA, progettista). Consegna finale: Documento dei requisiti informativi di un caso aziendale.",
-          "deepDive": "Approfondimento AI & Azienda: Generazione di un verbale di intervista simulata a un cliente commerciale per raccogliere i requisiti di un database.",
+          "example": "Esempio applicativo: Analisi di un file Excel \"appiattito\" con ripetizioni di clienti e prodotti; evidenziazione delle anomalie di inserimento e cancellazione. Nel contesto operativo aziendale, confronta le scelte metodologiche controllando sempre l’integrità e la coerenza del risultato. A seguire: Esempio applicativo: Studio del ciclo di vita di un database: dall'intervista all'utente alla manutenzione; figure professionali (DBA, progettista). Nel contesto operativo aziendale, confronta le scelte metodologiche controllando sempre l’integrità e la coerenza del risultato.",
+          "exercise": "Attività operativa: Analisi di un file Excel \"appiattito\" con ripetizioni di clienti e prodotti; evidenziazione delle anomalie di inserimento e cancellazione. Consegna finale: Scheda d'analisi critica con identificazione di 5 difetti dell'archivio piatto. In continuità: Attività operativa: Studio del ciclo di vita di un database: dall'intervista all'utente alla manutenzione; figure professionali (DBA, progettista). Consegna finale: Documento dei requisiti informativi di un caso aziendale.",
+          "deepDive": "Approfondimento AI & Azienda: Spiegazione con metafora: chiedere all'AI di spiegare perché un'azienda con 10.000 ordini/giorno non può lavorare solo con fogli di calcolo. Approfondimento AI & Azienda: Generazione di un verbale di intervista simulata a un cliente commerciale per raccogliere i requisiti di un database.",
           "competence": "Realizzare soluzioni e prodotti digitali operativi per l’azienda documentando scelte, dati e prompt.",
           "evidence": "Prodotto archiviato (Documento dei requisiti informativi di un caso aziendale.) e documentazione delle scelte/prompt log.",
           "materials": [
@@ -2308,20 +2309,20 @@ export const triennioCurriculum = {
           ],
           "phases": [
             {
-              "label": "Brief e impostazione scenario",
-              "minutes": 10
+              "label": "Attivazione: limiti degli archivi tradizionali (scenario aziendale)",
+              "minutes": 15
             },
             {
-              "label": "Laboratorio operativo a computer",
-              "minutes": 70
+              "label": "Spiegazione: dal file flat al Database, DBMS e fasi di progettazione",
+              "minutes": 35
             },
             {
-              "label": "Test e controllo del risultato",
-              "minutes": 20
+              "label": "Prova guidata e applicazione su casi d'uso",
+              "minutes": 40
             },
             {
-              "label": "Restituzione e archiviazione",
-              "minutes": 20
+              "label": "Esercizio di consolidamento e sintesi (lezione aggregata)",
+              "minutes": 30
             }
           ],
           "quickCheck": "Controllo rapido: qual è l’elemento chiave o il controllo di sicurezza fondamentale applicato in i dbms e le fasi di progettazione di una base di dati?",
@@ -2334,11 +2335,11 @@ export const triennioCurriculum = {
           ],
           "facilitatedTask": "Versione facilitata: affronta i dbms e le fasi di progettazione di una base di dati seguendo la guida per punti passo-passo, usando il dataset precompilato e concentrandoti sul controllo finale.",
           "objectives": [
+            "Limiti dell'organizzazione su file tradizionali (ridondanza, inconsistenza, dipendenza dati-programmi); definizione di Database.",
             "Ruolo del Database Management System (DBMS), proprietà ACID delle transazioni; le 3 fasi di progettazione (concettuale, logica, fisica).",
-            "Realizzare e verificare il prodotto laboratoriale: Documento dei requisiti informativi di un caso aziendale.",
-            "Analizzare l’integrazione con l’Intelligenza Artificiale: Generazione di un verbale di intervista simulata a un cliente commerciale per ra..."
+            "Realizzare e verificare i prodotti laboratoriali richiesti da entrambi i nuclei tematici (analisi archivio piatto + attività sui DBMS)."
           ],
-          "activity": "Laboratorio operativo su i dbms e le fasi di progettazione di una base di dati: Studio del ciclo di vita di un database: dall'intervista all'utente alla manutenzione; figure professionali (DBA, progettista).",
+          "activity": "Lezione aggregata: Spiegazione, analisi dello scenario e laboratorio guidato su dagli archivi tradizionali alle basi di dati. Segue: Laboratorio operativo su i dbms e le fasi di progettazione di una base di dati: Studio del ciclo di vita di un database: dall'intervista all'utente alla manutenzione; figure professionali (DBA, progettista).",
           "game": "Missione a squadre aziendale con controllo tra pari",
           "studentCta": [
             {
