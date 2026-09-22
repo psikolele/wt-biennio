@@ -1,7 +1,7 @@
 import json
 from playwright.sync_api import sync_playwright
 
-BASE_URL = "https://wt-biennio.vercel.app"
+BASE_URL = "https://dashboard-lezioni.vercel.app"
 
 VIEWPORTS = [
     {"name": "Mobile Small (320px)", "width": 320, "height": 568},

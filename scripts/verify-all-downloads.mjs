@@ -4,7 +4,7 @@ const curriculumPath = new URL("../app/data/curriculum-data.mjs", import.meta.ur
 const teacherNotesPath = new URL("../app/data/teacher-notes.ts", import.meta.url);
 const publicDir = new URL("../public/", import.meta.url);
 
-const VERCEL_BASE = "https://wt-biennio.vercel.app";
+const VERCEL_BASE = "https://dashboard-lezioni.vercel.app";
 const CDN_BASE = "https://github.com/psikolele/wt-biennio/releases/download/v1.0.0-assets";
 
 async function main() {
