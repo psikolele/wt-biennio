@@ -1,6 +1,7 @@
 import Link from "next/link";
 import { notFound } from "next/navigation";
 import { getYearWeeks, type Year } from "@/app/data/curriculum";
+import { hasClassAccess } from "@/app/lib/class-access";
 
 export function generateStaticParams() {
   return [{ year: "1" }, { year: "2" }, { year: "3" }, { year: "4" }, { year: "5" }];
@@ -10,6 +11,7 @@ export default async function YearPage({ params }: { params: Promise<{ year: str
   const { year: rawYear } = await params;
   const year = Number(rawYear) as Year;
   if (year < 1 || year > 5) notFound();
+  if (!(await hasClassAccess(year))) return null;
   const weeks = getYearWeeks(year);
   const modules = year === 1 ? [
     { title: "Macroarea A · Conoscere e operare", description: "Capire il computer, i dispositivi, il sistema e le reti per lavorare con consapevolezza.", range: [1, 11] },

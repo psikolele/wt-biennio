@@ -5,8 +5,19 @@ import {
   createClassSession,
   hasClassSession
 } from "@/app/lib/auth";
+// Nessun reset al login riuscito: un IP scolastico è condiviso, un successo non azzera gli errori altrui
+import { CLASS_LIMIT, checkBlocked, clientIp, registerFailure } from "@/app/lib/rate-limit";
 
 export async function POST(request: Request) {
+  const key = `class:${clientIp(request.headers)}`;
+  const limit = checkBlocked(key, CLASS_LIMIT);
+  if (limit.blocked) {
+    return NextResponse.json(
+      { error: "Troppi tentativi. Riprova più tardi." },
+      { status: 429, headers: { "Retry-After": String(limit.retryAfterSec) } }
+    );
+  }
+
   const body = await request.json().catch(() => ({}));
   const year = Number(body.year);
   const password = typeof body.password === "string" ? body.password : "";
@@ -16,6 +27,8 @@ export async function POST(request: Request) {
   }
 
   if (!verifyClassPassword(year, password)) {
+    registerFailure(key, CLASS_LIMIT);
+    await new Promise((resolve) => setTimeout(resolve, 400));
     return NextResponse.json(
       { error: `Password non corretta per la classe ${year}ª.` },
       { status: 401 }

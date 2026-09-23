@@ -51,3 +51,61 @@ test("l'autenticazione per singola classe isola le 5 sezioni con password dedica
   assert.equal(auth.hasClassSession(1, null, teacherToken), true);
   assert.equal(auth.hasClassSession(5, null, teacherToken), true);
 });
+
+test("fail-closed: senza variabili d'ambiente nessuna password di default è accettata", async () => {
+  const saved = { ...process.env };
+  delete process.env.TEACHER_PASSWORD;
+  delete process.env.SESSION_SECRET;
+  for (let y = 1; y <= 5; y++) delete process.env[`CLASS_${y}_PASSWORD`];
+  try {
+    const auth = await import(`../app/lib/auth-core.mjs?case=failclosed-${Date.now()}`);
+    assert.equal(auth.verifyTeacherPassword("change-me"), false);
+    assert.equal(auth.verifyTeacherPassword(""), false);
+    assert.equal(auth.verifyClassPassword(1, "classe1"), false);
+    assert.equal(auth.hasTeacherSession(`${Date.now()}.abc.def`), false);
+    assert.throws(() => auth.createTeacherSession());
+  } finally {
+    Object.assign(process.env, saved);
+  }
+});
+
+test("SESSION_SECRET separato: ruotarlo invalida le sessioni esistenti", async () => {
+  process.env.TEACHER_PASSWORD = "docente-lunga-2026";
+  process.env.SESSION_SECRET = "segreto-uno";
+  const auth = await import(`../app/lib/auth-core.mjs?case=secret-${Date.now()}`);
+  const token = auth.createTeacherSession();
+  assert.equal(auth.hasTeacherSession(token), true);
+  process.env.SESSION_SECRET = "segreto-due";
+  assert.equal(auth.hasTeacherSession(token), false);
+  delete process.env.SESSION_SECRET;
+});
+
+test("password con caratteri multibyte non mandano in errore il confronto", async () => {
+  process.env.TEACHER_PASSWORD = "docente-lunga-2026";
+  process.env.CLASS_1_PASSWORD = "pass-prima";
+  const auth = await import(`../app/lib/auth-core.mjs?case=multibyte-${Date.now()}`);
+  assert.equal(auth.verifyTeacherPassword("docente-lunga-202è"), false);
+  assert.equal(auth.verifyClassPassword(1, "pass-primè"), false);
+  assert.equal(auth.verifyClassPassword(1, "PASS-PRIMA"), true);
+});
+
+test("rate limit: blocca un IP dopo troppi errori e si sblocca a fine finestra", async () => {
+  const rl = await import(`../app/lib/rate-limit-core.mjs?case=${Date.now()}`);
+  const limit = { maxFailures: 3, windowMs: 1000 };
+  const now = 1_000_000;
+  assert.equal(rl.checkBlocked("ip-a", limit, now).blocked, false);
+  rl.registerFailure("ip-a", limit, now);
+  rl.registerFailure("ip-a", limit, now);
+  assert.equal(rl.checkBlocked("ip-a", limit, now).blocked, false);
+  rl.registerFailure("ip-a", limit, now);
+  const blocked = rl.checkBlocked("ip-a", limit, now + 10);
+  assert.equal(blocked.blocked, true);
+  assert.ok(blocked.retryAfterSec > 0);
+  assert.equal(rl.checkBlocked("ip-b", limit, now).blocked, false);
+  assert.equal(rl.checkBlocked("ip-a", limit, now + 1001).blocked, false);
+  rl.registerFailure("ip-c", limit, now);
+  rl.clearFailures("ip-c");
+  assert.equal(rl.checkBlocked("ip-c", limit, now).blocked, false);
+  const headers = new Headers({ "x-forwarded-for": "203.0.113.5, 10.0.0.1" });
+  assert.equal(rl.clientIp(headers), "203.0.113.5");
+});

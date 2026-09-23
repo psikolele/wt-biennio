@@ -2,10 +2,16 @@
 
 import { useState, useEffect, type FormEvent } from "react";
 import Link from "next/link";
+import { useRouter } from "next/navigation";
 
 interface ClassGateProps {
   year: number;
   children: React.ReactNode;
+  /**
+   * Esito della verifica lato server. Se presente, i contenuti arrivano dal server
+   * solo a sessione valida e sblocco/blocco ricaricano la route (router.refresh).
+   */
+  serverUnlocked?: boolean;
 }
 
 const CLASS_METADATA: Record<number, { label: string; theme: string; icon: string }> = {
@@ -16,15 +22,27 @@ const CLASS_METADATA: Record<number, { label: string; theme: string; icon: strin
   5: { label: "5ª Classe", theme: "Reti, Crittografia, Cybersecurity & AI Liv. 3", icon: "🌐" },
 };
 
-export function ClassGate({ year, children }: ClassGateProps) {
-  const [status, setStatus] = useState<"loading" | "locked" | "unlocked">("loading");
+export function ClassGate({ year, children, serverUnlocked }: ClassGateProps) {
+  const router = useRouter();
+  const serverMode = serverUnlocked !== undefined;
+  const [status, setStatus] = useState<"loading" | "locked" | "unlocked">(
+    serverMode ? (serverUnlocked ? "unlocked" : "locked") : "loading"
+  );
   const [password, setPassword] = useState("");
   const [error, setError] = useState("");
   const [isSubmitting, setIsSubmitting] = useState(false);
 
   const meta = CLASS_METADATA[year] || { label: `Classe ${year}ª`, theme: "Programma di studio", icon: "📚" };
 
+  // Modalità server: lo stato segue l'esito della verifica lato server dopo ogni refresh
+  const [prevServerUnlocked, setPrevServerUnlocked] = useState(serverUnlocked);
+  if (serverMode && serverUnlocked !== prevServerUnlocked) {
+    setPrevServerUnlocked(serverUnlocked);
+    setStatus(serverUnlocked ? "unlocked" : "locked");
+  }
+
   useEffect(() => {
+    if (serverMode) return;
     let isMounted = true;
 
     async function checkSession() {
@@ -47,7 +65,7 @@ export function ClassGate({ year, children }: ClassGateProps) {
     return () => {
       isMounted = false;
     };
-  }, [year]);
+  }, [year, serverMode]);
 
   async function handleUnlock(e: FormEvent<HTMLFormElement>) {
     e.preventDefault();
@@ -64,8 +82,14 @@ export function ClassGate({ year, children }: ClassGateProps) {
       });
 
       if (res.ok) {
-        setStatus("unlocked");
         setPassword("");
+        if (serverMode) {
+          // I contenuti vanno richiesti al server ora che il cookie di classe è valido
+          setStatus("loading");
+          router.refresh();
+        } else {
+          setStatus("unlocked");
+        }
       } else {
         const data = await res.json().catch(() => ({}));
         setError(data.error || "Password non corretta. Riprova.");
@@ -80,10 +104,11 @@ export function ClassGate({ year, children }: ClassGateProps) {
   async function handleLock() {
     try {
       await fetch(`/api/class-auth?year=${year}`, { method: "DELETE" });
-      setStatus("locked");
     } catch {
-      setStatus("locked");
+      // In ogni caso la sezione torna bloccata
     }
+    setStatus("locked");
+    if (serverMode) router.refresh();
   }
 
   if (status === "loading") {

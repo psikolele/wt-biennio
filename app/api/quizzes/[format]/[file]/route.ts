@@ -1,4 +1,6 @@
+import { cookies } from "next/headers";
 import { checkpointQuizzes } from "@/app/data/quizzes-data";
+import { hasTeacherSession } from "@/app/lib/auth";
 
 function escapeCsv(val: unknown): string {
   if (val === undefined || val === null) return "";
@@ -13,6 +15,12 @@ export async function GET(
   request: Request,
   { params }: { params: Promise<{ format: string; file: string }> }
 ) {
+  // I CSV contengono le risposte esatte: solo per l'area docenti
+  const session = (await cookies()).get("teacher_session")?.value;
+  if (!hasTeacherSession(session)) {
+    return new Response("Accesso riservato ai docenti", { status: 401 });
+  }
+
   const { format, file } = await params;
   const letters = ["A", "B", "C", "D"];
   const kahootHeaders = ["Question", "Answer 1", "Answer 2", "Answer 3", "Answer 4", "Time limit (sec)", "Correct answer(s)"];

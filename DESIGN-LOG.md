@@ -18,12 +18,7 @@
 ### 2026-09-16 — Protezione Selettiva con Password per le 5 Classi
 - **Problema**: Prima del deploy, ogni sezione annuale (`/anno/1` ... `/anno/5` e relative settimane) deve essere protetta da una password specifica, in modo che gli studenti di una classe non entrino direttamente nelle lezioni delle altre classi.
 - **Decisione Architetturale**:
-  1. Le 5 password risiedono nel file `.env.local` (già ignorato da Git in `.gitignore` tramite `.env*`):
-     - `CLASS_1_PASSWORD=classe1`
-     - `CLASS_2_PASSWORD=classe2`
-     - `CLASS_3_PASSWORD=classe3`
-     - `CLASS_4_PASSWORD=classe4`
-     - `CLASS_5_PASSWORD=classe5`
+  1. Le 5 password risiedono nelle variabili d'ambiente `CLASS_1_PASSWORD` … `CLASS_5_PASSWORD` (Vercel + `.env.local`, ignorato da Git). I valori non vanno mai scritti nella repo, che è pubblica.
   2. Creazione del componente protettivo [`ClassGate`](app/components/class-gate.tsx) integrato nel layout [`app/anno/[year]/layout.tsx`](app/anno/[year]/layout.tsx) e in `app/anno/1/lezione-0/page.tsx`.
   3. Endpoint API [`/api/class-auth`](app/api/class-auth/route.ts) per login, verifica della sessione (cookie con validità 30 giorni) e logout (`Blocca sezione`).
   4. Passepartout Docente: chi è autenticato con `TEACHER_PASSWORD` o inserisce la password docenti ha accesso automatico a qualsiasi sezione.
@@ -39,3 +34,12 @@
   3. **Pulsanti e SlideViewer**: Eliminato il testo generico "Scarica Slide" in favore del nome parlante e pulito delle slide (senza simboli come `_`, `-`, `.`).
   4. Nessuna regressione sui test unitari (`npm test` con 23/23 pass).
 
+
+### 2026-09-23 — Hardening autenticazione dopo tentativo di brute force
+- **Problema**: il 23/09 ~117.600 tentativi automatici su `/api/teacher-login` (12:43–12:56) senza alcun limite. Password di classe di default (`classeN`) documentate in questa repo pubblica; fallback `change-me`; la password docente era anche chiave HMAC dei cookie; `ClassGate` solo lato client (contenuti inviati al browser anche a sezione bloccata); CSV quiz con risposte scaricabili senza login.
+- **Decisione**:
+  1. Fail-closed: nessuna password di default. Variabile mancante = accesso negato.
+  2. `SESSION_SECRET` separato da `TEACHER_PASSWORD` (ripiego su `TEACHER_PASSWORD` finché non configurato). Ruotarlo invalida tutte le sessioni.
+  3. Limite tentativi falliti per IP in memoria (`app/lib/rate-limit-core.mjs`): docenti 8/15 min, classi 40/10 min (IP scolastico condiviso via NAT). Da affiancare a una regola Vercel Firewall.
+  4. Verifica sessione classe lato server (`app/lib/class-access.ts`) nel layout **e in ogni pagina** di `/anno/[year]`: Next serializza il payload della pagina anche se il layout non renderizza i children, quindi il controllo nel solo layout non basta.
+  5. `/api/quizzes/*` richiede sessione docente.

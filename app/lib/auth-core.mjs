@@ -1,15 +1,26 @@
-import { createHmac, randomBytes, timingSafeEqual } from "node:crypto";
+import { createHash, createHmac, randomBytes, timingSafeEqual } from "node:crypto";
 
-const sessionSecret = () => process.env.TEACHER_PASSWORD || "change-me";
-const sign = (value) => createHmac("sha256", sessionSecret()).update(value).digest("hex");
+// Chiave di firma dei cookie: SESSION_SECRET dedicato; TEACHER_PASSWORD solo come ripiego
+// per i deploy in cui SESSION_SECRET non è ancora configurato. Nessun valore di default.
+const sessionSecret = () => process.env.SESSION_SECRET || process.env.TEACHER_PASSWORD || "";
+const sign = (value) => {
+  const secret = sessionSecret();
+  if (!secret) throw new Error("SESSION_SECRET/TEACHER_PASSWORD non configurati");
+  return createHmac("sha256", secret).update(value).digest("hex");
+};
+
+// Confronto a tempo costante anche con lunghezze o caratteri multibyte diversi
+const safeEqual = (a, b) =>
+  timingSafeEqual(createHash("sha256").update(a).digest(), createHash("sha256").update(b).digest());
 
 /**
  * Verifica la password dell'area docenti
  * @param {string} input
  */
 export function verifyTeacherPassword(input) {
-  const expected = sessionSecret();
-  return typeof input === "string" && input.length === expected.length && timingSafeEqual(Buffer.from(input), Buffer.from(expected));
+  const expected = process.env.TEACHER_PASSWORD;
+  if (!expected || typeof input !== "string") return false;
+  return safeEqual(input, expected);
 }
 
 /**
@@ -31,17 +42,17 @@ export function hasTeacherSession(cookieValue) {
   const [timestamp, nonce, signature] = parts;
   const payload = `${timestamp}.${nonce}`;
   if (!/^\d+$/.test(timestamp) || Date.now() - Number(timestamp) > 8 * 60 * 60 * 1000) return false;
-  const expected = sign(payload);
-  return signature.length === expected.length && timingSafeEqual(Buffer.from(signature), Buffer.from(expected));
+  if (!sessionSecret()) return false;
+  return safeEqual(signature, sign(payload));
 }
 
 /**
- * Restituisce la password configurata per una classe specifica (1–5)
+ * Restituisce la password configurata per una classe specifica (1–5), o null se assente
  * @param {number|string} year
  */
 export function getClassPassword(year) {
   const envKey = `CLASS_${year}_PASSWORD`;
-  return process.env[envKey] || `classe${year}`;
+  return process.env[envKey] || null;
 }
 
 /**
@@ -54,7 +65,8 @@ export function verifyClassPassword(year, input) {
   // La password docente è passepartout valido per tutte le classi
   if (verifyTeacherPassword(input.trim())) return true;
   const expected = getClassPassword(year);
-  return input.trim().toLowerCase() === expected.trim().toLowerCase();
+  if (!expected) return false;
+  return safeEqual(input.trim().toLowerCase(), expected.trim().toLowerCase());
 }
 
 /**
@@ -85,7 +97,7 @@ export function hasClassSession(year, classCookie, teacherCookie) {
   // Scadenza: 30 giorni
   if (!/^\d+$/.test(timestamp) || Date.now() - Number(timestamp) > 30 * 24 * 60 * 60 * 1000) return false;
 
+  if (!sessionSecret()) return false;
   const payload = `${prefix}.${timestamp}.${nonce}`;
-  const expected = sign(payload);
-  return signature.length === expected.length && timingSafeEqual(Buffer.from(signature), Buffer.from(expected));
+  return safeEqual(signature, sign(payload));
 }

@@ -4,6 +4,7 @@ import { getWeek, getYearWeeks, type Year } from "@/app/data/curriculum";
 import { LessonCard } from "@/app/components/lesson-card";
 import { DiagnosticTest } from "@/app/components/diagnostic-test";
 import { InteractiveCryptoLab } from "@/app/components/interactive-crypto-lab";
+import { hasClassAccess } from "@/app/lib/class-access";
 
 export function generateStaticParams() {
   return [1, 2, 3, 4, 5].flatMap((year) => getYearWeeks(year as Year).map((week) => ({ year: String(year), week: String(week.number) })));
@@ -15,6 +16,7 @@ export default async function WeekPage({ params }: { params: Promise<{ year: str
   const weekNumber = Number(rawWeek);
   const week = year >= 1 && year <= 5 ? getWeek(year, weekNumber) : undefined;
   if (!week) notFound();
+  if (!(await hasClassAccess(year))) return null;
   const previous = weekNumber > 1 ? `/anno/${year}/settimana/${weekNumber - 1}` : `/anno/${year}`;
   const next = weekNumber < 33 ? `/anno/${year}/settimana/${weekNumber + 1}` : `/anno/${year}`;
 
