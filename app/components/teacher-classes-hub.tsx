@@ -4,6 +4,7 @@ import { useState, useMemo } from "react";
 import Link from "next/link";
 import { teacherClassesData, TeacherClassMeta, TeacherUDA } from "@/app/data/teacher-classes-data";
 import { curriculum, Week } from "@/app/data/curriculum";
+import { LessonExtraMaterials } from "@/app/components/lesson-extra-materials";
 
 export function TeacherClassesHub() {
   const [activeYear, setActiveYear] = useState<1 | 2 | 3 | 4 | 5>(1);
@@ -11,6 +12,7 @@ export function TeacherClassesHub() {
   const [searchTerm, setSearchTerm] = useState("");
   const [selectedKind, setSelectedKind] = useState<string>("all");
   const [expandedUdaId, setExpandedUdaId] = useState<string | null>(null);
+  const [managingMaterialsWeek, setManagingMaterialsWeek] = useState<number | null>(null);
 
   const currentClass: TeacherClassMeta = teacherClassesData[activeYear];
   const classWeeks: Week[] = useMemo(() => {
@@ -250,12 +252,12 @@ export function TeacherClassesHub() {
               {/* Filtro per tipo */}
               <div className="flex flex-wrap items-center gap-1.5">
                 {[
-                  { id: "all", label: "Tutte" },
+                  { id: "all", label: "Tutte le settimane" },
+                  { id: "review", label: "🎯 Verifiche & Compiti di Realtà" },
                   { id: "laboratory", label: "Laboratorio" },
                   { id: "concept", label: "Teoria/Concetto" },
                   { id: "project", label: "Progetto" },
-                  { id: "practice", label: "Pratica" },
-                  { id: "review", label: "Verifica/Ripasso" }
+                  { id: "practice", label: "Pratica" }
                 ].map((type) => (
                   <button
                     key={type.id}
@@ -263,7 +265,7 @@ export function TeacherClassesHub() {
                     onClick={() => setSelectedKind(type.id)}
                     className={`rounded-lg px-2.5 py-1.5 text-[11px] font-semibold transition-all ${
                       selectedKind === type.id
-                        ? "bg-[rgba(170,162,255,0.2)] text-[var(--blue)] border border-[var(--blue)]"
+                        ? "bg-[rgba(170,162,255,0.2)] text-[var(--blue)] border border-[var(--blue)] shadow-sm"
                         : "bg-[var(--surface-soft)] text-[var(--muted)] hover:text-[var(--ink)] border border-[var(--line)]"
                     }`}
                   >
@@ -287,6 +289,7 @@ export function TeacherClassesHub() {
                   const end = parseInt(endStr, 10);
                   return week.number >= start && week.number <= end;
                 });
+                const isManaging = managingMaterialsWeek === week.number;
 
                 return (
                   <article
@@ -307,10 +310,12 @@ export function TeacherClassesHub() {
                                   ? "bg-[rgba(114,227,163,0.15)] text-[var(--coral)]"
                                   : lesson.kind === "project"
                                   ? "bg-[rgba(243,183,110,0.15)] text-[var(--warning)]"
+                                  : lesson.kind === "review"
+                                  ? "bg-rose-500/20 text-rose-300 border border-rose-500/30"
                                   : "bg-[rgba(170,162,255,0.15)] text-[var(--blue)]"
                               }`}
                             >
-                              {lesson.kind}
+                              {lesson.kind === "review" ? "🎯 Verifica / Review" : lesson.kind}
                             </span>
                           )}
 
@@ -383,8 +388,21 @@ export function TeacherClassesHub() {
                         )}
                       </div>
 
-                      {/* Link Lezione Studente */}
-                      <div className="shrink-0 flex sm:flex-col items-center justify-end gap-2 pt-2 md:pt-0">
+                      {/* Azioni Docente: Gestione Materiali & Link Lezione Studente */}
+                      <div className="shrink-0 flex flex-wrap sm:flex-col items-center justify-end gap-2 pt-2 md:pt-0">
+                        <button
+                          type="button"
+                          onClick={() => setManagingMaterialsWeek(isManaging ? null : week.number)}
+                          className={`text-xs py-2 px-3 rounded-lg border font-bold transition-all whitespace-nowrap inline-flex items-center gap-1.5 ${
+                            isManaging
+                              ? "bg-[rgba(170,162,255,0.25)] text-[var(--blue)] border-[var(--blue)]"
+                              : "bg-[var(--surface-soft)] text-[var(--ink)] border-[var(--line)] hover:border-[var(--blue)]"
+                          }`}
+                        >
+                          <span>📎 Materiali Extra</span>
+                          <span className="text-[10px]">{isManaging ? "▲" : "▼"}</span>
+                        </button>
+
                         <Link
                           href={`/anno/${activeYear}/settimana/${week.number}`}
                           className="portal-button text-xs py-2 px-3 whitespace-nowrap font-bold"
@@ -393,6 +411,18 @@ export function TeacherClassesHub() {
                         </Link>
                       </div>
                     </div>
+
+                    {/* Drawer di Gestione Materiali Extra (Upload e Delete) */}
+                    {isManaging && (
+                      <div className="mt-4 pt-4 border-t border-[var(--line)]">
+                        <LessonExtraMaterials
+                          year={activeYear}
+                          week={week.number}
+                          lessonId={lesson?.id}
+                          isTeacherSession={true}
+                        />
+                      </div>
+                    )}
                   </article>
                 );
               })}

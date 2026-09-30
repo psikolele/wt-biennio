@@ -1,10 +1,13 @@
 import Link from "next/link";
 import { notFound } from "next/navigation";
+import { cookies } from "next/headers";
 import { getWeek, getYearWeeks, type Year } from "@/app/data/curriculum";
 import { LessonCard } from "@/app/components/lesson-card";
 import { DiagnosticTest } from "@/app/components/diagnostic-test";
 import { InteractiveCryptoLab } from "@/app/components/interactive-crypto-lab";
+import { LessonExtraMaterials } from "@/app/components/lesson-extra-materials";
 import { hasClassAccess } from "@/app/lib/class-access";
+import { hasTeacherSession } from "@/app/lib/auth";
 
 export function generateStaticParams() {
   return [1, 2, 3, 4, 5].flatMap((year) => getYearWeeks(year as Year).map((week) => ({ year: String(year), week: String(week.number) })));
@@ -17,6 +20,7 @@ export default async function WeekPage({ params }: { params: Promise<{ year: str
   const week = year >= 1 && year <= 5 ? getWeek(year, weekNumber) : undefined;
   if (!week) notFound();
   if (!(await hasClassAccess(year))) return null;
+  const isTeacher = hasTeacherSession((await cookies()).get("teacher_session")?.value);
   const previous = weekNumber > 1 ? `/anno/${year}/settimana/${weekNumber - 1}` : `/anno/${year}`;
   const next = weekNumber < 33 ? `/anno/${year}/settimana/${weekNumber + 1}` : `/anno/${year}`;
 
@@ -83,6 +87,9 @@ export default async function WeekPage({ params }: { params: Promise<{ year: str
         <section className="mt-10" aria-label="Lezioni della settimana">
           {week.lessons.map((lesson) => <LessonCard key={lesson.id} lesson={lesson} />)}
         </section>
+
+        {/* Sezione Materiali Extra & Schede di Verifica (Caricabili dal Docente) */}
+        <LessonExtraMaterials year={year} week={weekNumber} isTeacherSession={isTeacher} />
 
         {year === 5 && weekNumber === 1 && (
           <div id="palestra-crittografia" className="my-10 scroll-mt-20">

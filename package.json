@@ -12,9 +12,8 @@
     "verify:downloads": "node scripts/verify-all-downloads.mjs",
     "test:responsive": "python scripts/audit_responsive.py"
   },
-
-
   "dependencies": {
+    "@vercel/blob": "^2.8.0",
     "clsx": "^2.1.1",
     "framer-motion": "^12.38.0",
     "lucide-react": "^1.14.0",

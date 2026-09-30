@@ -56,3 +56,19 @@
   3. **File Ufficiali Scaricabili**: I documenti `.docx` di programmazione annuale per ciascuna delle 5 classi e le proposte UDA (Biennio e Triennio) sono resi scaricabili in `public/downloads/programmazioni/`.
   4. **Test di Regressione e Certificazione**: Aggiunto [`tests/teacher-hub.test.mjs`](tests/teacher-hub.test.mjs) per verificare integrità delle 5 classi, UDA e file `.docx`. Totale test suite: 28/28 passati, build Next.js (193 pagine statiche/dinamiche) a zero errori.
 
+
+### 2026-09-30 — Gestione Materiali Extra e Schede Verifica da Interfaccia Web
+- **Problema**: Il docente aveva la necessità di caricare ed eliminare direttamente dall'interfaccia web materiali extra per ogni lezione (in particolare tracce di verifica, compiti di realtà, schede laboratorio e link a risorse cloud) con persistenza garantita sia in locale che in produzione su Vercel.
+- **Decisione Concettuale (Allineamento `/grill-me`)**:
+  1. **Doppio Punto di Accesso Protetto**:
+     - *Dall'Area Docenti (`/docenti`)*: nell'Hub 5 classi (tab Plan Didattico), ogni settimana espone il tasto `📎 Materiali Extra` che apre un drawer per il caricamento e cancellazione immediati.
+     - *Dalla Pagina della Settimana (`/anno/[year]/settimana/[week]`)*: per gli studenti compare il box `📎 Materiali & Schede Didattiche Extra`, mentre per il docente (rilevato lato server con `hasTeacherSession`) compaiono i controlli protetti `➕ Carica Materiale` e `🗑️ Elimina` con conferma.
+  2. **Storage Unificato Ibrido**:
+     - Modulo [`app/lib/materials-storage.ts`](app/lib/materials-storage.ts) che sfrutta `@vercel/blob` se configurato `BLOB_READ_WRITE_TOKEN`, con fallback automatico su storage locale (`public/uploads/materials/` e `data/materials-registry.json`).
+     - Supporto sia per upload binario di file didattici (PDF, DOCX, ZIP, PPTX, immagini max 25 MB) sia per inserimento rapido di URL esterni (Google Drive, OneDrive, siti web).
+  3. **Protezione Endpoint e Sicurezza**:
+     - Route API [`/api/materials`](app/api/materials/route.ts): `POST` e `DELETE` con verifica crittografica HMAC della sessione docente (`hasTeacherSession`).
+     - Cancellazione contestuale del file fisico (Blob o disco locale) e del relativo record di metadati.
+  4. **Collaudo TDD**: Aggiunto test [`tests/materials.test.mjs`](tests/materials.test.mjs) per il ciclo di vita (upload, recupero, cancellazione e fallback). Totale test suite: 29/29 passati.
+
+
