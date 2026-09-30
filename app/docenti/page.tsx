@@ -3,6 +3,7 @@ import { redirect } from "next/navigation";
 import Link from "next/link";
 import { hasTeacherSession } from "@/app/lib/auth";
 import { teacherNotes } from "@/app/data/teacher-notes";
+import { TeacherClassesHub } from "@/app/components/teacher-classes-hub";
 
 export default async function TeacherPage() {
   const session = (await cookies()).get("teacher_session")?.value;
@@ -19,16 +20,22 @@ export default async function TeacherPage() {
         <header className="mt-10">
           <p className="portal-eyebrow">Area riservata</p>
           <h1 className="mt-3 text-4xl font-black">Console docenti</h1>
-          <p className="portal-muted mt-3 max-w-2xl leading-7">Materiali riservati, programmazione didattica per competenze, suite gamification e criteri di valutazione.</p>
+          <p className="portal-muted mt-3 max-w-2xl leading-7">Materiali riservati, programmazione didattica per competenze, piani settimanali delle 5 classi, suite gamification e criteri di valutazione.</p>
 
-          {/* Quick-Jump & Gamification Hero CTA Banner */}
+          {/* Quick-Jump & Hub CTA Banner */}
           <div className="mt-6 flex flex-wrap items-center gap-3">
             <a
-              href="#gamification"
+              href="#classi-hub"
               className="portal-button inline-flex items-center gap-2 text-sm font-bold shadow-lg shadow-[rgba(170,162,255,0.15)]"
             >
-              <span>Suite Gamification (12 Quiz LIM & Kahoot)</span>
+              <span>🏛️ Hub 5 Classi & Piani Settimanali</span>
               <span aria-hidden="true" className="font-mono text-xs opacity-75">↓</span>
+            </a>
+            <a
+              href="#gamification"
+              className="portal-button-secondary inline-flex items-center gap-1.5 text-xs font-semibold"
+            >
+              <span>Suite Gamification (12 Quiz LIM)</span>
             </a>
             <a
               href="#guide"
@@ -50,6 +57,9 @@ export default async function TeacherPage() {
             </a>
           </div>
         </header>
+
+        {/* HUB DELLE 5 CLASSI: Piani 33 settimane, UDA, Verifiche e Download Ufficiali */}
+        <TeacherClassesHub />
         
         {teacherNotes.guides && (
           <section id="guide" className="mt-10 scroll-mt-10">

@@ -2227,63 +2227,77 @@ export const triennioCurriculum = {
           "id": "4-01",
           "title": "Ripasso HTML5 & CSS: pagina web «Gestione Clienti»",
           "hours": 2,
-          "book": "Scheda pratica docente «HTML Esercizio» (adattata dal 3° anno alla 4a come ripasso)",
+          "book": "Web App Didattica «HTML Zombies» & Scheda di Laboratorio",
           "kind": "review",
-          "example": "Esempio applicativo: una pagina HTML5 intitolata \"Gestione Clienti\", contestualizzata a un istituto professionale per i servizi commerciali, con tag semantici, div organizzati in sezioni, una tabella clienti e un foglio di stile CSS esterno collegato con <link>.",
-          "exercise": "Attività operativa: costruire in autonomia la pagina \"Gestione Clienti\" rispettando le specifiche: (1) tabella con almeno 3 righe e 3 colonne con dati clienti a scelta; (2) contenuti organizzati in div logici, incluso un div con un paragrafo che spiega lo scopo della pagina, centrato; (3) foglio di stile CSS esterno linkato con almeno 3 regole — almeno un contenitore deve avere colore di sfondo, dimensione del font diversa e un bordo. Extra point: favicon nel <head> con il logo dell'istituto (tutorial: w3schools.com/html/html_favicon.asp). Consegna: cartella zippata con html, css, immagini e favicon.",
-          "deepDive": "Approfondimento: perché separare struttura (HTML) e presentazione (CSS) — stesso principio della separazione dati/logica che affronteremo nelle basi di dati: un contenuto ben strutturato è più facile da mantenere, riusare e collegare ad altri sistemi (proprio come una tabella dati clienti in HTML anticipa una tabella clienti in un database).",
-          "competence": "Applicare i linguaggi di marcatura e di stile per strutturare e presentare contenuti web coerenti con un contesto aziendale, operando con metodo e attenzione ai dettagli tecnici.",
-          "evidence": "Cartella zippata consegnata contenente la pagina \"Gestione Clienti\" (HTML + CSS + favicon + immagini) e autovalutazione del rispetto delle specifiche.",
+          "example": "Esempio applicativo: la pagina HTML5 semantica «Gestione Clienti» per i servizi commerciali. Comprende albero strutturale (Doctype, Head, Title, Body, Favicon), contenitori logici (div con classe barricata, gerarchia h1-p), collegamento a foglio di stile CSS esterno (style.css) e tabella strutturata con riga di intestazione (th ID, Cliente, Stato) e dati record (td).",
+          "exercise": "Attività operativa su Web App: accedere a «HTML Zombies» (https://html-zombies.vercel.app) e superare i 10 livelli progressivi della missione. Specifiche di laboratorio: (1) registrazione postazione con Codice Classe del docente e componenti squadra (crittografia Zero-PII AES-256); (2) digitazione manuale dei tag senza copia/incolla (rilevato e bloccato dal sistema anti-cheat con avviso sonoro); (3) ricostruzione guidata dello scheletro semantico nei capitoli 1 e 2; (4) superamento della soglia del livello 4 con fading progressivo dei suggerimenti a memoria; (5) abbattimento del Boss finale codificando da zero la tabella clienti (table, tr, th per ID/Cliente/Stato, td). Consegna: completamento verificato in tempo reale dal docente sulla dashboard e certificato digitale «Master Architetto HTML5».",
+          "deepDive": "Approfondimento: perché separare struttura (HTML) e presentazione (CSS) — stesso principio della separazione dati/logica che affronteremo nelle basi di dati: un contenuto ben strutturato è più facile da mantenere, riusare e collegare ad altri sistemi (proprio come una tabella dati clienti in HTML anticipa le tabelle relazionali e i record di un database).",
+          "competence": "Applicare i linguaggi di marcatura e di stile per strutturare e presentare contenuti web coerenti con un contesto aziendale, operando con metodo, autonomia mnemonica e attenzione ai dettagli tecnici.",
+          "evidence": "Completamento dei 10 livelli su HTML Zombies registrato in tempo reale su Supabase (livello 10 raggiunto, tempo di risoluzione, tentativi regolari e 0 tentativi di copia/incolla) con certificato finale «Master Architetto HTML5».",
           "materials": [
-            "Computer del laboratorio",
-            "VS Code",
-            "Browser per l'anteprima",
-            "Scheda pratica «HTML Esercizio»"
+            "Computer del laboratorio con connessione internet",
+            "Browser moderno (Chrome / Edge / Firefox)",
+            "Web App «HTML Zombies» (https://html-zombies.vercel.app)",
+            "Codice Classe comunicato dal docente"
           ],
           "phases": [
             {
-              "label": "Ripasso guidato: tag principali, div, tabelle, link a CSS esterno",
-              "minutes": 20
+              "label": "Briefing missione & accesso a HTML Zombies con Codice Classe",
+              "minutes": 15
             },
             {
-              "label": "Consegna della scheda pratica e analisi delle specifiche",
-              "minutes": 10
+              "label": "Capitolo 1: Lo Scheletro Sacro (Doctype, Head, Title, Body, Favicon)",
+              "minutes": 25
             },
             {
-              "label": "Sviluppo autonomo della pagina Gestione Clienti in VS Code",
-              "minutes": 45
+              "label": "Capitolo 2: Barricate Semantiche & Stile CSS (Div, H1, P, Link style.css)",
+              "minutes": 35
             },
             {
-              "label": "Rifinitura CSS, favicon extra point e verifica requisiti",
+              "label": "Capitolo 3 & Boss Fight: La Gabbia dei Dati a Memoria (Tabelle clienti, Th/Td e certificazione)",
               "minutes": 45
             }
           ],
-          "quickCheck": "Controllo rapido: come si collega un foglio di stile CSS esterno a una pagina HTML, e quale tag va usato nel <head> per la favicon?",
-          "flashCard": "HTML5 & CSS — fronte: elenca i tag/attributi richiesti (div, table, link, head); retro: descrivi un errore tipico (dimenticare il link al CSS, tabella senza intestazioni) e come verificarlo.",
-          "bookActivity": "Scheda pratica guidata + realizzazione autonoma",
+          "quickCheck": "Controllo rapido: quali tag e attributi sono indispensabili per definire una tabella dati accessibile con intestazioni, e come si collega un foglio di stile CSS esterno?",
+          "flashCard": "HTML5 & CSS — fronte: elenca i tag fondamentali della tabella Gestione Clienti (table, tr, th, td); retro: spiega la differenza tra <th> e <td> e il ruolo dell'attributo rel=\"stylesheet\" nel tag <link>.",
+          "bookActivity": "Gamification interattiva su web app + report telemetrico",
           "platforms": [
-            "VS Code",
-            "Browser"
+            "HTML Zombies Web App",
+            "Browser Web"
           ],
-          "facilitatedTask": "Versione facilitata: parti da uno scheletro HTML già predisposto (struttura div e tabella vuota) e completa solo contenuti e regole CSS richieste, seguendo la checklist passo-passo.",
+          "facilitatedTask": "Versione facilitata: sfrutta il pulsante «💡 Indizio» all'interno di HTML Zombies in caso di esitazione sulla sintassi e collabora a coppie di postazione per verificare la chiusura dei tag.",
           "objectives": [
-            "Ripassare la struttura di una pagina HTML5 (tag principali, div, tabelle) e il collegamento a un foglio di stile CSS esterno.",
-            "Realizzare e verificare il prodotto laboratoriale: la pagina \"Gestione Clienti\" con tabella dati, div organizzati e almeno 3 regole di stile CSS.",
-            "Approfondire la relazione tra strutturazione dei contenuti web (HTML/CSS) e organizzazione dei dati, come ponte verso i temi di database della 4a."
+            "Ripassare la struttura di una pagina HTML5 (tag semantici, div, tabelle) e il collegamento a un foglio di stile CSS esterno.",
+            "Realizzare a memoria la pagina «Gestione Clienti» superando i 10 livelli del gioco e la boss fight finale.",
+            "Approfondire la relazione tra dati tabellari in HTML e modelli relazionali nei database della classe 4a."
           ],
-          "activity": "Ripasso guidato e laboratorio pratico: realizzazione della pagina web \"Gestione Clienti\" in HTML5 e CSS.",
-          "game": "Checklist a squadre: verifica incrociata dei requisiti (tabella, div, CSS, favicon) sulla pagina di un compagno",
+          "activity": "Laboratorio interattivo su web app «HTML Zombies»: ripasso gamificato di HTML5 e CSS con balestra laser, protezione anti-cheat e fading progressivo dei suggerimenti.",
+          "game": "HTML Zombies: survival game apocalittico a 10 livelli con balestra laser, animazioni SVG a 60 FPS, sintetizzatore sonoro 8-bit, protezione anti-cheat e telemetria crittografata.",
+          "labExercise": {
+            "tool": "HTML Zombies (Web App Live)",
+            "toolUrl": "https://html-zombies.vercel.app",
+            "objective": "Completare i 10 livelli di codifica HTML5/CSS per ripristinare la pagina semantica «Gestione Clienti» e sconfiggere l'orda mutante.",
+            "steps": [
+              "Accedi a https://html-zombies.vercel.app dal browser della tua postazione.",
+              "Inserisci il Codice Classe comunicato dal docente (es. 4INFO) e i componenti della squadra (singolo o a coppie con '+ Aggiungi Compagno').",
+              "Capitolo 1: Digita Doctype, Head, Title, Body e Favicon per calibrare i mirini laser della balestra.",
+              "Capitolo 2: Erigi le barricate semantiche (Div con classe barricata, H1, P) e collega il foglio di stile CSS esterno (style.css).",
+              "Attenzione al Livello 4: ascolta l'allarme del Comandante Ada; dai livelli successivi le munizioni non saranno più suggerite a video e dovrai richiamare i tag a memoria.",
+              "Capitolo 3 & Boss Finale: Codifica da zero l'intera tabella clienti con intestazioni (ID, Cliente, Stato) e dati, neutralizza il Boss e sblocca il Certificato Master!"
+            ],
+            "verification": "Raggiungimento del Livello 10 con telemetria crittografata su Supabase (verificata in tempo reale dal docente sulla dashboard) e rilascio del certificato digitale."
+          },
           "studentCta": [
             {
-              "label": "Apri le risorse",
-              "href": "#risorse"
+              "label": "🏹 Gioca a HTML Zombies (Web App Live)",
+              "href": "https://html-zombies.vercel.app"
             },
             {
               "label": "Ripassa",
               "href": "#ripasso"
             }
           ],
-          "explanation": "In questa tappa ripassiamo HTML5 e CSS prima di affrontare le basi di dati: costruiamo una pagina \"Gestione Clienti\" contestualizzata ai servizi commerciali, applicando struttura semantica, div organizzativi, tabelle dati e un foglio di stile esterno — competenze che ritroveremo, in forma di dati strutturati, nelle prossime lezioni sui database."
+          "explanation": "In questa tappa ripassiamo HTML5 e CSS prima di affrontare le basi di dati: costruiamo la pagina «Gestione Clienti» contestualizzata ai servizi commerciali, applicando struttura semantica, div organizzativi, tabelle dati e un foglio di stile esterno — competenze che ritroveremo, in forma di dati strutturati, nelle prossime lezioni sui database."
         }
       ]
     },

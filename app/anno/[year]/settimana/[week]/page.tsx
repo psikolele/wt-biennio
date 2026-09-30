@@ -51,6 +51,35 @@ export default async function WeekPage({ params }: { params: Promise<{ year: str
           </aside>
         )}
 
+        {year === 4 && weekNumber === 1 && (
+          <aside className="mission-panel mt-10 mb-6" aria-label="Web App Didattica: HTML Zombies">
+            <p className="portal-eyebrow">Laboratorio Operativo · Gamification Interattiva</p>
+            <h3 className="text-xl font-bold text-[var(--ink)] mt-1 flex items-center gap-2">
+              <span>🏹 HTML Zombies: Difesa della «Gestione Clienti»</span>
+            </h3>
+            <p className="portal-muted mt-2 text-sm leading-relaxed max-w-[70ch]">
+              Palestra interattiva a 10 tappe su modello <em>Flexbox Zombies</em>. Lavora singolarmente o a coppie di postazione: digita il codice da zero (anti-copia/incolla attivo con avviso sonoro), affronta il fading progressivo dei suggerimenti e sconfiggi il Boss finale ricostruendo la tabella clienti e il collegamento al foglio di stile CSS.
+            </p>
+            <div className="support-actions mt-4 flex flex-wrap items-center gap-3">
+              <a
+                href="https://html-zombies.vercel.app"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="portal-button text-xs min-h-[44px] py-2 px-5 inline-flex items-center gap-2 font-bold shadow-md"
+              >
+                <span>🏹 Entra in Partita (Web App Live)</span>
+                <span aria-hidden="true">↗</span>
+              </a>
+              <span className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg border border-[var(--line-strong)] bg-[var(--surface-soft)] text-xs text-[var(--muted)]">
+                🔒 GDPR Zero-PII (Crittografia AES-256)
+              </span>
+              <span className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg border border-[var(--line-strong)] bg-[var(--surface-soft)] text-xs text-[var(--muted)]">
+                🎯 10 Livelli Progressivi
+              </span>
+            </div>
+          </aside>
+        )}
+
         <section className="mt-10" aria-label="Lezioni della settimana">
           {week.lessons.map((lesson) => <LessonCard key={lesson.id} lesson={lesson} />)}
         </section>

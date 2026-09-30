@@ -43,3 +43,16 @@
   3. Limite tentativi falliti per IP in memoria (`app/lib/rate-limit-core.mjs`): docenti 8/15 min, classi 40/10 min (IP scolastico condiviso via NAT). Da affiancare a una regola Vercel Firewall.
   4. Verifica sessione classe lato server (`app/lib/class-access.ts`) nel layout **e in ogni pagina** di `/anno/[year]`: Next serializza il payload della pagina anche se il layout non renderizza i children, quindi il controllo nel solo layout non basta.
   5. `/api/quizzes/*` richiede sessione docente.
+
+
+### 2026-09-30 — Integrazione Completa 5 Classi nella Console Docenti (Hub Didattico & Piani Settimanali)
+- **Problema**: La Console Docenti (`/docenti`) era limitata al biennio e non esponeva il quadro organico delle 5 classi (1ª TIC, 2ª TIC, 3ª INF, 4ª INF, 5ª INF). Mancava la navigazione del piano didattico annuale (33 settimane a classe), l'accesso alle UDA ministeriali/d'istituto dai documenti ufficiali del docente, il download dei `.docx` d'istituto e la mappatura dei compiti facilitati BES/DSA e verifiche per il triennio.
+- **Decisione Concettuale (Allineamento `/grill-me`)**:
+  1. **Hub Didattico in Primo Piano**: Componente interattivo [`TeacherClassesHub`](app/components/teacher-classes-hub.tsx) con selettore delle 5 classi sotto l'header.
+  2. **Architettura a 3 Sotto-Tab per Classe**:
+     - *Piano Didattico Settimanale (33 Settimane)*: Ricerca testuale e filtri per tipologia (laboratorio, teoria, progetto, verifica). Visualizza minutaggi delle fasi, competenze, evidenze e in risalto l'adattamento didattico BES/DSA (`facilitatedTask`) con link diretto alla lezione studente.
+     - *UDA & Competenze Ministeriali*: Mappatura formale di tutte le UDA estratte dai documenti ministeriali del docente (`PROGRAMMAZIONE_DOCX`), con competenze in uscita, abilità, conoscenze, contenuti, metodologie e tipologie di verifica.
+     - *Verifiche, Laboratori & Criteri*: Strategie formative/sommative, criteri collegiali e collegamenti diretti agli strumenti (Quiz LIM, Scratch, Access/SQL, Interactive Crypto Lab per la 5ª, Wireshark, Packet Tracer e Capstone Project per l'Esame di Stato).
+  3. **File Ufficiali Scaricabili**: I documenti `.docx` di programmazione annuale per ciascuna delle 5 classi e le proposte UDA (Biennio e Triennio) sono resi scaricabili in `public/downloads/programmazioni/`.
+  4. **Test di Regressione e Certificazione**: Aggiunto [`tests/teacher-hub.test.mjs`](tests/teacher-hub.test.mjs) per verificare integrità delle 5 classi, UDA e file `.docx`. Totale test suite: 28/28 passati, build Next.js (193 pagine statiche/dinamiche) a zero errori.
+
