@@ -3,10 +3,12 @@
 import { type FormEvent, useState } from "react";
 import { useRouter } from "next/navigation";
 import Link from "next/link";
+import { PasswordToggleIcon } from "@/app/components/password-toggle-icon";
 
 export default function TeacherLoginPage() {
   const [error, setError] = useState("");
   const [isLoading, setIsLoading] = useState(false);
+  const [showPassword, setShowPassword] = useState(false);
   const router = useRouter();
 
   async function submit(event: FormEvent<HTMLFormElement>) {
@@ -55,15 +57,27 @@ export default function TeacherLoginPage() {
               <label htmlFor="teacher-password" className="block text-xs font-bold uppercase tracking-wider text-[var(--muted)]">
                 Password condivisa
               </label>
-              <input
-                id="teacher-password"
-                name="password"
-                type="password"
-                required
-                autoComplete="current-password"
-                aria-describedby="password-help login-error"
-                className="portal-input mt-2 min-h-11 w-full rounded-xl px-4 py-3 text-sm outline-none focus:border-[var(--blue)]"
-              />
+              <div className="relative mt-2">
+                <input
+                  id="teacher-password"
+                  name="password"
+                  type={showPassword ? "text" : "password"}
+                  required
+                  autoComplete="current-password"
+                  aria-describedby="password-help login-error"
+                  className="portal-input min-h-11 w-full rounded-xl pl-4 pr-12 py-3 text-sm outline-none focus:border-[var(--blue)]"
+                />
+                <button
+                  type="button"
+                  onClick={() => setShowPassword((prev) => !prev)}
+                  aria-label={showPassword ? "Nascondi password" : "Mostra password"}
+                  aria-pressed={showPassword}
+                  title={showPassword ? "Nascondi password" : "Mostra password"}
+                  className="group absolute right-2.5 top-1/2 -translate-y-1/2 p-2 rounded-lg text-[var(--muted)] hover:text-[var(--ink)] hover:bg-white/10 active:scale-90 transition-all duration-200 focus:outline-none focus:ring-2 focus:ring-[var(--blue)]/40"
+                >
+                  <PasswordToggleIcon isVisible={showPassword} />
+                </button>
+              </div>
               <span id="password-help" className="portal-muted mt-2 block text-xs leading-relaxed">
                 La password è condivisa tra i docenti e non identifica singole persone.
               </span>

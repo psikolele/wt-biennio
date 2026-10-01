@@ -3,6 +3,7 @@
 import { useState, useEffect, type FormEvent } from "react";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
+import { PasswordToggleIcon } from "./password-toggle-icon";
 
 interface ClassGateProps {
   year: number;
@@ -29,6 +30,7 @@ export function ClassGate({ year, children, serverUnlocked }: ClassGateProps) {
     serverMode ? (serverUnlocked ? "unlocked" : "locked") : "loading"
   );
   const [password, setPassword] = useState("");
+  const [showPassword, setShowPassword] = useState(false);
   const [error, setError] = useState("");
   const [isSubmitting, setIsSubmitting] = useState(false);
 
@@ -168,18 +170,30 @@ export function ClassGate({ year, children, serverUnlocked }: ClassGateProps) {
                 >
                   Password di Classe:
                 </label>
-                <input
-                  id="class-password"
-                  name="class-password"
-                  type="password"
-                  autoFocus
-                  required
-                  autoComplete="current-password"
-                  value={password}
-                  onChange={(e) => setPassword(e.target.value)}
-                  placeholder="Inserisci la password..."
-                  className="portal-input w-full min-h-12 rounded-xl px-4 py-3 text-sm font-mono tracking-wider outline-none focus:border-[var(--blue)] transition-colors"
-                />
+                <div className="relative">
+                  <input
+                    id="class-password"
+                    name="class-password"
+                    type={showPassword ? "text" : "password"}
+                    autoFocus
+                    required
+                    autoComplete="current-password"
+                    value={password}
+                    onChange={(e) => setPassword(e.target.value)}
+                    placeholder="Inserisci la password..."
+                    className="portal-input w-full min-h-12 rounded-xl pl-4 pr-12 py-3 text-sm font-mono tracking-wider outline-none focus:border-[var(--blue)] transition-colors"
+                  />
+                  <button
+                    type="button"
+                    onClick={() => setShowPassword((prev) => !prev)}
+                    aria-label={showPassword ? "Nascondi password" : "Mostra password"}
+                    aria-pressed={showPassword}
+                    title={showPassword ? "Nascondi password" : "Mostra password"}
+                    className="group absolute right-2.5 top-1/2 -translate-y-1/2 p-2 rounded-lg text-[var(--muted)] hover:text-[var(--ink)] hover:bg-white/10 active:scale-90 transition-all duration-200 focus:outline-none focus:ring-2 focus:ring-[var(--blue)]/40"
+                  >
+                    <PasswordToggleIcon isVisible={showPassword} />
+                  </button>
+                </div>
               </div>
 
               {error && (

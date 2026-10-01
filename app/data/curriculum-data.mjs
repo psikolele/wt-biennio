@@ -35,7 +35,7 @@ const firstYearThemes = [
 ];
 
 const secondYearThemes = [
-  ["Ripasso Videoscrittura: formattazione avanzata, stili e layout", "Clippy Cloud Plus vol. 2, ripasso operativo"],
+  ["Accoglienza, patto d'aula e ripasso memorie PC (Curipod)", "Clippy Cloud Plus vol. 2 & Curipod Live"],
   ["Ripasso Fogli di Calcolo: formule aritmetiche, riferimenti $ e percentuali", "Clippy Cloud Plus vol. 2, ripasso operativo"],
   ["Architettura del Sistema Operativo: kernel, processi e risorse", "Clippy Cloud Plus vol. 2, cap. Sistema operativo"],
   ["Interfaccia Utente del SO: grafica GUI vs riga di comando CLI", "Clippy Cloud Plus vol. 2, cap. Sistema operativo"],
@@ -130,6 +130,14 @@ function topicText(theme, mode) {
     example: "Esempio quotidiano: quando apri 'Gestione Attività' (Task Manager) con Ctrl+Shift+Esc puoi vedere esattamente quanti processi sono attivi e quanta RAM occupa ciascuna app.",
     exercise: lab ? "Laboratorio da terminale: 1) Aprite PowerShell o il Prompt dei comandi; 2) Eseguite i comandi base di navigazione: `cd`, `dir` (o `ls`), `mkdir Prova` e `tree`; 3) Esplorate la struttura ad albero delle directory e create un file con percorsi relativi e assoluti." : "Esercizio guidato: confronta i vantaggi della GUI (intuitiva, visiva) con quelli della CLI (veloce, automatizzabile con script) e mappa la gerarchia dell'albero cartelle di sistema.",
     deepDive: "Approfondimento: qual è la differenza tra un processo (programma in esecuzione) e un thread? Perché un blocco di un'app non deve far crashare l'intero sistema operativo?"
+  };
+
+  // Accoglienza e Ripasso Memorie con Curipod (Anno 2 Settimana 1)
+  if (/ripasso memorie|memorie pc.*curipod|patto d'aula e ripasso memorie/i.test(t)) return {
+    explanation: lab ? undefined : "Ripartire in 2ª richiede di consolidare la gerarchia delle memorie (RAM volatile vs memorie di massa persistenti) e stabilire il patto d'aula e le regole di cooperazione prima dell'accesso al laboratorio.",
+    example: "Esempio quotidiano: perché se manca la corrente mentre scrivi un documento perdi il testo non salvato (RAM), mentre le foto salvate su smartphone restano intatte anche da spento (memoria flash)?",
+    exercise: "Attività cooperativa e Curipod live in aula: 1) Partecipa alla sessione interattiva Curipod da smartphone/LIM; 2) Rispondi alle sfide sulla piramide delle memorie; 3) Sfida a squadre 'Identifica la memoria corretta' per i 4 scenari pratici di vita reale.",
+    deepDive: "Approfondimento: perché non costruiamo un computer con soli 500 GB di Registri o Cache velocissimi? Come incidono costi, complessità termica e consumi nella scelta delle memorie?"
   };
 
   // Ripasso Videoscrittura & Fogli 2° Anno (Settimane 1-2)
@@ -473,8 +481,12 @@ const bsmartMaterials = {
   // Anno 2
   "2-01": { 
     canvaUrl: "https://canva.link/bu6xf78ueig64dt",
-    cta: [{ label: "Scheda Pharming & Malware (PDF)", href: "/resources/anno2/settimana-01/A1_U1_1_PHARMING.pdf" }], 
-    materials: ["Computer", "Scheda minacce online e malware comuni"] 
+    cta: [
+      { label: "Curipod: Le memorie di un PC (Live)", href: "https://curipod.com/2acf01fa-c11e-4a16-99fb-e689046c799d/lessons/16e177bc-585e-468c-a9e6-a48db0d5e44b/edit" },
+      { label: "Scheda Memorie di Massa & Supporti (PDF)", href: "/resources/anno1/settimana-04/B2_U1_3_MEMORIE_MASSA_ONLINE_VANTAGGI_LIMITI.pdf" },
+      { label: "Scheda Pharming & Malware (PDF)", href: "/resources/anno2/settimana-01/A1_U1_1_PHARMING.pdf" }
+    ], 
+    materials: ["LIM / Proiettore d'aula", "Smartphone studenti (BYOD / a coppie)", "Curipod Live Session"] 
   },
   "2-02": { cta: [{ label: "Scheda Sicurezza e Reti Sociali (PDF)", href: "/resources/anno2/settimana-02/A1_U1_2_PERICOLI_SITI_RETI_SOCIALI.pdf" }], materials: ["Computer", "Casi di studio su phishing e truffe via SMS"] },
   "2-03": { cta: [{ label: "Guida Password Manager & 2FA (PDF)", href: "/resources/anno2/settimana-03/A2_U2_1_SOFTWARE_GESTIONE_PASSWORD.pdf" }], materials: ["Computer", "App Authenticator dimostrativa e guida 2FA"] },
