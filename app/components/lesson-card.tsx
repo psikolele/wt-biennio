@@ -104,17 +104,22 @@ export function LessonCard({ lesson }: { lesson: Lesson }) {
             <h3 id={`${lesson.id}-objectives`}>Obiettivi della tappa</h3>
             <ul>{lesson.objectives.map((objective) => <li key={objective}>{objective}</li>)}</ul>
             <div className="lesson-actions">
-              {lesson.studentCta.map((cta) => (
-                <Link
-                  key={cta.label}
-                  href={cta.href}
-                  target={cta.href.startsWith("http") ? "_blank" : undefined}
-                  rel={cta.href.startsWith("http") ? "noopener noreferrer" : undefined}
-                  className="portal-button"
-                >
-                  {cta.label}
-                </Link>
-              ))}
+              {lesson.studentCta.map((cta) => {
+                const isInCaricamento = cta.href.startsWith("#in-caricamento");
+                return (
+                  <Link
+                    key={cta.label}
+                    href={cta.href}
+                    target={cta.href.startsWith("http") ? "_blank" : undefined}
+                    rel={cta.href.startsWith("http") ? "noopener noreferrer" : undefined}
+                    onClick={isInCaricamento ? (e) => e.preventDefault() : undefined}
+                    title={isInCaricamento ? "La risorsa è in fase di predisposizione e caricamento da parte del docente" : undefined}
+                    className={`portal-button ${isInCaricamento ? "opacity-60 cursor-default border-dashed border-[var(--line)] bg-[var(--surface-soft)] text-muted" : ""}`}
+                  >
+                    {cta.label}
+                  </Link>
+                );
+              })}
             </div>
           </section>
           <div className="lesson-support-grid">
