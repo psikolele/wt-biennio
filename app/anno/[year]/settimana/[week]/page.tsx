@@ -84,6 +84,35 @@ export default async function WeekPage({ params }: { params: Promise<{ year: str
           </aside>
         )}
 
+        {year === 5 && (weekNumber === 2 || weekNumber === 4) && (
+          <aside className="mission-panel mt-10 mb-6" aria-label="Web App Interattiva: Blockchain Interactive Web Hub">
+            <p className="portal-eyebrow">Laboratorio Operativo · Piattaforma Didattica Interattiva</p>
+            <h3 className="text-xl font-bold text-[var(--ink)] mt-1 flex items-center gap-2">
+              <span>⛓️ Blockchain Interactive Web Hub</span>
+            </h3>
+            <p className="portal-muted mt-2 text-sm leading-relaxed max-w-[70ch]">
+              Piattaforma interattiva per la 5ª: simula il ciclo di vita di una transazione, l&apos;albero di Merkle, il calcolo dell&apos;hash SHA-256 con effetto valanga, la Mempool in tempo reale, il mining Proof-of-Work con Nonce e il quiz didattico.
+            </p>
+            <div className="support-actions mt-4 flex flex-wrap items-center gap-3">
+              <a
+                href="/downloads/classe5/blockchain_interactive_web_hub.html"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="portal-button text-xs min-h-[44px] py-2 px-5 inline-flex items-center gap-2 font-bold shadow-md"
+              >
+                <span>⛓️ Esplora Blockchain Web Hub (Live)</span>
+                <span aria-hidden="true">↗</span>
+              </a>
+              <span className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg border border-[var(--line-strong)] bg-[var(--surface-soft)] text-xs text-[var(--muted)]">
+                ⛏️ Simulatore Proof of Work & Merkle Tree
+              </span>
+              <span className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg border border-[var(--line-strong)] bg-[var(--surface-soft)] text-xs text-[var(--muted)]">
+                🎓 Quiz Interattivo
+              </span>
+            </div>
+          </aside>
+        )}
+
         <section className="mt-10" aria-label="Lezioni della settimana">
           {week.lessons.map((lesson) => <LessonCard key={lesson.id} lesson={lesson} />)}
         </section>

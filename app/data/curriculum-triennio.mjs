@@ -4564,6 +4564,7 @@ export const triennioCurriculum = {
           "Computer del laboratorio",
           "Slide della lezione: Sistema a Doppia Cifratura Usando la Chiave Asimmetrica",
           "Slide della lezione: CRITTOGRAFIA n2",
+          "Blockchain Interactive Web Hub (Hub Interattivo Didattico)",
           "Calcolatore Online Hash SHA-256 (emn178.github.io)",
           "Palestra Crittografia XOR, Polialfabetica & Asimmetrica (in pagina)",
           "Simulatore Anders Brownworth Blockchain"
@@ -4591,6 +4592,7 @@ export const triennioCurriculum = {
         "bookActivity": "Analisi delle proprietà XOR e della struttura a blocchi della blockchain",
         "platforms": [
           "Palestra Crittografia Avanzata Integrata",
+          "Blockchain Interactive Web Hub",
           "Calcolatore SHA-256 Online",
           "CyberChef Web",
           "Brownworth Blockchain Demo"
@@ -4605,6 +4607,10 @@ export const triennioCurriculum = {
         "game": "Blockchain Relay: ricostruire l'ordine cronologico di 5 blocchi usando solo i valori hash di collegamento",
         "slideHref": "/downloads/classe5/Sistema-a-Doppia-Cifratura-Usando-la-Chiave-Asimmetrica.pptx",
         "studentCta": [
+          {
+            "label": "⛓️ Blockchain Interactive Web Hub",
+            "href": "/downloads/classe5/blockchain_interactive_web_hub.html"
+          },
           {
             "label": "Sistema Doppia Cifratura Asimmetrica",
             "href": "/downloads/classe5/Sistema-a-Doppia-Cifratura-Usando-la-Chiave-Asimmetrica.pptx"
@@ -4749,6 +4755,7 @@ export const triennioCurriculum = {
         "evidence": "Screenshot del simulatore di Anders con 5 blocchi minati con successo e report di verifica di un file firmato .p7m.",
         "materials": [
           "Computer con browser web",
+          "Blockchain Interactive Web Hub (Piattaforma Interattiva)",
           "Simulatore Anders Brownworth",
           "Software verifica firma (Dike / Adobe Reader)"
         ],
@@ -4774,6 +4781,7 @@ export const triennioCurriculum = {
         "flashCard": "Laboratorio Blockchain e Firme: fronte — ruolo del Nonce e verifica della firma; retro — il Nonce è il numero variabile che risolve la Proof-of-Work. Nella firma digitale, se il file viene alterato l'hash ricalcolato non corrisponde e la firma decade.",
         "bookActivity": "Simulazione interattiva su registro distribuito e mining",
         "platforms": [
+          "Blockchain Interactive Web Hub",
           "Simulatore Anders Brownworth",
           "Dike / Adobe Acrobat Reader",
           "Browser"
@@ -4787,6 +4795,10 @@ export const triennioCurriculum = {
         "activity": "Laboratorio operativo su simulatori web di blockchain e tool di verifica della firma digitale.",
         "game": "Mining Race: gara a squadre nel minare 3 blocchi consecutivi con diversa difficoltà",
         "studentCta": [
+          {
+            "label": "⛓️ Blockchain Interactive Web Hub",
+            "href": "/downloads/classe5/blockchain_interactive_web_hub.html"
+          },
           {
             "label": "Apri Simulatore Blockchain",
             "href": "https://andersbrownworth.com/blockchain/blockchain"

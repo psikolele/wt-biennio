@@ -1,0 +1,1210 @@
+<!DOCTYPE html>
+<html lang="it" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Blockchain Interactive Web Hub - Piattaforma Didattica Interattiva</title>
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- FontAwesome Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Fira+Code:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+    <script>
+        tailwind.config = {
+            darkMode: 'class',
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ['Plus Jakarta Sans', 'sans-serif'],
+                        mono: ['Fira Code', 'monospace'],
+                    },
+                    colors: {
+                        brand: {
+                            50: '#f0fdf4',
+                            500: '#22c55e',
+                            600: '#16a34a',
+                            700: '#15803d',
+                        },
+                        btc: {
+                            500: '#0284c7',
+                            600: '#0369a1',
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        .glass-card {
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(12px);
+            border: 1px solid rgba(226, 232, 240, 0.9);
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05), 0 2px 4px -1px rgba(0, 0, 0, 0.03);
+        }
+        @keyframes pulse-glow {
+            0%, 100% { box-shadow: 0 0 15px rgba(2, 132, 199, 0.2); }
+            50% { box-shadow: 0 0 30px rgba(2, 132, 199, 0.4); }
+        }
+        .mining-active {
+            animation: pulse-glow 0.8s infinite alternate;
+        }
+        .broken-chain {
+            background-color: rgba(239, 68, 68, 0.05) !important;
+            border-color: #ef4444 !important;
+        }
+        .valid-chain {
+            background-color: rgba(16, 185, 129, 0.05) !important;
+            border-color: #10b981 !important;
+        }
+    </style>
+</head>
+<body class="bg-slate-100 text-slate-900 font-sans min-h-screen transition-colors duration-300">
+
+    <header class="sticky top-0 z-50 glass-card shadow-sm border-b border-slate-200">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-16 flex items-center justify-between">
+            <div class="flex items-center gap-3">
+                <div class="w-10 h-10 rounded-xl bg-gradient-to-tr from-sky-600 to-cyan-500 flex items-center justify-center text-white font-black text-xl shadow-md">
+                    <i class="fa-solid fa-cubes"></i>
+                </div>
+                <div>
+                    <h1 class="font-extrabold text-lg leading-tight tracking-tight text-slate-900">Blockchain<span class="text-sky-600">Core</span></h1>
+                    <p class="text-xs text-slate-500 font-medium">Laboratorio Didattico Interattivo</p>
+                </div>
+            </div>
+
+            <!-- Navigation Tabs -->
+            <nav class="hidden lg:flex items-center gap-1 bg-slate-200/70 p-1 rounded-xl border border-slate-300 overflow-x-auto">
+                <button onclick="switchTab('intro')" id="tab-btn-intro" class="tab-btn px-3 py-1.5 rounded-lg text-xs font-bold transition-all text-white bg-sky-600 shadow-sm whitespace-nowrap">
+                    <i class="fa-solid fa-book-open mr-1.5"></i> Presentazione
+                </button>
+                <button onclick="switchTab('sintesi')" id="tab-btn-sintesi" class="tab-btn px-3 py-1.5 rounded-lg text-xs font-bold transition-all text-slate-700 hover:text-slate-900 whitespace-nowrap">
+                    <i class="fa-solid fa-file-lines mr-1.5"></i> Sintesi &amp; Cheat Sheet
+                </button>
+                <button onclick="switchTab('lifecycle')" id="tab-btn-lifecycle" class="tab-btn px-3 py-1.5 rounded-lg text-xs font-bold transition-all text-slate-700 hover:text-slate-900 whitespace-nowrap">
+                    <i class="fa-solid fa-route mr-1.5"></i> Passo-Passo (TX)
+                </button>
+                <button onclick="switchTab('merkle')" id="tab-btn-merkle" class="tab-btn px-3 py-1.5 rounded-lg text-xs font-bold transition-all text-slate-700 hover:text-slate-900 whitespace-nowrap">
+                    <i class="fa-solid fa-sitemap mr-1.5"></i> Albero di Merkle
+                </button>
+                <button onclick="switchTab('hash')" id="tab-btn-hash" class="tab-btn px-3 py-1.5 rounded-lg text-xs font-bold transition-all text-slate-700 hover:text-slate-900 whitespace-nowrap">
+                    <i class="fa-solid fa-hashtag mr-1.5"></i> Hash SHA-256
+                </button>
+                <button onclick="switchTab('mempool')" id="tab-btn-mempool" class="tab-btn px-3 py-1.5 rounded-lg text-xs font-bold transition-all text-slate-700 hover:text-slate-900 whitespace-nowrap">
+                    <i class="fa-solid fa-diagram-project mr-1.5"></i> Mempool
+                </button>
+                <button onclick="switchTab('miner')" id="tab-btn-miner" class="tab-btn px-3 py-1.5 rounded-lg text-xs font-bold transition-all text-slate-700 hover:text-slate-900 whitespace-nowrap">
+                    <i class="fa-solid fa-pickaxe mr-1.5"></i> Mining PoW
+                </button>
+                <button onclick="switchTab('chain')" id="tab-btn-chain" class="tab-btn px-3 py-1.5 rounded-lg text-xs font-bold transition-all text-slate-700 hover:text-slate-900 whitespace-nowrap">
+                    <i class="fa-solid fa-link mr-1.5"></i> Catena
+                </button>
+                <button onclick="switchTab('quiz')" id="tab-btn-quiz" class="tab-btn px-3 py-1.5 rounded-lg text-xs font-bold transition-all text-slate-700 hover:text-slate-900 whitespace-nowrap">
+                    <i class="fa-solid fa-graduation-cap mr-1.5"></i> Quiz
+                </button>
+            </nav>
+
+            <div class="flex items-center gap-2">
+                <a href="#lifecycle" onclick="switchTab('lifecycle')" class="px-3 py-1.5 text-xs font-bold bg-sky-600 hover:bg-sky-500 text-white rounded-lg transition shadow">
+                    <i class="fa-solid fa-play mr-1"></i> Avvia Simulazione
+                </a>
+            </div>
+        </div>
+
+        <!-- Mobile Navigation -->
+        <div class="lg:hidden flex overflow-x-auto gap-1 p-2 border-t border-slate-200 bg-slate-200 text-xs scrollbar-none">
+            <button onclick="switchTab('intro')" class="mobile-tab px-3 py-1.5 rounded-lg font-bold bg-sky-600 text-white whitespace-nowrap">Presentazione</button>
+            <button onclick="switchTab('sintesi')" class="mobile-tab px-3 py-1.5 rounded-lg font-bold bg-white text-slate-700 whitespace-nowrap">Sintesi</button>
+            <button onclick="switchTab('lifecycle')" class="mobile-tab px-3 py-1.5 rounded-lg font-bold bg-white text-slate-700 whitespace-nowrap">Passo-Passo</button>
+            <button onclick="switchTab('merkle')" class="mobile-tab px-3 py-1.5 rounded-lg font-bold bg-white text-slate-700 whitespace-nowrap">Merkle</button>
+            <button onclick="switchTab('hash')" class="mobile-tab px-3 py-1.5 rounded-lg font-bold bg-white text-slate-700 whitespace-nowrap">SHA-256</button>
+            <button onclick="switchTab('mempool')" class="mobile-tab px-3 py-1.5 rounded-lg font-bold bg-white text-slate-700 whitespace-nowrap">Mempool</button>
+            <button onclick="switchTab('miner')" class="mobile-tab px-3 py-1.5 rounded-lg font-bold bg-white text-slate-700 whitespace-nowrap">Mining</button>
+            <button onclick="switchTab('chain')" class="mobile-tab px-3 py-1.5 rounded-lg font-bold bg-white text-slate-700 whitespace-nowrap">Catena</button>
+            <button onclick="switchTab('quiz')" class="mobile-tab px-3 py-1.5 rounded-lg font-bold bg-white text-slate-700 whitespace-nowrap">Quiz</button>
+        </div>
+    </header>
+
+    <main class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
+
+        <!-- SECTION 1: PRESENTAZIONE APPROFONDITA -->
+        <section id="tab-intro" class="tab-content block space-y-8">
+            
+            <!-- Hero Header -->
+            <div class="glass-card rounded-3xl p-8 sm:p-12 relative overflow-hidden border border-slate-200">
+                <div class="absolute -right-10 -bottom-10 opacity-5 text-sky-600 text-9xl pointer-events-none">
+                    <i class="fa-solid fa-cubes"></i>
+                </div>
+                <div class="max-w-3xl space-y-4">
+                    <span class="inline-flex items-center gap-2 px-3 py-1 rounded-full text-xs font-bold bg-sky-100 text-sky-700 border border-sky-200">
+                        <i class="fa-solid fa-globe"></i> Fondamenti Teorici &amp; Storia
+                    </span>
+                    <h2 class="text-3xl sm:text-5xl font-black text-slate-900 leading-tight">
+                        Che cos'è la Blockchain e come rivoluziona la fiducia digitale
+                    </h2>
+                    <p class="text-base sm:text-lg text-slate-700 leading-relaxed">
+                        La <strong>Blockchain</strong> è un registro contabile digitale (<em>Distributed Ledger</em>) condiviso e immutabile. Consente di trasferire valore e dati direttamente tra utenti (<strong>Peer-to-Peer</strong>) senza dover ricorrere a un intermediario centrale come una banca o uno stato.
+                    </p>
+                </div>
+            </div>
+
+            <!-- Historical Context Cards -->
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+                <div class="glass-card rounded-2xl p-6 border-l-4 border-l-sky-500">
+                    <div class="w-10 h-10 rounded-xl bg-sky-100 text-sky-600 flex items-center justify-center font-bold text-lg mb-4">
+                        <i class="fa-solid fa-calendar-days"></i>
+                    </div>
+                    <h3 class="font-bold text-lg text-slate-900 mb-2">2008: L'Anno di Svolta</h3>
+                    <p class="text-sm text-slate-600 leading-relaxed">
+                        Durante la crisi finanziaria globale, un'entità anonima sotto lo pseudonimo di <strong>Satoshi Nakamoto</strong> pubblica il Whitepaper di Bitcoin: <em>"Bitcoin: A Peer-to-Peer Electronic Cash System"</em>.
+                    </p>
+                </div>
+
+                <div class="glass-card rounded-2xl p-6 border-l-4 border-l-emerald-500">
+                    <div class="w-10 h-10 rounded-xl bg-emerald-100 text-emerald-600 flex items-center justify-center font-bold text-lg mb-4">
+                        <i class="fa-solid fa-cube"></i>
+                    </div>
+                    <h3 class="font-bold text-lg text-slate-900 mb-2">3 Gennaio 2009: Genesis Block</h3>
+                    <p class="text-sm text-slate-600 leading-relaxed">
+                        Viene minato il primo blocco della storia (<strong>Blocco #0</strong>). In esso Nakamoto incide la celebre frase del Times sul salvataggio bancario, segnando l'inizio dell'era della moneta decentralizzata.
+                    </p>
+                </div>
+
+                <div class="glass-card rounded-2xl p-6 border-l-4 border-l-purple-500">
+                    <div class="w-10 h-10 rounded-xl bg-purple-100 text-purple-600 flex items-center justify-center font-bold text-lg mb-4">
+                        <i class="fa-solid fa-key"></i>
+                    </div>
+                    <h3 class="font-bold text-lg text-slate-900 mb-2">Eliminazione del Terzo Fiduciario</h3>
+                    <p class="text-sm text-slate-600 leading-relaxed">
+                        Prima della blockchain, per evitare che una moneta digitale venisse spesa due volte (<em>Double Spending Problem</em>) serviva una banca centrale. La blockchain risolve questo problema con la matematica e la crittografia.
+                    </p>
+                </div>
+            </div>
+
+            <!-- Architectural Comparison: Centralized vs Decentralized -->
+            <div class="glass-card rounded-2xl p-8 space-y-6">
+                <div class="text-center max-w-2xl mx-auto space-y-2">
+                    <h3 class="text-2xl font-extrabold text-slate-900">Architettura Centralizzata vs. Decentralizzata</h3>
+                    <p class="text-sm text-slate-600">Come cambia la gestione delle transazioni e dei dati.</p>
+                </div>
+
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-8 pt-4">
+                    <!-- Centralized Model -->
+                    <div class="bg-white p-6 rounded-2xl border border-red-200 shadow-sm relative">
+                        <div class="flex items-center gap-3 mb-4">
+                            <span class="p-2 rounded-lg bg-red-100 text-red-600"><i class="fa-solid fa-building-columns text-xl"></i></span>
+                            <div>
+                                <h4 class="font-bold text-slate-900 text-lg">Modello Bancario Tradizionale</h4>
+                                <span class="text-xs text-red-600 font-semibold uppercase tracking-wider">Controllo Centralizzato</span>
+                            </div>
+                        </div>
+                        <ul class="space-y-3 text-sm text-slate-700">
+                            <li class="flex items-start gap-2"><i class="fa-solid fa-xmark text-red-600 mt-1"></i> <span><strong>Single Point of Failure:</strong> Se i server centrali vanno offline, l'intero sistema si blocca.</span></li>
+                            <li class="flex items-start gap-2"><i class="fa-solid fa-xmark text-red-600 mt-1"></i> <span><strong>Opacità:</strong> Il registro è privato e modificabile dall'ente gestore.</span></li>
+                            <li class="flex items-start gap-2"><i class="fa-solid fa-xmark text-red-600 mt-1"></i> <span><strong>Censura:</strong> La banca può bloccare o rifiutare le transazioni in qualsiasi momento.</span></li>
+                        </ul>
+                    </div>
+
+                    <!-- Decentralized Model -->
+                    <div class="bg-white p-6 rounded-2xl border border-emerald-200 shadow-sm relative">
+                        <div class="flex items-center gap-3 mb-4">
+                            <span class="p-2 rounded-lg bg-emerald-100 text-emerald-600"><i class="fa-solid fa-network-wired text-xl"></i></span>
+                            <div>
+                                <h4 class="font-bold text-slate-900 text-lg">Modello Blockchain Peer-to-Peer</h4>
+                                <span class="text-xs text-emerald-600 font-semibold uppercase tracking-wider">Controllo Distribuito</span>
+                            </div>
+                        </div>
+                        <ul class="space-y-3 text-sm text-slate-700">
+                            <li class="flex items-start gap-2"><i class="fa-solid fa-check text-emerald-600 mt-1"></i> <span><strong>Resilienza Totale:</strong> Migliaia di nodi possiedono una copia esatta del registro.</span></li>
+                            <li class="flex items-start gap-2"><i class="fa-solid fa-check text-emerald-600 mt-1"></i> <span><strong>Trasparenza Immutabile:</strong> Chiunque può verificare le transazioni passate.</span></li>
+                            <li class="flex items-start gap-2"><i class="fa-solid fa-check text-emerald-600 mt-1"></i> <span><strong>Incensurabile:</strong> Nessun singolo attore può alterare le regole di consenso.</span></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- SECTION: SINTESI & CHEAT SHEET -->
+        <section id="tab-sintesi" class="tab-content hidden space-y-8">
+            <div class="glass-card rounded-2xl p-6 sm:p-8 space-y-6">
+                <div>
+                    <span class="text-xs font-bold text-sky-600 uppercase tracking-widest">Riassunto Completo</span>
+                    <h2 class="text-3xl font-extrabold text-slate-900 mt-1">Sintesi Generale &amp; Cheat Sheet della Blockchain</h2>
+                    <p class="text-sm text-slate-600 mt-1">Tutti i pilastri fondamentali della tecnologia in un unico schema riassuntivo.</p>
+                </div>
+
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                    <!-- Pillar 1 -->
+                    <div class="bg-white p-6 rounded-2xl border border-slate-200 space-y-3 shadow-sm">
+                        <div class="flex items-center gap-3">
+                            <div class="w-10 h-10 rounded-xl bg-sky-100 text-sky-600 flex items-center justify-center font-bold">
+                                <i class="fa-solid fa-network-wired"></i>
+                            </div>
+                            <h3 class="font-bold text-base text-slate-900">1. Decentralizzazione P2P</h3>
+                        </div>
+                        <p class="text-xs text-slate-600 leading-relaxed">
+                            La rete è composta da nodi distribuiti in tutto il mondo. Non esiste un server centrale o una banca di controllo; ogni nodo valida in autonomia le transazioni secondo regole matematiche condivise.
+                        </p>
+                    </div>
+
+                    <!-- Pillar 2 -->
+                    <div class="bg-white p-6 rounded-2xl border border-slate-200 space-y-3 shadow-sm">
+                        <div class="flex items-center gap-3">
+                            <div class="w-10 h-10 rounded-xl bg-purple-100 text-purple-600 flex items-center justify-center font-bold">
+                                <i class="fa-solid fa-hashtag"></i>
+                            </div>
+                            <h3 class="font-bold text-base text-slate-900">2. Crittografia SHA-256 &amp; Effetto Valanga</h3>
+                        </div>
+                        <p class="text-xs text-slate-600 leading-relaxed">
+                            Ogni blocco e transazione viene convertito in una stringa di 256 bit. L'<strong>effetto valanga</strong> assicura che basti una minima variazione nel testo per stravolgere totalmente l'hash risultante.
+                        </p>
+                    </div>
+
+                    <!-- Pillar 3 -->
+                    <div class="bg-white p-6 rounded-2xl border border-slate-200 space-y-3 shadow-sm">
+                        <div class="flex items-center gap-3">
+                            <div class="w-10 h-10 rounded-xl bg-emerald-100 text-emerald-600 flex items-center justify-center font-bold">
+                                <i class="fa-solid fa-sitemap"></i>
+                            </div>
+                            <h3 class="font-bold text-base text-slate-900">3. Albero di Merkle</h3>
+                        </div>
+                        <p class="text-xs text-slate-600 leading-relaxed">
+                            Struttura dati ad albero che comprime migliaia di transazioni in un'unica impronta finale (<strong>Merkle Root</strong>), inserita direttamente nell'intestazione del blocco per garantire un'efficienza di verifica estrema.
+                        </p>
+                    </div>
+
+                    <!-- Pillar 4 -->
+                    <div class="bg-white p-6 rounded-2xl border border-slate-200 space-y-3 shadow-sm">
+                        <div class="flex items-center gap-3">
+                            <div class="w-10 h-10 rounded-xl bg-amber-100 text-amber-600 flex items-center justify-center font-bold">
+                                <i class="fa-solid fa-pickaxe"></i>
+                            </div>
+                            <h3 class="font-bold text-base text-slate-900">4. Proof of Work (PoW) &amp; Mining</h3>
+                        </div>
+                        <p class="text-xs text-slate-600 leading-relaxed">
+                            Meccanismo di consenso in cui i miners competono per trovare un numero casuale (<strong>Nonce</strong>) tale che l'hash del blocco inizi con un determinato numero di zeri, proteggendo la rete da attori malevoli.
+                        </p>
+                    </div>
+                </div>
+
+                <!-- Pillar 5 (Full width) -->
+                <div class="bg-white p-6 rounded-2xl border border-slate-200 space-y-3 shadow-sm">
+                    <div class="flex items-center gap-3">
+                        <div class="w-10 h-10 rounded-xl bg-sky-100 text-sky-600 flex items-center justify-center font-bold">
+                            <i class="fa-solid fa-link"></i>
+                        </div>
+                        <h3 class="font-bold text-base text-slate-900">5. Immutabilità e Concatenamento Crittografico</h3>
+                    </div>
+                    <p class="text-xs text-slate-600 leading-relaxed">
+                        Ogni blocco contiene il <strong>Previous Hash</strong> del blocco precedente. Se un utente tenta di modificare una transazione passata, l'hash del blocco cambia, spezzando istantaneamente la catena e rendendo la manomissione palese a tutta la rete.
+                    </p>
+                </div>
+            </div>
+        </section>
+
+        <!-- SECTION 2: CICLO DI VITA PASSO-PASSO (Marco -> Elisa) -->
+        <section id="tab-lifecycle" class="tab-content hidden space-y-8">
+            <div class="glass-card rounded-2xl p-6 sm:p-8 space-y-6">
+                <div>
+                    <span class="text-xs font-bold text-sky-600 uppercase tracking-widest">Esempio Pratico Didattico</span>
+                    <h2 class="text-3xl font-extrabold text-slate-900 mt-1">Il Viaggio di una Transazione: Marco invia 1.5 BTC ad Elisa</h2>
+                    <p class="text-sm text-slate-600 mt-1">Naviga attraverso le 5 fasi per capire in dettaglio cosa succede dietro le quinte.</p>
+                </div>
+
+                <!-- Stepper Buttons -->
+                <div class="grid grid-cols-2 sm:grid-cols-5 gap-2">
+                    <button onclick="setLifeStep(1)" id="step-btn-1" class="step-nav-btn p-3 rounded-xl border border-sky-500 bg-sky-50 text-sky-700 font-bold text-xs flex flex-col items-center gap-1 shadow-sm">
+                        <span>FASE 01</span>
+                        <span class="text-slate-800">Creazione &amp; Firma</span>
+                    </button>
+                    <button onclick="setLifeStep(2)" id="step-btn-2" class="step-nav-btn p-3 rounded-xl border border-slate-300 bg-white text-slate-600 font-bold text-xs flex flex-col items-center gap-1">
+                        <span>FASE 02</span>
+                        <span class="text-slate-800">Mempool &amp; Nodi</span>
+                    </button>
+                    <button onclick="setLifeStep(3)" id="step-btn-3" class="step-nav-btn p-3 rounded-xl border border-slate-300 bg-white text-slate-600 font-bold text-xs flex flex-col items-center gap-1">
+                        <span>FASE 03</span>
+                        <span class="text-slate-800">Aggregazione Merkle</span>
+                    </button>
+                    <button onclick="setLifeStep(4)" id="step-btn-4" class="step-nav-btn p-3 rounded-xl border border-slate-300 bg-white text-slate-600 font-bold text-xs flex flex-col items-center gap-1">
+                        <span>FASE 04</span>
+                        <span class="text-slate-800">Mining &amp; PoW</span>
+                    </button>
+                    <button onclick="setLifeStep(5)" id="step-btn-5" class="step-nav-btn p-3 rounded-xl border border-slate-300 bg-white text-slate-600 font-bold text-xs flex flex-col items-center gap-1">
+                        <span>FASE 05</span>
+                        <span class="text-slate-800">Concatenamento</span>
+                    </button>
+                </div>
+
+                <!-- STEP DISPLAY CARDS -->
+                <!-- Step 1 Content -->
+                <div id="step-card-1" class="step-card block bg-white p-6 sm:p-8 rounded-2xl border border-slate-200 shadow-sm space-y-6">
+                    <div class="flex items-center gap-4">
+                        <div class="w-12 h-12 rounded-2xl bg-sky-100 text-sky-600 flex items-center justify-center text-xl font-bold">1</div>
+                        <div>
+                            <h3 class="text-xl font-bold text-slate-900">Fase 1: Creazione della Transazione e Firma Digitale</h3>
+                            <p class="text-xs text-slate-500">Marco compila la transazione dal suo portafoglio software (Wallet).</p>
+                        </div>
+                    </div>
+
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                        <div class="space-y-3 bg-slate-50 p-5 rounded-xl border border-slate-200">
+                            <h4 class="font-bold text-sm text-sky-700 uppercase tracking-wider"><i class="fa-solid fa-file-invoice mr-2"></i>Struttura Dati della Transazione</h4>
+                            <div class="space-y-2 text-xs font-mono">
+                                <div class="flex justify-between border-b border-slate-200 pb-1">
+                                    <span class="text-slate-500">Mittente (From):</span>
+                                    <span class="text-slate-900 font-bold">Marco (1A1zP1eP5Q...)</span>
+                                </div>
+                                <div class="flex justify-between border-b border-slate-200 pb-1">
+                                    <span class="text-slate-500">Destinatario (To):</span>
+                                    <span class="text-slate-900 font-bold">Elisa (3J98t1WpEZ...)</span>
+                                </div>
+                                <div class="flex justify-between border-b border-slate-200 pb-1">
+                                    <span class="text-slate-500">Importo (Amount):</span>
+                                    <span class="text-emerald-700 font-bold">1.50000000 BTC</span>
+                                </div>
+                                <div class="flex justify-between border-b border-slate-200 pb-1">
+                                    <span class="text-slate-500">Commissione (Fee):</span>
+                                    <span class="text-amber-700 font-bold">0.00015000 BTC</span>
+                                </div>
+                                <div class="flex justify-between pt-1">
+                                    <span class="text-slate-500">TXID Hash:</span>
+                                    <span class="text-sky-700 font-bold">8a3f91b...290c</span>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="space-y-3 bg-slate-50 p-5 rounded-xl border border-slate-200">
+                            <h4 class="font-bold text-sm text-amber-700 uppercase tracking-wider"><i class="fa-solid fa-signature mr-2"></i>Come funziona la Firma Digitale?</h4>
+                            <p class="text-xs text-slate-700 leading-relaxed">
+                                Per dimostrare di possedere i fondi, Marco applica la sua <strong>Chiave Privata</strong> all'hash della transazione. I dati della transazione in chiaro non sono cifrati; solo l'impronta viene firmata con la chiave privata di Marco; i nodi verificano la firma con la sua chiave pubblica.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Step 2 Content -->
+                <div id="step-card-2" class="step-card hidden bg-white p-6 sm:p-8 rounded-2xl border border-slate-200 shadow-sm space-y-6">
+                    <div class="flex items-center gap-4">
+                        <div class="w-12 h-12 rounded-2xl bg-sky-100 text-sky-600 flex items-center justify-center text-xl font-bold">2</div>
+                        <div>
+                            <h3 class="text-xl font-bold text-slate-900">Fase 2: Diffusione in Rete e Ingresso nella Mempool (Validazione dei Nodi)</h3>
+                            <p class="text-xs text-slate-500">La transazione viene trasmessa ai nodi P2P, che eseguono i controlli preliminari prima di accettarla.</p>
+                        </div>
+                    </div>
+
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                        <div class="space-y-3 bg-slate-50 p-5 rounded-xl border border-slate-200">
+                            <h4 class="font-bold text-sm text-emerald-700 uppercase tracking-wider"><i class="fa-solid fa-list-check mr-2"></i>Verifica Preventiva dei Nodi P2P</h4>
+                            <p class="text-xs text-slate-700 leading-relaxed">
+                                Prima di accettare la transazione in Mempool, <strong>ogni nodo della rete</strong> esegue verifiche rigorose:
+                            </p>
+                            <ul class="text-xs text-slate-600 space-y-1.5 list-disc list-inside">
+                                <li>Marco possiede davvero 1.5 BTC da spendere?</li>
+                                <li>La firma digitale è matematicamente valida?</li>
+                                <li>I fondi sono già stati spesi in un'altra transazione pendente?</li>
+                            </ul>
+                        </div>
+
+                        <div class="space-y-3 bg-slate-50 p-5 rounded-xl border border-slate-200">
+                            <h4 class="font-bold text-sm text-sky-700 uppercase tracking-wider"><i class="fa-solid fa-hourglass-half mr-2"></i>La Mempool (Memory Pool)</h4>
+                            <p class="text-xs text-slate-700 leading-relaxed">
+                                Superati questi controlli, la transazione viene inserita nella <strong>Mempool</strong> (sala d'attesa). Qui rimarrà in attesa che un <strong>miner</strong> la raccolga per inserirla in un nuovo blocco.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Step 3 Content -->
+                <div id="step-card-3" class="step-card hidden bg-white p-6 sm:p-8 rounded-2xl border border-slate-200 shadow-sm space-y-6">
+                    <div class="flex items-center gap-4">
+                        <div class="w-12 h-12 rounded-2xl bg-sky-100 text-sky-600 flex items-center justify-center text-xl font-bold">3</div>
+                        <div>
+                            <h3 class="text-xl font-bold text-slate-900">Fase 3: Aggregazione nel Blocco &amp; Merkle Root</h3>
+                            <p class="text-xs text-slate-500">Un miner seleziona un pacchetto di transazioni dalla Mempool e ne calcola l'impronta sintetica.</p>
+                        </div>
+                    </div>
+
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                        <div class="space-y-3 bg-slate-50 p-5 rounded-xl border border-slate-200">
+                            <h4 class="font-bold text-sm text-purple-700 uppercase tracking-wider"><i class="fa-solid fa-sitemap mr-2"></i>Come si raggruppano le transazioni?</h4>
+                            <p class="text-xs text-slate-700 leading-relaxed">
+                                Un blocco è un contenitore di transazioni. L'<strong>Albero di Merkle</strong> le unisce matematicamente a coppie fino a produrre un'unica impronta finale (la <em>Merkle Root</em>) inserita nell'header del blocco.
+                            </p>
+                        </div>
+
+                        <div class="flex flex-col items-center justify-center bg-slate-50 p-5 rounded-xl border border-slate-200 space-y-3">
+                            <div class="grid grid-cols-1 gap-2 w-full text-[10px] font-mono">
+                                <input id="step3-tx-a" oninput="updateStep3Merkle()" type="text" value="Marco->Elisa 1.5 BTC" class="w-full bg-white p-1.5 rounded border border-slate-300 text-slate-800">
+                                <input id="step3-tx-b" oninput="updateStep3Merkle()" type="text" value="Antonio->Ginevra 0.4 BTC" class="w-full bg-white p-1.5 rounded border border-slate-300 text-slate-800">
+                            </div>
+                            <div class="text-center space-y-2">
+                                <span id="step3-root" class="px-3 py-1 bg-purple-100 text-purple-800 text-xs font-mono font-bold rounded-lg border border-purple-200 break-all">Merkle Root: ...</span>
+                                <div class="text-slate-400 text-xs"><i class="fa-solid fa-arrow-up"></i></div>
+                                <div class="flex gap-2 justify-center text-[10px] font-mono flex-wrap">
+                                    <span id="step3-hash-a" class="bg-white border border-slate-200 px-2 py-1 rounded text-sky-700 font-bold">H(TX A)</span>
+                                    <span id="step3-hash-b" class="bg-white border border-slate-200 px-2 py-1 rounded text-slate-600">H(TX B)</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Step 4 Content -->
+                <div id="step-card-4" class="step-card hidden bg-white p-6 sm:p-8 rounded-2xl border border-slate-200 shadow-sm space-y-6">
+                    <div class="flex items-center gap-4">
+                        <div class="w-12 h-12 rounded-2xl bg-sky-100 text-sky-600 flex items-center justify-center text-xl font-bold">4</div>
+                        <div>
+                            <h3 class="text-xl font-bold text-slate-900">Fase 4: Il Lavoro dei Miners (Proof of Work &amp; Nonce)</h3>
+                            <p class="text-xs text-slate-500">Il miner risolve l'enigma crittografico calcolando un numero enorme di hash al secondo (la rete Bitcoin supera i 500 exahash/s, cioè 5×10²⁰).</p>
+                        </div>
+                    </div>
+
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                        <div class="space-y-3 bg-slate-50 p-5 rounded-xl border border-slate-200">
+                            <h4 class="font-bold text-sm text-amber-700 uppercase tracking-wider"><i class="fa-solid fa-pickaxe mr-2"></i>L'Enigma della Proof of Work</h4>
+                            <p class="text-xs text-slate-700 leading-relaxed">
+                                Per sigillare il blocco, il miner deve combinare l'Header del blocco con un numero casuale chiamato <strong>Nonce</strong> in modo che l'hash SHA-256 risultante inizi con un certo numero di zeri.
+                            </p>
+                        </div>
+
+                        <div class="space-y-3 bg-slate-50 p-5 rounded-xl border border-slate-200">
+                            <h4 class="font-bold text-sm text-sky-700 uppercase tracking-wider"><i class="fa-solid fa-trophy mr-2"></i>Incentivo Economico</h4>
+                            <p class="text-xs text-slate-700 leading-relaxed">
+                                Il primo miner che trova il Nonce valido guadagna il premio di blocco e le commissioni di transazione.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Step 5 Content -->
+                <div id="step-card-5" class="step-card hidden bg-white p-6 sm:p-8 rounded-2xl border border-slate-200 shadow-sm space-y-6">
+                    <div class="flex items-center gap-4">
+                        <div class="w-12 h-12 rounded-2xl bg-sky-100 text-sky-600 flex items-center justify-center text-xl font-bold">5</div>
+                        <div>
+                            <h3 class="text-xl font-bold text-slate-900">Fase 5: Validazione della Rete e Concatenamento degli Hash</h3>
+                            <p class="text-xs text-slate-500">Il blocco viene diffuso, verificato dai nodi e saldato alla catena principale.</p>
+                        </div>
+                    </div>
+
+                    <div class="space-y-4 bg-slate-50 p-5 rounded-xl border border-slate-200">
+                        <p class="text-xs text-slate-700 leading-relaxed">
+                            Appena il miner trova la soluzione, trasmette il nuovo blocco alla rete P2P. Gli altri nodi verificano istantaneamente l'hash e aggiungono il blocco alla catena.
+                        </p>
+                        <div class="p-4 bg-white rounded-xl border border-sky-200 flex flex-col sm:flex-row items-center justify-between gap-4 text-xs font-mono shadow-sm">
+                            <div>
+                                <span class="text-slate-500 block">Stato Transazione Marco➔Elisa:</span>
+                                <span class="text-emerald-600 font-bold text-sm"><i class="fa-solid fa-circle-check"></i> CONFERMATA (1 Conferma)</span>
+                            </div>
+                            <div class="text-right">
+                                <span class="text-slate-500 block">Blocco Aggiunto:</span>
+                                <span class="text-sky-700 font-bold">Blocco #101</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </section>
+
+        <!-- SECTION 3: MERKLE ROOT INTERATTIVO -->
+        <section id="tab-merkle" class="tab-content hidden space-y-8">
+            <div class="glass-card rounded-2xl p-6 sm:p-8 space-y-6">
+                <div>
+                    <span class="text-xs font-bold text-sky-600 uppercase tracking-widest">Approfondimento Chiave</span>
+                    <h2 class="text-3xl font-extrabold text-slate-900 mt-1">Come funziona l'Albero di Merkle (Merkle Root)?</h2>
+                    <p class="text-sm text-slate-600 mt-1">Prova a modificare una transazione qui sotto e osserva come l'albero calcola l'impronta finale del blocco.</p>
+                </div>
+
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                    <!-- Explanation Card -->
+                    <div class="bg-white p-6 rounded-2xl border border-slate-200 space-y-4 shadow-sm text-xs text-slate-700 leading-relaxed">
+                        <h3 class="font-bold text-sm text-slate-900 uppercase tracking-wider"><i class="fa-solid fa-circle-question text-sky-600 mr-2"></i>Perché serve la Merkle Root?</h3>
+                        <p>
+                            L'<strong>Albero di Merkle</strong> organizza le transazioni a coppie piramidali fino a produrre un solo hash finale (la <em>Merkle Root</em>).
+                        </p>
+                        <div class="p-3 bg-sky-50 border border-sky-200 rounded-xl text-sky-900 font-semibold">
+                            💡 Basta inserire solo questa stringa nell'Header del Blocco per blindare e certificare tutte le transazioni sottostanti!
+                        </div>
+                    </div>
+
+                    <!-- Interactive Merkle Tree Simulator -->
+                    <div class="bg-white p-6 rounded-2xl border border-slate-200 space-y-4 shadow-sm flex flex-col justify-between">
+                        <h3 class="font-bold text-sm text-slate-900 uppercase tracking-wider">Simulatore Albero a 4 Transazioni</h3>
+                        
+                        <div class="space-y-3 font-mono text-xs">
+                            <div>
+                                <label class="text-[10px] text-slate-500 uppercase font-bold block mb-1">Transazione A:</label>
+                                <input id="tx-a" oninput="updateMerkleTree()" type="text" value="Marco->Elisa 1.5 BTC" class="w-full bg-slate-50 p-2.5 rounded-lg border border-slate-300 text-slate-900">
+                            </div>
+                            <div>
+                                <label class="text-[10px] text-slate-500 uppercase font-bold block mb-1">Transazione B:</label>
+                                <input id="tx-b" oninput="updateMerkleTree()" type="text" value="Antonio->Ginevra 0.4 BTC" class="w-full bg-slate-50 p-2.5 rounded-lg border border-slate-300 text-slate-900">
+                            </div>
+                            <div>
+                                <label class="text-[10px] text-slate-500 uppercase font-bold block mb-1">Transazione C:</label>
+                                <input id="tx-c" oninput="updateMerkleTree()" type="text" value="Luca->Anna 2.1 BTC" class="w-full bg-slate-50 p-2.5 rounded-lg border border-slate-300 text-slate-900">
+                            </div>
+                            <div>
+                                <label class="text-[10px] text-slate-500 uppercase font-bold block mb-1">Transazione D:</label>
+                                <input id="tx-d" oninput="updateMerkleTree()" type="text" value="Paolo->Sofia 0.1 BTC" class="w-full bg-slate-50 p-2.5 rounded-lg border border-slate-300 text-slate-900">
+                            </div>
+                        </div>
+
+                        <div id="merkle-tree-visual" class="space-y-2 py-1"></div>
+
+                        <div class="p-4 bg-slate-50 rounded-xl border border-sky-200 space-y-2">
+                            <span class="text-[10px] text-slate-500 font-bold uppercase block">Risultato: Merkle Root del Blocco</span>
+                            <div id="merkle-root-output" class="font-mono text-sky-700 text-xs break-all font-bold">
+                                Calcolo in corso...
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- SECTION 4: HASHER SHA-256 INTERATTIVO -->
+        <section id="tab-hash" class="tab-content hidden space-y-8">
+            <div class="glass-card rounded-2xl p-6 sm:p-8 space-y-6">
+                <div>
+                    <span class="text-xs font-bold text-sky-600 uppercase tracking-widest">Laboratorio di Crittografia</span>
+                    <h2 class="text-3xl font-extrabold text-slate-900 mt-1">Calcolatore SHA-256 &amp; Effetto Valanga</h2>
+                    <p class="text-sm text-slate-600 mt-1">Scrivi qualsiasi testo nel campo sottostante e osserva come viene generata l'impronta digitale a 256 bit.</p>
+                </div>
+
+                <div class="space-y-4">
+                    <div>
+                        <label class="block text-xs font-bold text-slate-700 mb-2 uppercase">Dati di Input (Modifica questo testo):</label>
+                        <textarea id="sha-input" oninput="calculateLiveHash()" rows="3" class="w-full bg-white text-slate-900 p-4 rounded-xl border border-slate-300 focus:border-sky-500 focus:ring-1 focus:ring-sky-500 font-mono text-sm outline-none transition shadow-sm" placeholder="Scrivi qui qualcosa..."></textarea>
+                    </div>
+
+                    <div class="p-5 bg-white rounded-xl border border-slate-200 space-y-2 shadow-sm">
+                        <span class="text-xs font-bold text-slate-500 uppercase tracking-wider block">Hash SHA-256 Generato:</span>
+                        <div id="sha-output" class="font-mono text-sky-700 text-sm sm:text-base break-all font-bold select-all bg-slate-50 p-3 rounded-lg border border-slate-200">
+                            e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Explanation of Avalanche Effect -->
+                <div class="p-4 bg-sky-50 border border-sky-200 rounded-xl space-y-2">
+                    <h4 class="font-bold text-sky-800 text-sm flex items-center gap-2">
+                        <i class="fa-solid fa-lightbulb"></i> Cos'è l'Effetto Valanga (Avalanche Effect)?
+                    </h4>
+                    <p class="text-xs text-slate-700 leading-relaxed">
+                        Prova ad aggiungere o togliere una singola lettera nel testo sopra. Noterai che l'hash cambia <strong>completamente</strong> in modo imprevedibile.
+                    </p>
+                </div>
+            </div>
+        </section>
+
+        <!-- SECTION 5: SIMULATORE MEMPOOL -->
+        <section id="tab-mempool" class="tab-content hidden space-y-8">
+            <div class="glass-card rounded-2xl p-6 sm:p-8 space-y-6">
+                <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-4">
+                    <div>
+                        <span class="text-xs font-bold text-sky-600 uppercase tracking-widest">Laboratorio Nodi &amp; Mempool</span>
+                        <h2 class="text-3xl font-extrabold text-slate-900 mt-1">Sala d'Attesa della Rete (Mempool)</h2>
+                        <p class="text-sm text-slate-600 mt-1">Genera nuove transazioni e osserva come vengono filtrate dai nodi prima del mining.</p>
+                    </div>
+
+                    <button onclick="addRandomTxToMempool()" class="px-4 py-2 bg-sky-600 hover:bg-sky-500 text-white rounded-xl font-bold text-xs transition shadow flex items-center gap-2">
+                        <i class="fa-solid fa-plus"></i> Invia Nuova TX
+                    </button>
+                </div>
+
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+                    <!-- Mempool Table -->
+                    <div class="md:col-span-2 bg-white p-5 rounded-2xl border border-slate-200 space-y-4 shadow-sm">
+                        <div class="flex justify-between items-center">
+                            <h3 class="font-bold text-sm text-slate-900">Transazioni in Attesa (<span id="mempool-count">3</span>)</h3>
+                        </div>
+
+                        <div id="mempool-list" class="space-y-2 max-h-80 overflow-y-auto pr-1">
+                            <!-- Dynamic Content populated by JS -->
+                        </div>
+                    </div>
+
+                    <!-- Rules Card -->
+                    <div class="bg-white p-5 rounded-2xl border border-slate-200 space-y-4 shadow-sm">
+                        <h3 class="font-bold text-sm text-amber-700"><i class="fa-solid fa-shield-halved mr-1"></i>Regole di Validazione (Nodi)</h3>
+                        <div class="space-y-3 text-xs text-slate-700">
+                            <div class="p-3 bg-slate-50 rounded-xl border border-slate-200">
+                                <strong>1. Firma Valida:</strong> Il nodo rifiuta le firme non corrispondenti.
+                            </div>
+                            <div class="p-3 bg-slate-50 rounded-xl border border-slate-200">
+                                <strong>2. Saldo e No Double Spending:</strong> Previene la spesa doppia e fondi inesistenti.
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- SECTION 6: SIMULATORE MINING PROOF OF WORK -->
+        <section id="tab-miner" class="tab-content hidden space-y-8">
+            <div class="glass-card rounded-2xl p-6 sm:p-8 space-y-6">
+                <div>
+                    <span class="text-xs font-bold text-sky-600 uppercase tracking-widest">Simulatore di Mining</span>
+                    <h2 class="text-3xl font-extrabold text-slate-900 mt-1">Proof of Work: Trova il Nonce</h2>
+                    <p class="text-sm text-slate-600 mt-1">Simula il lavoro dei miners per trovare un hash valido che soddisfi la difficoltà impostata.</p>
+                </div>
+
+                <!-- INFO CARD: COSA FA ESATTAMENTE IL MINER? -->
+                <div class="bg-sky-50 border border-sky-200 p-5 rounded-2xl space-y-3 text-xs text-slate-700">
+                    <h3 class="font-bold text-sky-900 text-sm flex items-center gap-2">
+                        <i class="fa-solid fa-circle-info text-sky-600"></i> Come opera il Miner e come ottiene la Ricompensa?
+                    </h3>
+                    <p class="leading-relaxed">
+                        Il miner seleziona le transazioni già validate dalla rete (dalla Mempool), inserisce in cima la sua <strong>transazione Coinbase</strong> (il premio di blocco) e calcola la <em>Merkle Root</em>. Una volta trovato il Proof of Work, trasmette il blocco alla rete e incassa <strong>tutte le commissioni (fee)</strong> delle transazioni presenti nel blocco più il premio di coniazione!
+                    </p>
+                    <div class="grid grid-cols-1 md:grid-cols-3 gap-3 pt-1">
+                        <div class="bg-white p-3 rounded-xl border border-sky-100 shadow-sm">
+                            <strong class="block text-sky-700 mb-1"><i class="fa-solid fa-filter mr-1"></i> 1. Selezione Mempool</strong>
+                            Il miner sceglie le transazioni più vantaggiose in base alle fee.
+                        </div>
+                        <div class="bg-white p-3 rounded-xl border border-sky-100 shadow-sm">
+                            <strong class="block text-sky-700 mb-1"><i class="fa-solid fa-coins mr-1"></i> 2. Transazione Coinbase</strong>
+                            Il miner si assegna il premio di blocco e la somma di tutte le fee.
+                        </div>
+                        <div class="bg-white p-3 rounded-xl border border-sky-100 shadow-sm">
+                            <strong class="block text-sky-700 mb-1"><i class="fa-solid fa-pickaxe mr-1"></i> 3. PoW &amp; Broadcast</strong>
+                            Trovato il Nonce, il blocco viene diffuso e validato dall'intera rete.
+                        </div>
+                    </div>
+                </div>
+
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                    <!-- Mining Control Box -->
+                    <div class="bg-white p-6 rounded-2xl border border-slate-200 space-y-4 shadow-sm">
+                        <div>
+                            <label class="block text-xs font-bold text-slate-700 uppercase mb-1">Difficoltà (Zeri Iniziali Richiesti):</label>
+                            <select id="mining-difficulty" class="w-full bg-slate-50 text-slate-900 p-3 rounded-xl border border-slate-300 font-mono text-xs outline-none">
+                                <option value="1">1 Zero (Es. 0xxx...)</option>
+                                <option value="2" selected>2 Zeri (Es. 00xx...)</option>
+                                <option value="3">3 Zeri (Es. 000x...)</option>
+                                <option value="4">4 Zeri (Difficile)</option>
+                            </select>
+                        </div>
+
+                        <div>
+                            <label class="block text-xs font-bold text-slate-700 uppercase mb-1">Dati Blocco Candidato:</label>
+                            <textarea id="miner-data" rows="2" class="w-full bg-slate-50 text-slate-900 p-3 rounded-xl border border-slate-300 font-mono text-xs outline-none">Blocco #101 [Marco -> Elisa 1.5 BTC]</textarea>
+                        </div>
+
+                        <div>
+                            <label class="block text-xs font-bold text-slate-700 uppercase mb-1">Nonce Attuale:</label>
+                            <input id="miner-nonce" type="text" readonly value="0" class="w-full bg-slate-50 text-amber-700 p-3 rounded-xl border border-slate-300 font-mono text-sm font-bold outline-none">
+                        </div>
+
+                        <button id="start-mine-btn" onclick="startMiningProcess()" class="w-full py-3 bg-amber-500 hover:bg-amber-400 text-slate-950 font-black rounded-xl text-sm transition shadow flex items-center justify-center gap-2">
+                            <i class="fa-solid fa-pickaxe"></i> AVVIA MINING POW
+                        </button>
+                    </div>
+
+                    <!-- Output & Stats Box -->
+                    <div id="mining-box" class="bg-white p-6 rounded-2xl border border-slate-200 space-y-4 flex flex-col justify-between shadow-sm">
+                        <div>
+                            <h3 class="text-sm font-bold text-slate-900 mb-2 uppercase tracking-wider">Stato dell'Elaborazione:</h3>
+                            <div id="mining-status-badge" class="inline-block px-3 py-1 rounded-full text-xs font-bold bg-slate-100 text-slate-600 border border-slate-200">
+                                In attesa dell'avvio...
+                            </div>
+                        </div>
+
+                        <div class="space-y-2">
+                            <span class="text-xs text-slate-500 uppercase block font-bold">Hash Calcolato:</span>
+                            <div id="miner-hash-output" class="font-mono text-xs sm:text-sm text-slate-600 break-all bg-slate-50 p-3 rounded-xl border border-slate-200">
+                                ----------------------------------------------------------------
+                            </div>
+                        </div>
+
+                        <div class="p-3 bg-slate-50 rounded-xl border border-slate-200 text-xs text-slate-600 space-y-1">
+                            <div>Tentativi Effettuati: <span id="miner-attempts" class="text-slate-900 font-bold font-mono">0</span></div>
+                            <div>Tempo Impiegato: <span id="miner-time" class="text-slate-900 font-bold font-mono">0.00s</span></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- SECTION 7: CATENA INTERATTIVA A 3 BLOCCHI -->
+        <section id="tab-chain" class="tab-content hidden space-y-8">
+            <div class="glass-card rounded-2xl p-6 sm:p-8 space-y-6">
+                <div>
+                    <span class="text-xs font-bold text-sky-600 uppercase tracking-widest">Simulatore di Immutabilità</span>
+                    <h2 class="text-3xl font-extrabold text-slate-900 mt-1">Catena di Blocchi Interattiva</h2>
+                    <p class="text-sm text-slate-600 mt-1">Modifica le transazioni nel Blocco #101 e osserva come l'impronta si spezzi, invalidando anche il Blocco #102!</p>
+                </div>
+
+                <!-- Chain Container -->
+                    <div id="chain-container" class="grid grid-cols-1 lg:grid-cols-3 gap-6"></div>
+                    <div class="flex flex-wrap items-center gap-3">
+                        <button id="remine-btn" onclick="remineFrom101()" class="px-4 py-2 bg-amber-500 hover:bg-amber-400 text-slate-950 font-black rounded-xl text-xs transition shadow"><i class="fa-solid fa-pickaxe mr-1"></i> Ri-mina #101 e #102</button>
+                        <button onclick="resetChain()" class="px-4 py-2 bg-slate-200 hover:bg-slate-300 text-slate-800 font-bold rounded-xl text-xs transition">Ripristina catena</button>
+                        <span id="chain-remine-info" class="text-xs text-slate-600 font-mono"></span>
+                    </div>
+                    <p class="text-xs text-slate-500 leading-relaxed">Hash del blocco = SHA-256(indice | dati | previous hash | nonce). Un blocco è valido se il suo hash inizia con "00" (proof of work) e il suo previous hash coincide con l'hash attuale del blocco precedente. Modificando i dati del #101 il suo hash cambia e il #102 resta agganciato al vecchio hash: per riparare la catena bisogna rifare il mining di tutti i blocchi successivi.</p>
+                </div>
+            </section>
+
+        <!-- SECTION 8: QUIZ DIDATTICO INTERATTIVO -->
+        <section id="tab-quiz" class="tab-content hidden space-y-8">
+            <div class="glass-card rounded-2xl p-6 sm:p-8 space-y-6 max-w-3xl mx-auto">
+                <div>
+                    <span class="text-xs font-bold text-sky-600 uppercase tracking-widest">Verifica dell'Apprendimento</span>
+                    <h2 class="text-3xl font-extrabold text-slate-900 mt-1">Quiz Interattivo sulla Blockchain</h2>
+                    <p class="text-sm text-slate-600 mt-1">Rispondi alle domande per verificare quanto hai compreso.</p>
+                </div>
+
+                <div id="quiz-container" class="space-y-6">
+                    <!-- Question 1 -->
+                    <div class="bg-white p-6 rounded-2xl border border-slate-200 space-y-3 shadow-sm">
+                        <h3 class="font-bold text-slate-900 text-base">1. Chi ha pubblicato il Whitepaper originale di Bitcoin nel 2008?</h3>
+                        <div class="space-y-2 text-xs">
+                            <button onclick="checkQuizAnswer(1, 'a')" class="q-btn-1 w-full text-left p-3 rounded-xl bg-slate-50 hover:bg-slate-100 border border-slate-200 transition text-slate-800 font-medium">A) Vitalik Buterin</button>
+                            <button onclick="checkQuizAnswer(1, 'b')" class="q-btn-1 w-full text-left p-3 rounded-xl bg-slate-50 hover:bg-slate-100 border border-slate-200 transition text-slate-800 font-medium">B) Satoshi Nakamoto</button>
+                            <button onclick="checkQuizAnswer(1, 'c')" class="q-btn-1 w-full text-left p-3 rounded-xl bg-slate-50 hover:bg-slate-100 border border-slate-200 transition text-slate-800 font-medium">C) Alan Turing</button>
+                        </div>
+                        <div id="quiz-feedback-1" class="hidden p-3 rounded-xl text-xs"></div>
+                    </div>
+
+                    <!-- Question 2 -->
+                    <div class="bg-white p-6 rounded-2xl border border-slate-200 space-y-3 shadow-sm">
+                        <h3 class="font-bold text-slate-900 text-base">2. Che cos'è la Mempool in una rete Blockchain?</h3>
+                        <div class="space-y-2 text-xs">
+                            <button onclick="checkQuizAnswer(2, 'a')" class="q-btn-2 w-full text-left p-3 rounded-xl bg-slate-50 hover:bg-slate-100 border border-slate-200 transition text-slate-800 font-medium">A) Il database finale dei blocchi</button>
+                            <button onclick="checkQuizAnswer(2, 'b')" class="q-btn-2 w-full text-left p-3 rounded-xl bg-slate-50 hover:bg-slate-100 border border-slate-200 transition text-slate-800 font-medium">B) L'area di sosta temporanea delle transazioni non ancora confermate</button>
+                            <button onclick="checkQuizAnswer(2, 'c')" class="q-btn-2 w-full text-left p-3 rounded-xl bg-slate-50 hover:bg-slate-100 border border-slate-200 transition text-slate-800 font-medium">C) Il software antivirus</button>
+                        </div>
+                        <div id="quiz-feedback-2" class="hidden p-3 rounded-xl text-xs"></div>
+                    </div>
+
+                    <!-- Question 3 -->
+                    <div class="bg-white p-6 rounded-2xl border border-slate-200 space-y-3 shadow-sm">
+                        <h3 class="font-bold text-slate-900 text-base">3. Quale elemento garantisce che i blocchi siano concatenati in modo immutabile?</h3>
+                        <div class="space-y-2 text-xs">
+                            <button onclick="checkQuizAnswer(3, 'a')" class="q-btn-3 w-full text-left p-3 rounded-xl bg-slate-50 hover:bg-slate-100 border border-slate-200 transition text-slate-800 font-medium">A) L'inclusione dell'Hash del blocco precedente nell'Header successivo</button>
+                            <button onclick="checkQuizAnswer(3, 'b')" class="q-btn-3 w-full text-left p-3 rounded-xl bg-slate-50 hover:bg-slate-100 border border-slate-200 transition text-slate-800 font-medium">B) La velocità di connessione</button>
+                            <button onclick="checkQuizAnswer(3, 'c')" class="q-btn-3 w-full text-left p-3 rounded-xl bg-slate-50 hover:bg-slate-100 border border-slate-200 transition text-slate-800 font-medium">C) L'approvazione bancaria</button>
+                        </div>
+                        <div id="quiz-feedback-3" class="hidden p-3 rounded-xl text-xs"></div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+    <script>
+        function switchTab(tabId) {
+            document.querySelectorAll('.tab-content').forEach(el => {
+                el.classList.add('hidden');
+                el.classList.remove('block');
+            });
+            const target = document.getElementById('tab-' + tabId);
+            if (target) {
+                target.classList.remove('hidden');
+                target.classList.add('block');
+            }
+
+            document.querySelectorAll('.tab-btn').forEach(btn => {
+                btn.classList.remove('text-white', 'bg-sky-600', 'shadow-sm');
+                btn.classList.add('text-slate-700');
+            });
+            const activeBtn = document.getElementById('tab-btn-' + tabId);
+            if (activeBtn) {
+                activeBtn.classList.add('text-white', 'bg-sky-600', 'shadow-sm');
+                activeBtn.classList.remove('text-slate-700');
+            }
+        }
+
+        function setLifeStep(stepNum) {
+            document.querySelectorAll('.step-card').forEach(c => {
+                c.classList.add('hidden');
+                c.classList.remove('block');
+            });
+            const card = document.getElementById('step-card-' + stepNum);
+            if (card) {
+                card.classList.remove('hidden');
+                card.classList.add('block');
+            }
+
+            document.querySelectorAll('.step-nav-btn').forEach(btn => {
+                btn.classList.remove('border-sky-500', 'bg-sky-50', 'text-sky-700', 'shadow-sm');
+                btn.classList.add('border-slate-300', 'bg-white', 'text-slate-600');
+            });
+
+            const activeBtn = document.getElementById('step-btn-' + stepNum);
+            if (activeBtn) {
+                activeBtn.classList.add('border-sky-500', 'bg-sky-50', 'text-sky-700', 'shadow-sm');
+                activeBtn.classList.remove('border-slate-300', 'bg-white', 'text-slate-600');
+            }
+        }
+
+        function sha256Fallback(str) {
+            const rr = (x, n) => (x >>> n) | (x << (32 - n));
+            const bytes = Array.from(new TextEncoder().encode(str));
+            const bitLen = bytes.length * 8;
+            bytes.push(0x80);
+            while (bytes.length % 64 !== 56) bytes.push(0);
+            const hi = Math.floor(bitLen / 4294967296), lo = bitLen >>> 0;
+            for (let s = 24; s >= 0; s -= 8) bytes.push((hi >>> s) & 255);
+            for (let s = 24; s >= 0; s -= 8) bytes.push((lo >>> s) & 255);
+            const K = [], H = [];
+            for (let c = 2; K.length < 64; c++) {
+                let p = true;
+                for (let d = 2; d * d <= c; d++) if (c % d === 0) { p = false; break; }
+                if (!p) continue;
+                if (H.length < 8) H.push((Math.pow(c, 0.5) % 1) * 4294967296 | 0);
+                K.push((Math.pow(c, 1 / 3) % 1) * 4294967296 | 0);
+            }
+            for (let i = 0; i < bytes.length; i += 64) {
+                const w = new Array(64);
+                for (let t = 0; t < 16; t++) w[t] = (bytes[i + 4*t] << 24) | (bytes[i + 4*t + 1] << 16) | (bytes[i + 4*t + 2] << 8) | bytes[i + 4*t + 3];
+                for (let t = 16; t < 64; t++) {
+                    const s0 = rr(w[t-15], 7) ^ rr(w[t-15], 18) ^ (w[t-15] >>> 3);
+                    const s1 = rr(w[t-2], 17) ^ rr(w[t-2], 19) ^ (w[t-2] >>> 10);
+                    w[t] = (w[t-16] + s0 + w[t-7] + s1) | 0;
+                }
+                let [a, b, c, d, e, f, g, h] = H;
+                for (let t = 0; t < 64; t++) {
+                    const t1 = (h + (rr(e, 6) ^ rr(e, 11) ^ rr(e, 25)) + ((e & f) ^ (~e & g)) + K[t] + w[t]) | 0;
+                    const t2 = ((rr(a, 2) ^ rr(a, 13) ^ rr(a, 22)) + ((a & b) ^ (a & c) ^ (b & c))) | 0;
+                    h = g; g = f; f = e; e = (d + t1) | 0; d = c; c = b; b = a; a = (t1 + t2) | 0;
+                }
+                [a, b, c, d, e, f, g, h].forEach((v, j) => { H[j] = (H[j] + v) | 0; });
+            }
+            return H.map(v => (v >>> 0).toString(16).padStart(8, '0')).join('');
+        }
+
+        // SHA-256 reale (standard FIPS 180-4): API del browser, con implementazione di riserva
+        async function sha256(str) {
+            if (window.crypto && crypto.subtle) {
+                try {
+                    const buf = await crypto.subtle.digest('SHA-256', new TextEncoder().encode(str));
+                    return Array.from(new Uint8Array(buf)).map(b => b.toString(16).padStart(2, '0')).join('');
+                } catch (e) { /* contesto non sicuro: uso la versione di riserva */ }
+            }
+            return sha256Fallback(str);
+        }
+
+        async function calculateLiveHash() {
+            try {
+                const inputEl = document.getElementById('sha-input');
+                const outputEl = document.getElementById('sha-output');
+                if (!inputEl || !outputEl) return;
+                const hashResult = await sha256(inputEl.value || "");
+                outputEl.innerText = hashResult;
+            } catch(err) {
+                console.error(err);
+            }
+        }
+
+        async function updateMerkleTree() {
+            try {
+                const outputEl = document.getElementById('merkle-root-output');
+                const treeEl = document.getElementById('merkle-tree-visual');
+                if (!outputEl) return;
+
+                const txValues = ['tx-a', 'tx-b', 'tx-c', 'tx-d'].map(
+                    id => document.getElementById(id) ? document.getElementById(id).value : ""
+                );
+
+                let level = [];
+                for (const tx of txValues) {
+                    level.push(await sha256(tx));
+                }
+                const levels = [level.slice()];
+
+                while (level.length > 1) {
+                    const nextLevel = [];
+                    for (let i = 0; i < level.length; i += 2) {
+                        const left = level[i];
+                        const right = (i + 1 < level.length) ? level[i + 1] : level[i];
+                        nextLevel.push(await sha256(left + right));
+                    }
+                    level = nextLevel;
+                    levels.push(level.slice());
+                }
+
+                outputEl.innerText = level[0];
+
+                if (treeEl) {
+                    let html = '';
+                    for (let i = levels.length - 1; i >= 0; i--) {
+                        const isRoot = i === levels.length - 1;
+                        const isLeaves = i === 0;
+                        const rowLabel = isRoot ? 'Merkle Root' : (isLeaves ? 'Hash Transazioni (Livello 0)' : `Hash Livello ${i}`);
+                        html += `<div class="text-center">
+                            <span class="text-[9px] text-slate-400 uppercase font-bold tracking-wide">${rowLabel}</span>
+                            <div class="flex justify-center gap-2 flex-wrap mt-1">
+                                ${levels[i].map(h => `<span class="bg-white border ${isRoot ? 'border-sky-400 text-sky-700' : 'border-slate-300 text-slate-600'} rounded-lg px-2 py-1 text-[10px] font-mono">${h.slice(0, 8)}…</span>`).join('')}
+                            </div>
+                        </div>`;
+                        if (i > 0) {
+                            html += `<div class="text-center text-slate-300 text-[10px]">↑ hash a coppie ↑</div>`;
+                        }
+                    }
+                    treeEl.innerHTML = html;
+                }
+            } catch(err) {
+                console.error(err);
+            }
+        }
+
+        async function updateStep3Merkle() {
+            try {
+                const aEl = document.getElementById('step3-tx-a');
+                const bEl = document.getElementById('step3-tx-b');
+                if (!aEl || !bEl) return;
+
+                const txA = aEl.value || "";
+                const txB = bEl.value || "";
+
+                const hashA = await sha256(txA);
+                const hashB = await sha256(txB);
+                const root = await sha256(hashA + hashB);
+
+                const hashAEl = document.getElementById('step3-hash-a');
+                const hashBEl = document.getElementById('step3-hash-b');
+                const rootEl = document.getElementById('step3-root');
+
+                if (hashAEl) hashAEl.innerText = 'H(TX A) = ' + hashA.slice(0, 8) + '…';
+                if (hashBEl) hashBEl.innerText = 'H(TX B) = ' + hashB.slice(0, 8) + '…';
+                if (rootEl) rootEl.innerText = 'Merkle Root: ' + root.slice(0, 10) + '...';
+            } catch(err) {
+                console.error(err);
+            }
+        }
+
+        let initialMempool = [
+            { id: 'tx1', from: 'Marco', to: 'Elisa', amount: '1.50 BTC', fee: '0.00015 BTC' },
+            { id: 'tx2', from: 'Luca', to: 'Anna', amount: '0.20 BTC', fee: '0.00008 BTC' },
+            { id: 'tx3', from: 'Giulia', to: 'Paolo', amount: '3.10 BTC', fee: '0.00025 BTC' }
+        ];
+
+        function renderMempool() {
+            const listEl = document.getElementById('mempool-list');
+            const countEl = document.getElementById('mempool-count');
+            if (!listEl || !countEl) return;
+            countEl.innerText = initialMempool.length;
+
+            listEl.innerHTML = '';
+            initialMempool.forEach((tx) => {
+                const item = document.createElement('div');
+                item.className = 'p-3 bg-slate-50 rounded-xl border border-slate-200 flex justify-between items-center text-xs shadow-sm';
+                item.innerHTML = `
+                    <div>
+                        <span class="text-slate-900 font-bold">${tx.from} ➔ ${tx.to}</span>
+                        <span class="text-slate-500 block text-[10px]">${tx.amount}</span>
+                    </div>
+                    <div class="text-right">
+                        <span class="text-amber-700 font-mono font-bold block">${tx.fee}</span>
+                        <span class="text-[9px] text-emerald-700 bg-emerald-100 px-1.5 py-0.5 rounded border border-emerald-200">Firma Valida</span>
+                    </div>
+                `;
+                listEl.appendChild(item);
+            });
+        }
+
+        function addRandomTxToMempool() {
+            const names = ['Sofia', 'Matteo', 'Davide', 'Elena', 'Chiara', 'Andrea'];
+            const f = names[Math.floor(Math.random() * names.length)];
+            let t = names[Math.floor(Math.random() * names.length)];
+            while (t === f) t = names[Math.floor(Math.random() * names.length)];
+
+            const amt = (Math.random() * 2 + 0.05).toFixed(2);
+            const fee = (Math.random() * 0.0002 + 0.00005).toFixed(5);
+
+            initialMempool.unshift({
+                id: 'tx_' + Date.now(),
+                from: f,
+                to: t,
+                amount: amt + ' BTC',
+                fee: fee + ' BTC'
+            });
+
+            renderMempool();
+        }
+
+        let isMining = false;
+        async function startMiningProcess() {
+            if (isMining) return;
+            isMining = true;
+
+            const diff = parseInt(document.getElementById('mining-difficulty').value);
+            const targetPrefix = "0".repeat(diff);
+            const data = document.getElementById('miner-data').value;
+            const nonceInput = document.getElementById('miner-nonce');
+            const statusBadge = document.getElementById('mining-status-badge');
+            const hashOutput = document.getElementById('miner-hash-output');
+            const attemptsEl = document.getElementById('miner-attempts');
+            const timeEl = document.getElementById('miner-time');
+            const mineBtn = document.getElementById('start-mine-btn');
+
+            statusBadge.innerText = "Mining in corso...";
+            statusBadge.className = "inline-block px-3 py-1 rounded-full text-xs font-bold bg-amber-100 text-amber-800 border border-amber-200";
+            mineBtn.disabled = true;
+            mineBtn.classList.add('opacity-50');
+
+            let nonce = 0;
+            let currentHash = "";
+            const startTime = performance.now();
+
+            while (isMining) {
+                nonce++;
+                currentHash = await sha256(data + nonce);
+
+                if (nonce % 250 === 0) {
+                    nonceInput.value = nonce;
+                    hashOutput.innerText = currentHash;
+                    attemptsEl.innerText = nonce;
+                    timeEl.innerText = ((performance.now() - startTime) / 1000).toFixed(2) + "s";
+                    await new Promise(r => setTimeout(r, 0));
+                }
+
+                if (currentHash.startsWith(targetPrefix)) {
+                    nonceInput.value = nonce;
+                    hashOutput.innerText = currentHash;
+                    attemptsEl.innerText = nonce;
+                    timeEl.innerText = ((performance.now() - startTime) / 1000).toFixed(2) + "s";
+
+                    statusBadge.innerText = "BLOCCO MINATO CON SUCCESSO!";
+                    statusBadge.className = "inline-block px-3 py-1 rounded-full text-xs font-bold bg-emerald-100 text-emerald-800 border border-emerald-200";
+                    break;
+                }
+            }
+
+            isMining = false;
+            mineBtn.disabled = false;
+            mineBtn.classList.remove('opacity-50');
+        }
+
+        const CHAIN_DIFF = '00';
+        let chainBlocks = [];
+        async function blockHash(b) { return sha256(b.index + '|' + b.data + '|' + b.prev + '|' + b.nonce); }
+        async function mineBlock(b) {
+            b.nonce = 0; let h;
+            do { b.nonce++; h = await blockHash(b); } while (!h.startsWith(CHAIN_DIFF));
+            b.hash = h;
+        }
+        function chainCardHTML(i) {
+            const b = chainBlocks[i], ed = i === 1;
+            const lab = 'text-slate-500 text-[10px] uppercase font-bold block';
+            const box = 'p-2 bg-slate-50 rounded border border-slate-200 font-mono text-[10px] break-all';
+            return `<div id="cb${i}-box" class="valid-chain p-5 rounded-2xl border transition-all space-y-3 bg-white shadow-sm">
+                <div class="flex justify-between items-center border-b border-slate-200 pb-2">
+                    <span class="font-extrabold text-sm text-slate-900">BLOCCO #${b.index}</span>
+                    <span id="cb${i}-status" class="text-[10px] font-bold px-2 py-0.5 rounded border"></span>
+                </div>
+                <div class="space-y-2 text-xs">
+                    <div><label class="${lab}">Dati Transazioni${ed ? ' (Modificabile)' : ''}:</label>
+                    <input id="cb${i}-data" type="text" value="${b.data}" ${ed ? 'oninput="updateChainSimulation()"' : 'readonly'} class="w-full bg-slate-50 p-2 rounded border ${ed ? 'border-sky-300 text-slate-900' : 'border-slate-200 text-slate-700'} font-mono text-[11px] focus:outline-none"></div>
+                    <div><label class="${lab}">Previous Hash:</label><div id="cb${i}-prev" class="${box}"></div></div>
+                    <div><label class="${lab}">Nonce:</label><div id="cb${i}-nonce" class="${box}"></div></div>
+                    <div><label class="${lab}">Hash del Blocco:</label><div id="cb${i}-hash" class="${box} font-bold"></div></div>
+                </div></div>`;
+        }
+        async function initChain() {
+            chainBlocks = [
+                { index: 100, data: 'Coinbase -> Marco 50 BTC', prev: '0'.repeat(64) },
+                { index: 101, data: 'Marco -> Elisa 1.5 BTC' },
+                { index: 102, data: 'Elisa -> Shop 0.5 BTC' }
+            ];
+            for (let i = 0; i < 3; i++) {
+                if (i > 0) chainBlocks[i].prev = chainBlocks[i - 1].hash;
+                await mineBlock(chainBlocks[i]);
+            }
+            const c = document.getElementById('chain-container');
+            if (!c) return;
+            c.innerHTML = [0, 1, 2].map(chainCardHTML).join('');
+            await updateChainSimulation();
+        }
+        async function resetChain() {
+            document.getElementById('chain-remine-info').innerText = '';
+            await initChain();
+        }
+        async function remineFrom101() {
+            const btn = document.getElementById('remine-btn'), info = document.getElementById('chain-remine-info');
+            btn.disabled = true; btn.classList.add('opacity-50');
+            info.innerText = 'Mining in corso...';
+            const t0 = performance.now();
+            chainBlocks[1].data = document.getElementById('cb1-data').value;
+            await mineBlock(chainBlocks[1]);
+            chainBlocks[2].prev = chainBlocks[1].hash;
+            await mineBlock(chainBlocks[2]);
+            info.innerText = `Rifatto il mining: nonce #101 = ${chainBlocks[1].nonce}, nonce #102 = ${chainBlocks[2].nonce} (${((performance.now() - t0) / 1000).toFixed(2)}s)`;
+            btn.disabled = false; btn.classList.remove('opacity-50');
+            await updateChainSimulation();
+        }
+        async function updateChainSimulation() {
+            try {
+                if (!chainBlocks.length || !document.getElementById('cb1-data')) return;
+                chainBlocks[1].data = document.getElementById('cb1-data').value;
+                const hs = [];
+                for (const b of chainBlocks) hs.push(await blockHash(b));
+                chainBlocks.forEach((b, i) => {
+                    const powOk = hs[i].startsWith(CHAIN_DIFF);
+                    const linkOk = i === 0 || b.prev === hs[i - 1];
+                    const ok = powOk && linkOk;
+                    const st = document.getElementById(`cb${i}-status`);
+                    st.innerText = ok ? 'VALIDO' : (!powOk ? 'MANOMESSO (PoW non valida)' : 'CATENA SPEZZATA');
+                    st.className = 'text-[10px] font-bold px-2 py-0.5 rounded border ' + (ok ? 'bg-emerald-100 text-emerald-700 border-emerald-200' : 'bg-red-100 text-red-700 border-red-200');
+                    document.getElementById(`cb${i}-box`).className = (ok ? 'valid-chain' : 'broken-chain') + ' p-5 rounded-2xl border transition-all space-y-3 bg-white shadow-sm';
+                    const prevEl = document.getElementById(`cb${i}-prev`);
+                    prevEl.innerText = b.prev;
+                    prevEl.style.color = linkOk ? '' : '#b91c1c';
+                    document.getElementById(`cb${i}-nonce`).innerText = b.nonce;
+                    const hEl = document.getElementById(`cb${i}-hash`);
+                    hEl.innerText = hs[i];
+                    hEl.style.color = powOk ? '#047857' : '#b91c1c';
+                });
+            } catch (err) { console.error(err); }
+        }
+
+        function checkQuizAnswer(questionNum, answer) {
+            const feedbackEl = document.getElementById('quiz-feedback-' + questionNum);
+            feedbackEl.classList.remove('hidden');
+
+            if (questionNum === 1) {
+                if (answer === 'b') {
+                    feedbackEl.className = "p-3 rounded-xl text-xs bg-emerald-100 text-emerald-800 border border-emerald-200";
+                    feedbackEl.innerHTML = "<strong>Esatto!</strong> Satoshi Nakamoto è lo pseudonimo dell'inventore.";
+                } else {
+                    feedbackEl.className = "p-3 rounded-xl text-xs bg-red-100 text-red-800 border border-red-200";
+                    feedbackEl.innerHTML = "<strong>Sbagliato!</strong> La risposta corretta è B) Satoshi Nakamoto.";
+                }
+            } else if (questionNum === 2) {
+                if (answer === 'b') {
+                    feedbackEl.className = "p-3 rounded-xl text-xs bg-emerald-100 text-emerald-800 border border-emerald-200";
+                    feedbackEl.innerHTML = "<strong>Esatto!</strong> La Mempool è l'area di sosta temporanea.";
+                } else {
+                    feedbackEl.className = "p-3 rounded-xl text-xs bg-red-100 text-red-800 border border-red-200";
+                    feedbackEl.innerHTML = "<strong>Sbagliato!</strong> La risposta corretta è B.";
+                }
+            } else if (questionNum === 3) {
+                if (answer === 'a') {
+                    feedbackEl.className = "p-3 rounded-xl text-xs bg-emerald-100 text-emerald-800 border border-emerald-200";
+                    feedbackEl.innerHTML = "<strong>Esatto!</strong> Ogni blocco include l'Hash del precedente.";
+                } else {
+                    feedbackEl.className = "p-3 rounded-xl text-xs bg-red-100 text-red-800 border border-red-200";
+                    feedbackEl.innerHTML = "<strong>Sbagliato!</strong> La risposta corretta è A.";
+                }
+            }
+        }
+
+        window.onload = function() {
+            try {
+                renderMempool();
+                calculateLiveHash();
+                updateMerkleTree();
+                updateStep3Merkle();
+                initChain();
+            } catch (err) {
+                console.error("Errore durante l'inizializzazione:", err);
+            }
+        };
+    </script>
+</body>
+</html>
