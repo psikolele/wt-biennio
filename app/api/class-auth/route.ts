@@ -3,7 +3,9 @@ import { cookies } from "next/headers";
 import {
   verifyClassPassword,
   createClassSession,
-  hasClassSession
+  hasClassSession,
+  verifyTeacherPassword,
+  createTeacherSession
 } from "@/app/lib/auth";
 // Nessun reset al login riuscito: un IP scolastico è condiviso, un successo non azzera gli errori altrui
 import { CLASS_LIMIT, checkBlocked, clientIp, registerFailure } from "@/app/lib/rate-limit";
@@ -46,6 +48,17 @@ export async function POST(request: Request) {
     maxAge: 30 * 24 * 60 * 60,
     path: "/"
   });
+
+  // Se il docente ha sbloccato la classe usando la password docente, attiva anche la sessione docente
+  if (verifyTeacherPassword(password.trim())) {
+    cookieStore.set("teacher_session", createTeacherSession(), {
+      httpOnly: true,
+      sameSite: "lax",
+      secure: process.env.NODE_ENV === "production",
+      maxAge: 8 * 60 * 60,
+      path: "/"
+    });
+  }
 
   return NextResponse.json({ ok: true, year });
 }

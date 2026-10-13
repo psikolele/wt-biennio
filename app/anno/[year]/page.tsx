@@ -101,61 +101,63 @@ export default async function YearPage({ params }: { params: Promise<{ year: str
               <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
                 
                 {/* TESSERA 1: HERO SCHEDA INTERATTIVA (Span 2 col su desktop grande o 1 su md) */}
-                <Link
-                  href="/anno/1/lezione-0"
-                  className="bento-tile bento-tile--glow md:col-span-2 lg:col-span-2 group min-h-[250px]"
-                >
-                  <div>
-                    <div className="mb-3 pb-2.5 border-b border-[rgba(109,101,163,0.2)] flex items-center justify-between gap-2">
-                      <span className="font-mono text-[10px] font-bold uppercase tracking-wider text-[var(--muted)]">
-                        Classi svolte:
-                      </span>
-                      <LessonClassLabels
-                        year={1}
-                        week={0}
-                        initialCompleted={yearProgress[getLessonProgressKey(1, 0)] ?? []}
-                        isTeacher={isTeacher}
-                        variant="card"
-                      />
-                    </div>
-                    <div className="card-header-row">
-                      <div className="flex items-center gap-2">
-                        <span className="font-mono text-xs font-bold tracking-wider text-[var(--blue)] uppercase">
-                          Tappa 00 · Laboratorio
-                        </span>
-                        <span className="inline-flex items-center rounded-full border border-emerald-500/30 bg-emerald-500/10 px-2.5 py-0.5 text-xs font-semibold text-emerald-300">
-                          Accoglienza
+                <article className="bento-tile bento-tile--glow md:col-span-2 lg:col-span-2 group min-h-[250px]">
+                  <div className="mb-3 pb-2.5 border-b border-[rgba(109,101,163,0.2)] flex items-center justify-between gap-2">
+                    <span className="font-mono text-[10px] font-bold uppercase tracking-wider text-[var(--muted)]">
+                      Classi svolte:
+                    </span>
+                    <LessonClassLabels
+                      year={1}
+                      week={0}
+                      initialCompleted={yearProgress[getLessonProgressKey(1, 0)] ?? []}
+                      isTeacher={isTeacher}
+                      variant="card"
+                    />
+                  </div>
+                  <Link
+                    href="/anno/1/lezione-0"
+                    className="flex flex-col flex-1 justify-between"
+                  >
+                    <div>
+                      <div className="card-header-row">
+                        <div className="flex items-center gap-2">
+                          <span className="font-mono text-xs font-bold tracking-wider text-[var(--blue)] uppercase">
+                            Tappa 00 · Laboratorio
+                          </span>
+                          <span className="inline-flex items-center rounded-full border border-emerald-500/30 bg-emerald-500/10 px-2.5 py-0.5 text-xs font-semibold text-emerald-300">
+                            Accoglienza
+                          </span>
+                        </div>
+                        <span className="font-mono text-xs font-semibold text-[var(--coral)] bg-[var(--surface-soft)] px-2.5 py-0.5 rounded-full border border-[var(--line)]">
+                          Zero Voti · 60 min
                         </span>
                       </div>
-                      <span className="font-mono text-xs font-semibold text-[var(--coral)] bg-[var(--surface-soft)] px-2.5 py-0.5 rounded-full border border-[var(--line)]">
-                        Zero Voti · 60 min
-                      </span>
+
+                      <h3 className="text-xl sm:text-2xl font-black tracking-tight text-[var(--ink)] group-hover:text-[var(--blue)] transition-colors mt-2">
+                        Carta d&apos;Identità Digitale & Mappa della Classe
+                      </h3>
+
+                      <p className="portal-muted mt-3 text-sm sm:text-base leading-relaxed max-w-[55ch]">
+                        Intervista a coppie senza esposizione orale forzata, mappatura delle provenienze dei pendolari e diagnostica delle competenze hardware/software con doodle box interattivo.
+                      </p>
                     </div>
 
-                    <h3 className="text-xl sm:text-2xl font-black tracking-tight text-[var(--ink)] group-hover:text-[var(--blue)] transition-colors mt-2">
-                      Carta d&apos;Identità Digitale & Mappa della Classe
-                    </h3>
-
-                    <p className="portal-muted mt-3 text-sm sm:text-base leading-relaxed max-w-[55ch]">
-                      Intervista a coppie senza esposizione orale forzata, mappatura delle provenienze dei pendolari e diagnostica delle competenze hardware/software con doodle box interattivo.
-                    </p>
-                  </div>
-
-                  <div className="card-footer-row mt-6">
-                    <div className="flex flex-wrap items-center gap-2">
-                      <span className="rounded-md border border-[rgba(170,162,255,0.25)] bg-[rgba(170,162,255,0.08)] px-3 py-1 text-xs font-medium text-[var(--ink)]">
-                        Inclusione BES / DSA
-                      </span>
-                      <span className="rounded-md border border-[var(--line)] bg-[var(--surface-soft)] px-2.5 py-1 text-xs font-mono text-[var(--muted)]">
-                        A schermi spenti
+                    <div className="card-footer-row mt-6">
+                      <div className="flex flex-wrap items-center gap-2">
+                        <span className="rounded-md border border-[rgba(170,162,255,0.25)] bg-[rgba(170,162,255,0.08)] px-3 py-1 text-xs font-medium text-[var(--ink)]">
+                          Inclusione BES / DSA
+                        </span>
+                        <span className="rounded-md border border-[var(--line)] bg-[var(--surface-soft)] px-2.5 py-1 text-xs font-mono text-[var(--muted)]">
+                          A schermi spenti
+                        </span>
+                      </div>
+                      <span className="inline-flex items-center gap-1.5 font-bold text-xs sm:text-sm text-[var(--blue)] transition-transform duration-200 group-hover:translate-x-1 shrink-0">
+                        <span>Apri Scheda Digitale</span>
+                        <span aria-hidden="true">→</span>
                       </span>
                     </div>
-                    <span className="inline-flex items-center gap-1.5 font-bold text-xs sm:text-sm text-[var(--blue)] transition-transform duration-200 group-hover:translate-x-1 shrink-0">
-                      <span>Apri Scheda Digitale</span>
-                      <span aria-hidden="true">→</span>
-                    </span>
-                  </div>
-                </Link>
+                  </Link>
+                </article>
 
                 {/* TESSERA 2: SCHEDA PDF A5 (Pronta per l'aula) */}
                 <a
@@ -265,65 +267,69 @@ export default async function YearPage({ params }: { params: Promise<{ year: str
                     const isKeyMilestone = kind === "project" || week.number === 1 || week.number === 23;
 
                     return (
-                      <Link
+                      <article
                         key={week.number}
-                        href={`/anno/${year}/settimana/${week.number}`}
                         className={`bento-tile group ${isKeyMilestone ? "bento-tile--glow" : ""}`}
                       >
-                        <div>
-                          {/* Barra label classi in alto */}
-                          <div className="mb-3 pb-2.5 border-b border-[rgba(109,101,163,0.2)] flex items-center justify-between gap-2">
-                            <span className="font-mono text-[10px] font-bold uppercase tracking-wider text-[var(--muted)]">
-                              Classi:
-                            </span>
-                            <LessonClassLabels
-                              year={year}
-                              week={week.number}
-                              initialCompleted={yearProgress[getLessonProgressKey(year, week.number)] ?? []}
-                              isTeacher={isTeacher}
-                              variant="card"
-                            />
-                          </div>
+                        {/* Barra label classi in alto (fuori da Link per click diretto sui pulsanti) */}
+                        <div className="mb-3 pb-2.5 border-b border-[rgba(109,101,163,0.2)] flex items-center justify-between gap-2">
+                          <span className="font-mono text-[10px] font-bold uppercase tracking-wider text-[var(--muted)]">
+                            Classi:
+                          </span>
+                          <LessonClassLabels
+                            year={year}
+                            week={week.number}
+                            initialCompleted={yearProgress[getLessonProgressKey(year, week.number)] ?? []}
+                            isTeacher={isTeacher}
+                            variant="card"
+                          />
+                        </div>
 
-                          {/* Eyebrow / Meta row */}
-                          <div className="card-header-row">
-                            <div className="flex items-center gap-2">
-                              <span className="font-mono text-xs font-bold tracking-wider text-[var(--blue)] uppercase">
-                                Sett. {String(week.number).padStart(2, "0")}
-                              </span>
-                              <span className={`inline-flex items-center rounded-full border px-2.5 py-0.5 text-xs font-semibold tracking-wide ${kindStyles[kind] || kindStyles.concept}`}>
-                                {kindLabels[kind] || "Lezione"}
+                        <Link
+                          href={`/anno/${year}/settimana/${week.number}`}
+                          className="flex flex-col flex-1 justify-between"
+                        >
+                          <div>
+                            {/* Eyebrow / Meta row */}
+                            <div className="card-header-row">
+                              <div className="flex items-center gap-2">
+                                <span className="font-mono text-xs font-bold tracking-wider text-[var(--blue)] uppercase">
+                                  Sett. {String(week.number).padStart(2, "0")}
+                                </span>
+                                <span className={`inline-flex items-center rounded-full border px-2.5 py-0.5 text-xs font-semibold tracking-wide ${kindStyles[kind] || kindStyles.concept}`}>
+                                  {kindLabels[kind] || "Lezione"}
+                                </span>
+                              </div>
+                              <span className="font-mono text-xs font-semibold text-[var(--muted)] bg-[var(--surface-soft)] px-2 py-0.5 rounded border border-[var(--line)]">
+                                {lesson?.hours ?? 2}h
                               </span>
                             </div>
-                            <span className="font-mono text-xs font-semibold text-[var(--muted)] bg-[var(--surface-soft)] px-2 py-0.5 rounded border border-[var(--line)]">
-                              {lesson?.hours ?? 2}h
-                            </span>
+
+                            {/* Title with balanced measure and line-height */}
+                            <h3 className="card-title line-clamp-2 mt-2 group-hover:text-[var(--blue)] transition-colors">
+                              {week.theme}
+                            </h3>
+
+                            {/* Description with comfortable leading */}
+                            <p className="card-description line-clamp-2 mt-2">
+                              {lesson?.activity || "Attività laboratoriale e missione pratica."}
+                            </p>
                           </div>
 
-                          {/* Title with balanced measure and line-height */}
-                          <h3 className="card-title line-clamp-2 mt-2 group-hover:text-[var(--blue)] transition-colors">
-                            {week.theme}
-                          </h3>
-
-                          {/* Description with comfortable leading */}
-                          <p className="card-description line-clamp-2 mt-2">
-                            {lesson?.activity || "Attività laboratoriale e missione pratica."}
-                          </p>
-                        </div>
-
-                        {/* Footer row with chips and animated action cue */}
-                        <div className="card-footer-row mt-6">
-                          <div className="flex flex-wrap items-center gap-1.5 overflow-hidden">
-                            <span className="truncate rounded-md border border-[rgba(170,162,255,0.2)] bg-[rgba(170,162,255,0.06)] px-2.5 py-1 text-xs font-medium text-[var(--ink)] max-w-[200px]" title={primaryChip}>
-                              {primaryChip}
+                          {/* Footer row with chips and animated action cue */}
+                          <div className="card-footer-row mt-6">
+                            <div className="flex flex-wrap items-center gap-1.5 overflow-hidden">
+                              <span className="truncate rounded-md border border-[rgba(170,162,255,0.2)] bg-[rgba(170,162,255,0.06)] px-2.5 py-1 text-xs font-medium text-[var(--ink)] max-w-[200px]" title={primaryChip}>
+                                {primaryChip}
+                              </span>
+                            </div>
+                            <span className="inline-flex items-center gap-1.5 font-bold text-xs text-[var(--blue)] transition-transform duration-200 group-hover:translate-x-1 shrink-0">
+                              <span>Esplora</span>
+                              <span aria-hidden="true" className="text-sm">→</span>
                             </span>
                           </div>
-                          <span className="inline-flex items-center gap-1.5 font-bold text-xs text-[var(--blue)] transition-transform duration-200 group-hover:translate-x-1 shrink-0">
-                            <span>Esplora</span>
-                            <span aria-hidden="true" className="text-sm">→</span>
-                          </span>
-                        </div>
-                      </Link>
+                        </Link>
+                      </article>
                     );
                   })}
                 </div>

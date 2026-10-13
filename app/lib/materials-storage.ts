@@ -3,6 +3,9 @@ import os from "node:os";
 import path from "node:path";
 import type { ExtraMaterial } from "./materials-types.ts";
 
+const BLOB_MATERIALS_PREFIX = "registry/materials-registry-";
+const LEGACY_BLOB_MATERIALS_KEY = "registry/materials-registry.json";
+
 function isServerlessReadOnlyFs(): boolean {
   return Boolean(process.env.VERCEL || process.env.AWS_LAMBDA_FUNCTION_NAME);
 }
@@ -49,9 +52,14 @@ export async function getAllMaterials(): Promise<ExtraMaterial[]> {
   if (isBlobStorageConfigured()) {
     try {
       const { list } = await import("@vercel/blob");
-      const { blobs } = await list({ prefix: "registry/materials-registry.json" });
+      const { blobs } = await list({ prefix: "registry/materials-registry" });
       if (blobs.length > 0) {
-        const res = await fetch(blobs[0].url, { cache: "no-store" });
+        const sorted = [...blobs].sort((a, b) => {
+          const timeDiff = new Date(b.uploadedAt).getTime() - new Date(a.uploadedAt).getTime();
+          if (timeDiff !== 0) return timeDiff;
+          return b.pathname.localeCompare(a.pathname);
+        });
+        const res = await fetch(sorted[0].url, { cache: "no-store" });
         if (res.ok) {
           const data = (await res.json()) as ExtraMaterial[];
           return Array.isArray(data) ? data : [];
@@ -79,13 +87,22 @@ export async function getAllMaterials(): Promise<ExtraMaterial[]> {
 async function saveAllMaterials(materials: ExtraMaterial[]): Promise<void> {
   if (isBlobStorageConfigured()) {
     try {
-      const { put } = await import("@vercel/blob");
-      await put("registry/materials-registry.json", JSON.stringify(materials, null, 2), {
+      const { put, list, del } = await import("@vercel/blob");
+      const { blobs: existingBlobs } = await list({ prefix: "registry/materials-registry" });
+
+      const uniqueKey = `${BLOB_MATERIALS_PREFIX}${Date.now()}.json`;
+      const created = await put(uniqueKey, JSON.stringify(materials, null, 2), {
         access: "public",
-        addRandomSuffix: false,
-        allowOverwrite: true,
+        addRandomSuffix: true,
         contentType: "application/json"
       });
+
+      const oldUrls = existingBlobs
+        .filter((b) => b.url !== created.url && (b.pathname.startsWith(BLOB_MATERIALS_PREFIX) || b.pathname === LEGACY_BLOB_MATERIALS_KEY))
+        .map((b) => b.url);
+      if (oldUrls.length > 0) {
+        await del(oldUrls).catch(() => {});
+      }
       return;
     } catch (err) {
       console.warn("Errore salvataggio registro su Vercel Blob, fallback su locale:", err);
@@ -149,8 +166,7 @@ export async function addMaterial({
         const { put } = await import("@vercel/blob");
         const blob = await put(`materials/${safeBaseName}`, file.buffer, {
           access: "public",
-          addRandomSuffix: false,
-          allowOverwrite: true,
+          addRandomSuffix: true,
           contentType: file.mimeType || "application/octet-stream"
         });
         finalUrl = blob.url;

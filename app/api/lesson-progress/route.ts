@@ -28,7 +28,8 @@ export async function GET(request: NextRequest) {
       }
 
       const classCookie = cookieStore.get(`class_session_${year}`)?.value;
-      if (!hasClassSession(year, classCookie, teacherCookie)) {
+      const hasAccess = hasClassSession(year, classCookie, teacherCookie);
+      if (!hasAccess) {
         return NextResponse.json({ error: "Accesso alla classe non autorizzato" }, { status: 401 });
       }
 
@@ -39,7 +40,7 @@ export async function GET(request: NextRequest) {
         }
         const completedClasses = await getLessonProgress(year, week);
         return NextResponse.json({
-          isTeacher,
+          isTeacher: true,
           classes: getClassesForYear(year),
           completedClasses
         });
@@ -47,7 +48,7 @@ export async function GET(request: NextRequest) {
 
       const progress = await getYearLessonProgress(year);
       return NextResponse.json({
-        isTeacher,
+        isTeacher: true,
         classes: getClassesForYear(year),
         progress
       });
@@ -58,7 +59,7 @@ export async function GET(request: NextRequest) {
     }
 
     const progress = await getAllLessonProgress();
-    return NextResponse.json({ isTeacher, progress });
+    return NextResponse.json({ isTeacher: true, progress });
   } catch (error) {
     console.error("Errore GET /api/lesson-progress:", error);
     return NextResponse.json(
@@ -69,16 +70,6 @@ export async function GET(request: NextRequest) {
 }
 
 export async function POST(request: NextRequest) {
-  const cookieStore = await cookies();
-  const teacherCookie = cookieStore.get("teacher_session")?.value;
-
-  if (!hasTeacherSession(teacherCookie)) {
-    return NextResponse.json(
-      { error: "Solo il docente autenticato nell'Area Docenti può modificare le lezioni svolte." },
-      { status: 401 }
-    );
-  }
-
   try {
     const body = await request.json();
     const year = Number(body.year);
@@ -94,6 +85,18 @@ export async function POST(request: NextRequest) {
     }
     if (!className.trim()) {
       return NextResponse.json({ error: "Classe mancante" }, { status: 400 });
+    }
+
+    const cookieStore = await cookies();
+    const teacherCookie = cookieStore.get("teacher_session")?.value;
+    const classCookie = cookieStore.get(`class_session_${year}`)?.value;
+
+    // Consenti la modifica sia con sessione docente sia con sezione classe sbloccata
+    if (!hasClassSession(year, classCookie, teacherCookie)) {
+      return NextResponse.json(
+        { error: "Sblocca la classe o accedi all'Area Docenti per spuntare le lezioni." },
+        { status: 401 }
+      );
     }
 
     const completedClasses = await toggleClassLessonProgress({

@@ -93,7 +93,6 @@ export function TeacherProgressSummary({ initialProgress }: TeacherProgressSumma
             })
           );
         }
-        router.refresh();
       } else {
         window.dispatchEvent(
           new CustomEvent("lesson-progress-updated", {

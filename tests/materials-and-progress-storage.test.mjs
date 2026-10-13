@@ -171,3 +171,54 @@ test("Integrazione Vercel Blob reale (upload file, allowOverwrite registro e del
   assert.equal(del2, true);
 });
 
+test("Integrazione Vercel Blob reale per avanzamento lezioni (consistenza read-after-write senza cache CDN stantia)", async (t) => {
+  if (!process.env.BLOB_READ_WRITE_TOKEN) {
+    t.skip("BLOB_READ_WRITE_TOKEN non presente nell'ambiente corrente");
+    return;
+  }
+
+  // Usiamo una settimana di test (es. anno 2, settimana 33) e ripristiniamo lo stato iniziale a fine test
+  const initial = await getLessonProgress(2, 33);
+  try {
+    const after2R = await toggleClassLessonProgress({
+      year: 2,
+      week: 33,
+      className: "2R",
+      completed: true
+    });
+    assert.ok(after2R.includes("2R"));
+
+    // Lettura immediata dopo scrittura: deve riflettere subito 2R senza attendere scadenza cache CDN
+    const readImmediate1 = await getLessonProgress(2, 33);
+    assert.ok(
+      readImmediate1.includes("2R"),
+      `Lettura immediata dopo toggle 2R deve includere 2R, ricevuto: ${JSON.stringify(readImmediate1)}`
+    );
+
+    const after2M = await toggleClassLessonProgress({
+      year: 2,
+      week: 33,
+      className: "2M",
+      completed: true
+    });
+    assert.ok(after2M.includes("2R") && after2M.includes("2M"));
+
+    const readImmediate2 = await getLessonProgress(2, 33);
+    assert.ok(
+      readImmediate2.includes("2R") && readImmediate2.includes("2M"),
+      `Lettura immediata dopo secondo toggle deve includere 2R e 2M, ricevuto: ${JSON.stringify(readImmediate2)}`
+    );
+  } finally {
+    // Ripristina stato iniziale per anno 2, settimana 33
+    for (const cls of ["2R", "2M", "2N"]) {
+      await toggleClassLessonProgress({
+        year: 2,
+        week: 33,
+        className: cls,
+        completed: initial.includes(cls)
+      });
+    }
+  }
+});
+
+

@@ -4,10 +4,13 @@ import Link from "next/link";
 import { hasTeacherSession } from "@/app/lib/auth";
 import { teacherNotes } from "@/app/data/teacher-notes";
 import { TeacherClassesHub } from "@/app/components/teacher-classes-hub";
+import { TeacherProgressSummary } from "@/app/components/teacher-progress-summary";
+import { getAllLessonProgress } from "@/app/lib/lesson-progress-storage";
 
 export default async function TeacherPage() {
   const session = (await cookies()).get("teacher_session")?.value;
   if (!hasTeacherSession(session)) redirect("/docenti/login");
+  const initialProgress = await getAllLessonProgress();
   return (
     <main className="portal-shell px-5 py-10 sm:px-10">
       <div className="portal-container max-w-5xl">
@@ -25,11 +28,17 @@ export default async function TeacherPage() {
           {/* Quick-Jump & Hub CTA Banner */}
           <div className="mt-6 flex flex-wrap items-center gap-3">
             <a
-              href="#classi-hub"
+              href="#riepilogo-lezioni"
               className="portal-button inline-flex items-center gap-2 text-sm font-bold shadow-lg shadow-[rgba(170,162,255,0.15)]"
             >
-              <span>🏛️ Hub 5 Classi & Piani Settimanali</span>
+              <span>📊 Riepilogo Lezioni Svolte (9 Classi)</span>
               <span aria-hidden="true" className="font-mono text-xs opacity-75">↓</span>
+            </a>
+            <a
+              href="#classi-hub"
+              className="portal-button-secondary inline-flex items-center gap-2 text-xs font-bold"
+            >
+              <span>🏛️ Hub 5 Classi & Piani Settimanali</span>
             </a>
             <a
               href="#gamification"
@@ -58,8 +67,11 @@ export default async function TeacherPage() {
           </div>
         </header>
 
+        {/* DASHBOARD PANORAMICA RIEPILOGO LEZIONI SVOLTE PER CLASSE (1R..5N) */}
+        <TeacherProgressSummary initialProgress={initialProgress} />
+
         {/* HUB DELLE 5 CLASSI: Piani 33 settimane, UDA, Verifiche e Download Ufficiali */}
-        <TeacherClassesHub />
+        <TeacherClassesHub initialProgress={initialProgress} />
         
         {teacherNotes.guides && (
           <section id="guide" className="mt-10 scroll-mt-10">

@@ -4,7 +4,8 @@ import path from "node:path";
 
 export type LessonProgressMap = Record<string, string[]>;
 
-const BLOB_PROGRESS_KEY = "registry/lesson-progress.json";
+const BLOB_PROGRESS_PREFIX = "registry/lesson-progress-";
+const LEGACY_BLOB_PROGRESS_KEY = "registry/lesson-progress.json";
 
 function getLocalProgressFile(): string {
   if (process.env.VERCEL || process.env.AWS_LAMBDA_FUNCTION_NAME) {
@@ -68,9 +69,15 @@ export async function getAllLessonProgress(): Promise<LessonProgressMap> {
   if (isBlobStorageConfigured()) {
     try {
       const { list } = await import("@vercel/blob");
-      const { blobs } = await list({ prefix: BLOB_PROGRESS_KEY });
+      const { blobs } = await list({ prefix: "registry/lesson-progress" });
       if (blobs.length > 0) {
-        const res = await fetch(blobs[0].url, { cache: "no-store" });
+        // Ordina dal più recente al più vecchio (evita qualsiasi cache CDN su URL fisse)
+        const sorted = [...blobs].sort((a, b) => {
+          const timeDiff = new Date(b.uploadedAt).getTime() - new Date(a.uploadedAt).getTime();
+          if (timeDiff !== 0) return timeDiff;
+          return b.pathname.localeCompare(a.pathname);
+        });
+        const res = await fetch(sorted[0].url, { cache: "no-store" });
         if (res.ok) {
           const data = await res.json();
           return sanitizeProgressMap(data);
@@ -94,13 +101,24 @@ export async function getAllLessonProgress(): Promise<LessonProgressMap> {
 async function saveAllLessonProgress(progress: LessonProgressMap): Promise<void> {
   if (isBlobStorageConfigured()) {
     try {
-      const { put } = await import("@vercel/blob");
-      await put(BLOB_PROGRESS_KEY, JSON.stringify(progress, null, 2), {
+      const { put, list, del } = await import("@vercel/blob");
+      const { blobs: existingBlobs } = await list({ prefix: "registry/lesson-progress" });
+
+      // Usa un pathname univoco con timestamp + random suffix per garantire URL mai cachata dalla CDN
+      const uniqueKey = `${BLOB_PROGRESS_PREFIX}${Date.now()}.json`;
+      const created = await put(uniqueKey, JSON.stringify(progress, null, 2), {
         access: "public",
-        addRandomSuffix: false,
-        allowOverwrite: true,
+        addRandomSuffix: true,
         contentType: "application/json"
       });
+
+      // Elimina gli snapshot precedenti per mantenere pulito lo store
+      const oldUrls = existingBlobs
+        .filter((b) => b.url !== created.url && (b.pathname.startsWith(BLOB_PROGRESS_PREFIX) || b.pathname === LEGACY_BLOB_PROGRESS_KEY))
+        .map((b) => b.url);
+      if (oldUrls.length > 0) {
+        await del(oldUrls).catch(() => {});
+      }
       return;
     } catch (err) {
       console.warn("Errore salvataggio lesson-progress su Vercel Blob, fallback su locale:", err);

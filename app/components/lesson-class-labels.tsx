@@ -1,7 +1,6 @@
 "use client";
 
 import { useState, useEffect, type MouseEvent } from "react";
-import { useRouter } from "next/navigation";
 
 const YEAR_CLASSES_CLIENT: Record<number, readonly string[]> = {
   1: ["1R", "1M", "1N"],
@@ -23,30 +22,23 @@ export function LessonClassLabels({
   year,
   week,
   initialCompleted,
-  isTeacher: initialIsTeacher,
   variant = "header"
 }: LessonClassLabelsProps) {
-  const router = useRouter();
   const classes = YEAR_CLASSES_CLIENT[year] ?? [];
   const [completed, setCompleted] = useState<string[]>(initialCompleted ?? []);
-  const [isTeacher, setIsTeacher] = useState<boolean>(Boolean(initialIsTeacher));
   const [loadingClass, setLoadingClass] = useState<string | null>(null);
 
-  useEffect(() => {
-    if (initialCompleted !== undefined) {
-      setCompleted(initialCompleted);
-    }
-  }, [initialCompleted]);
+  const initialSerialized = initialCompleted ? initialCompleted.join(",") : null;
 
   useEffect(() => {
-    if (initialIsTeacher !== undefined) {
-      setIsTeacher(initialIsTeacher);
+    if (initialSerialized !== null) {
+      setCompleted(initialSerialized ? initialSerialized.split(",") : []);
     }
-  }, [initialIsTeacher]);
+  }, [initialSerialized]);
 
   // Se i dati non sono stati passati dal Server Component (es. pagina client Lezione 0), caricali via API
   useEffect(() => {
-    if (initialCompleted !== undefined && initialIsTeacher !== undefined) return;
+    if (initialCompleted !== undefined) return;
     let active = true;
     async function fetchStatus() {
       try {
@@ -59,9 +51,6 @@ export function LessonClassLabels({
         if (Array.isArray(data.completedClasses)) {
           setCompleted(data.completedClasses);
         }
-        if (typeof data.isTeacher === "boolean") {
-          setIsTeacher(data.isTeacher);
-        }
       } catch {
         // Ignora errori di rete silenziosi in lettura
       }
@@ -70,7 +59,7 @@ export function LessonClassLabels({
     return () => {
       active = false;
     };
-  }, [year, week, initialCompleted, initialIsTeacher]);
+  }, [year, week, initialCompleted]);
 
   useEffect(() => {
     function onProgressUpdated(ev: Event) {
@@ -88,13 +77,14 @@ export function LessonClassLabels({
   async function handleToggle(e: MouseEvent<HTMLButtonElement>, className: string) {
     e.preventDefault();
     e.stopPropagation();
-    if (!isTeacher || loadingClass) return;
+    if (loadingClass) return;
 
-    const currentlyDone = completed.includes(className);
+    const prevCompleted = completed;
+    const currentlyDone = prevCompleted.includes(className);
     const nextDone = !currentlyDone;
     const optimistic = nextDone
-      ? [...completed, className]
-      : completed.filter((c) => c !== className);
+      ? classes.filter((c) => c === className || prevCompleted.includes(c))
+      : prevCompleted.filter((c) => c !== className);
 
     setCompleted(optimistic);
     window.dispatchEvent(
@@ -126,20 +116,19 @@ export function LessonClassLabels({
             })
           );
         }
-        router.refresh();
       } else {
-        setCompleted(completed);
+        setCompleted(prevCompleted);
         window.dispatchEvent(
           new CustomEvent("lesson-progress-updated", {
-            detail: { year, week, completedClasses: completed }
+            detail: { year, week, completedClasses: prevCompleted }
           })
         );
       }
     } catch {
-      setCompleted(completed);
+      setCompleted(prevCompleted);
       window.dispatchEvent(
         new CustomEvent("lesson-progress-updated", {
-          detail: { year, week, completedClasses: completed }
+          detail: { year, week, completedClasses: prevCompleted }
         })
       );
     } finally {
@@ -151,7 +140,10 @@ export function LessonClassLabels({
 
   return (
     <div
-      className={`flex flex-wrap items-center ${isCard ? "gap-1.5" : "gap-2"}`}
+      onClick={(e) => {
+        e.stopPropagation();
+      }}
+      className={`relative z-20 flex flex-wrap items-center ${isCard ? "gap-1.5" : "gap-2"}`}
       aria-label={`Stato avanzamento classi ${year}° anno`}
     >
       {!isCard && (
@@ -164,59 +156,32 @@ export function LessonClassLabels({
         const isBusy = loadingClass === cls;
 
         const baseClasses = isCard
-          ? "inline-flex items-center gap-1 rounded-md px-2 py-0.5 font-mono text-[11px] font-bold tracking-wide border transition-all"
-          : "inline-flex items-center gap-1.5 rounded-full px-3 py-1 font-mono text-xs font-bold tracking-wide border transition-all";
+          ? "inline-flex items-center gap-1 rounded-md px-2.5 py-1 font-mono text-[11px] font-bold tracking-wide border transition-all select-none"
+          : "inline-flex items-center gap-1.5 rounded-full px-3.5 py-1.5 font-mono text-xs font-bold tracking-wide border transition-all select-none";
 
         const stateClasses = isDone
-          ? "border-emerald-500/45 bg-emerald-500/15 text-[#72e3a3] shadow-[0_0_12px_-3px_rgba(114,227,163,0.35)]"
-          : "border-[var(--line)] bg-[var(--surface-soft)] text-[var(--muted)]";
+          ? "border-emerald-400/70 bg-emerald-500/20 text-[#72e3a3] shadow-[0_0_14px_-2px_rgba(114,227,163,0.45)] hover:border-emerald-300 hover:bg-emerald-500/30 active:scale-95 cursor-pointer"
+          : "border-[var(--line-strong)] bg-[var(--surface-soft)] text-[var(--ink)] opacity-85 hover:opacity-100 hover:border-[var(--blue)] hover:bg-[rgba(170,162,255,0.18)] active:scale-95 cursor-pointer";
 
-        const interactiveClasses = isTeacher
-          ? isDone
-            ? "hover:border-emerald-400 hover:bg-emerald-500/25 active:scale-95 cursor-pointer"
-            : "hover:border-[var(--blue)] hover:text-[var(--ink)] hover:bg-[rgba(170,162,255,0.12)] active:scale-95 cursor-pointer"
-          : "cursor-default";
-
-        const statusTitle = isTeacher
-          ? isDone
-            ? `Lezione svolta in ${cls} — clicca per rimuovere la spunta`
-            : `Segna lezione come svolta in ${cls}`
-          : isDone
-          ? `Lezione svolta in ${cls}`
-          : `Da svolgere in ${cls}`;
-
-        if (isTeacher) {
-          return (
-            <button
-              key={cls}
-              type="button"
-              disabled={isBusy}
-              onClick={(e) => handleToggle(e, cls)}
-              aria-pressed={isDone}
-              title={statusTitle}
-              className={`${baseClasses} ${stateClasses} ${interactiveClasses} ${
-                isBusy ? "opacity-60" : ""
-              }`}
-            >
-              <span aria-hidden="true" className="text-[10px] leading-none">
-                {isDone ? "✓" : "○"}
-              </span>
-              <span>{cls}</span>
-            </button>
-          );
-        }
+        const statusTitle = isDone
+          ? `Lezione svolta in ${cls} — clicca per rimuovere la spunta`
+          : `Clicca per segnare la lezione come svolta in ${cls}`;
 
         return (
-          <span
+          <button
             key={cls}
+            type="button"
+            disabled={isBusy}
+            onClick={(e) => handleToggle(e, cls)}
+            aria-pressed={isDone}
             title={statusTitle}
-            className={`${baseClasses} ${stateClasses} ${interactiveClasses}`}
+            className={`${baseClasses} ${stateClasses} ${isBusy ? "opacity-60" : ""}`}
           >
-            <span aria-hidden="true" className="text-[10px] leading-none">
+            <span aria-hidden="true" className="text-xs leading-none">
               {isDone ? "✓" : "○"}
             </span>
             <span>{cls}</span>
-          </span>
+          </button>
         );
       })}
     </div>
