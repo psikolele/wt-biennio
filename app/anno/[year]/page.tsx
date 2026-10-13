@@ -1,7 +1,11 @@
 import Link from "next/link";
 import { notFound } from "next/navigation";
+import { cookies } from "next/headers";
 import { getYearWeeks, type Year } from "@/app/data/curriculum";
 import { hasClassAccess } from "@/app/lib/class-access";
+import { hasTeacherSession } from "@/app/lib/auth";
+import { getYearLessonProgress, getLessonProgressKey } from "@/app/lib/lesson-progress-storage";
+import { LessonClassLabels } from "@/app/components/lesson-class-labels";
 
 export function generateStaticParams() {
   return [{ year: "1" }, { year: "2" }, { year: "3" }, { year: "4" }, { year: "5" }];
@@ -12,6 +16,8 @@ export default async function YearPage({ params }: { params: Promise<{ year: str
   const year = Number(rawYear) as Year;
   if (year < 1 || year > 5) notFound();
   if (!(await hasClassAccess(year))) return null;
+  const isTeacher = hasTeacherSession((await cookies()).get("teacher_session")?.value);
+  const yearProgress = await getYearLessonProgress(year);
   const weeks = getYearWeeks(year);
   const modules = year === 1 ? [
     { title: "Macroarea A · Conoscere e operare", description: "Capire il computer, i dispositivi, il sistema e le reti per lavorare con consapevolezza.", range: [1, 11] },
@@ -100,6 +106,18 @@ export default async function YearPage({ params }: { params: Promise<{ year: str
                   className="bento-tile bento-tile--glow md:col-span-2 lg:col-span-2 group min-h-[250px]"
                 >
                   <div>
+                    <div className="mb-3 pb-2.5 border-b border-[rgba(109,101,163,0.2)] flex items-center justify-between gap-2">
+                      <span className="font-mono text-[10px] font-bold uppercase tracking-wider text-[var(--muted)]">
+                        Classi svolte:
+                      </span>
+                      <LessonClassLabels
+                        year={1}
+                        week={0}
+                        initialCompleted={yearProgress[getLessonProgressKey(1, 0)] ?? []}
+                        isTeacher={isTeacher}
+                        variant="card"
+                      />
+                    </div>
                     <div className="card-header-row">
                       <div className="flex items-center gap-2">
                         <span className="font-mono text-xs font-bold tracking-wider text-[var(--blue)] uppercase">
@@ -253,6 +271,20 @@ export default async function YearPage({ params }: { params: Promise<{ year: str
                         className={`bento-tile group ${isKeyMilestone ? "bento-tile--glow" : ""}`}
                       >
                         <div>
+                          {/* Barra label classi in alto */}
+                          <div className="mb-3 pb-2.5 border-b border-[rgba(109,101,163,0.2)] flex items-center justify-between gap-2">
+                            <span className="font-mono text-[10px] font-bold uppercase tracking-wider text-[var(--muted)]">
+                              Classi:
+                            </span>
+                            <LessonClassLabels
+                              year={year}
+                              week={week.number}
+                              initialCompleted={yearProgress[getLessonProgressKey(year, week.number)] ?? []}
+                              isTeacher={isTeacher}
+                              variant="card"
+                            />
+                          </div>
+
                           {/* Eyebrow / Meta row */}
                           <div className="card-header-row">
                             <div className="flex items-center gap-2">

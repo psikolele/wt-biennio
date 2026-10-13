@@ -1,18 +1,46 @@
 "use client";
 
-import { useState, useMemo } from "react";
+import { useState, useMemo, useEffect } from "react";
 import Link from "next/link";
-import { teacherClassesData, TeacherClassMeta, TeacherUDA } from "@/app/data/teacher-classes-data";
+import { teacherClassesData, TeacherClassMeta } from "@/app/data/teacher-classes-data";
 import { curriculum, Week } from "@/app/data/curriculum";
 import { LessonExtraMaterials } from "@/app/components/lesson-extra-materials";
+import { LessonClassLabels } from "@/app/components/lesson-class-labels";
+import type { LessonProgressMap } from "@/app/lib/lesson-progress-storage";
 
-export function TeacherClassesHub() {
+export function TeacherClassesHub({ initialProgress = {} }: { initialProgress?: LessonProgressMap }) {
   const [activeYear, setActiveYear] = useState<1 | 2 | 3 | 4 | 5>(1);
   const [activeSubTab, setActiveSubTab] = useState<"plan" | "uda" | "labs">("plan");
   const [searchTerm, setSearchTerm] = useState("");
   const [selectedKind, setSelectedKind] = useState<string>("all");
   const [expandedUdaId, setExpandedUdaId] = useState<string | null>(null);
   const [managingMaterialsWeek, setManagingMaterialsWeek] = useState<number | null>(null);
+  const [progress, setProgress] = useState<LessonProgressMap>(initialProgress);
+
+  useEffect(() => {
+    setProgress(initialProgress);
+  }, [initialProgress]);
+
+  useEffect(() => {
+    function onProgressUpdated(ev: Event) {
+      const detail = (
+        ev as CustomEvent<{ year: number; week: number; completedClasses: string[] }>
+      ).detail;
+      if (!detail) return;
+      const key = `${detail.year}-${detail.week}`;
+      setProgress((prev) => {
+        const next = { ...prev };
+        if (detail.completedClasses.length > 0) {
+          next[key] = detail.completedClasses;
+        } else {
+          delete next[key];
+        }
+        return next;
+      });
+    }
+    window.addEventListener("lesson-progress-updated", onProgressUpdated);
+    return () => window.removeEventListener("lesson-progress-updated", onProgressUpdated);
+  }, []);
 
   const currentClass: TeacherClassMeta = teacherClassesData[activeYear];
   const classWeeks: Week[] = useMemo(() => {
@@ -298,32 +326,42 @@ export function TeacherClassesHub() {
                   >
                     <div className="flex flex-col md:flex-row md:items-start justify-between gap-4">
                       <div className="flex-1">
-                        <div className="flex flex-wrap items-center gap-2">
-                          <span className="font-mono text-xs font-bold px-2 py-0.5 rounded bg-[var(--surface-soft)] border border-[var(--line)] text-[var(--blue)]">
-                            Settimana {String(week.number).padStart(2, "0")}
-                          </span>
-
-                          {lesson && (
-                            <span
-                              className={`text-[10px] font-bold uppercase tracking-wider px-2 py-0.5 rounded ${
-                                lesson.kind === "laboratory"
-                                  ? "bg-[rgba(114,227,163,0.15)] text-[var(--coral)]"
-                                  : lesson.kind === "project"
-                                  ? "bg-[rgba(243,183,110,0.15)] text-[var(--warning)]"
-                                  : lesson.kind === "review"
-                                  ? "bg-rose-500/20 text-rose-300 border border-rose-500/30"
-                                  : "bg-[rgba(170,162,255,0.15)] text-[var(--blue)]"
-                              }`}
-                            >
-                              {lesson.kind === "review" ? "🎯 Verifica / Review" : lesson.kind}
+                        <div className="flex flex-wrap items-center justify-between gap-2 pb-2.5 mb-2.5 border-b border-[rgba(109,101,163,0.2)]">
+                          <div className="flex flex-wrap items-center gap-2">
+                            <span className="font-mono text-xs font-bold px-2 py-0.5 rounded bg-[var(--surface-soft)] border border-[var(--line)] text-[var(--blue)]">
+                              Settimana {String(week.number).padStart(2, "0")}
                             </span>
-                          )}
 
-                          {matchedUda && (
-                            <span className="text-[11px] text-[var(--muted)]">
-                              • UDA {matchedUda.number}: <em>{matchedUda.title}</em>
-                            </span>
-                          )}
+                            {lesson && (
+                              <span
+                                className={`text-[10px] font-bold uppercase tracking-wider px-2 py-0.5 rounded ${
+                                  lesson.kind === "laboratory"
+                                    ? "bg-[rgba(114,227,163,0.15)] text-[var(--coral)]"
+                                    : lesson.kind === "project"
+                                    ? "bg-[rgba(243,183,110,0.15)] text-[var(--warning)]"
+                                    : lesson.kind === "review"
+                                    ? "bg-rose-500/20 text-rose-300 border border-rose-500/30"
+                                    : "bg-[rgba(170,162,255,0.15)] text-[var(--blue)]"
+                                }`}
+                              >
+                                {lesson.kind === "review" ? "🎯 Verifica / Review" : lesson.kind}
+                              </span>
+                            )}
+
+                            {matchedUda && (
+                              <span className="text-[11px] text-[var(--muted)]">
+                                • UDA {matchedUda.number}: <em>{matchedUda.title}</em>
+                              </span>
+                            )}
+                          </div>
+
+                          <LessonClassLabels
+                            year={activeYear}
+                            week={week.number}
+                            initialCompleted={progress[`${activeYear}-${week.number}`] ?? []}
+                            isTeacher={true}
+                            variant="card"
+                          />
                         </div>
 
                         <h4 className="mt-2 text-base font-bold text-[var(--ink)]">

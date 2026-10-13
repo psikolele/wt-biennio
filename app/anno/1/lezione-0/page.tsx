@@ -3,6 +3,7 @@
 import { useState, useRef, useEffect } from "react";
 import Link from "next/link";
 import { ClassGate } from "@/app/components/class-gate";
+import { LessonClassLabels } from "@/app/components/lesson-class-labels";
 
 interface PartnerData {
   name: string;
@@ -100,6 +101,7 @@ export default function LezioneZeroPage() {
             <span aria-hidden="true">←</span> Indice 1° Anno
           </Link>
           <div className="flex flex-wrap items-center gap-3">
+            <LessonClassLabels year={1} week={0} variant="header" />
             <button
               type="button"
               onClick={() => window.print()}

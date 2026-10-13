@@ -6,8 +6,10 @@ import { LessonCard } from "@/app/components/lesson-card";
 import { DiagnosticTest } from "@/app/components/diagnostic-test";
 import { InteractiveCryptoLab } from "@/app/components/interactive-crypto-lab";
 import { LessonExtraMaterials } from "@/app/components/lesson-extra-materials";
+import { LessonClassLabels } from "@/app/components/lesson-class-labels";
 import { hasClassAccess } from "@/app/lib/class-access";
 import { hasTeacherSession } from "@/app/lib/auth";
+import { getLessonProgress } from "@/app/lib/lesson-progress-storage";
 
 export function generateStaticParams() {
   return [1, 2, 3, 4, 5].flatMap((year) => getYearWeeks(year as Year).map((week) => ({ year: String(year), week: String(week.number) })));
@@ -21,14 +23,24 @@ export default async function WeekPage({ params }: { params: Promise<{ year: str
   if (!week) notFound();
   if (!(await hasClassAccess(year))) return null;
   const isTeacher = hasTeacherSession((await cookies()).get("teacher_session")?.value);
+  const initialCompleted = await getLessonProgress(year, weekNumber);
   const previous = weekNumber > 1 ? `/anno/${year}/settimana/${weekNumber - 1}` : `/anno/${year}`;
   const next = weekNumber < 33 ? `/anno/${year}/settimana/${weekNumber + 1}` : `/anno/${year}`;
 
   return (
     <main className="portal-shell">
       <div className="portal-container max-w-4xl py-8">
-        <Link href={`/anno/${year}`} className="portal-button-secondary">← Indice dell&apos;anno {year}</Link>
-        <header className="week-header">
+        <div className="flex flex-wrap items-center justify-between gap-4">
+          <Link href={`/anno/${year}`} className="portal-button-secondary">← Indice dell&apos;anno {year}</Link>
+          <LessonClassLabels
+            year={year}
+            week={weekNumber}
+            initialCompleted={initialCompleted}
+            isTeacher={isTeacher}
+            variant="header"
+          />
+        </div>
+        <header className="week-header mt-8">
           <p className="portal-eyebrow">Settimana {String(week.number).padStart(2, "0")} · {year}° anno</p>
           <h1 className="mt-4 text-4xl font-black tracking-tight sm:text-5xl">{week.theme}</h1>
           <p className="portal-muted mt-4 max-w-2xl text-lg leading-8">Questa scheda accompagna due ore di lavoro: attiva le conoscenze, prova, gioca e chiudi con una traccia da conservare.</p>
