@@ -1,10 +1,17 @@
 import { promises as fs } from "node:fs";
+import os from "node:os";
 import path from "node:path";
 
 export type LessonProgressMap = Record<string, string[]>;
 
-const LOCAL_PROGRESS_FILE = path.join(process.cwd(), "data", "lesson-progress.json");
 const BLOB_PROGRESS_KEY = "registry/lesson-progress.json";
+
+function getLocalProgressFile(): string {
+  if (process.env.VERCEL || process.env.AWS_LAMBDA_FUNCTION_NAME) {
+    return path.join(os.tmpdir(), "dashboard-lezioni", "data", "lesson-progress.json");
+  }
+  return path.join(process.cwd(), "data", "lesson-progress.json");
+}
 
 export const YEAR_CLASSES: Record<number, readonly string[]> = {
   1: ["1R", "1M", "1N"],
@@ -26,17 +33,19 @@ function isBlobStorageConfigured(): boolean {
   return Boolean(process.env.BLOB_READ_WRITE_TOKEN);
 }
 
-async function ensureLocalProgressFile(): Promise<void> {
+async function ensureLocalProgressFile(): Promise<string> {
+  const filePath = getLocalProgressFile();
   try {
-    await fs.mkdir(path.dirname(LOCAL_PROGRESS_FILE), { recursive: true });
+    await fs.mkdir(path.dirname(filePath), { recursive: true });
     try {
-      await fs.access(LOCAL_PROGRESS_FILE);
+      await fs.access(filePath);
     } catch {
-      await fs.writeFile(LOCAL_PROGRESS_FILE, JSON.stringify({}, null, 2), "utf8");
+      await fs.writeFile(filePath, JSON.stringify({}, null, 2), "utf8");
     }
   } catch (err) {
     console.error("Errore inizializzazione file progresso lezioni:", err);
   }
+  return filePath;
 }
 
 function sanitizeProgressMap(raw: unknown): LessonProgressMap {
@@ -67,14 +76,15 @@ export async function getAllLessonProgress(): Promise<LessonProgressMap> {
           return sanitizeProgressMap(data);
         }
       }
+      return {};
     } catch (err) {
       console.warn("Fallback su storage locale per lesson-progress (Blob list/fetch fallito):", err);
     }
   }
 
-  await ensureLocalProgressFile();
   try {
-    const raw = await fs.readFile(LOCAL_PROGRESS_FILE, "utf8");
+    const filePath = await ensureLocalProgressFile();
+    const raw = await fs.readFile(filePath, "utf8");
     return sanitizeProgressMap(JSON.parse(raw));
   } catch {
     return {};
@@ -87,7 +97,9 @@ async function saveAllLessonProgress(progress: LessonProgressMap): Promise<void>
       const { put } = await import("@vercel/blob");
       await put(BLOB_PROGRESS_KEY, JSON.stringify(progress, null, 2), {
         access: "public",
-        addRandomSuffix: false
+        addRandomSuffix: false,
+        allowOverwrite: true,
+        contentType: "application/json"
       });
       return;
     } catch (err) {
@@ -95,8 +107,8 @@ async function saveAllLessonProgress(progress: LessonProgressMap): Promise<void>
     }
   }
 
-  await ensureLocalProgressFile();
-  await fs.writeFile(LOCAL_PROGRESS_FILE, JSON.stringify(progress, null, 2), "utf8");
+  const filePath = await ensureLocalProgressFile();
+  await fs.writeFile(filePath, JSON.stringify(progress, null, 2), "utf8");
 }
 
 export async function getYearLessonProgress(year: number): Promise<LessonProgressMap> {

@@ -1,9 +1,31 @@
 import { promises as fs } from "node:fs";
+import os from "node:os";
 import path from "node:path";
 import type { ExtraMaterial } from "./materials-types.ts";
 
-const LOCAL_STORAGE_DIR = path.join(process.cwd(), "public", "uploads", "materials");
-const LOCAL_REGISTRY_FILE = path.join(process.cwd(), "data", "materials-registry.json");
+function isServerlessReadOnlyFs(): boolean {
+  return Boolean(process.env.VERCEL || process.env.AWS_LAMBDA_FUNCTION_NAME);
+}
+
+function getStoragePaths() {
+  if (isServerlessReadOnlyFs()) {
+    const tmpBase = path.join(os.tmpdir(), "dashboard-lezioni");
+    return {
+      storageDir: path.join(tmpBase, "uploads", "materials"),
+      registryFile: path.join(tmpBase, "data", "materials-registry.json"),
+      isTmpFallback: true
+    };
+  }
+  return {
+    storageDir: path.join(process.cwd(), "public", "uploads", "materials"),
+    registryFile: path.join(process.cwd(), "data", "materials-registry.json"),
+    isTmpFallback: false
+  };
+}
+
+export function getLocalMaterialsDir(): string {
+  return getStoragePaths().storageDir;
+}
 
 // Helper per determinare se Vercel Blob è attivo
 export function isBlobStorageConfigured(): boolean {
@@ -12,16 +34,13 @@ export function isBlobStorageConfigured(): boolean {
 
 // Inizializza cartella e file locale se non esistono
 async function ensureLocalDirs() {
+  const { storageDir, registryFile } = getStoragePaths();
+  await fs.mkdir(storageDir, { recursive: true });
+  await fs.mkdir(path.dirname(registryFile), { recursive: true });
   try {
-    await fs.mkdir(LOCAL_STORAGE_DIR, { recursive: true });
-    await fs.mkdir(path.dirname(LOCAL_REGISTRY_FILE), { recursive: true });
-    try {
-      await fs.access(LOCAL_REGISTRY_FILE);
-    } catch {
-      await fs.writeFile(LOCAL_REGISTRY_FILE, JSON.stringify([], null, 2), "utf8");
-    }
-  } catch (err) {
-    console.error("Errore creazione directory locali per materiali:", err);
+    await fs.access(registryFile);
+  } catch {
+    await fs.writeFile(registryFile, JSON.stringify([], null, 2), "utf8");
   }
 }
 
@@ -38,15 +57,17 @@ export async function getAllMaterials(): Promise<ExtraMaterial[]> {
           return Array.isArray(data) ? data : [];
         }
       }
+      return [];
     } catch (err) {
       console.warn("Fallback su storage locale (Blob list/fetch fallito):", err);
     }
   }
 
-  // Fallback Locale
-  await ensureLocalDirs();
+  // Fallback Locale (o /tmp su serverless senza Blob)
   try {
-    const raw = await fs.readFile(LOCAL_REGISTRY_FILE, "utf8");
+    await ensureLocalDirs();
+    const { registryFile } = getStoragePaths();
+    const raw = await fs.readFile(registryFile, "utf8");
     const data = JSON.parse(raw) as ExtraMaterial[];
     return Array.isArray(data) ? data : [];
   } catch {
@@ -61,7 +82,9 @@ async function saveAllMaterials(materials: ExtraMaterial[]): Promise<void> {
       const { put } = await import("@vercel/blob");
       await put("registry/materials-registry.json", JSON.stringify(materials, null, 2), {
         access: "public",
-        addRandomSuffix: false
+        addRandomSuffix: false,
+        allowOverwrite: true,
+        contentType: "application/json"
       });
       return;
     } catch (err) {
@@ -69,9 +92,10 @@ async function saveAllMaterials(materials: ExtraMaterial[]): Promise<void> {
     }
   }
 
-  // Fallback Locale
+  // Fallback Locale (o /tmp su serverless)
   await ensureLocalDirs();
-  await fs.writeFile(LOCAL_REGISTRY_FILE, JSON.stringify(materials, null, 2), "utf8");
+  const { registryFile } = getStoragePaths();
+  await fs.writeFile(registryFile, JSON.stringify(materials, null, 2), "utf8");
 }
 
 // Filtra materiali per anno e settimana
@@ -117,24 +141,34 @@ export async function addMaterial({
     finalSizeBytes = file.buffer.length;
     const ext = path.extname(file.fileName).replace(".", "").toLowerCase();
     finalFileType = ext || "bin";
+    const safeBaseName = `y${year}_w${week}_${Date.now()}_${file.fileName.replace(/[^a-zA-Z0-9._-]/g, "_")}`;
 
+    let uploadedToBlob = false;
     if (isBlobStorageConfigured()) {
-      const { put } = await import("@vercel/blob");
-      const safeName = `materials/y${year}_w${week}_${Date.now()}_${file.fileName.replace(/[^a-zA-Z0-9._-]/g, "_")}`;
-      const blob = await put(safeName, file.buffer, {
-        access: "public",
-        addRandomSuffix: false,
-        contentType: file.mimeType || "application/octet-stream"
-      });
-      finalUrl = blob.url;
-    } else {
-      // Salvataggio locale in public/uploads/materials
+      try {
+        const { put } = await import("@vercel/blob");
+        const blob = await put(`materials/${safeBaseName}`, file.buffer, {
+          access: "public",
+          addRandomSuffix: false,
+          allowOverwrite: true,
+          contentType: file.mimeType || "application/octet-stream"
+        });
+        finalUrl = blob.url;
+        uploadedToBlob = true;
+      } catch (err) {
+        console.warn("Errore upload file su Vercel Blob, fallback su storage locale/tmp:", err);
+      }
+    }
+
+    if (!uploadedToBlob) {
       await ensureLocalDirs();
-      const safeFileName = `y${year}_w${week}_${Date.now()}_${file.fileName.replace(/[^a-zA-Z0-9._-]/g, "_")}`;
-      const destPath = path.join(LOCAL_STORAGE_DIR, safeFileName);
+      const { storageDir, isTmpFallback } = getStoragePaths();
+      const destPath = path.join(storageDir, safeBaseName);
       await fs.writeFile(destPath, file.buffer);
       localPath = destPath;
-      finalUrl = `/uploads/materials/${safeFileName}`;
+      finalUrl = isTmpFallback
+        ? `/api/materials/file/${encodeURIComponent(safeBaseName)}`
+        : `/uploads/materials/${safeBaseName}`;
     }
   } else {
     throw new Error("Specificare un file o un link valido per il materiale.");
