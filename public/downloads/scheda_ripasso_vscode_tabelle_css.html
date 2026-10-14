@@ -1,0 +1,398 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Laboratorio Web: VS Code Shortcuts, Tabelle HTML & CSS In-Page</title>
+
+  <!-- CSS INTERNO / IN-PAGE (Approccio Laboratoriale Didattico) -->
+  <style>
+    :root {
+      --primary-color: #1e3a8a;       /* Blu scuro istituzionale */
+      --secondary-color: #2563eb;     /* Blu brillante */
+      --accent-color: #0284c7;        /* Ciano per evidenziare */
+      --bg-color: #f1f5f9;            /* Sfondo pagina chiaro */
+      --card-bg: #ffffff;             /* Sfondo schede */
+      --text-main: #0f172a;           /* Testo principale */
+      --text-muted: #475569;          /* Testo secondario */
+      --border-color: #cbd5e1;        /* Bordo neutro */
+      --table-stripe: #f8fafc;        /* Sfondo righe pari */
+      --table-hover: #e0f2fe;         /* Sfondo al passaggio del mouse */
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      font-family: system-ui, -apple-system, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+      background-color: var(--bg-color);
+      color: var(--text-main);
+      line-height: 1.6;
+      padding: 2.5rem 1rem;
+    }
+
+    .wrapper {
+      max-width: 960px;
+      margin: 0 auto;
+    }
+
+    /* INTESTAZIONE */
+    header {
+      background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+      color: #ffffff;
+      padding: 2.2rem 2.5rem;
+      border-radius: 12px;
+      margin-bottom: 2rem;
+      box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
+    }
+
+    header h1 {
+      font-size: 1.85rem;
+      font-weight: 700;
+      margin-bottom: 0.5rem;
+    }
+
+    header p {
+      font-size: 1rem;
+      color: #e2e8f0;
+    }
+
+    .badge-bar {
+      margin-top: 1rem;
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.5rem;
+    }
+
+    .pill {
+      background-color: rgba(255, 255, 255, 0.18);
+      border: 1px solid rgba(255, 255, 255, 0.3);
+      padding: 0.25rem 0.75rem;
+      border-radius: 9999px;
+      font-size: 0.82rem;
+      font-weight: 500;
+    }
+
+    /* CARD SEZIONI */
+    .card {
+      background-color: var(--card-bg);
+      border: 1px solid var(--border-color);
+      border-radius: 10px;
+      padding: 2rem;
+      margin-bottom: 2rem;
+      box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05);
+    }
+
+    .card h2 {
+      color: var(--primary-color);
+      font-size: 1.35rem;
+      margin-bottom: 1rem;
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      border-bottom: 2px solid #e2e8f0;
+      padding-bottom: 0.5rem;
+    }
+
+    .card p, .card ul {
+      margin-bottom: 1rem;
+      color: var(--text-muted);
+    }
+
+    .card ul {
+      padding-left: 1.25rem;
+    }
+
+    /* TABELLE */
+    table {
+      width: 100%;
+      border-collapse: collapse; /* Elimina il doppio bordo */
+      margin: 1.2rem 0;
+      font-size: 0.95rem;
+    }
+
+    caption {
+      text-align: left;
+      font-weight: 600;
+      color: var(--text-muted);
+      margin-bottom: 0.5rem;
+      font-size: 0.88rem;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+    }
+
+    th, td {
+      border: 1px solid var(--border-color);
+      padding: 0.75rem 1rem;
+    }
+
+    thead th {
+      background-color: var(--primary-color);
+      color: #ffffff;
+      text-align: left;
+      font-weight: 600;
+    }
+
+    /* Allineamenti personalizzati */
+    .text-center { text-align: center; }
+    .text-right { text-align: right; }
+
+    /* Zebra Striping */
+    tbody tr:nth-child(even) {
+      background-color: var(--table-stripe);
+    }
+
+    /* Hover dinamico sulla riga */
+    tbody tr:hover {
+      background-color: var(--table-hover);
+      transition: background-color 0.15s ease-in-out;
+    }
+
+    /* Piede della tabella */
+    tfoot td {
+      font-weight: 700;
+      background-color: #f1f5f9;
+      color: var(--text-main);
+    }
+
+    /* Tasti da tastiera stilizzati */
+    kbd {
+      background-color: #e2e8f0;
+      border: 1px solid #94a3b8;
+      border-bottom: 2px solid #64748b;
+      border-radius: 4px;
+      color: #0f172a;
+      display: inline-block;
+      font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+      font-size: 0.82rem;
+      padding: 0.15rem 0.45rem;
+      white-space: nowrap;
+    }
+
+    /* Box di comparazione dei 3 metodi CSS */
+    .css-methods-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+      gap: 1rem;
+      margin: 1.5rem 0;
+    }
+
+    .method-box {
+      border: 1px solid var(--border-color);
+      border-radius: 8px;
+      padding: 1.2rem;
+      background-color: #f8fafc;
+    }
+
+    .method-box.active {
+      border-color: var(--secondary-color);
+      background-color: #eff6ff;
+    }
+
+    .method-box h3 {
+      font-size: 1.05rem;
+      color: var(--primary-color);
+      margin-bottom: 0.5rem;
+    }
+
+    .method-box code {
+      display: block;
+      background-color: #1e293b;
+      color: #38bdf8;
+      padding: 0.5rem;
+      border-radius: 5px;
+      font-size: 0.8rem;
+      margin: 0.5rem 0;
+      overflow-x: auto;
+    }
+
+    /* Tag di stato / Badge */
+    .status-badge {
+      display: inline-block;
+      padding: 0.2rem 0.55rem;
+      border-radius: 4px;
+      font-size: 0.78rem;
+      font-weight: 600;
+    }
+    .status-ok { background-color: #dcfce7; color: #166534; }
+    .status-warn { background-color: #fef3c7; color: #92400e; }
+
+    footer {
+      text-align: center;
+      color: var(--text-muted);
+      font-size: 0.85rem;
+      margin-top: 2rem;
+      padding-top: 1.5rem;
+      border-top: 1px solid var(--border-color);
+    }
+  </style>
+</head>
+<body>
+
+  <div class="wrapper">
+    <!-- TESTATA -->
+    <header>
+      <h1>Laboratorio di Tecnologie Web — Classe 4ª</h1>
+      <p>Ripasso operativo: Visual Studio Code Productivity, Tabelle Semantiche HTML ed Integrazione dei Fogli di Stile CSS.</p>
+      <div class="badge-bar">
+        <span class="pill">HTML5 Semantico</span>
+        <span class="pill">CSS In-Page (&lt;style&gt;)</span>
+        <span class="pill">Tabelle Dati</span>
+        <span class="pill">VS Code Shortcuts</span>
+        <span class="pill">Live Server</span>
+      </div>
+    </header>
+
+    <!-- SEZIONE 1: SHORTCUT VS CODE -->
+    <section class="card">
+      <h2>1. Produttività con Visual Studio Code (Shortcut da Tastiera)</h2>
+      <p>L'uso fluido delle scorciatoie da tastiera velocizza la scrittura del codice e riduce l'affaticamento da mouse. Ecco la guida rapida:</p>
+
+      <table>
+        <caption>Scorciatoie essenziali per lo sviluppo HTML/CSS su Windows</caption>
+        <thead>
+          <tr>
+            <th scope="col" style="width: 25%;">Combinazione Tasti</th>
+            <th scope="col" style="width: 35%;">Funzione Operativa</th>
+            <th scope="col">Perché è utile nel Web Coding</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><kbd>Ctrl</kbd> + <kbd>S</kbd></td>
+            <td>Salva il file corrente</td>
+            <td>Innesca l'aggiornamento automatico del browser tramite l'estensione <strong>Live Server</strong>.</td>
+          </tr>
+          <tr>
+            <td><kbd>Ctrl</kbd> + <kbd>/</kbd></td>
+            <td>Commenta / Decommenta riga</td>
+            <td>Inserisce <code>&lt;!-- commento --&gt;</code> in HTML e <code>/* commento */</code> in CSS.</td>
+          </tr>
+          <tr>
+            <td><kbd>Shift</kbd> + <kbd>Alt</kbd> + <kbd>F</kbd></td>
+            <td>Formatta codice (Auto-indent)</td>
+            <td>Allinea automaticamente i tag nidificati (apertura e chiusura).</td>
+          </tr>
+          <tr>
+            <td><kbd>Shift</kbd> + <kbd>Alt</kbd> + <kbd>↓</kbd></td>
+            <td>Duplica riga corrente in basso</td>
+            <td>Permette di creare righe di tabella <code>&lt;tr&gt;</code> o celle <code>&lt;td&gt;</code> in 1 secondo.</td>
+          </tr>
+          <tr>
+            <td><kbd>Alt</kbd> + <kbd>↑</kbd> / <kbd>↓</kbd></td>
+            <td>Sposta riga su o giù</td>
+            <td>Riordina elementi senza dover fare taglia-incolla.</td>
+          </tr>
+          <tr>
+            <td><kbd>Ctrl</kbd> + <kbd>D</kbd></td>
+            <td>Selezione parola successiva (Multi-cursore)</td>
+            <td>Modifica simultaneamente lo stesso selettore o nome classe in più punti.</td>
+          </tr>
+          <tr>
+            <td><kbd>Alt</kbd> + <kbd>L</kbd>, poi <kbd>Alt</kbd> + <kbd>O</kbd></td>
+            <td>Avvia Live Server</td>
+            <td>Apre la pagina su <code>http://127.0.0.1:5500</code> con refresh live al salvataggio.</td>
+          </tr>
+        </tbody>
+      </table>
+    </section>
+
+    <!-- SEZIONE 2: I TRE METODI DI INCLUSIONE CSS -->
+    <section class="card">
+      <h2>2. Come Aggiungere il CSS (Focus: Inclusione dalla Pagina)</h2>
+      <p>Il CSS controlla l'aspetto estetico della pagina. I tre metodi di integrazione si differenziano per scopo e collocazione:</p>
+
+      <div class="css-methods-grid">
+        <div class="method-box active">
+          <h3>1. CSS In-Page (Interno) ★</h3>
+          <p>Inserito nella sezione <code>&lt;head&gt;</code> all'interno del tag <code>&lt;style&gt;</code>.</p>
+          <code>&lt;head&gt;<br>&nbsp;&lt;style&gt;<br>&nbsp;&nbsp;table { width: 100%; }<br>&nbsp;&lt;/style&gt;<br>&lt;/head&gt;</code>
+          <p><small><strong>Uso:</strong> Esercitazioni didattiche, prototipi rapidi, singoli documenti autonomi.</small></p>
+        </div>
+
+        <div class="method-box">
+          <h3>2. CSS In-Line</h3>
+          <p>Applicato direttamente al singolo tag HTML tramite l'attributo <code>style="..."</code>.</p>
+          <code>&lt;td style="color: red;"&gt;<br>&nbsp;&nbsp;Prezzo scontato<br>&lt;/td&gt;</code>
+          <p><small><strong>Uso:</strong> Eccezioni e override rari. Sconsigliato per codice pulito.</small></p>
+        </div>
+
+        <div class="method-box">
+          <h3>3. CSS Esterno</h3>
+          <p>File <code>.css</code> separato collegato nella testata tramite il tag <code>&lt;link&gt;</code>.</p>
+          <code>&lt;head&gt;<br>&nbsp;&lt;link rel="stylesheet"<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;href="style.css"&gt;<br>&lt;/head&gt;</code>
+          <p><small><strong>Uso:</strong> Standard professionale aziendale per siti multipagina.</small></p>
+        </div>
+      </div>
+      <p><strong>Regola di Precedenza:</strong> Lo stile <em>In-Line</em> vince sempre; a parità di specificità tra <em>In-Page</em> ed <em>Esterno</em>, prevale la regola caricata per ultima.</p>
+    </section>
+
+    <!-- SEZIONE 3: TABELLE HTML & CSS STYLING -->
+    <section class="card">
+      <h2>3. Tabelle Dati HTML con Unione Celle e Styling CSS</h2>
+      <p>Questa tabella dimostra l'uso coordinato di <code>border-collapse: collapse;</code>, righe alternate zebrate (<code>tr:nth-child(even)</code>), feedback al passaggio del mouse (<code>tr:hover</code>), unione verticale (<code>rowspan</code>) e orizzontale (<code>colspan</code>):</p>
+
+      <table>
+        <caption>Listino e Disponibilità Servizi Cloud Aziendali — TechSolutions</caption>
+        <thead>
+          <tr>
+            <th scope="col" style="width: 18%;">Categoria</th>
+            <th scope="col" style="width: 15%;">Codice</th>
+            <th scope="col">Descrizione Servizio</th>
+            <th scope="col" class="text-center" style="width: 18%;">Stato</th>
+            <th scope="col" class="text-right" style="width: 18%;">Canone / Mese</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td rowspan="2"><strong>Infrastruttura Cloud</strong></td>
+            <td>CLD-101</td>
+            <td>Storage SSD Cloud Ridondato 1 TB</td>
+            <td class="text-center"><span class="status-badge status-ok">Attivo</span></td>
+            <td class="text-right">€ 35,00</td>
+          </tr>
+          <tr>
+            <!-- Qui NON si dichiara la cella Categoria perché occupata dal rowspan="2" sopra -->
+            <td>CLD-102</td>
+            <td>Server Virtuale Dedicato (4 vCPU, 16GB RAM)</td>
+            <td class="text-center"><span class="status-badge status-ok">Attivo</span></td>
+            <td class="text-right">€ 85,00</td>
+          </tr>
+          <tr>
+            <td rowspan="2"><strong>Sicurezza & Backup</strong></td>
+            <td>SEC-201</td>
+            <td>Backup Immutabile Anti-Ransomware Giornaliero</td>
+            <td class="text-center"><span class="status-badge status-ok">Attivo</span></td>
+            <td class="text-right">€ 45,00</td>
+          </tr>
+          <tr>
+            <!-- Cella coperta da rowspan -->
+            <td>SEC-202</td>
+            <td>Protezione Endpoint EDR + SOC Vigilato</td>
+            <td class="text-center"><span class="status-badge status-warn">In Attivazione</span></td>
+            <td class="text-right">€ 60,00</td>
+          </tr>
+        </tbody>
+        <tfoot>
+          <tr>
+            <td colspan="4">Totale Canone Mensile Pacchetto Completo (IVA Esclusa)</td>
+            <td class="text-right">€ 225,00</td>
+          </tr>
+        </tfoot>
+      </table>
+
+      <p><small><em>Nota tecnica: la riga del totale usa <code>colspan="4"</code> per unire le prime quattro colonne e lasciare la quinta colonna per l'importo calcolato.</em></small></p>
+    </section>
+
+    <!-- FOOTER -->
+    <footer>
+      <p>Materiale Didattico ad uso degli Studenti della Classe Quarta — Modulo Sviluppo Web Front-End (HTML5 & CSS)</p>
+      <p>Riferimenti W3Schools: <a href="https://www.w3schools.com/html/html_tables.asp" target="_blank" rel="noopener">HTML Tables</a> • <a href="https://www.w3schools.com/css/css_howto.asp" target="_blank" rel="noopener">How to Add CSS</a></p>
+    </footer>
+  </div>
+
+</body>
+</html>

@@ -56,3 +56,4 @@ public/resources/*
 public/slides/*
 !public/slides/README.md
 
+.env*.local

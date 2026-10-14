@@ -763,15 +763,54 @@ export const teacherClassesData: Record<1 | 2 | 3 | 4 | 5, TeacherClassMeta> = {
       {
         id: "uda-4-1",
         number: 1,
-        title: "Progettazione di Basi di Dati: Modello Concettuale (E-R) e Modello Relazionale",
-        weeksRange: "Settimane 1 - 10",
+        title: "Sviluppo Web Front-End: Setup VS Code, HTML5, Tabelle & CSS In-Page",
+        weeksRange: "Settimane 1 - 5",
         competences: [
-          "Formalizzare i requisiti di un sistema informativo traducendoli in modelli di dati rigorosi"
+          "Padroneggiare l'ambiente di sviluppo VS Code, la semantica HTML5, la strutturazione di tabelle complesse e l'integrazione di regole CSS in-page"
         ],
         skills: [
-          "Individuare entità, attributi, domini e chiavi a partire dal testo del problema",
+          "Utilizzare fluentemente le scorciatoie da tastiera e la sintassi Emmet in Visual Studio Code",
+          "Costruire documenti semantici conformi agli standard W3C con corretta gerarchia dei tag",
+          "Realizzare tabelle dati accessibili con unione celle orizzontale (colspan) e verticale (rowspan)",
+          "Applicare fogli di stile interni tramite tag <style> nella sezione <head> padroneggiando l'ordine di cascata",
+          "Applicare il Box Model e stilizzare tabelle con righe zebrate (nth-child) ed effetti interattivi hover"
+        ],
+        knowledge: [
+          "Architettura client-server del Web e funzionamento dei browser",
+          "Standard W3C per HTML5 e regole semantiche dei tag",
+          "Sintassi e selettori CSS, modello a scatola (Box Model) e specificità di cascata",
+          "Linee guida di accessibilità WCAG per tabelle e contrasti cromatici"
+        ],
+        contents: [
+          "Visual Studio Code: setup, estensioni (Live Server) e shortcut da tastiera",
+          "HTML5 Semantico: struttura, intestazioni, testi ed elenchi",
+          "Tabelle HTML: table, caption, thead, tbody, tfoot, tr, th, td, colspan, rowspan",
+          "Integrazione CSS: i 3 metodi (in-page, inline, esterno) e specificità",
+          "Styling tabelle: border-collapse, padding, zebra striping ed hover"
+        ],
+        methodsAndTools: [
+          "Laboratorio pratico di sviluppo web in VS Code con Live Server",
+          "Gamification e sfide di codice con HTML Zombies",
+          "Consultazione e applicazione della documentazione ufficiale W3Schools"
+        ],
+        assessmentTypes: [
+          "Verifica formativa su stesura di pagine HTML5 semantiche con tabelle stilizzate",
+          "Esercizio pratico guidato di laboratorio con controllo dei vincoli CSS (Settimana 5)"
+        ],
+        hours: 10
+      },
+      {
+        id: "uda-4-2",
+        number: 2,
+        title: "Progettazione di Basi di Dati: Modello Concettuale (E-R) e Modello Relazionale",
+        weeksRange: "Settimane 6 - 10",
+        competences: [
+          "Formalizzare i requisiti di un sistema informativo traducendoli in modelli di dati rigorosi e normalizzati"
+        ],
+        skills: [
+          "Individuare entità, attributi, domini e chiavi a partire dal testo del problema aziendale",
           "Definire le associazioni e stabilire le corrette cardinalità (1:1, 1:N, N:N)",
-          "Applicare le regole di derivazione per passare dal modello concettuale a quello logico",
+          "Applicare le regole di derivazione per passare dal modello concettuale a quello logico relazionale",
           "Normalizzare le relazioni fino alla terza forma normale (3NF) eliminando ridondanze e anomalie"
         ],
         knowledge: [
@@ -780,35 +819,35 @@ export const teacherClassesData: Record<1 | 2 | 3 | 4 | 5, TeacherClassMeta> = {
           "Vincoli di integrità referenziale e azioni di propagazione (CASCADE, SET NULL)"
         ],
         contents: [
-          "Architettura ANSI/SPARC a tre livelli",
-          "Modello Entità-Associazione (E-R)",
-          "Regole di traduzione logica e normalizzazione",
-          "Caso di studio guidato: Bike Sharing Comunale"
+          "Architettura ANSI/SPARC e proprietà ACID delle transazioni",
+          "Modello Entità-Associazione (E-R) e cardinalità",
+          "Regole di traduzione logica e forme normali (1NF, 2NF, 3NF)",
+          "Caso di studio aziendale guidato: Bike Sharing Comunale"
         ],
         methodsAndTools: [
           "Lezione frontale con analisi di casi aziendali reali",
           "Esercizi di modellazione concettuale alla lavagna e su software di diagrammi"
         ],
         assessmentTypes: [
-          "Prova scritta su stesura di schema E-R e modello logico derivato",
-          "Verifica strutturata di fine UDA 3 (Settimana 10)"
+          "Prova scritta/pratica su stesura di schema E-R e modello logico derivato",
+          "Verifica sommativa strutturata UDA 3 (Settimana 10)"
         ],
-        hours: 20
+        hours: 10
       },
       {
-        id: "uda-4-2",
-        number: 2,
+        id: "uda-4-3",
+        number: 3,
         title: "Microsoft Access, Linguaggio SQL e AI Query Engineering",
-        weeksRange: "Settimane 11 - 24",
+        weeksRange: "Settimane 11 - 19",
         competences: [
-          "Implementare e gestire un database relazionale attraverso un DBMS e il linguaggio SQL"
+          "Implementare e gestire un database relazionale attraverso un DBMS desktop, il linguaggio SQL e assistenti AI"
         ],
         skills: [
           "Creare tabelle con vincoli di dominio, valori predefiniti e integrità referenziale",
           "Scrivere istruzioni SQL: SELECT con clausole WHERE, ORDER BY, GROUP BY e HAVING",
           "Effettuare giunzioni tra tabelle tramite INNER JOIN e gestire funzioni di aggregazione (COUNT, SUM, AVG)",
-          "Costruire interfacce grafiche con maschere master/detail e report per la stampa",
-          "Utilizzare strumenti AI per il debug e la traduzione di query da linguaggio naturale a SQL"
+          "Costruire interfacce grafiche con maschere master/detail e report per la stampa/PDF",
+          "Utilizzare strumenti AI per il debug e la traduzione di query da linguaggio naturale a SQL (Text-to-SQL)"
         ],
         knowledge: [
           "Componenti del linguaggio SQL: DDL, DML, DQL e DCL",
@@ -816,57 +855,60 @@ export const teacherClassesData: Record<1 | 2 | 3 | 4 | 5, TeacherClassMeta> = {
           "Architettura delle maschere ed eventi in ambiente DBMS desktop"
         ],
         contents: [
-          "Microsoft Access / SQLite / Beekeeper Studio",
-          "Interrogazioni di selezione, parametriche e di aggiornamento",
-          "Maschere e sottomaschere relazionali",
+          "Microsoft Access: tabelle, relazioni, chiavi ed integrità referenziale",
+          "Interrogazioni di selezione, parametriche, campi calcolati e totali",
+          "AI Livello 2: Text-to-SQL, query debugging e ottimizzazione indici",
+          "Maschere e sottomaschere relazionali master/detail",
           "Report aziendali con raggruppamento e totali parziali",
-          "Project work: Gestione completa di uno Studio Medico / Dentistico"
+          "Project work: Gestione completa di uno Studio Medico / Commerciale"
         ],
         methodsAndTools: [
           "Laboratorio pratico di sviluppo software con postazione individuale",
-          "Pair programming assistito da AI per test-to-SQL e verifica dei vincoli"
+          "Pair programming assistito da AI per text-to-SQL e verifica dei vincoli"
         ],
         assessmentTypes: [
           "Verifica pratica individuale al PC su creazione tabelle, relazioni e query SQL",
-          "Valutazione del database dello Studio Medico (Settimana 24)"
-        ],
-        hours: 28
-      },
-      {
-        id: "uda-4-3",
-        number: 3,
-        title: "Sviluppo Web: HTML5 Semantico, CSS3 e Design Accessibile",
-        weeksRange: "Settimane 25 - 33",
-        competences: [
-          "Realizzare siti web aziendali conformi agli standard internazionali del W3C e WCAG"
-        ],
-        skills: [
-          "Strutturare documenti web usando tag semantici (<header>, <nav>, <main>, <section>, <article>, <footer>)",
-          "Impostare fogli di stile CSS per la tipografia, i colori e il layout (Flexbox/Grid)",
-          "Inserire moduli (<form>) con controlli di input tipizzati e validazione client-side",
-          "Garantire l'accessibilità attraverso contrasti cromatici ottimali e attributi alt descrittivi"
-        ],
-        knowledge: [
-          "Funzionamento del protocollo HTTP/HTTPS e rendering delle pagine nel browser",
-          "Standard W3C e linee guida di accessibilità WCAG 2.1 AA",
-          "Separazione tra contenuto (HTML) e presentazione estetica (CSS)"
-        ],
-        contents: [
-          "Editor di codice (VS Code / editor online)",
-          "Sintassi HTML5 e gerarchia dei tag",
-          "Selettori CSS, modello a scatola (Box Model) e layout responsivo",
-          "Form di contatto e tabelle accessibili",
-          "Project Work finale: Sito web aziendale per la presentazione di servizi/prodotti"
-        ],
-        methodsAndTools: [
-          "Laboratorio di scrittura del codice senza framework invasivi",
-          "Validazione tramite W3C Validator e strumenti di audit (Lighthouse)"
-        ],
-        assessmentTypes: [
-          "Verifica pratica di codifica HTML/CSS",
-          "Valutazione del sito web aziendale completo e del Portfolio annuale (Settimane 32-33)"
+          "Valutazione del database dello Studio Medico e prova sommativa (Settimana 19)"
         ],
         hours: 18
+      },
+      {
+        id: "uda-4-4",
+        number: 4,
+        title: "Sviluppo Web Avanzato: Flexbox, Form, Responsive, AI Coding & Capstone",
+        weeksRange: "Settimane 20 - 33",
+        competences: [
+          "Realizzare siti web aziendali completi, responsive e accessibili integrando dati dal database relazionale"
+        ],
+        skills: [
+          "Progettare layout moderni e fluidi con CSS Flexbox per menu e schede",
+          "Costruire moduli di contatto (<form>) con controlli tipizzati e validazione client-side nativa",
+          "Garantire l'accessibilità universale (WCAG AA) e la reattività multipiattaforma tramite media queries",
+          "Integrare i dati estratti dal database Access all'interno delle tabelle stilizzate del sito",
+          "Utilizzare assistenti AI per scaffolding, bug-hunting e validazione del codice"
+        ],
+        knowledge: [
+          "Principi del Responsive Web Design e meta tag viewport",
+          "Standard W3C e linee guida di accessibilità WCAG 2.1 AA",
+          "Architettura di integrazione tra database back-end e front-end web"
+        ],
+        contents: [
+          "Layout moderno con CSS Flexbox: contenitori, allineamenti e navbar",
+          "HTML5 Form e moduli interattivi di richiesta preventivo",
+          "Media queries e design responsive per smartphone e tablet",
+          "AI Livello 2: AI-Assisted Web Coding e Pair Programming",
+          "Project Work Capstone: Mini-sito aziendale multipagina integrato con dati DB",
+          "Validazione W3C, compilazione Prompt Log e difesa del Portfolio"
+        ],
+        methodsAndTools: [
+          "Laboratorio di scrittura del codice HTML/CSS e validazione con validatore W3C e Lighthouse",
+          "Sviluppo cooperativo e stesura del prompt log per l'uso dell'AI"
+        ],
+        assessmentTypes: [
+          "Verifica sommativa UDA 7: estensione pratica del sito web integrato",
+          "Valutazione del Capstone Project Web-DB e colloquio finale sul Portfolio (Settimane 32-33)"
+        ],
+        hours: 28
       }
     ],
     assessmentStrategy: {
