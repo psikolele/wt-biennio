@@ -487,7 +487,23 @@ const bsmartMaterials = {
     ], 
     materials: ["LIM / Proiettore d'aula", "Smartphone studenti (BYOD / a coppie)", "Curipod Live Session"] 
   },
-  "2-02": { cta: [{ label: "Pacchetto Ripasso Fogli di Calcolo (.zip)", href: "/resources/anno2/settimana-02/2-Foglio_elettronico.zip" }], materials: ["Computer", "Casi di studio su formule e riferimenti $"] },
+  "2-02": {
+    cta: [
+      { label: "Calcoli & Formule Aritmetiche (.xlsx)", href: "/downloads/anno2/settimana-02/2-Calcoli formule.xlsx" },
+      { label: "Riferimenti Relativi (.xlsx)", href: "/downloads/anno2/settimana-02/2-Rif_Relativo.xlsx" },
+      { label: "Riferimenti Assoluti ($) (.xlsx)", href: "/downloads/anno2/settimana-02/2-Rif_Assoluto.xlsx" },
+      { label: "Esercizio: Costo Complessivo (.xlsx)", href: "/downloads/anno2/settimana-02/2-Costo complessivo.xlsx" },
+      { label: "Caso Studio: Navi da Crociera (.xlsx)", href: "/downloads/anno2/settimana-02/1-Navi crociera.xlsx" },
+      { label: "Caso Studio: Consumo Energetico UE (.xlsx)", href: "/downloads/anno2/settimana-02/2-Consumo energetico UE.xlsx" },
+      { label: "Caso Studio: Corsisti (.xlsx)", href: "/downloads/anno2/settimana-02/2-Corsisti.xlsx" },
+      { label: "Caso Studio: Esiti Esame (.xlsx)", href: "/downloads/anno2/settimana-02/2-Esiti esame.xlsx" },
+      { label: "Caso Studio: Presenze Turistiche (.xlsx)", href: "/downloads/anno2/settimana-02/2-Presenze turistiche.xlsx" },
+      { label: "Caso Studio: Spese Condominiali (.xlsx)", href: "/downloads/anno2/settimana-02/2-Spese condominiali.xlsx" },
+      { label: "Caso Studio: Rimanenze Edicola (.xlsx)", href: "/downloads/anno2/settimana-02/2-Rimanenze edicola.xlsx" },
+      { label: "Caso Studio: Corsi (.xlsx)", href: "/downloads/anno2/settimana-02/3-Corsi.xlsx" }
+    ],
+    materials: ["Computer", "Microsoft Excel / Google Fogli", "Cartelle di lavoro con formule e riferimenti $"]
+  },
   "2-03": { cta: [{ label: "Guida Software Libero & Proprietario (PDF)", href: "/resources/anno2/settimana-03/A1_U2_4_SOFTWARE_LIBERO_SOFTWARE_PROPRIETARIO.pdf" }], materials: ["Computer", "Architettura del Sistema Operativo", "Task Manager e gestione processi"] },
   "2-04": { cta: [{ label: "[Materiale in caricamento: Scheda Laboratorio GUI vs CLI]", href: "#in-caricamento" }], materials: ["Computer", "PowerShell / Terminale Windows", "Prompt comandi base"] },
   "2-05": { cta: [{ label: "Guida Ricerca & Struttura Cartelle (PDF)", href: "/resources/anno2/settimana-05/A1_U3_2_RICERCARE_ELEMENTI_UNITA_CARTELLE.pdf" }, { label: "Scheda Backup & Sicurezza Dati (PDF)", href: "/resources/anno2/settimana-05/A2_U1_1_ALTRI_TIPI_BACKUP.pdf" }], materials: ["Computer", "Esplora File approfondito", "Unità disco e percorsi"] },

@@ -40,7 +40,7 @@ export async function GET(request: NextRequest) {
         }
         const completedClasses = await getLessonProgress(year, week);
         return NextResponse.json({
-          isTeacher: true,
+          isTeacher,
           classes: getClassesForYear(year),
           completedClasses
         });
@@ -48,7 +48,7 @@ export async function GET(request: NextRequest) {
 
       const progress = await getYearLessonProgress(year);
       return NextResponse.json({
-        isTeacher: true,
+        isTeacher,
         classes: getClassesForYear(year),
         progress
       });
@@ -59,7 +59,7 @@ export async function GET(request: NextRequest) {
     }
 
     const progress = await getAllLessonProgress();
-    return NextResponse.json({ isTeacher: true, progress });
+    return NextResponse.json({ isTeacher, progress });
   } catch (error) {
     console.error("Errore GET /api/lesson-progress:", error);
     return NextResponse.json(
@@ -89,13 +89,13 @@ export async function POST(request: NextRequest) {
 
     const cookieStore = await cookies();
     const teacherCookie = cookieStore.get("teacher_session")?.value;
-    const classCookie = cookieStore.get(`class_session_${year}`)?.value;
+    const isTeacher = hasTeacherSession(teacherCookie);
 
-    // Consenti la modifica sia con sessione docente sia con sezione classe sbloccata
-    if (!hasClassSession(year, classCookie, teacherCookie)) {
+    // Consenti la modifica SOLO ai docenti autenticati
+    if (!isTeacher) {
       return NextResponse.json(
-        { error: "Sblocca la classe o accedi all'Area Docenti per spuntare le lezioni." },
-        { status: 401 }
+        { error: "Accesso riservato: solo il docente autenticato può modificare lo stato delle classi." },
+        { status: 403 }
       );
     }
 

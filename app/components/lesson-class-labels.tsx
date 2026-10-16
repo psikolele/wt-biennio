@@ -22,11 +22,19 @@ export function LessonClassLabels({
   year,
   week,
   initialCompleted,
+  isTeacher: isTeacherProp,
   variant = "header"
 }: LessonClassLabelsProps) {
   const classes = YEAR_CLASSES_CLIENT[year] ?? [];
   const [completed, setCompleted] = useState<string[]>(initialCompleted ?? []);
   const [loadingClass, setLoadingClass] = useState<string | null>(null);
+  const [isTeacher, setIsTeacher] = useState<boolean>(isTeacherProp ?? false);
+
+  useEffect(() => {
+    if (isTeacherProp !== undefined) {
+      setIsTeacher(isTeacherProp);
+    }
+  }, [isTeacherProp]);
 
   const initialSerialized = initialCompleted ? initialCompleted.join(",") : null;
 
@@ -38,7 +46,7 @@ export function LessonClassLabels({
 
   // Se i dati non sono stati passati dal Server Component (es. pagina client Lezione 0), caricali via API
   useEffect(() => {
-    if (initialCompleted !== undefined) return;
+    if (initialCompleted !== undefined && isTeacherProp !== undefined) return;
     let active = true;
     async function fetchStatus() {
       try {
@@ -51,6 +59,9 @@ export function LessonClassLabels({
         if (Array.isArray(data.completedClasses)) {
           setCompleted(data.completedClasses);
         }
+        if (typeof data.isTeacher === "boolean" && isTeacherProp === undefined) {
+          setIsTeacher(data.isTeacher);
+        }
       } catch {
         // Ignora errori di rete silenziosi in lettura
       }
@@ -59,7 +70,7 @@ export function LessonClassLabels({
     return () => {
       active = false;
     };
-  }, [year, week, initialCompleted]);
+  }, [year, week, initialCompleted, isTeacherProp]);
 
   useEffect(() => {
     function onProgressUpdated(ev: Event) {
@@ -77,6 +88,7 @@ export function LessonClassLabels({
   async function handleToggle(e: MouseEvent<HTMLButtonElement>, className: string) {
     e.preventDefault();
     e.stopPropagation();
+    if (!isTeacher) return;
     if (loadingClass) return;
 
     const prevCompleted = completed;
@@ -154,26 +166,37 @@ export function LessonClassLabels({
       {classes.map((cls) => {
         const isDone = completed.includes(cls);
         const isBusy = loadingClass === cls;
+        const isInteractive = isTeacher;
+        const isDisabled = !isInteractive || isBusy;
 
         const baseClasses = isCard
           ? "inline-flex items-center gap-1 rounded-md px-2.5 py-1 font-mono text-[11px] font-bold tracking-wide border transition-all select-none"
           : "inline-flex items-center gap-1.5 rounded-full px-3.5 py-1.5 font-mono text-xs font-bold tracking-wide border transition-all select-none";
 
-        const stateClasses = isDone
-          ? "border-emerald-400/70 bg-emerald-500/20 text-[#72e3a3] shadow-[0_0_14px_-2px_rgba(114,227,163,0.45)] hover:border-emerald-300 hover:bg-emerald-500/30 active:scale-95 cursor-pointer"
-          : "border-[var(--line-strong)] bg-[var(--surface-soft)] text-[var(--ink)] opacity-85 hover:opacity-100 hover:border-[var(--blue)] hover:bg-[rgba(170,162,255,0.18)] active:scale-95 cursor-pointer";
+        const stateClasses = isInteractive
+          ? isDone
+            ? "border-emerald-400/70 bg-emerald-500/20 text-[#72e3a3] shadow-[0_0_14px_-2px_rgba(114,227,163,0.45)] hover:border-emerald-300 hover:bg-emerald-500/30 active:scale-95 cursor-pointer"
+            : "border-[var(--line-strong)] bg-[var(--surface-soft)] text-[var(--ink)] opacity-85 hover:opacity-100 hover:border-[var(--blue)] hover:bg-[rgba(170,162,255,0.18)] active:scale-95 cursor-pointer"
+          : isDone
+            ? "border-emerald-400/40 bg-emerald-500/15 text-[#72e3a3] cursor-not-allowed opacity-90"
+            : "border-[var(--line-strong)] bg-[var(--surface-soft)] text-[var(--muted)] opacity-60 cursor-not-allowed";
 
-        const statusTitle = isDone
-          ? `Lezione svolta in ${cls} — clicca per rimuovere la spunta`
-          : `Clicca per segnare la lezione come svolta in ${cls}`;
+        const statusTitle = isInteractive
+          ? isDone
+            ? `Lezione svolta in ${cls} — clicca per rimuovere la spunta`
+            : `Clicca per segnare la lezione come svolta in ${cls}`
+          : isDone
+            ? `Lezione svolta in ${cls} (sola lettura: accesso docente richiesto per modificare)`
+            : `Lezione non ancora svolta in ${cls} (sola lettura: accesso docente richiesto per modificare)`;
 
         return (
           <button
             key={cls}
             type="button"
-            disabled={isBusy}
+            disabled={isDisabled}
             onClick={(e) => handleToggle(e, cls)}
             aria-pressed={isDone}
+            aria-disabled={!isInteractive}
             title={statusTitle}
             className={`${baseClasses} ${stateClasses} ${isBusy ? "opacity-60" : ""}`}
           >

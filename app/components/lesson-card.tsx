@@ -106,7 +106,8 @@ export function LessonCard({ lesson }: { lesson: Lesson }) {
             <div className="lesson-actions">
               {lesson.studentCta.map((cta) => {
                 const isInCaricamento = cta.href.startsWith("#in-caricamento");
-                const isExternalOrFile = cta.href.startsWith("http") || /\.(html|pptx|pdf|zip)$/i.test(cta.href);
+                const isDownloadable = /\.(xlsx|docx|pptx|pdf|zip|csv)$/i.test(cta.href);
+                const isExternalOrFile = cta.href.startsWith("http") || /\.(html|pptx|pdf|zip|xlsx|docx|csv)$/i.test(cta.href);
                 if (isInCaricamento) {
                   return (
                     <span
@@ -117,6 +118,20 @@ export function LessonCard({ lesson }: { lesson: Lesson }) {
                     >
                       {cta.label}
                     </span>
+                  );
+                }
+                if (isDownloadable) {
+                  return (
+                    <a
+                      key={cta.label}
+                      href={cta.href}
+                      download
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="portal-button"
+                    >
+                      {cta.label}
+                    </a>
                   );
                 }
                 return (
