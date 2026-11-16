@@ -2587,471 +2587,211 @@ export const triennioCurriculum = {
     },
     {
       "number": 6,
-      "theme": "Dagli Archivi tradizionali ai DBMS: limiti, Database e Fasi di Progettazione",
+      "theme": "Da programmare",
       "lessons": [
         {
           "id": "4-06",
-          "title": "Dagli Archivi tradizionali ai DBMS: limiti, Database e Fasi di Progettazione",
-          "hours": 2,
-          "book": "Connessi in azienda · UDA 3, TEMA 1, Paragrafi 1.1–1.3, Pagine 98–103, 111; Connessi in azienda · UDA 3, TEMA 1, Paragrafi 1.4–1.6, Pagine 104–107, 143",
-          "kind": "concept",
-          "example": "Esempio applicativo: Analisi di un file Excel \"appiattito\" con ripetizioni di clienti e prodotti; evidenziazione delle anomalie di inserimento e cancellazione. Nel contesto operativo aziendale, confronta le scelte metodologiche controllando sempre l’integrità e la coerenza del risultato. A seguire: Esempio applicativo: Studio del ciclo di vita di un database: dall'intervista all'utente alla manutenzione; figure professionali (DBA, progettista). Nel contesto operativo aziendale, confronta le scelte metodologiche controllando sempre l’integrità e la coerenza del risultato.",
-          "exercise": "Attività operativa: Analisi di un file Excel \"appiattito\" con ripetizioni di clienti e prodotti; evidenziazione delle anomalie di inserimento e cancellazione. Consegna finale: Scheda d'analisi critica con identificazione di 5 difetti dell'archivio piatto. In continuità: Attività operativa: Studio del ciclo di vita di un database: dall'intervista all'utente alla manutenzione; figure professionali (DBA, progettista). Consegna finale: Documento dei requisiti informativi di un caso aziendale.",
-          "deepDive": "Approfondimento AI & Azienda: Spiegazione con metafora: chiedere all'AI di spiegare perché un'azienda con 10.000 ordini/giorno non può lavorare solo con fogli di calcolo. Approfondimento AI & Azienda: Generazione di un verbale di intervista simulata a un cliente commerciale per raccogliere i requisiti di un database.",
-          "competence": "Realizzare soluzioni e prodotti digitali operativi per l’azienda documentando scelte, dati e prompt.",
-          "evidence": "Prodotto archiviato (Documento dei requisiti informativi di un caso aziendale.) e documentazione delle scelte/prompt log.",
-          "materials": [
-            "Computer del laboratorio",
-            "Quaderno di bordo / Cloud Drive",
-            "Dataset e schede didattiche"
-          ],
-          "phases": [
-            {
-              "label": "Attivazione: limiti degli archivi tradizionali (scenario aziendale)",
-              "minutes": 15
-            },
-            {
-              "label": "Spiegazione: dal file flat al Database, DBMS e fasi di progettazione",
-              "minutes": 35
-            },
-            {
-              "label": "Prova guidata e applicazione su casi d'uso",
-              "minutes": 40
-            },
-            {
-              "label": "Esercizio di consolidamento e sintesi (lezione aggregata)",
-              "minutes": 30
-            }
-          ],
-          "quickCheck": "Controllo rapido: qual è l’elemento chiave o il controllo di sicurezza fondamentale applicato in i dbms e le fasi di progettazione di una base di dati?",
-          "flashCard": "I DBMS e le Fasi di Progettazione di una Base di Dati: fronte — illustra il principio chiave e i vincoli; retro — descrivi un errore tipico e la procedura di controllo/verifica.",
-          "bookActivity": "Palestra delle competenze",
-          "platforms": [
-            "Microsoft Access",
-            "DB Browser for SQLite",
-            "Visual Studio Code"
-          ],
-          "facilitatedTask": "Versione facilitata: affronta i dbms e le fasi di progettazione di una base di dati seguendo la guida per punti passo-passo, usando il dataset precompilato e concentrandoti sul controllo finale.",
-          "objectives": [
-            "Limiti dell'organizzazione su file tradizionali (ridondanza, inconsistenza, dipendenza dati-programmi); definizione di Database.",
-            "Ruolo del Database Management System (DBMS), proprietà ACID delle transazioni; le 3 fasi di progettazione (concettuale, logica, fisica).",
-            "Realizzare e verificare i prodotti laboratoriali richiesti da entrambi i nuclei tematici (analisi archivio piatto + attività sui DBMS)."
-          ],
-          "activity": "Lezione aggregata: Spiegazione, analisi dello scenario e laboratorio guidato su dagli archivi tradizionali alle basi di dati. Segue: Laboratorio operativo su i dbms e le fasi di progettazione di una base di dati: Studio del ciclo di vita di un database: dall'intervista all'utente alla manutenzione; figure professionali (DBA, progettista).",
-          "game": "Missione a squadre aziendale con controllo tra pari",
-          "studentCta": [
-            {
-              "label": "Apri le risorse",
-              "href": "#risorse"
-            },
-            {
-              "label": "Ripassa",
-              "href": "#ripasso"
-            }
-          ],
-          "explanation": "I file tradizionali causano ridondanza, anomalie e inconsistenza. I moderni DBMS garantiscono indipendenza dati-programmi, sicurezza, concorrenza e transazioni ACID."
+          "title": "Da programmare",
+          "hours": 0,
+          "book": "",
+          "kind": "da_programmare",
+          "example": "",
+          "exercise": "",
+          "deepDive": "",
+          "competence": "",
+          "evidence": "",
+          "materials": [],
+          "phases": [],
+          "quickCheck": "",
+          "flashCard": "",
+          "bookActivity": "",
+          "platforms": [],
+          "facilitatedTask": "",
+          "objectives": [],
+          "activity": "",
+          "game": "",
+          "studentCta": [],
+          "explanation": ""
         }
       ]
     },
     {
       "number": 7,
-      "theme": "Progettazione Concettuale: Entità, Attributi, Associazioni e Cardinalità",
+      "theme": "Da programmare",
       "lessons": [
         {
           "id": "4-07",
-          "title": "Progettazione Concettuale: Entità, Attributi, Associazioni e Cardinalità",
-          "hours": 2,
-          "book": "Connessi in azienda · UDA 3, TEMA 2, Paragrafi 2.3–2.4, Pagine 117–120",
-          "kind": "concept",
-          "example": "Esempio applicativo: Definizione guidata delle cardinalità tra `CLIENTE` e `ORDINE` ($1:N$), tra `ORDINE` e `PRODOTTO` ($N:N$). Nel contesto operativo aziendale, confronta le scelte metodologiche controllando sempre l’integrità e la coerenza del risultato.",
-          "exercise": "Attività operativa: Definizione guidata delle cardinalità tra `CLIENTE` e `ORDINE` ($1:N$), tra `ORDINE` e `PRODOTTO` ($N:N$). Consegna finale: Schema E-R completo con cardinalità commentate.",
-          "deepDive": "Approfondimento AI & Azienda: Validazione delle frasi di specifica: chiedere all'AI se la frase \"Un ordine contiene almeno un prodotto e un prodotto può essere in più ordini\" corrisponde a un'associazione $N:N$.",
-          "competence": "Applicare strumenti ICT e tecnologie AI nei processi aziendali, operando con metodo, accuratezza e conformità normativa.",
-          "evidence": "Prodotto archiviato (Schema E-R completo con cardinalità commentate.) e documentazione delle scelte/prompt log.",
-          "materials": [
-            "Computer del laboratorio",
-            "Quaderno di bordo / Cloud Drive",
-            "Dataset e schede didattiche"
-          ],
-          "phases": [
-            {
-              "label": "Attivazione e scenario aziendale",
-              "minutes": 10
-            },
-            {
-              "label": "Spiegazione e dimostrazione a video",
-              "minutes": 30
-            },
-            {
-              "label": "Prova guidata e applicazione",
-              "minutes": 45
-            },
-            {
-              "label": "Esercizio di consolidamento e sintesi",
-              "minutes": 35
-            }
-          ],
-          "quickCheck": "Controllo rapido: qual è l’elemento chiave o il controllo di sicurezza fondamentale applicato in progettazione concettuale?",
-          "flashCard": "Progettazione Concettuale: Le Associazioni e la Cardinalità: fronte — illustra il principio chiave e i vincoli; retro — descrivi un errore tipico e la procedura di controllo/verifica.",
-          "bookActivity": "Scheda tecnica + esercizio guidato",
-          "platforms": [
-            "Computer del laboratorio",
-            "Google Workspace"
-          ],
-          "facilitatedTask": "Versione facilitata: affronta progettazione concettuale seguendo la guida per punti passo-passo, usando il dataset precompilato e concentrandoti sul controllo finale.",
-          "objectives": [
-            "Le relazioni tra entità; cardinalità minima e massima $(0,1)$, $(1,1)$, $(0,N)$, $(1,N)$; classificazione delle relazioni: $1:1$, $1:N$, $N:N$.",
-            "Realizzare e verificare il prodotto laboratoriale: Schema E-R completo con cardinalità commentate.",
-            "Analizzare l’integrazione con l’Intelligenza Artificiale: Validazione delle frasi di specifica: chiedere all'AI se la frase \"Un ordine con..."
-          ],
-          "activity": "Spiegazione, analisi dello scenario e laboratorio guidato su progettazione concettuale.",
-          "game": "Missione a squadre aziendale con controllo tra pari",
-          "studentCta": [
-            {
-              "label": "Apri le risorse",
-              "href": "#risorse"
-            },
-            {
-              "label": "Ripassa",
-              "href": "#ripasso"
-            }
-          ],
-          "explanation": "In questa tappa approfondiamo Progettazione Concettuale: Le Associazioni e la Cardinalità. Nel contesto del sistema informativo aziendale e dell’innovazione digitale, analizziamo i principi teorici, i vincoli normativi e l’integrazione con strumenti di produttività e intelligenza artificiale."
+          "title": "Da programmare",
+          "hours": 0,
+          "book": "",
+          "kind": "da_programmare",
+          "example": "",
+          "exercise": "",
+          "deepDive": "",
+          "competence": "",
+          "evidence": "",
+          "materials": [],
+          "phases": [],
+          "quickCheck": "",
+          "flashCard": "",
+          "bookActivity": "",
+          "platforms": [],
+          "facilitatedTask": "",
+          "objectives": [],
+          "activity": "",
+          "game": "",
+          "studentCta": [],
+          "explanation": ""
         }
       ]
     },
     {
       "number": 8,
-      "theme": "Progettazione Logica: Regole di Derivazione",
+      "theme": "Da programmare",
       "lessons": [
         {
           "id": "4-08",
-          "title": "Progettazione Logica: Regole di Derivazione",
-          "hours": 2,
-          "book": "Connessi in azienda · UDA 3, TEMA 3, Paragrafi 3.1–3.2, Pagine 125–128",
-          "kind": "review",
-          "example": "Esempio applicativo: Derivazione manuale dello schema logico a partire dallo schema concettuale della lezione precedente. Nel contesto operativo aziendale, confronta le scelte metodologiche controllando sempre l’integrità e la coerenza del risultato.",
-          "exercise": "Attività operativa: Derivazione manuale dello schema logico a partire dallo schema concettuale della lezione precedente. Consegna finale: Schema logico tabellare formale con indicazione di Primary Key (`PK`) e Foreign Key (`FK`).",
-          "deepDive": "Approfondimento AI & Azienda: Prompt per verificare la corretta collocazione della Foreign Key nell'associazione $1:N$.",
-          "competence": "Applicare strumenti ICT e tecnologie AI nei processi aziendali, operando con metodo, accuratezza e conformità normativa.",
-          "evidence": "Prodotto archiviato (Schema logico tabellare formale con indicazione di Primary Key (`PK`) e Foreign Key (`FK`).) e documentazione delle scelte/prompt log.",
-          "materials": [
-            "Computer del laboratorio",
-            "Quaderno di bordo / Cloud Drive",
-            "Dataset e schede didattiche"
-          ],
-          "phases": [
-            {
-              "label": "Mappa dei concetti e rubrica",
-              "minutes": 20
-            },
-            {
-              "label": "Sfida di ripasso e simulazione",
-              "minutes": 45
-            },
-            {
-              "label": "Risoluzione caso pratico aziendale",
-              "minutes": 35
-            },
-            {
-              "label": "Restituzione e autovalutazione",
-              "minutes": 20
-            }
-          ],
-          "quickCheck": "Controllo rapido: qual è l’elemento chiave o il controllo di sicurezza fondamentale applicato in progettazione logica?",
-          "flashCard": "Progettazione Logica: Regole di Derivazione: fronte — illustra il principio chiave e i vincoli; retro — descrivi un errore tipico e la procedura di controllo/verifica.",
-          "bookActivity": "Test in velocità + Flash Card",
-          "platforms": [
-            "Computer del laboratorio",
-            "Google Workspace"
-          ],
-          "facilitatedTask": "Versione facilitata: affronta progettazione logica seguendo la guida per punti passo-passo, usando il dataset precompilato e concentrandoti sul controllo finale.",
-          "objectives": [
-            "Trasformazione dello schema E-R in schema logico relazionale: traduzione delle entità in tabelle, traduzione delle associazioni $1:1$, $1:N$ (chiave esterna lato $N$) e $N:N$ (tabella ponte).",
-            "Realizzare e verificare il prodotto laboratoriale: Schema logico tabellare formale con indicazione di Primary Key (`PK`) e Foreign Key (`FK`).",
-            "Analizzare l’integrazione con l’Intelligenza Artificiale: Prompt per verificare la corretta collocazione della Foreign Key nell'associazio..."
-          ],
-          "activity": "Spiegazione, analisi dello scenario e laboratorio guidato su progettazione logica.",
-          "game": "Missione a squadre aziendale con controllo tra pari",
-          "studentCta": [
-            {
-              "label": "Apri le risorse",
-              "href": "#risorse"
-            },
-            {
-              "label": "Ripassa",
-              "href": "#ripasso"
-            }
-          ],
-          "explanation": "In questa tappa approfondiamo Progettazione Logica: Regole di Derivazione. Nel contesto del sistema informativo aziendale e dell’innovazione digitale, analizziamo i principi teorici, i vincoli normativi e l’integrazione con strumenti di produttività e intelligenza artificiale."
+          "title": "Da programmare",
+          "hours": 0,
+          "book": "",
+          "kind": "da_programmare",
+          "example": "",
+          "exercise": "",
+          "deepDive": "",
+          "competence": "",
+          "evidence": "",
+          "materials": [],
+          "phases": [],
+          "quickCheck": "",
+          "flashCard": "",
+          "bookActivity": "",
+          "platforms": [],
+          "facilitatedTask": "",
+          "objectives": [],
+          "activity": "",
+          "game": "",
+          "studentCta": [],
+          "explanation": ""
         }
       ]
     },
     {
       "number": 9,
-      "theme": "La Normalizzazione delle Basi di Dati (1NF, 2NF, 3NF)",
+      "theme": "Da programmare",
       "lessons": [
         {
           "id": "4-09",
-          "title": "La Normalizzazione delle Basi di Dati (1NF, 2NF, 3NF)",
-          "hours": 2,
-          "book": "Connessi in azienda · UDA 3, TEMA 3, Approfondimento teorico, Pagine 129–132, 135",
-          "kind": "laboratory",
-          "example": "Esempio applicativo: Rilevazione guidata delle violazioni della 2NF e 3NF in una tabella non normalizzata e scomposizione nelle tabelle canoniche. Nel contesto operativo aziendale, confronta le scelte metodologiche controllando sempre l’integrità e la coerenza del risultato.",
-          "exercise": "Attività operativa: Rilevazione guidata delle violazioni della 2NF e 3NF in una tabella non normalizzata e scomposizione nelle tabelle canoniche. Consegna finale: Esercizio di normalizzazione documentato passo-passo.",
-          "deepDive": "Approfondimento AI & Azienda: ",
-          "competence": "Realizzare soluzioni e prodotti digitali operativi per l’azienda documentando scelte, dati e prompt.",
-          "evidence": "Prodotto archiviato (Esercizio di normalizzazione documentato passo-passo.) e documentazione delle scelte/prompt log.",
-          "materials": [
-            "Computer del laboratorio",
-            "Quaderno di bordo / Cloud Drive",
-            "Dataset e schede didattiche"
-          ],
-          "phases": [
-            {
-              "label": "Brief e impostazione scenario",
-              "minutes": 10
-            },
-            {
-              "label": "Laboratorio operativo a computer",
-              "minutes": 70
-            },
-            {
-              "label": "Test e controllo del risultato",
-              "minutes": 20
-            },
-            {
-              "label": "Restituzione e archiviazione",
-              "minutes": 20
-            }
-          ],
-          "quickCheck": "Controllo rapido: qual è l’elemento chiave o il controllo di sicurezza fondamentale applicato in la normalizzazione delle basi di dati (1nf, 2nf, 3nf)?",
-          "flashCard": "La Normalizzazione delle Basi di Dati (1NF, 2NF, 3NF): fronte — illustra il principio chiave e i vincoli; retro — descrivi un errore tipico e la procedura di controllo/verifica.",
-          "bookActivity": "Palestra delle competenze",
-          "platforms": [
-            "Computer del laboratorio",
-            "Google Workspace"
-          ],
-          "facilitatedTask": "Versione facilitata: affronta la normalizzazione delle basi di dati (1nf, 2nf, 3nf) seguendo la guida per punti passo-passo, usando il dataset precompilato e concentrandoti sul controllo finale.",
-          "objectives": [
-            "Eliminare le ridondanze e prevenire anomalie: Prima Forma Normale (atomicità degli attributi), Seconda Forma Normale (dipendenza funzionale completa dalla PK), Terza Forma Normale (nessuna dipendenza transitiva).",
-            "Realizzare e verificare il prodotto laboratoriale: Esercizio di normalizzazione documentato passo-passo.",
-            "Rispettare le procedure di sicurezza e documentazione aziendale"
-          ],
-          "activity": "Laboratorio operativo su la normalizzazione delle basi di dati (1nf, 2nf, 3nf): Rilevazione guidata delle violazioni della 2NF e 3NF in una tabella non normalizzata e scomposizione nelle tabelle canoniche.",
-          "game": "Missione a squadre aziendale con controllo tra pari",
-          "studentCta": [
-            {
-              "label": "Apri le risorse",
-              "href": "#risorse"
-            },
-            {
-              "label": "Ripassa",
-              "href": "#ripasso"
-            }
-          ]
+          "title": "Da programmare",
+          "hours": 0,
+          "book": "",
+          "kind": "da_programmare",
+          "example": "",
+          "exercise": "",
+          "deepDive": "",
+          "competence": "",
+          "evidence": "",
+          "materials": [],
+          "phases": [],
+          "quickCheck": "",
+          "flashCard": "",
+          "bookActivity": "",
+          "platforms": [],
+          "facilitatedTask": "",
+          "objectives": [],
+          "activity": "",
+          "game": "",
+          "studentCta": [],
+          "explanation": ""
         }
       ]
     },
     {
       "number": 10,
-      "theme": "Sintesi e Verifica UDA 3 (Organizzazione dei dati)",
+      "theme": "Da programmare",
       "lessons": [
         {
           "id": "4-10",
-          "title": "Sintesi e Verifica UDA 3 (Organizzazione dei dati)",
-          "hours": 2,
-          "book": "Connessi in azienda · UDA 3, Verifica, Pagine 133–134, 139–142",
-          "kind": "review",
-          "example": "Esempio applicativo: Prova individuale di modellazione concettuale e logica su traccia aziendale assegnata. Nel contesto operativo aziendale, confronta le scelte metodologiche controllando sempre l’integrità e la coerenza del risultato.",
-          "exercise": "Attività operativa: Prova individuale di modellazione concettuale e logica su traccia aziendale assegnata. Consegna finale: Elaborato di verifica valutato.",
-          "deepDive": "Approfondimento AI & Azienda: Rubrica di correzione automatica/guidata per verificare la coerenza delle cardinalità.",
-          "competence": "Applicare strumenti ICT e tecnologie AI nei processi aziendali, operando con metodo, accuratezza e conformità normativa.",
-          "evidence": "Prodotto archiviato (Elaborato di verifica valutato.) e documentazione delle scelte/prompt log.",
-          "materials": [
-            "Computer del laboratorio",
-            "Quaderno di bordo / Cloud Drive",
-            "Dataset e schede didattiche"
-          ],
-          "phases": [
-            {
-              "label": "Mappa dei concetti e rubrica",
-              "minutes": 20
-            },
-            {
-              "label": "Sfida di ripasso e simulazione",
-              "minutes": 45
-            },
-            {
-              "label": "Risoluzione caso pratico aziendale",
-              "minutes": 35
-            },
-            {
-              "label": "Restituzione e autovalutazione",
-              "minutes": 20
-            }
-          ],
-          "quickCheck": "Controllo rapido: qual è l’elemento chiave o il controllo di sicurezza fondamentale applicato in sintesi e verifica uda 3 (organizzazione dei dati)?",
-          "flashCard": "Sintesi e Verifica UDA 3 (Organizzazione dei dati): fronte — illustra il principio chiave e i vincoli; retro — descrivi un errore tipico e la procedura di controllo/verifica.",
-          "bookActivity": "Test in velocità + Flash Card",
-          "platforms": [
-            "Computer del laboratorio",
-            "Google Workspace"
-          ],
-          "facilitatedTask": "Versione facilitata: affronta sintesi e verifica uda 3 (organizzazione dei dati) seguendo la guida per punti passo-passo, usando il dataset precompilato e concentrandoti sul controllo finale.",
-          "objectives": [
-            "Verifica scritta/pratica su progettazione E-R, cardinalità, regole di derivazione e normalizzazione.",
-            "Realizzare e verificare il prodotto laboratoriale: Elaborato di verifica valutato.",
-            "Analizzare l’integrazione con l’Intelligenza Artificiale: Rubrica di correzione automatica/guidata per verificare la coerenza delle cardin..."
-          ],
-          "activity": "Spiegazione, analisi dello scenario e laboratorio guidato su sintesi e verifica uda 3 (organizzazione dei dati).",
-          "game": "Missione a squadre aziendale con controllo tra pari",
-          "studentCta": [
-            {
-              "label": "Apri le risorse",
-              "href": "#risorse"
-            },
-            {
-              "label": "Ripassa",
-              "href": "#ripasso"
-            }
-          ],
-          "explanation": "In questa tappa approfondiamo Sintesi e Verifica UDA 3 (Organizzazione dei dati). Nel contesto del sistema informativo aziendale e dell’innovazione digitale, analizziamo i principi teorici, i vincoli normativi e l’integrazione con strumenti di produttività e intelligenza artificiale."
+          "title": "Da programmare",
+          "hours": 0,
+          "book": "",
+          "kind": "da_programmare",
+          "example": "",
+          "exercise": "",
+          "deepDive": "",
+          "competence": "",
+          "evidence": "",
+          "materials": [],
+          "phases": [],
+          "quickCheck": "",
+          "flashCard": "",
+          "bookActivity": "",
+          "platforms": [],
+          "facilitatedTask": "",
+          "objectives": [],
+          "activity": "",
+          "game": "",
+          "studentCta": [],
+          "explanation": ""
         }
       ]
     },
     {
       "number": 11,
-      "theme": "Introduzione a Microsoft Access: Creazione Tabelle e Tipi di Dato",
+      "theme": "Da programmare",
       "lessons": [
         {
           "id": "4-11",
-          "title": "Introduzione a Microsoft Access: Creazione Tabelle e Tipi di Dato",
-          "hours": 2,
-          "book": "Connessi in azienda · UDA 4, TEMA 1, Paragrafi 1.1–1.3, Pagine 146–150",
-          "kind": "laboratory",
-          "example": "Esempio applicativo: Creazione del database `AziendaCommerciale.accdb` e creazione delle prime tabelle (`Clienti`, `Categorie`, `Prodotti`). Nel contesto operativo aziendale, confronta le scelte metodologiche controllando sempre l’integrità e la coerenza del risultato.",
-          "exercise": "Attività operativa: Creazione del database `AziendaCommerciale.accdb` e creazione delle prime tabelle (`Clienti`, `Categorie`, `Prodotti`). Consegna finale: File di database Access con 3 tabelle configurate in visualizzazione struttura.",
-          "deepDive": "Approfondimento AI & Azienda: Prompt per generare la descrizione dei campi e le regole di convalida ottimali in Access.",
-          "competence": "Realizzare soluzioni e prodotti digitali operativi per l’azienda documentando scelte, dati e prompt.",
-          "evidence": "Prodotto archiviato (File di database Access con 3 tabelle configurate in visualizzazione struttura.) e documentazione delle scelte/prompt log.",
-          "materials": [
-            "Computer del laboratorio",
-            "Quaderno di bordo / Cloud Drive",
-            "Dataset e schede didattiche"
-          ],
-          "phases": [
-            {
-              "label": "Brief e impostazione scenario",
-              "minutes": 10
-            },
-            {
-              "label": "Laboratorio operativo a computer",
-              "minutes": 70
-            },
-            {
-              "label": "Test e controllo del risultato",
-              "minutes": 20
-            },
-            {
-              "label": "Restituzione e archiviazione",
-              "minutes": 20
-            }
-          ],
-          "quickCheck": "Controllo rapido: qual è l’elemento chiave o il controllo di sicurezza fondamentale applicato in introduzione a microsoft access?",
-          "flashCard": "Introduzione a Microsoft Access: Creazione Tabelle e Tipi di Dato: fronte — illustra il principio chiave e i vincoli; retro — descrivi un errore tipico e la procedura di controllo/verifica.",
-          "bookActivity": "Palestra delle competenze",
-          "platforms": [
-            "Microsoft Access",
-            "DB Browser for SQLite",
-            "Visual Studio Code"
-          ],
-          "facilitatedTask": "Versione facilitata: affronta introduzione a microsoft access seguendo la guida per punti passo-passo, usando il dataset precompilato e concentrandoti sul controllo finale.",
-          "objectives": [
-            "Ambiente di lavoro Access: interfaccia, visualizzazione Foglio Dati e visualizzazione Struttura; tipi di dati (Testo breve, Numero, Valuta, Data/ora, Contatore).",
-            "Realizzare e verificare il prodotto laboratoriale: File di database Access con 3 tabelle configurate in visualizzazione struttura.",
-            "Analizzare l’integrazione con l’Intelligenza Artificiale: Prompt per generare la descrizione dei campi e le regole di convalida ottimali i..."
-          ],
-          "activity": "Laboratorio operativo su introduzione a microsoft access: Creazione del database `AziendaCommerciale.accdb` e creazione delle prime tabelle (`Clienti`, `Categorie`, `Prodotti`).",
-          "game": "Missione a squadre aziendale con controllo tra pari",
-          "studentCta": [
-            {
-              "label": "Apri le risorse",
-              "href": "#risorse"
-            },
-            {
-              "label": "Ripassa",
-              "href": "#ripasso"
-            }
-          ]
+          "title": "Da programmare",
+          "hours": 0,
+          "book": "",
+          "kind": "da_programmare",
+          "example": "",
+          "exercise": "",
+          "deepDive": "",
+          "competence": "",
+          "evidence": "",
+          "materials": [],
+          "phases": [],
+          "quickCheck": "",
+          "flashCard": "",
+          "bookActivity": "",
+          "platforms": [],
+          "facilitatedTask": "",
+          "objectives": [],
+          "activity": "",
+          "game": "",
+          "studentCta": [],
+          "explanation": ""
         }
       ]
     },
     {
       "number": 12,
-      "theme": "Popolamento Dati e Importazione da Excel",
+      "theme": "Da programmare",
       "lessons": [
         {
           "id": "4-12",
-          "title": "Popolamento Dati e Importazione da Excel",
-          "hours": 2,
-          "book": "Connessi in azienda · UDA 4, TEMA 1, Paragrafi 1.2–1.3, Pagine 149–150",
-          "kind": "concept",
-          "example": "Esempio applicativo: Importazione di 100 record anagrafici forniti dal docente in formato Excel all'interno del database Access. Nel contesto operativo aziendale, confronta le scelte metodologiche controllando sempre l’integrità e la coerenza del risultato.",
-          "exercise": "Attività operativa: Importazione di 100 record anagrafici forniti dal docente in formato Excel all'interno del database Access. Consegna finale: Database popolato con dati coerenti e privo di errori di conversione.",
-          "deepDive": "Approfondimento AI & Azienda: Uso dell'AI per risolvere discrepanze tra le intestazioni di colonna di Excel e i nomi campo di Access.",
-          "competence": "Applicare strumenti ICT e tecnologie AI nei processi aziendali, operando con metodo, accuratezza e conformità normativa.",
-          "evidence": "Prodotto archiviato (Database popolato con dati coerenti e privo di errori di conversione.) e documentazione delle scelte/prompt log.",
-          "materials": [
-            "Computer del laboratorio",
-            "Quaderno di bordo / Cloud Drive",
-            "Dataset e schede didattiche"
-          ],
-          "phases": [
-            {
-              "label": "Attivazione e scenario aziendale",
-              "minutes": 10
-            },
-            {
-              "label": "Spiegazione e dimostrazione a video",
-              "minutes": 30
-            },
-            {
-              "label": "Prova guidata e applicazione",
-              "minutes": 45
-            },
-            {
-              "label": "Esercizio di consolidamento e sintesi",
-              "minutes": 35
-            }
-          ],
-          "quickCheck": "Controllo rapido: qual è l’elemento chiave o il controllo di sicurezza fondamentale applicato in popolamento dati e importazione da excel?",
-          "flashCard": "Popolamento Dati e Importazione da Excel: fronte — illustra il principio chiave e i vincoli; retro — descrivi un errore tipico e la procedura di controllo/verifica.",
-          "bookActivity": "Scheda tecnica + esercizio guidato",
-          "platforms": [
-            "Microsoft Excel / 365",
-            "Google Fogli",
-            "Power Query"
-          ],
-          "facilitatedTask": "Versione facilitata: affronta popolamento dati e importazione da excel seguendo la guida per punti passo-passo, usando il dataset precompilato e concentrandoti sul controllo finale.",
-          "objectives": [
-            "Inserimento manuale, importazione rapida di dati da fogli Excel o file CSV esterni, gestione degli errori di troncamento o tipo incompatibile.",
-            "Realizzare e verificare il prodotto laboratoriale: Database popolato con dati coerenti e privo di errori di conversione.",
-            "Analizzare l’integrazione con l’Intelligenza Artificiale: Uso dell'AI per risolvere discrepanze tra le intestazioni di colonna di Excel e ..."
-          ],
-          "activity": "Spiegazione, analisi dello scenario e laboratorio guidato su popolamento dati e importazione da excel.",
-          "game": "Missione a squadre aziendale con controllo tra pari",
-          "studentCta": [
-            {
-              "label": "Apri le risorse",
-              "href": "#risorse"
-            },
-            {
-              "label": "Ripassa",
-              "href": "#ripasso"
-            }
-          ],
-          "explanation": "In questa tappa approfondiamo Popolamento Dati e Importazione da Excel. Nel contesto del sistema informativo aziendale e dell’innovazione digitale, analizziamo i principi teorici, i vincoli normativi e l’integrazione con strumenti di produttività e intelligenza artificiale."
+          "title": "Da programmare",
+          "hours": 0,
+          "book": "",
+          "kind": "da_programmare",
+          "example": "",
+          "exercise": "",
+          "deepDive": "",
+          "competence": "",
+          "evidence": "",
+          "materials": [],
+          "phases": [],
+          "quickCheck": "",
+          "flashCard": "",
+          "bookActivity": "",
+          "platforms": [],
+          "facilitatedTask": "",
+          "objectives": [],
+          "activity": "",
+          "game": "",
+          "studentCta": [],
+          "explanation": ""
         }
       ]
     },
